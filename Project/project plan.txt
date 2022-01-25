@@ -1,0 +1,37 @@
+Members(Group B)-:
+
+Buddhadeb Jena
+Anirban Das
+Isita Ghosh
+Pallab Tewary
+Nitin Kumar
+
+Preliminary stage-:
+
+	1.Documentation: Pallab Tewary, Nitin Kumar
+	2.Database Structure: Buddhadeb Jena
+	3.Database Diagram : Buddhadeb Jena
+	
+1st stage(compiling sources and initial configuration):-
+
+	1.Frontend -: Isita Ghosh, Pallab Tewary, Nitin Kumar
+	2.Database creation -: Anirban Das
+
+2nd stage(module creation and implementation):-
+
+	1.Landing page
+	2.Login
+	3.Dashboard
+		-Admin		
+		-Customer			
+		-CSR
+	4.Complaints
+	5.Feedback
+
+3rd stage(testing):-
+
+TBD
+
+Deployment:-
+
+TBD
