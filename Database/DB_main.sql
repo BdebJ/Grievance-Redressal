@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
--- Host: localhost    Database: grievenceredressal
+-- Host: localhost    Database: redress
 -- ------------------------------------------------------
 -- Server version	8.0.27
 
@@ -25,21 +25,21 @@ DROP TABLE IF EXISTS `complaint`;
 CREATE TABLE `complaint` (
   `complid` int NOT NULL AUTO_INCREMENT,
   `compltime` datetime NOT NULL,
-  `subject` varchar(75) NOT NULL,
-  `description` varchar(200) NOT NULL,
-  `pid` int NOT NULL,
-  `techid` int NOT NULL,
-  `compl_status` int NOT NULL,
-  `startprog` varchar(200) NOT NULL,
-  `ongoingprog` varchar(200) NOT NULL,
-  `endprog` varchar(200) NOT NULL,
-  `res_status` int NOT NULL,
+  `subject` varchar(75) DEFAULT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  `pid` int DEFAULT NULL,
+  `techid` int DEFAULT NULL,
+  `compl_status` int NOT NULL DEFAULT '0',
+  `startprog` varchar(200) DEFAULT NULL,
+  `ongoingprog` varchar(200) DEFAULT NULL,
+  `endprog` varchar(200) DEFAULT NULL,
+  `res_status` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`complid`),
   KEY `pid_idx` (`pid`),
   KEY `techId_idx` (`techid`),
   CONSTRAINT `pid` FOREIGN KEY (`pid`) REFERENCES `userinfo` (`pid`),
   CONSTRAINT `techId` FOREIGN KEY (`techid`) REFERENCES `technician` (`techid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='compl_status 0 - Initiated		res_status 0 - Initiated       \n	      1 - Accepted			  1 - Unresolved\n	      2 - Rejected			  2 - Resolved\n';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -60,8 +60,8 @@ DROP TABLE IF EXISTS `customerdefects`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customerdefects` (
   `cusdefid` int NOT NULL AUTO_INCREMENT,
-  `ownid` int NOT NULL,
-  `cus_def` varchar(200) NOT NULL,
+  `ownid` int DEFAULT NULL,
+  `cus_def` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`cusdefid`),
   KEY `prodOwnId_idx` (`ownid`),
   CONSTRAINT `prodOwnId` FOREIGN KEY (`ownid`) REFERENCES `productowned` (`ownid`)
@@ -109,9 +109,9 @@ DROP TABLE IF EXISTS `feedback`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `feedback` (
   `fbackid` int NOT NULL AUTO_INCREMENT,
-  `complid` int NOT NULL,
-  `feedback` varchar(200) NOT NULL,
-  `rating` int NOT NULL,
+  `complid` int DEFAULT NULL,
+  `feedback` varchar(200) DEFAULT NULL,
+  `rating` int DEFAULT NULL,
   PRIMARY KEY (`fbackid`),
   KEY `compId_idx` (`complid`),
   CONSTRAINT `compId` FOREIGN KEY (`complid`) REFERENCES `complaint` (`complid`)
@@ -136,9 +136,9 @@ DROP TABLE IF EXISTS `product`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `product` (
   `prodid` int NOT NULL AUTO_INCREMENT,
-  `deptid` int NOT NULL,
-  `prodmodel` varchar(25) NOT NULL,
-  `prodname` varchar(50) NOT NULL,
+  `deptid` int DEFAULT NULL,
+  `prodmodel` varchar(25) DEFAULT NULL,
+  `prodname` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`prodid`),
   KEY `pdeptid_idx` (`deptid`),
   CONSTRAINT `pdeptid` FOREIGN KEY (`deptid`) REFERENCES `department` (`deptid`)
@@ -163,8 +163,8 @@ DROP TABLE IF EXISTS `productdefects`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `productdefects` (
   `pdefid` int NOT NULL AUTO_INCREMENT,
-  `prodid` int NOT NULL,
-  `prod_def` varchar(100) NOT NULL,
+  `prodid` int DEFAULT NULL,
+  `prod_def` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`pdefid`),
   KEY `prodId_idx` (`prodid`),
   CONSTRAINT `prodId` FOREIGN KEY (`prodid`) REFERENCES `product` (`prodid`)
@@ -218,7 +218,7 @@ DROP TABLE IF EXISTS `technician`;
 CREATE TABLE `technician` (
   `techid` int NOT NULL AUTO_INCREMENT,
   `techname` varchar(45) NOT NULL,
-  `deptid` int NOT NULL,
+  `deptid` int DEFAULT NULL,
   PRIMARY KEY (`techid`),
   KEY `deptid_idx` (`deptid`),
   CONSTRAINT `deptid` FOREIGN KEY (`deptid`) REFERENCES `department` (`deptid`)
@@ -248,14 +248,14 @@ CREATE TABLE `userinfo` (
   `firstname` varchar(25) NOT NULL,
   `lastname` varchar(25) NOT NULL,
   `address` varchar(100) NOT NULL,
-  `email` varchar(45) NOT NULL,
-  `phno` int NOT NULL,
-  `tid` int NOT NULL,
-  `userstatus` int NOT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `phno` int DEFAULT NULL,
+  `roleid` int DEFAULT NULL,
+  `userstatus` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`pid`),
-  KEY `tid_idx` (`tid`),
-  CONSTRAINT `tid` FOREIGN KEY (`tid`) REFERENCES `usertype` (`roleid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `tid_idx` (`roleid`),
+  CONSTRAINT `tid` FOREIGN KEY (`roleid`) REFERENCES `usertype` (`roleid`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='userstatus 0 - Inactive\n	  1 - Active';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -264,6 +264,7 @@ CREATE TABLE `userinfo` (
 
 LOCK TABLES `userinfo` WRITE;
 /*!40000 ALTER TABLE `userinfo` DISABLE KEYS */;
+INSERT INTO `userinfo` VALUES (1,'a','qweqw','wqeqw','wqeqw','wqewqe','we',1233,3,1),(2,'b','zxc','fd','gdfg','gfhfg','fgh',4566,2,1);
 /*!40000 ALTER TABLE `userinfo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -287,6 +288,7 @@ CREATE TABLE `usertype` (
 
 LOCK TABLES `usertype` WRITE;
 /*!40000 ALTER TABLE `usertype` DISABLE KEYS */;
+INSERT INTO `usertype` VALUES (1,'Admin'),(2,'CSR'),(3,'Customer');
 /*!40000 ALTER TABLE `usertype` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -299,4 +301,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-25 23:37:14
+-- Dump completed on 2022-01-26 16:51:55
