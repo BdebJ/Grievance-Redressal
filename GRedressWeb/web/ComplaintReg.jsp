@@ -11,11 +11,13 @@
     <body>
        
         <s:form action="addcomplaint.action" method="post">
-             <s:textfield label="Date and Time" name="compltime" />
+             <s:textfield label="pid" name="pid" />
             <s:textfield label="Subject" name="subject" />
             <s:textfield label="Description" name="description" />
-            <s:textfield label="Pid" name="pid" />
-             <s:textfield label="Owned product" name="ownid" /> 
+             <s:textfield label="techid" name="techid" /> 
+            <s:textfield label="startprog" name="startprog" />
+            <s:textfield label="ongoingprog" name="ongoingprog" />
+            <s:textfield label="endprog" name="endprog" />
            
            
             

@@ -13,6 +13,7 @@ public class Technician {
     private int techid;
     private String techname;
     private int deptid;
+    private int techstatus;
 
     /**
      * @return the techid
@@ -55,4 +56,19 @@ public class Technician {
     public void setDeptid(int deptid) {
         this.deptid = deptid;
     }
+
+    /**
+     * @return the techstatus
+     */
+    public int getTechstatus() {
+        return techstatus;
+    }
+
+    /**
+     * @param techstatus the techstatus to set
+     */
+    public void setTechstatus(int techstatus) {
+        this.techstatus = techstatus;
+    }
+
 }

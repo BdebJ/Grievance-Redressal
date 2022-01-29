@@ -31,14 +31,14 @@
                 <table>
                     <thead>
                         <tr style="background-color: #E0E0E1;">
-                            <th>product name</th>   
-                            <th>product model</th> 
+                            <th>pid</th>   
+                            <th>prodid</th> 
                         </tr>
                     </thead>
-                    <s:iterator value="productList">
+                    <s:iterator value="ProductOwnedList">
                         <tr>
-                            <td><s:property value="prodname" /></td>       
-                            <td><s:property value="prodmodel" /></td>
+                            <td><s:property value="pid" /></td>       
+                            <td><s:property value="prodid" /></td>
                            
                             
                         </tr>

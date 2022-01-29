@@ -35,7 +35,6 @@ public class CustomerAction {
     private String endprog;
     private int res_status;
     private int fbackid;
-    private int ownid;
 
     private String feedback;
     private int rating;
@@ -51,11 +50,11 @@ public class CustomerAction {
     private String msg = "";
 
     public String showUser() throws Exception {
-        customer = new Customer();
+        Customer customer = new Customer();
 
         try {
             setUserList(new ArrayList<User>());
-            setUserList(customer.report(getPid()));
+            setUserList(customer.report(pid));
 
             if (!userList.isEmpty()) {
                 setNoData(false);
@@ -71,9 +70,12 @@ public class CustomerAction {
     }
 
     public String addComplaint() throws Exception {
+        System.out.println("in action");
         customer = new Customer();
+
         try {
-            setCtr(customer.ComplaintRegister(compltime, subject, description, pid, ownid));
+            setCtr(customer.ComplaintRegister(complid, compltime, subject, description, pid, techid, compl_status,
+                    startprog, ongoingprog, endprog, res_status));
             if (getCtr() > 0) {
                 setMsg("Complaint Registration Successfull");
             } else {
@@ -111,7 +113,7 @@ public class CustomerAction {
 
         try {
             setComplaintList(new ArrayList<Complaint>());
-            setComplaintList(customer.showcomplaints(getPid()));
+            setComplaintList(customer.showcomplaints());
 
             if (!complaintList.isEmpty()) {
 
@@ -127,11 +129,11 @@ public class CustomerAction {
         return "SHOWCOMPLAINT";
     }
 
-    public String closeComplaint() throws Exception {
+    public String deleteComplaint() throws Exception {
         Customer dao = new Customer();
         System.out.println(complid);
         try {
-            int isDeleted = dao.closeComplaintDetails(complid);
+            int isDeleted = dao.deleteComplaintDetails(complid);
             if (isDeleted > 0) {
                 msg = "Record deleted successfully";
             } else {
@@ -140,21 +142,67 @@ public class CustomerAction {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "CLOSECOMPLAINT";
+        return "DELETE";
 
     }
 
-  
+    public String showProduct() throws Exception {
+
+        Customer customer = new Customer();
+
+        try {
+            setComplaintList(new ArrayList<Complaint>());
+            setComplaintList(customer.showcomplaints());
+
+            if (!complaintList.isEmpty()) {
+
+                setNoData(false);
+                System.out.println("Complaints retrieve = " + getComplaintList().size());
+                System.out.println("setting nodata=false");
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "SHOWCOMPLAINT";
+    }
+
+    public String viewProduct() throws Exception {
+
+        Customer customer = new Customer();
+
+        try {
+
+            setProductList(new ArrayList<Product>());
+            setProductList(customer.viewProduct());
+
+            if (!productList.isEmpty()) {
+                setNoData(false);
+                System.out.println("Products retrieve = " + getProductList().size());
+                System.out.println("setting nodata=false");
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "VIEWPRODUCT";
+    }
+
     public String showProductOwned() throws Exception {
 
         Customer customer = new Customer();
 
         try {
-            setProductList(new ArrayList<Product>());
-            setProductList(customer.productOwn(getPid()));
+            setProductOwnedList(new ArrayList<ProductOwned>());
+            setProductOwnedList(customer.productOwn());
 
-            if (!productList.isEmpty()) {
+            if (!ProductOwnedList.isEmpty()) {
+
                 setNoData(false);
+                System.out.println("Product Owned retrieve = " + getProductOwnedList().size());
+                System.out.println("setting nodata=false");
             } else {
                 setNoData(true);
             }
@@ -622,20 +670,6 @@ public class CustomerAction {
 
     public void setProductOwnedList(List<ProductOwned> ProductOwnedList) {
         this.ProductOwnedList = ProductOwnedList;
-    }
-
-    /**
-     * @return the ownid
-     */
-    public int getOwnid() {
-        return ownid;
-    }
-
-    /**
-     * @param ownid the ownid to set
-     */
-    public void setOwnid(int ownid) {
-        this.ownid = ownid;
     }
 
 }

@@ -7,8 +7,8 @@
 <body>
 	<h2>Simple CURD Using STRUTS2 FRAMEWORK</h2>
 	<span><s:property value="msg" /></span><br><br>
-	<a href="showcomplaint">
-		<button type="button">Report</button>
+	<a href="showcomplaint.jsp">
+		<button type="button">ygy</button>
 	</a>
 </body>
 </html>

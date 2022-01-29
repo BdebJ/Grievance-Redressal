@@ -121,6 +121,20 @@ public class User {
     }
 
     /**
+     * @return the phno
+     */
+    public String getPhno() {
+        return phno;
+    }
+
+    /**
+     * @param phno the phno to set
+     */
+    public void setPhno(String phno) {
+        this.phno = phno;
+    }
+
+    /**
      * @return the tid
      */
     public int getRoleid() {
@@ -160,19 +174,5 @@ public class User {
      */
     public void setValidUser(boolean validUser) {
         this.validUser = validUser;
-    }
-
-    /**
-     * @param phno the phno to set
-     */
-    public void setPhno(String phno) {
-        this.phno = phno;
-    }
-
-    /**
-     * @return the phno
-     */
-    public String getPhno() {
-        return phno;
     }
 }
