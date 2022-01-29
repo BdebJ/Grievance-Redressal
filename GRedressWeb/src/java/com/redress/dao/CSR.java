@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class CSR {
 
-    public List<User> getAllCustomers() throws SQLException, Exception {
+    public List<User> customerList() throws SQLException, Exception {
 
         ResultSet rs = null;
         Connection con = null;
@@ -57,27 +57,6 @@ public class CSR {
             }
         }
 
-    }
-    
-    public int rejectComplaintDetails(int complid) throws SQLException, Exception {
-        Connection con = ConnectionManager.getConnection();
-        int i = 0;
-
-        try {
-            String sql = "UPDATE complaint SET compl_status=2 WHERE complid=?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, complid);
-            i = ps.executeUpdate();
-            System.out.println("rows updated "+i);
-            return i;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        } finally {
-            if (con != null) {
-                con.close();
-            }
-        }
     }
 
     public List<Department> departmentList() throws SQLException, Exception {
@@ -159,7 +138,6 @@ public class CSR {
         return complaintList;
     }  //To change body of generated methods, choose Tools | Templates.
 
-    
     public List<CustomerDefect> customerDefect() throws SQLException, Exception {
         ResultSet rs = null;
         Connection con = null;
@@ -272,6 +250,7 @@ public class CSR {
     public List<Technician> fetchTechnician(int deptid) throws SQLException {
         ResultSet rs = null;
         Connection con = null;
+        Technician technician = new Technician();
         List<Technician> techList = new  ArrayList<>();
         
         try {
@@ -284,7 +263,6 @@ public class CSR {
 
             rs = ps.executeQuery();
             while(rs.next()) {
-                Technician technician = new Technician();
                 technician.setTechid(rs.getInt("techid"));
                 technician.setTechname(rs.getString("techname"));
                 techList.add(technician);

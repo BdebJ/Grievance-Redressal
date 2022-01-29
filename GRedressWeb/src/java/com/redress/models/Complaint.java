@@ -14,7 +14,6 @@ public class Complaint {
     private String subject;
     private String description;
     private int pid;
-    private int ownid;
     private int techid;
     private int compl_status;
     private String startprog;
@@ -174,19 +173,5 @@ public class Complaint {
      */
     public void setRes_status(int res_status) {
         this.res_status = res_status;
-    }
-
-    /**
-     * @return the ownid
-     */
-    public int getOwnid() {
-        return ownid;
-    }
-
-    /**
-     * @param ownid the ownid to set
-     */
-    public void setOwnid(int ownid) {
-        this.ownid = ownid;
     }
 }
