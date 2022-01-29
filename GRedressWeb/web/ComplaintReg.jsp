@@ -9,9 +9,9 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>CUSTOMER Dashboard </title>
-        
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="assets/css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -114,18 +114,60 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="container-fluid px-4"> Add a complaint!
-                        <s:form action="addcomplaint.action" method="post">
-                             <s:textfield label="Date and Time" name="compltime" />
-                            <s:textfield label="Subject" name="subject" />
-                            <s:textfield label="Description" name="description" />
-                            <s:textfield label="Pid" name="pid" />
-                            <s:textfield label="Owned product" name="ownid" /> 
+                    <div class="container">
+                        <div class="container">
+                            <h1>Add a Complaint:</h1>
+                            <div class="card">
+                                <div class="card-body">
+                                    <form action="addcomplaint.action" method="post">
 
+                                        <div class="form-group row">
+                                            <label for="compltime" class="col-sm-2 col-form-label">Complaint Time</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" name="compltime"
+                                                       placeholder="Enter Complaint time">
+                                            </div>
+                                        </div>
 
+                                        <div class="form-group row">
+                                            <label for="subject" class="col-sm-2 col-form-label">Complaint Subject</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" name="subject"
+                                                       placeholder="Enter Complaint Subject">
+                                            </div>
+                                        </div>
 
-                            <s:submit cssClass="button-register" value="Add Complaint" />
-                        </s:form>
+                                        <div class=" form-group row">
+                                            <label for="description" class="col-sm-2 col-form-label">Complaint Description</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" name="description"
+                                                       placeholder="Enter Complaint Description">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="pid" class="col-sm-2 col-form-label">Pid</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" name="pid"
+                                                       placeholder="Enter Pid">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="ownid" class="col-sm-2 col-form-label">Owned Product</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" name="ownid"
+                                                       placeholder="Enter Owned Product">
+                                            </div>
+                                        </div>
+
+                                        
+
+                                        <button type="submit" class="btn btn-primary">Submit Complaint</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                         <s:if test="ctr>0">
                             <span style="color: green;"><s:property value="msg" /></span>
                         </s:if>
