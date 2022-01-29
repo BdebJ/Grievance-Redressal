@@ -4,6 +4,6 @@
     <head>
         <title>CSR dashboard</title>
     <body>
-        <h2>Welcome CSR ${sessionScope.user.getUsername()}</h2>       
+        <h2>Welcome  ${sessionScope.user.getUsername()}</h2>       
     </body>
 </html>
