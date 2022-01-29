@@ -87,7 +87,8 @@
                 <main>
                     <div class="container">
                         <div class="container">
-                            <h1>Add a Feedback:</h1>
+                            <br><br><br>
+                            <h1>Add Feedback:</h1>
                             <div class="card">
                                 <div class="card-body">
                                     <form action="addFeedback.action" method="post">
@@ -96,7 +97,7 @@
                                             <label for="feedback" class="col-sm-2 col-form-label">Feedback</label>
                                             <div class="col-sm-7">
                                                 <input type="text" class="form-control" name="feedback"
-                                                       placeholder="Enter your valuable feedback please!">
+                                                       placeholder="Please enter your feedback">
                                             </div>
                                         </div>
 
@@ -104,7 +105,7 @@
                                             <label for="rating" class="col-sm-2 col-form-label">Give rating</label>
                                             <div class="col-sm-7">
                                                 <input type="text" class="form-control" name="rating"
-                                                       placeholder="Enter Rating">
+                                                       placeholder="Rate the support you recieved">
                                             </div>
                                         </div>
 
