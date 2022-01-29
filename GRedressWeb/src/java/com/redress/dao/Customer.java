@@ -83,27 +83,20 @@ public class Customer {
         }
     }
 
-    public int ComplaintRegister(int complid, String compltime, String subject, String description,
-            int pid, int techid, int Compl_status, String startprog, String ongoingprog, String endprog, int res_status)
+    public int ComplaintRegister(String compltime, String subject, String description, int pid, int ownid)
             throws Exception {
         int i = 0;
         Connection con = null;
         try {
             con = ConnectionManager.getConnection();
-            System.out.println("Into dao");
-            String sql = "INSERT INTO complaint VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO complaint(compltime,subject,description,pid,ownid) VALUES (?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, complid);
-            ps.setString(2, compltime);
-            ps.setString(3, subject);
-            ps.setString(4, description);
-            ps.setInt(5, pid);
-            ps.setInt(6, techid);
-            ps.setInt(7, Compl_status);
-            ps.setString(8, startprog);
-            ps.setString(9, ongoingprog);
-            ps.setString(10, endprog);
-            ps.setInt(11, res_status);
+            ps.setString(1, compltime);
+            ps.setString(2, subject);
+            ps.setString(3, description);
+            ps.setInt(4, pid);
+            ps.setInt(5, ownid);
+           
 
             System.out.println("SQL for insert=" + ps);
             i = ps.executeUpdate();
@@ -124,7 +117,7 @@ public class Customer {
         try {
             con = ConnectionManager.getConnection();
 
-            String sql = "INSERT INTO feedback (feedback,rating)VALUES(?,?);";
+            String sql = "INSERT INTO feedback(feedback,rating) VALUES(?,?);";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, feedback);
             ps.setInt(2, rating);
@@ -143,15 +136,16 @@ public class Customer {
 
     }
 
-    public List showcomplaints() throws SQLException, Exception {
+    public List showcomplaints(int pid) throws SQLException, Exception {
         ResultSet rs = null;
         Connection con = null;
         List<Complaint> complaintList = new ArrayList<>();
         try {
-            String sql = "SELECT complid,compltime,subject,description,pid,techid,compl_status,startprog,ongoingprog,endprog,res_status FROM complaint WHERE pid=3";
+            String sql = "SELECT complid,compltime,subject,description,pid,techid,compl_status,startprog,ongoingprog,endprog,res_status FROM complaint WHERE pid = ?";
             con = ConnectionManager.getConnection();
             System.out.println("Connection is " + con);
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, pid);
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -182,12 +176,12 @@ public class Customer {
         }
     }
 
-    public int deleteComplaintDetails(int complid) throws SQLException, Exception {
+    public int closeComplaintDetails(int complid) throws SQLException, Exception {
         Connection con = ConnectionManager.getConnection();
         int i = 0;
 
         try {
-            String sql = "UPDATE complaint SET compl_status = 0 WHERE complid = ?";
+            String sql = "UPDATE complaint SET res_status = 1 WHERE complid = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, complid);
             i = ps.executeUpdate();
@@ -203,61 +197,26 @@ public class Customer {
         }
     }
 
-    public List productOwn() throws SQLException, Exception {
+    public List productOwn(int pid) throws SQLException, Exception {
         ResultSet rs = null;
         Connection con = null;
-        List<ProductOwned> ProductOwnedList = new ArrayList<>();
+        List<Product> ProductOwnedList = new ArrayList<>();
         try {
-            String sql = "SELECT ownid, pid,prodid FROM productowned";
+            String sql = "SELECT prodname,prodmodel FROM productowned,product WHERE pid=? AND productowned.prodid=product.prodid;";
             con = ConnectionManager.getConnection();
             System.out.println("Connection is " + con);
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, pid);
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                ProductOwned productowned = new ProductOwned();
-                productowned.setOwnid(rs.getInt("ownid"));
-                productowned.setPid(rs.getInt("pid"));
-                productowned.setProdid(rs.getInt("prodid"));
+                Product productowned = new Product();
+                productowned.setProdname(rs.getString("prodname"));
+                productowned.setProdmodel(rs.getString("prodmodel"));
 
                 ProductOwnedList.add(productowned);
             }
             return ProductOwnedList;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            if (con != null) {
-                con.close();
-            }
-        }
-    }
-
-    public List viewProduct() throws SQLException, Exception {
-
-        ResultSet rs = null;
-        Connection con = null;
-        List<Product> productList = new ArrayList<>();
-        try {
-
-            String sql = "SELECT prodid,deptid,prodmodel,prodname FROM product WHERE prodid=2";
-            con = ConnectionManager.getConnection();
-            System.out.println("Connection is " + con);
-            PreparedStatement ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                System.out.println("Products");
-                Product product = new Product();
-
-                product.setProdid(rs.getInt("prodid"));
-                product.setDeptid(rs.getInt("deptid"));
-                product.setProdmodel(rs.getString("prodmodel"));
-                product.setProdname(rs.getString("prodname"));
-
-                productList.add(product);
-            }
-            return productList;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
