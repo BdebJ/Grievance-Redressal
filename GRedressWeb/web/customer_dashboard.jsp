@@ -1,82 +1,139 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="s" uri="/struts-tags"%>
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <title>Customer dashboard</title>
-        <style>
-            table, td, th {
-                border: 1px solid black;
-            }
-            table {
-                border-collapse: collapse;
-                width: 60%;
-            }
-            th {
-                height: 30px;
-            }
-            .button-update {
-                background-color: #008CBA;
-                color: white;
-            }
-            .button-delete {
-                background-color: red;
-                color: white;
-            }
-        </style>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>CUSTOMER Dashboard </title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="assets/css/styles.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
-    <body>
-        <h2>Customer dashboard</h2>
-        <div style="margin-top: 40px;">
-            <s:if test="noData==false">
-                <table>
-                    <thead>
-                        <tr style="background-color: #E0E0E1;">
-                            <th>User Name</th>                            
-                            <th>First name</th>
-                            <th>Last name</th>
-                            <th>address</th>       
-                            <th>Email</th>                     
-                            <th>Phone Number</th>
-                        </tr>
-                    </thead>
-                    <s:iterator value="userList">
-                        <tr>
-                            <td><s:property value="username" /></td>
-                            <td><s:property value="firstname" /></td>
-                            <td><s:property value="lastname" /></td>
-                            <td><s:property value="address" /></td>     
-                            <td><s:property value="email" /></td>                                               
-                            <td><s:property value="phno" /></td>
-                            <td>
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3" href="customer_dashboard.jsp">Welcome ${user.firstname}</a>
 
-                                <a href="addcomplaint"><button class="button-report" type="button">Add Complaint</button></a>
-                                <a href="addFeedback.action?complid=<s:property value="complid"/>">
-                                    <button class="button-update">Add Feedback</button>
-                                </a> 
-                                <a href="viewcomplaint.action?complid=<s:property value="complid"/>">
-                                    <button class="button-update">View Complaint</button>
-                                </a> 
-                                <a href="viewproductOwned.action?pid=<s:property value="pid"/>">
-                                    <button class="button-update">View ProductOwned</button>
-                                </a>
-                                <a href="Viewproduct.action?pid=<s:property value="pid"/>">
-                                    <button class="button-update">View Product</button>
-                                </a>
-                                <a href="customerDefects.action?pid=<s:property value="pid"/>">
-                                    <button class="button-update">Customer defects</button>
-                                </a>
-                          
+            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+            <!-- Navbar Search-->
+            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+            <!-- Navbar-->
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">Settings</a></li>
+                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading"></div>
+                            <a class="nav-link" href="customer_dashboard.jsp">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Home
+                            </a>
+                            <div class="sb-sidenav-menu-heading"></div>
+                            <!--                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                                            Admin
+                                                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                                        </a>-->
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
 
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Select a service
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="layout-static.html">Register Complaint</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">View Complaint</a>
+                                    <a class="nav-link" href="layout-static.html">Register Complaint</a> 
+                                    <a class="nav-link" href="layout-static.html">Register Complaint</a>
+                                </nav>
+                            </div>
 
-                            </td>
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                        Grievance 
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="ComplaintReg.jsp">Add Grievance</a>
+                                            <a class="nav-link" href="register.html">Update Grievance</a>
+                                            <a class="nav-link" href="password.html">Remove Grievance</a>
+                                        </nav>
+                                    </div>
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                                        Feedback
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="Feedback.jsp">Add Feedback</a>
+                                            <a class="nav-link" href="404.html">Update Feedback</a>
+                                            <a class="nav-link" href="500.html">Review</a>
+                                        </nav>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        ${user.username}
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <!-- comment -->
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2021</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
 
-                        </tr>
-                    </s:iterator>
-                </table>
-            </s:if>
-            <s:else>
-                <div style="color: red;">No Data Found.</div>
-            </s:else>
+            </div>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="assets/js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="assets/js/datatables-simple-demo.js"></script>
     </body>
 </html>
