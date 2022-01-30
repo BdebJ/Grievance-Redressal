@@ -80,6 +80,8 @@ public class CSRAction {
         }
         return "COMPLAINTLIST";
     }
+    
+    
     private List<CustomerDefect> customerdefect = null;
 
     public String customerDefects() {

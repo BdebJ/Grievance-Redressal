@@ -14,6 +14,8 @@ public class Product {
     private int deptid;
     private String prodmodel;
     private String prodname;
+    private String deptname;
+    private int prodstatus;
 
     /**
      * @return the prodid
@@ -69,5 +71,33 @@ public class Product {
      */
     public void setProdname(String prodname) {
         this.prodname = prodname;
+    }
+
+    /**
+     * @return the deptname
+     */
+    public String getDeptname() {
+        return deptname;
+    }
+
+    /**
+     * @param deptname the deptname to set
+     */
+    public void setDeptname(String deptname) {
+        this.deptname = deptname;
+    }
+
+    /**
+     * @return the prodstatus
+     */
+    public int getProdstatus() {
+        return prodstatus;
+    }
+
+    /**
+     * @param prodstatus the prodstatus to set
+     */
+    public void setProdstatus(int prodstatus) {
+        this.prodstatus = prodstatus;
     }
 }

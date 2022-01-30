@@ -6,6 +6,7 @@ package com.redress.actions;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.redress.dao.Admin;
+import com.redress.models.Complaint;
 import com.redress.models.Department;
 import com.redress.models.Product;
 import com.redress.models.Technician;
@@ -281,7 +282,7 @@ public class AdminAction extends ActionSupport {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "dept_delete_success";
+        return "DELETEDEPARTMENT";
     }
 
     public String deleteUser() throws Exception {
@@ -302,6 +303,7 @@ public class AdminAction extends ActionSupport {
         try {
             setUserList(new ArrayList<User>());
             setUserList(admin.getAllCustomers());
+            
             if (!userList.isEmpty()) {
                 setNoData(false);
             } else {
@@ -466,7 +468,60 @@ public class AdminAction extends ActionSupport {
         }
         return "SHOWINACTIVETECHNICIAN";
     }
+    
+    private List<Product> productList = null;
+    
+    public String showProducts() {
+        try {
+            setProductList(new ArrayList<Product>());
+            setProductList(admin.getAllProducts());
+            if (!productList.isEmpty()) {
+                setNoData(false);
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "SHOWPRODUCTS";
+    }
 
+
+    public String showDeletedProducts() {
+        try {
+            setProductList(new ArrayList<Product>());
+            setProductList(admin.getDeletedProducts());
+            if (!productList.isEmpty()) {
+                setNoData(false);
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "SHOWPRODUCTS";
+    }
+    
+    public String showResolvedComplaints() {
+
+        try {
+            setComplaintList(new ArrayList<Complaint>());
+            setComplaintList(csr.complaintList());
+
+            if (!complaintList.isEmpty()) {
+                setNoData(false);
+                System.out.println("Users retrieve = " + getComplaintList().size());
+                System.out.println("setting nodata=false");
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "COMPLAINTLIST";
+    }
+    
+    
 
     /**
      * @return the noData
@@ -844,5 +899,19 @@ public class AdminAction extends ActionSupport {
      */
     public void setTechstatus(int techstatus) {
         this.techstatus = techstatus;
+    }
+
+    /**
+     * @return the productList
+     */
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    /**
+     * @param productList the productList to set
+     */
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
 }

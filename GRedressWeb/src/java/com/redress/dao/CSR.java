@@ -68,7 +68,7 @@ public class CSR {
         try {
 
             con = ConnectionManager.getConnection();
-            String sql = "SELECT * FROM department";
+            String sql = "SELECT deptid,deptname,deptstatus FROM department";
             PreparedStatement ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
 
@@ -77,11 +77,12 @@ public class CSR {
 
                 department.setDeptid(rs.getInt("deptid"));
                 department.setDeptname(rs.getString("deptname"));
+                department.setDeptstatus(rs.getInt("deptstatus"));
 
                 departmentList.add(department);
 
             }
-            System.out.println("Total number of customers = " + departmentList.size());
+            System.out.println("Total number of Department = " + departmentList.size());
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -103,24 +104,39 @@ public class CSR {
         try {
 
             con = ConnectionManager.getConnection();
-            String sql = "SELECT * FROM complaint";
+            String sql = "SELECT c.pid,c.complid,ui.firstname,ui.lastname,c.compltime,p.prodmodel,"
+                    + "p.prodname,c.subject,c.description, c.compl_status,t.techid,t.techname, "
+                    + "c.startprog, c.ongoingprog,c.endprog, c.res_status FROM complaint c "
+                    + "LEFT JOIN userinfo ui ON c.pid = ui.pid "
+                    + "LEFT JOIN technician t ON c.techid = t.techid "
+                    + "LEFT JOIN productowned po ON c.ownid = po.ownid "
+                    + "LEFT JOIN product p ON c.ownid = p.prodid";
+
+
+
             PreparedStatement ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
 
             while (rs.next()) {
                 Complaint complaint = new Complaint();
-
+                complaint.setPid(rs.getInt("pid"));
                 complaint.setComplid(rs.getInt("complid"));
+                complaint.setFirstname(rs.getString("firstname"));
+                complaint.setLastname(rs.getString("lastname"));
                 complaint.setCompltime(rs.getString("compltime"));
+                complaint.setProdmodel(rs.getString("prodmodel"));
+                complaint.setProdname(rs.getString("prodname"));
                 complaint.setSubject(rs.getString("subject"));
                 complaint.setDescription(rs.getString("description"));
-                complaint.setPid(rs.getInt("pid"));
                 complaint.setTechid(rs.getInt("techid"));
+                complaint.setTechname(rs.getString("techname"));
                 complaint.setCompl_status(rs.getInt("compl_status"));
                 complaint.setStartprog(rs.getString("startprog"));
                 complaint.setOngoingprog(rs.getString("ongoingprog"));
                 complaint.setEndprog(rs.getString("endprog"));
-                complaint.setPid(rs.getInt("res_status"));
+                complaint.setRes_status(rs.getInt("res_status"));
+                
+                System.out.println("pid"+rs.getInt("pid"));
                 complaintList.add(complaint);
 
             }
@@ -251,18 +267,18 @@ public class CSR {
         ResultSet rs = null;
         Connection con = null;
         Technician technician = new Technician();
-        List<Technician> techList = new  ArrayList<>();
-        
+        List<Technician> techList = new ArrayList<>();
+
         try {
             con = ConnectionManager.getConnection();
             String sql = "SELECT techid,techname FROM technician where deptid = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, deptid);
-            System.out.println("DepartmentId = " + deptid);        
+            System.out.println("DepartmentId = " + deptid);
             System.out.println("Select SQL = " + ps);
 
             rs = ps.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 technician.setTechid(rs.getInt("techid"));
                 technician.setTechname(rs.getString("techname"));
                 techList.add(technician);
