@@ -18,32 +18,18 @@ import java.util.List;
  * @author bjena
  */
 public class CSRAction {
-    
-    private String submitType;
-      private String msg = "";
-        private int complid;
-    private String compltime;
-    private String subject;
-    private String description;
-    private int pid;
-    private int techid;
-    private int compl_status;
-    private String startprog;
-    private String ongoingprog;
-    private String endprog;
-    private int res_status;
-    
-     private List<User> customerList = null;
-      CSR csr = new CSR();
-      private boolean noData = false;
-    public String  showCustomers() {
-       
-           try {
-            setCustomerList(new ArrayList<User>());
-            setCustomerList(csr.getAllCustomers());
-            
 
-            if (!customerList.isEmpty() ) {
+    private List<User> customerList = null;
+    CSR csr = new CSR();
+    private boolean noData = false;
+
+    public String showCustomers() {
+
+        try {
+            setCustomerList(new ArrayList<User>());
+            setCustomerList(csr.customerList());
+
+            if (!customerList.isEmpty()) {
                 setNoData(false);
             } else {
                 setNoData(true);
@@ -54,16 +40,16 @@ public class CSRAction {
         return "CUSTOMERLIST";
     }
     private List<Department> departmentList = null;
-      public String  showDepartments() {
-       
-           try {
+
+    public String showDepartments() {
+
+        try {
             setDepartmentList(new ArrayList<Department>());
             setDepartmentList(csr.departmentList());
-            
 
-            if (!departmentList.isEmpty() ) {
+            if (!departmentList.isEmpty()) {
                 setNoData(false);
-                System.out.println("Users retrieve = "+getDepartmentList().size());
+                System.out.println("Users retrieve = " + getDepartmentList().size());
                 System.out.println("setting nodata=false");
             } else {
                 setNoData(true);
@@ -73,19 +59,18 @@ public class CSRAction {
         }
         return "DEPARTEMNTLIST";
     }
-      
-      
-      private List<Complaint> complaintList = null;
-      public String  showComplaint() {
-       
-           try {
+
+    private List<Complaint> complaintList = null;
+
+    public String showComplaint() {
+
+        try {
             setComplaintList(new ArrayList<Complaint>());
             setComplaintList(csr.complaintList());
-            
 
-            if (!complaintList.isEmpty() ) {
+            if (!complaintList.isEmpty()) {
                 setNoData(false);
-                System.out.println("Users retrieve = "+getComplaintList().size());
+                System.out.println("Users retrieve = " + getComplaintList().size());
                 System.out.println("setting nodata=false");
             } else {
                 setNoData(true);
@@ -95,19 +80,17 @@ public class CSRAction {
         }
         return "COMPLAINTLIST";
     }
-     
-      
-        private List<CustomerDefect> customerdefect = null;
-      public String  customerDefects() {
-       
-           try {
+    private List<CustomerDefect> customerdefect = null;
+
+    public String customerDefects() {
+
+        try {
             setCustomerdefect(new ArrayList<CustomerDefect>());
             setCustomerdefect(csr.customerDefect());
-            
 
-            if (!customerdefect.isEmpty() ) {
+            if (!customerdefect.isEmpty()) {
                 setNoData(false);
-                System.out.println("Users retrieve = "+getCustomerdefect().size());
+                System.out.println("Users retrieve = " + getCustomerdefect().size());
                 System.out.println("setting nodata=false");
             } else {
                 setNoData(true);
@@ -115,22 +98,22 @@ public class CSRAction {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "DEFECTS"; 
+        return "DEFECTS";
     }
-      
-      
-      
+
     private int deptid;
-          private List<Technician> technician = null;
-          public String showTechnicians() throws Exception {
+    private List<Technician> technician = null;
+
+    public String showTechnicians() throws Exception {
 
         try {
-             setTechnician(new ArrayList<Technician>());
-             setTechnician(csr.fetchTechnician(getDeptid()));
-            
-               if (!technician.isEmpty() ) {
+
+            setTechnician(new ArrayList<Technician>());
+            setTechnician(csr.fetchTechnician(getDeptid()));
+
+            if (!technician.isEmpty()) {
                 setNoData(false);
-                System.out.println("Users retrieve = "+getTechnician().size());
+                System.out.println("Users retrieve = " + getTechnician().size());
                 System.out.println("setting nodata=false");
             } else {
                 setNoData(true);
@@ -142,14 +125,42 @@ public class CSRAction {
 
         return "TECHNICIAN";
     }
-      
-        public String updateComplaints() throws Exception {
+
+    /**
+     * @return the deptid
+     */
+    public int getDeptid() {
+        return deptid;
+    }
+
+    /**
+     * @param deptid the deptid to set
+     */
+    public void setDeptid(int deptid) {
+        this.deptid = deptid;
+    }
+
+    private String submitType;
+    private String msg = "";
+    private int complid;
+    private String compltime;
+    private String subject;
+    private String description;
+    private int pid;
+    private int techid;
+    private int compl_status;
+    private String startprog;
+    private String ongoingprog;
+    private String endprog;
+    private int res_status;
+
+    public String updateComplaints() throws Exception {
 
         try {
             if (getSubmitType().equals("updatedata")) {
-                Complaint complaint = csr.fetchComplaintDetails(getComplid());
+                Complaint complaint = csr.fetchComplaintDetails(complid);
                 if (complaint != null) {
-                    setComplid(complaint.getComplid());
+                    complid = complaint.getComplid();
                     compltime = complaint.getCompltime();
                     subject = complaint.getSubject();
                     description = complaint.getDescription();
@@ -162,8 +173,8 @@ public class CSRAction {
                     res_status = complaint.getRes_status();
                 }
             } else {
-                int i = csr.updateComplaintDetails(getComplid(), compltime, subject, description,
-                        pid, techid ,compl_status ,startprog ,ongoingprog ,endprog ,res_status);
+                int i = csr.updateComplaintDetails(complid, compltime, subject, description,
+                        pid, techid, compl_status, startprog, ongoingprog, endprog, res_status);
                 if (i > 0) {
                     setMsg("Record Updated Successfuly");
                 } else {
@@ -177,23 +188,7 @@ public class CSRAction {
 
         return "UPDATE";
     }
-        public String rejectComplaint() throws Exception {
-        System.out.println(getComplid());
-        try {
-            int isDeleted = csr.rejectComplaintDetails(getComplid());
-            if (isDeleted > 0) {
-                msg = "Complaint Rejected successfully";
-            } else {
-                msg = "Some error";
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "REJECTCOMPLAINT";
 
-    }
-        
-          
     /**
      * @return the customerList
      */
@@ -318,33 +313,5 @@ public class CSRAction {
      */
     public void setTechnician(List<Technician> technician) {
         this.technician = technician;
-    }
-
-    /**
-     * @return the deptid
-     */
-    public int getDeptid() {
-        return deptid;
-    }
-
-    /**
-     * @param deptid the deptid to set
-     */
-    public void setDeptid(int deptid) {
-        this.deptid = deptid;
-    }
-
-    /**
-     * @return the complid
-     */
-    public int getComplid() {
-        return complid;
-    }
-
-    /**
-     * @param complid the complid to set
-     */
-    public void setComplid(int complid) {
-        this.complid = complid;
     }
 }

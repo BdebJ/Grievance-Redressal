@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * @author bjena
  */
 public class AdminAction extends ActionSupport {
-    
+
     //User
     private int pid;
     private String username;
@@ -48,40 +48,22 @@ public class AdminAction extends ActionSupport {
     // Technician
     private int techid;
     private String techname;
+    private int techstatus;
 
     // Department
     private String deptname;
-    //private List<User> userList = null;
-    
+    private List<User> userList = null;
+
     private String submitType;
     Department dept = null;
     Product prod = null;
     Technician tech = null;
-    
-    // Update Methods
-    private List<User> csrList = null;
-    public String showCSR() {
-       
-           try {
-               setCsrList(new ArrayList<User>());
-               setCsrList(admin.getAllCSR());
-            
 
-            if (!csrList.isEmpty() ) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "CSRLIST";
-    }
-    
+    // Update Methods
     public String updateDepartment() throws Exception {
         admin = new Admin();
         try {
-            setCtr(admin.updateDepartment(deptid,deptname));
+            setCtr(admin.updateDepartment(deptid, deptname));
             if (getCtr() > 0) {
                 setMsg("Department updated Successfully!");
             } else {
@@ -93,27 +75,44 @@ public class AdminAction extends ActionSupport {
 
         return "UPDATEDEPARTMENT";
     }
-    
+
     public String updateTechnician() throws Exception {
         admin = new Admin();
         try {
-            setCtr(admin.updateTechnician(techid,deptid,techname));
+            admin = new Admin();
+        
+            if (getSubmitType().equals("updatedata")) {
+                System.out.println("Here I am");
+                Technician tech = admin.fetchTechnicianDetails(techid);
+                if (tech != null) {
+                    techid = tech.getTechid();
+                    techname = tech.getTechname();
+                    deptid = tech.getDeptid();
+                    techstatus = tech.getTechstatus();
+                    
+                }
+            } else {
+            setCtr(admin.updateTechnician(techid, deptid, techname, techstatus));
             if (getCtr() > 0) {
                 setMsg("Technician updated Successfully!");
             } else {
+                setCtr(-1);
                 setMsg("Some error");
             }
+            }  
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return "UPDATETECHNICIAN";
     }
-    
+        
+
     public String updateProduct() throws Exception {
         admin = new Admin();
         try {
-            setCtr(admin.updateProduct(prodid,prodname,deptid,prodmodel));
+            
+            setCtr(admin.updateProduct(prodid, prodname, deptid, prodmodel));
             if (getCtr() > 0) {
                 setMsg("Product updated Successfully!");
             } else {
@@ -125,15 +124,33 @@ public class AdminAction extends ActionSupport {
 
         return "UPDATEPRODUCT";
     }
-    
+
     public String updateUser() throws Exception {
         admin = new Admin();
         try {
-            setCtr(admin.updateUser(pid,username,password,firstname,lastname,address,email,phno));
-            if (getCtr() > 0) {
-                setMsg("Customer updated Successfully!");
+            if (getSubmitType().equals("updatedata")) {
+                System.out.println("Here I am");
+                User user = admin.fetchUserDetails(pid);
+                if (user != null) {
+                    pid = user.getPid();
+                    username = user.getUsername();
+                    password = user.getPassword();
+                    firstname = user.getFirstname();
+                    lastname = user.getLastname();
+                    address = user.getAddress();
+                    email = user.getEmail();
+                    phno = user.getPhno();
+                    userstatus = user.getUserstatus();
+                }
             } else {
-                setMsg("Some error");
+                setCtr(admin.updateUser(pid, username, password, firstname, lastname, address, email, phno, userstatus));
+                if (getCtr() > 0) {
+                    setMsg("User updated Successfully!");
+                } else {
+                    setCtr(-1);
+                    setMsg("Some error occured!");
+                }
+//            }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -142,20 +159,39 @@ public class AdminAction extends ActionSupport {
         return "UPDATEUSER";
     }
     
-    public String addUser() throws Exception {
+   
+    public String addCustomers() throws Exception {
         admin = new Admin();
 
         try {
-            setCtr(admin.addUser(getUsername(), getPassword(), getFirstname(), getLastname(), getAddress(), getEmail(), getPhno()));
+            setCtr(admin.addCustomers(getUsername(), getPassword(), getFirstname(), getLastname(), getAddress(), getEmail(), getPhno()));
             if (getCtr() > 0) {
-                setMsg("Registration Successfull");
+                setMsg("Customer added successfully");
             } else {
-                setMsg("Some error");
+                setCtr(-1);
+                setMsg("Username or email id is already registered!");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "success";
+        return "ADDCUSTOMERS";
+    }
+
+    public String addCSR() throws Exception {
+        admin = new Admin();
+
+        try {
+            setCtr(admin.addCSR(getUsername(), getPassword(), getFirstname(), getLastname(), getAddress(), getEmail(), getPhno()));
+            if (getCtr() > 0) {
+                setMsg("CSR added successfully");
+            } else {
+                setCtr(-1);
+                setMsg("Username or email id is already registered!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "ADDCSR";
     }
 
     public String addProduct() throws Exception {
@@ -219,7 +255,7 @@ public class AdminAction extends ActionSupport {
         }
         return "prod_delete_success";
     }
-    
+
     public String deleteTech() throws Exception {
         try {
             int isDeleted = admin.deleteTechDetails(getTechid());
@@ -231,7 +267,7 @@ public class AdminAction extends ActionSupport {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "tech_delete_success";
+        return "DELETETECHNICIAN";
     }
 
     public String deleteDept() throws Exception {
@@ -250,7 +286,7 @@ public class AdminAction extends ActionSupport {
 
     public String deleteUser() throws Exception {
         try {
-            int isDeleted = admin.deleteTechDetails(getTechid());
+            int isDeleted = admin.deleteUserDetails(getPid());
             if (isDeleted > 0) {
                 setMsg("User deleted successfully");
             } else {
@@ -261,6 +297,176 @@ public class AdminAction extends ActionSupport {
         }
         return "user_delete_success";
     }
+
+    public String listCustomer() throws Exception {
+        try {
+            setUserList(new ArrayList<User>());
+            setUserList(admin.getAllCustomers());
+            if (!userList.isEmpty()) {
+                setNoData(false);
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "customer_list_success";
+    }
+    
+    public String showActiveCustomers() throws Exception {
+        try {
+            setUserList(new ArrayList<User>());
+            setUserList(admin.getActiveCustomers());
+            if (!userList.isEmpty()) {
+                setNoData(false);
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "SHOWACTIVECUSTOMERS";
+    }
+
+    public String showInactiveCustomers() throws Exception {
+        try {
+            setUserList(new ArrayList<User>());
+            setUserList(admin.getInactiveCustomers());
+            if (!userList.isEmpty()) {
+                setNoData(false);
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "SHOWINACTIVECUSTOMERS";
+    }
+    
+    public String showDeletedCustomers() throws Exception {
+        try {
+            setUserList(new ArrayList<User>());
+            setUserList(admin.getDeletedCustomers());
+            if (!userList.isEmpty()) {
+                setNoData(false);
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "SHOWDELETEDCUSTOMERS";
+    }
+    
+    private List<User> csrList = null;
+
+    public String showCSR() {
+        try {
+            setCsrList(new ArrayList<User>());
+            setCsrList(admin.getAllCSR());
+            if (!csrList.isEmpty()) {
+                setNoData(false);
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "SHOWCSR";
+    }
+
+     public String showActiveCSR() {
+        try {
+            setCsrList(new ArrayList<User>());
+            setCsrList(admin.getActiveCSR());
+            if (!csrList.isEmpty()) {
+                setNoData(false);
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "SHOWACTIVECSR";
+    }
+     
+     public String showInactiveCSR() {
+        try {
+            setCsrList(new ArrayList<User>());
+            setCsrList(admin.getInactiveCSR());
+            if (!csrList.isEmpty()) {
+                setNoData(false);
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "SHOWINACTIVECSR";
+    }
+    
+     public String showDeletedCSR() {
+        try {
+            setCsrList(new ArrayList<User>());
+            setCsrList(admin.getDeletedCSR());
+            if (!csrList.isEmpty()) {
+                setNoData(false);
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "SHOWDELETEDCSR";
+    }
+     
+    private List<Technician> technicianList = null;
+
+    public String showTechnician() {
+        try {
+            setTechnicianList(new ArrayList<Technician>());
+            setTechnicianList(admin.getAllTechnician());
+            if (!technicianList.isEmpty()) {
+                setNoData(false);
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "SHOWTECHNICIAN";
+    }
+    
+    public String showActiveTechnician() {
+        try {
+            setTechnicianList(new ArrayList<Technician>());
+            setTechnicianList(admin.getActiveTechnician());
+            if (!technicianList.isEmpty()) {
+                setNoData(false);
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "SHOWACTIVETECHNICIAN";
+    }
+    
+    public String showInactiveTechnician() {
+        try {
+            setTechnicianList(new ArrayList<Technician>());
+            setTechnicianList(admin.getInactiveTechnician());
+            if (!technicianList.isEmpty()) {
+                setNoData(false);
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "SHOWINACTIVETECHNICIAN";
+    }
+
 
     /**
      * @return the noData
@@ -274,6 +480,20 @@ public class AdminAction extends ActionSupport {
      */
     public void setNoData(boolean noData) {
         this.noData = noData;
+    }
+
+    /**
+     * @return the userList
+     */
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    /**
+     * @param userList the userList to set
+     */
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 
     /**
@@ -582,5 +802,47 @@ public class AdminAction extends ActionSupport {
      */
     public void setCsrList(List<User> csrList) {
         this.csrList = csrList;
+    }
+
+    /**
+     * @return the submitType
+     */
+    public String getSubmitType() {
+        return submitType;
+    }
+
+    /**
+     * @param submitType the submitType to set
+     */
+    public void setSubmitType(String submitType) {
+        this.submitType = submitType;
+    }
+
+    /**
+     * @return the technicianList
+     */
+    public List<Technician> getTechnicianList() {
+        return technicianList;
+    }
+
+    /**
+     * @param technicianList the technicianList to set
+     */
+    public void setTechnicianList(List<Technician> technicianList) {
+        this.technicianList = technicianList;
+    }
+
+    /**
+     * @return the techstatus
+     */
+    public int getTechstatus() {
+        return techstatus;
+    }
+
+    /**
+     * @param techstatus the techstatus to set
+     */
+    public void setTechstatus(int techstatus) {
+        this.techstatus = techstatus;
     }
 }
