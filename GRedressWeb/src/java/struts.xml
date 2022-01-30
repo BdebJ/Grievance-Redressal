@@ -8,13 +8,23 @@
         
         <!--Login Action-->
         <action name="logon" class="com.redress.actions.LoginAction" method = "validateLoginCredentials">
-            <result name="successAdmin">/adminDashboard.jsp</result>  
+            <result name="successAdmin" type ="chain">admindashboard</result>  
             <result name="successCSR">/csr_dashboard.jsp</result> 
             <result name="successCustomer">/customer_dashboard.jsp</result> 
             <result name="failure">/login.jsp</result>  
         </action>
-
+        <action name="admindashboard" class="com.redress.actions.AdminDashboard" method="execute">
+            <result name="success">/adminDashboard.jsp</result>
+            <result name="login">/login.jsp</result>
+        </action>
         
+        <action name="logout" class="com.redress.actions.LoginAction" method="logout">
+            <result name="success">/login.jsp</result>
+        </action>
+        <action name="customesize" class="com.redress.actions.AdminAction" method="execute">
+            <result name="success">/adminDashboard.jsp</result>
+            <result name="login">/login.jsp</result>
+        </action>
                
        <!--List Show Action-->
         <action name="showcustomerlist" class="com.redress.actions.AdminAction" method="listCustomer">
@@ -43,6 +53,7 @@
         </action>
         <action name="showdept" class="com.redress.actions.CSRAction" method="showDepartments">
             <result name="DEPARTEMNTLIST">/department_list.jsp</result>
+            
         </action>
         <action name="showcomplaint" class="com.redress.actions.CSRAction" method="showComplaint">
             <result name="COMPLAINTLIST">/complaint_list.jsp</result>
@@ -65,7 +76,18 @@
         <action name="showinactivetechnician" class="com.redress.actions.AdminAction" method="showInactiveTechnician">
             <result name="SHOWINACTIVETECHNICIAN">/showInactiveTechnician.jsp</result>
         </action>
-        
+        <action name="showproducts" class="com.redress.actions.AdminAction" method="showProducts">
+            <result name="SHOWPRODUCTS">/showAllProducts.jsp</result>
+        </action>
+        <action name="showdeletedproducts" class="com.redress.actions.AdminAction" method="showDeletedProducts">
+            <result name="SHOWPRODUCTS">/showDeletedProducts.jsp</result>
+        </action>
+        <action name="showdepartments" class="com.redress.actions.CSRAction" method="showDepartments">
+            <result name="DEPARTEMNTLIST">/showDepartments.jsp</result>
+            </action>
+        <action name="showcomplaintsforadmin" class="com.redress.actions.CSRAction" method="showComplaint">
+            <result name="COMPLAINTLIST">/showAllComplaints.jsp</result>
+        </action>
          
         
         <!--Delete Action-->
@@ -75,8 +97,8 @@
         <action name="deletecsr" class="com.redress.actions.AdminAction" method="deleteUser">
             <result name="user_delete_success" type = "chain">showcsr</result>
         </action>
-        <action name="deletedept" class="com.redress.actions.AdminAction" method="deleteDept">
-            <result name="dept_delete_success">/delete.jsp</result>
+        <action name="deletedepartment" class="com.redress.actions.AdminAction" method="deleteDept">
+            <result name="DELETEDEPARTMENT" type = "chain">showdepartments</result>
         </action>
         <action name="deletetech" class="com.redress.actions.AdminAction" method="deleteTech">
             <result name="DELETETECHNICIAN" type = "chain">showtechnician</result>

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,8 +44,13 @@
                   <a href="#!">Terms of use.</a>
                   <a href="#!">Privacy policy</a>
                   
-                  <span style="color: red;"><s:property value="msg" /></span>
+                  <!--<span style="color: red;"><s:property value="msg" /> <c:out value='${requestScope.msg}'/></span>-->
+                  
                 </nav>
+       <s:if test="msg !=''">
+                        <div class = "alert alert-warning mt-2" role = "alert"><s:property value="msg" /><c:out value='${requestScope.errormsg}'/></div>
+              </s:if>    
+                    
             </div>
           </div>
         </div>

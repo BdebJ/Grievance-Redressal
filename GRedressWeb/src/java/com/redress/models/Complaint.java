@@ -20,6 +20,14 @@ public class Complaint {
     private String ongoingprog;
     private String endprog;
     private int res_status;
+    private String techname;
+    private String username;
+    private String firstname;
+    private String lastname;
+    private String prodmodel;
+    private String prodname;
+    
+    
 
     /**
      * @return the complid
@@ -173,5 +181,93 @@ public class Complaint {
      */
     public void setRes_status(int res_status) {
         this.res_status = res_status;
+    }
+
+    /**
+     * @return the techanme
+     */
+ 
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
+     * @return the firstname
+     */
+    public String getFirstname() {
+        return firstname;
+    }
+
+    /**
+     * @param firstname the firstname to set
+     */
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    /**
+     * @return the lastname
+     */
+    public String getLastname() {
+        return lastname;
+    }
+
+    /**
+     * @param lastname the lastname to set
+     */
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    /**
+     * @return the prodmodel
+     */
+    public String getProdmodel() {
+        return prodmodel;
+    }
+
+    /**
+     * @param prodmodel the prodmodel to set
+     */
+    public void setProdmodel(String prodmodel) {
+        this.prodmodel = prodmodel;
+    }
+
+    /**
+     * @return the prodname
+     */
+    public String getProdname() {
+        return prodname;
+    }
+
+    /**
+     * @param prodname the prodname to set
+     */
+    public void setProdname(String prodname) {
+        this.prodname = prodname;
+    }
+
+    /**
+     * @return the techname
+     */
+    public String getTechname() {
+        return techname;
+    }
+
+    /**
+     * @param techname the techname to set
+     */
+    public void setTechname(String techname) {
+        this.techname = techname;
     }
 }
