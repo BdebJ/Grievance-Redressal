@@ -192,5 +192,14 @@
         <action name="complaintpid" class="com.redress.actions.CustomerAction" method = "showComplaintbyPid">
             <result name="PIDCOMPLAINTLIST">/complaint_list.jsp</result>
         </action>
+        <action name="complaintactivepid" class="com.redress.actions.CustomerAction" method = "showActiveComplaintbyPid">
+            <result name="PIDACTIVECOMPLAINTLIST">/complaint_list.jsp</result>
+        </action>
+        <action name="complaintrejectedpid" class="com.redress.actions.CustomerAction" method = "showRejectedComplaintbyPid">
+            <result name="PIDREJECTEDCOMPLAINTLIST">/complaint_list.jsp</result>
+        </action>
+        <action name="complaintresolvedpid" class="com.redress.actions.CustomerAction" method = "showResolvedComplaintbyPid">
+            <result name="PIDRESOLVEDCOMPLAINTLIST">/complaint_list.jsp</result>
+        </action>
     </package>
 </struts>

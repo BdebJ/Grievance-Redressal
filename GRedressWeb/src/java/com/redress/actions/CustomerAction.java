@@ -68,7 +68,64 @@ public class CustomerAction {
         }
         return "PIDCOMPLAINTLIST";
     }
+    
+    public String showActiveComplaintbyPid() {
+        customer = new Customer();
+        try {
+            setComplaintList(new ArrayList<Complaint>());
+            setComplaintList(customer.activeComplaintListbyPid(pid));
 
+            if (!complaintList.isEmpty()) {
+                setNoData(false);
+                System.out.println("Users retrieve = " + getComplaintList().size());
+                System.out.println("setting nodata=false");
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "PIDACTIVECOMPLAINTLIST";
+    }
+    
+    public String showRejectedComplaintbyPid() {
+        customer = new Customer();
+        try {
+            setComplaintList(new ArrayList<Complaint>());
+            setComplaintList(customer.rejectedComplaintListbyPid(pid));
+
+            if (!complaintList.isEmpty()) {
+                setNoData(false);
+                System.out.println("Users retrieve = " + getComplaintList().size());
+                System.out.println("setting nodata=false");
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "PIDREJECTEDCOMPLAINTLIST";
+    }  
+    
+    public String showResolvedComplaintbyPid() {
+        customer = new Customer();
+        try {
+            setComplaintList(new ArrayList<Complaint>());
+            setComplaintList(customer.resolvedComplaintListbyPid(pid));
+
+            if (!complaintList.isEmpty()) {
+                setNoData(false);
+                System.out.println("Users retrieve = " + getComplaintList().size());
+                System.out.println("setting nodata=false");
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "PIDRESOLVEDCOMPLAINTLIST";
+    }
+   
     public String showUser() throws Exception {
         customer = new Customer();
 
