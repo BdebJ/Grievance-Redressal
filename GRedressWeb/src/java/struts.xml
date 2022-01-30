@@ -26,7 +26,7 @@
             <result name="login">/login.jsp</result>
         </action>
                
-       <!--List Show Action-->
+        <!--List Show Action-->
         <action name="showcustomerlist" class="com.redress.actions.AdminAction" method="listCustomer">
             <result name="customer_list_success">/showCustomers.jsp</result>
         </action>
@@ -84,7 +84,7 @@
         </action>
         <action name="showdepartments" class="com.redress.actions.CSRAction" method="showDepartments">
             <result name="DEPARTEMNTLIST">/showDepartments.jsp</result>
-            </action>
+        </action>
         <action name="showcomplaintsforadmin" class="com.redress.actions.CSRAction" method="showComplaint">
             <result name="COMPLAINTLIST">/showAllComplaints.jsp</result>
         </action>
@@ -167,10 +167,10 @@
         <action name="customer_dashboard" class="com.redress.actions.CustomerAction" method = "showUser">
             <result name="REPORT">/customer_dashboard.jsp</result>  
         </action>   
-         <action name="addcomplaint" class="com.redress.actions.CustomerAction" method = "addComplaint">
+        <action name="addcomplaint" class="com.redress.actions.CustomerAction" method = "addComplaint">
             <result name="ADDCOMPLAINT">/ComplaintReg.jsp</result>  
         </action> 
-         <action name="addFeedback" class="com.redress.actions.CustomerAction" method = "addFeedback">
+        <action name="addFeedback" class="com.redress.actions.CustomerAction" method = "addFeedback">
             <result name="ADDFEEDBACK">/Feedback.jsp</result>  
         </action> 
         <action name="viewcomplaint" class="com.redress.actions.CustomerAction" method = "showComplaint">
@@ -179,7 +179,7 @@
         <action name="Deletecomplaint" class="com.redress.actions.CustomerAction" method = "deleteComplaint">
             <result name="DELETE">/delete.jsp</result>  
         </action> 
-         <action name="viewproductOwned" class="com.redress.actions.CustomerAction" method = "showProductOwned">
+        <action name="viewproductOwned" class="com.redress.actions.CustomerAction" method = "showProductOwned">
             <result name="SHOWPRODUCTOWNED">/viewProductOwned.jsp</result>  
         </action> 
         <action name="Viewproduct" class="com.redress.actions.CustomerAction" method = "viewProduct">
@@ -189,5 +189,8 @@
             <result name="VIEWDEFECT">/defects.jsp</result>  
         </action> 
         
+        <action name="complaintpid" class="com.redress.actions.CustomerAction" method = "showComplaintbyPid">
+            <result name="PIDCOMPLAINTLIST">/complaint_list.jsp</result>
+        </action>
     </package>
 </struts>

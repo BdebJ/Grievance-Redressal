@@ -50,6 +50,25 @@ public class CustomerAction {
     Customer customer = null;
     private String msg = "";
 
+    public String showComplaintbyPid() {
+        customer = new Customer();
+        try {
+            setComplaintList(new ArrayList<Complaint>());
+            setComplaintList(customer.complaintListbyPid(pid));
+
+            if (!complaintList.isEmpty()) {
+                setNoData(false);
+                System.out.println("Users retrieve = " + getComplaintList().size());
+                System.out.println("setting nodata=false");
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "PIDCOMPLAINTLIST";
+    }
+
     public String showUser() throws Exception {
         customer = new Customer();
 
@@ -144,7 +163,6 @@ public class CustomerAction {
 
     }
 
-  
     public String showProductOwned() throws Exception {
 
         Customer customer = new Customer();
