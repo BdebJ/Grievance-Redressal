@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Git/Grievance-Redressal/GRedressWeb/src/java/com/redress/dao/Customer.java</file>
-            <file>file:/D:/Git/Grievance-Redressal/GRedressWeb/src/java/com/redress/actions/CustomerAction.java</file>
+            <file>file:/F:/ExavaluTraining/Github/Grievance-Redressal/GRedressWeb/src/java/struts.xml</file>
+            <file>file:/F:/ExavaluTraining/Github/Grievance-Redressal/GRedressWeb/src/java/com/redress/actions/LoginAction.java</file>
+            <file>file:/F:/ExavaluTraining/Github/Grievance-Redressal/GRedressWeb/src/java/com/redress/actions/AdminDashboard.java</file>
+            <file>file:/F:/ExavaluTraining/Github/Grievance-Redressal/GRedressWeb/src/java/com/redress/actions/AdminAction.java</file>
         </group>
     </open-files>
 </project-private>

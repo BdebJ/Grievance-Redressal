@@ -111,9 +111,7 @@ public class CSR {
                     + "LEFT JOIN technician t ON c.techid = t.techid "
                     + "LEFT JOIN productowned po ON c.ownid = po.ownid "
                     + "LEFT JOIN product p ON c.ownid = p.prodid";
-
-
-
+            
             PreparedStatement ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
 

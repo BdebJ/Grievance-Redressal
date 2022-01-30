@@ -502,24 +502,24 @@ public class AdminAction extends ActionSupport {
         return "SHOWPRODUCTS";
     }
     
-    public String showResolvedComplaints() {
-
-        try {
-            setComplaintList(new ArrayList<Complaint>());
-            setComplaintList(csr.complaintList());
-
-            if (!complaintList.isEmpty()) {
-                setNoData(false);
-                System.out.println("Users retrieve = " + getComplaintList().size());
-                System.out.println("setting nodata=false");
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "COMPLAINTLIST";
-    }
+//    public String showResolvedComplaints() {
+//
+//        try {
+//            setComplaintList(new ArrayList<Complaint>());
+//            setComplaintList(csr.complaintList());
+//
+//            if (!complaintList.isEmpty()) {
+//                setNoData(false);
+//                System.out.println("Users retrieve = " + getComplaintList().size());
+//                System.out.println("setting nodata=false");
+//            } else {
+//                setNoData(true);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return "COMPLAINTLIST";
+//    }
     
     
 
@@ -901,16 +901,10 @@ public class AdminAction extends ActionSupport {
         this.techstatus = techstatus;
     }
 
-    /**
-     * @return the productList
-     */
     public List<Product> getProductList() {
         return productList;
     }
 
-    /**
-     * @param productList the productList to set
-     */
     public void setProductList(List<Product> productList) {
         this.productList = productList;
     }
