@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.redress.actions;
+import org.apache.struts2.dispatcher.SessionMap;  
+import org.apache.struts2.interceptor.SessionAware;  
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -17,7 +19,9 @@ import java.util.Map;
  *
  * @author bjena
  */
-public class LoginAction extends ActionSupport {
+public class LoginAction  implements SessionAware {
+    private SessionMap<String,Object> sessionMap;  
+    
 
     private int pid;
     private String username;
@@ -35,25 +39,31 @@ public class LoginAction extends ActionSupport {
     
     Login login = null;
     
+    @Override
+    public void setSession(Map<String, Object> map) {  
+        setSessionMap((SessionMap<String, Object>) (SessionMap)map);  
+}  
+    
     public String validateLoginCredentials() throws Exception{
         
         login = new Login();
         try{
             
-                User user = login.validLoginCredential(username,password);
+                User validUser = login.validLoginCredential(username,password);
                 
-                if (user.isValidUser()) {
-                    Map<String,Object> session = ActionContext.getContext().getSession();
-                    session.put("user", user);
+                if (validUser.isValidUser()) {
                     
-                    username = user.getUsername();
-                    password = user.getPassword();
-                    firstname = user.getFirstname();
-                    lastname = user.getLastname();
-                    email = user.getEmail();
-                    phno = user.getPhno();
-                    roleid = user.getRoleid();
-                    System.out.println("roleid = "+ user.getRoleid());
+                    sessionMap.put("validUser", validUser);
+                    sessionMap.put("roleid", validUser.getRoleid());
+                    
+                    username = validUser.getUsername();
+                    password = validUser.getPassword();
+                    firstname = validUser.getFirstname();
+                    lastname = validUser.getLastname();
+                    email = validUser.getEmail();
+                    phno = validUser.getPhno();
+                    roleid = validUser.getRoleid();
+                    System.out.println("roleid = "+ validUser.getRoleid());
                    
 //                    success = (user.getRole());
                     if (roleid == 1){
@@ -77,6 +87,13 @@ public class LoginAction extends ActionSupport {
 
         return success;
     }
+    
+    public String logout(){  
+    if(sessionMap!=null){  
+        sessionMap.invalidate();  
+    }  
+    return "success";  
+}  
 
     /**
      * @return the pid
@@ -244,6 +261,20 @@ public class LoginAction extends ActionSupport {
      */
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    /**
+     * @return the sessionMap
+     */
+    public SessionMap<String,Object> getSessionMap() {
+        return sessionMap;
+    }
+
+    /**
+     * @param sessionMap the sessionMap to set
+     */
+    public void setSessionMap(SessionMap<String,Object> sessionMap) {
+        this.sessionMap = sessionMap;
     }
 
 }

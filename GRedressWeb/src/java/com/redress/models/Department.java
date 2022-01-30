@@ -12,6 +12,7 @@ public class Department {
 
     private int deptid;
     private String deptname;
+    private int deptstatus;
 
     /**
      * @return the deptid
@@ -39,5 +40,19 @@ public class Department {
      */
     public void setDeptname(String deptname) {
         this.deptname = deptname;
+    }
+
+    /**
+     * @return the deptstatus
+     */
+    public int getDeptstatus() {
+        return deptstatus;
+    }
+
+    /**
+     * @param deptstatus the deptstatus to set
+     */
+    public void setDeptstatus(int deptstatus) {
+        this.deptstatus = deptstatus;
     }
 }

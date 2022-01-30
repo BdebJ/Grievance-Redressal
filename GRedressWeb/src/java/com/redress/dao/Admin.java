@@ -794,4 +794,74 @@ public class Admin {
             }
         }
     }
-}
+
+    public List<Product> getAllProducts()throws SQLException, Exception {
+        ResultSet rs = null;
+        Connection con = null;
+
+        List<Product> productList = new ArrayList<>();
+        try {
+            String sql = "SELECT prodid,prodname,prodmodel,deptname,prodstatus FROM product,department where product.deptid = department.deptid";
+            con = ConnectionManager.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            System.out.println(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setProdname(rs.getString("prodname"));
+                product.setProdid(rs.getInt("prodid"));
+                product.setProdmodel(rs.getString("prodmodel"));
+                product.setDeptname(rs.getString("deptname"));
+                product.setProdstatus(rs.getInt("prodstatus"));
+                productList.add(product);
+            }
+            return productList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+
+    }
+    
+    public List<Product> getDeletedProducts()throws SQLException, Exception {
+        ResultSet rs = null;
+        Connection con = null;
+
+        List<Product> productList = new ArrayList<>();
+        try {
+            String sql = "SELECT prodid,prodname,prodmodel,deptname,prodstatus FROM product,department where product.deptid = department.deptid and prodstatus = 0";
+            con = ConnectionManager.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            System.out.println(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setProdname(rs.getString("prodname"));
+                product.setProdid(rs.getInt("prodid"));
+                product.setProdmodel(rs.getString("prodmodel"));
+                product.setDeptname(rs.getString("deptname"));
+                product.setProdstatus(rs.getInt("prodstatus"));
+                productList.add(product);
+            }
+            return productList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+
+    }
+
+    }
+
+
+   
+
+    
