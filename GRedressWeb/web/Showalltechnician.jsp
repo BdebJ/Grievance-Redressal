@@ -9,28 +9,46 @@
             th {height: 30px;}
             .button-update {background-color: #008CBA;color: white;}
             .button-delete {background-color: red;color: white;}
+            div {
+                border-radius: 5px;
+                background-color: #f2f2f2;
+                padding: 20px;
+            }
+                        table, td, th {  
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 10px;
+}
         </style>
     </head>
     <body>
-        <h2>Simple CURD Using STRUTS2 FRAMEWORK</h2>
+        <h2>Technicians</h2>
         <div style="margin-top: 40px;">
             <s:if test="noData==false">
                 <table>
                     <thead>
                         <tr style="background-color: #E0E0E1;">
-                            <th>Defect ID</th>
-                            <th>owner ide</th>
-                            <th>Customer Defect</th>
+                          
+                            
+                            <th>Tech ID</th>
+                            <th>Tech Name</th>
                             
                             
                         </tr>
                     </thead>
-                    <s:iterator value="customerdefect">
+                    <s:iterator value="technician">
                         <tr>
-                        <td><s:property value="cusdefid" /></td>
-                        <td><s:property value="ownid" /></td>
+                        <td><s:property value="techid" /></td>
+                        <td><s:property value="techname" /></td>
                         
-                        <td><s:property value="cus_def" /></td>
                         
                        
                         <td>
@@ -51,3 +69,4 @@
         </div>
     </body>
 </html>
+
