@@ -1,7 +1,7 @@
-**/nbproject/private/
-**/nbproject/Makefile-*.mk
-**/nbproject/Package-*.bash
-build/
-nbbuild/
-dist/
-nbdist/
+**GRedressWeb/nbproject/private/
+**GRedressWeb/nbproject/Makefile-*.mk
+**GRedressWeb/nbproject/Package-*.bash
+GRedressWebbuild/
+GRedressWebnbbuild/
+GRedressWebdist/
+GRedressWebnbdist/
