@@ -111,7 +111,7 @@
             <result name="COMPLAINTLIST">/showRejectedComplaints.jsp</result>
         </action>
         
-        <!--Delete Action-->
+        <!--Delete Actions-->
         <action name="deleteuser" class="com.redress.actions.AdminAction" method="deleteUser">
             <result name="user_delete_success" type = "chain">showcustomerlist</result>
         </action>
