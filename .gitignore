@@ -5,3 +5,4 @@ GRedressWeb/build/
 GRedressWeb/nbbuild/
 GRedressWeb/dist/
 GRedressWeb/nbdist/
+GRedressWeb/src/java/redress_config.properties
