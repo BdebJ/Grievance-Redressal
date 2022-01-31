@@ -21,38 +21,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <script type="module">
-            const table = new simpleDatatables.DataTable("table")
-            document.querySelector("button.csv").addEventListener("click", () => {
-            table.export({
-            type: "csv",
-            download: true,
-            lineDelimiter: "\n\n",
-            columnDelimiter: ";"
-            })
-            })
-            document.querySelector("button.sql").addEventListener("click", () => {
-            table.export({
-            type: "sql",
-            download: true,
-            tableName: "export_table"
-            })
-            })
-            document.querySelector("button.txt").addEventListener("click", () => {
-            table.export({
-            type: "txt",
-            download: true,
-            })
-            })
-            document.querySelector("button.json").addEventListener("click", () => {
-            table.export({
-            type: "json",
-            download: true,
-            escapeHTML: true,
-            space: 3
-            })
-            })
-        </script>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -63,16 +31,31 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link href="assets/css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+        <script type="module">
+            const table = new simpleDatatables.DataTable("table")
+            document.getElementById("csv").addEventListener("click", () => {
+            table.export({
+            type: "csv",
+            download: true,
+            lineDelimiter: "\n\n",
+            columnDelimiter: ";"
+            })
+            })
+            document.getElementById("json").addEventListener("click", () => {
+            table.export({
+            type: "json",
+            download: true,
+            escapeHTML: true,
+            space: 3
+            })
+            })
+        </script>
     </head>
     <body class="sb-nav-fixed">
         <jsp:include page="navbar.jsp"/> 
 
         <div id="layoutSidenav_content">
             <main>
-                <button class="csv">Export CSV</button>
-                <button class="sql">Export SQL</button>
-                <button class="txt">Export TXT</button>
-                <button class="json">Export JSON</button>
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">Customers List</h1>
                     <ol class="breadcrumb mb-4">
@@ -92,12 +75,18 @@
                         </div>
                     </div>
 
+                    
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
                             Customer List
-                        </div>
+                            <div class="btn-toolbar mb-2 mb-md-0" style="position: absolute; right: 10px ; top: 5px">
+                            <button id = "json" class="btn btn-sm btn-outline-secondary">Export JSON</button>
+                            <button id ="csv" class="btn btn-sm btn-outline-secondary">Export CSV</button>
 
+                        </div>
+                        </div>
+                       
                         <div class="card-body">
                             <table id="datatablesSimple">
                                 <thead>
@@ -154,16 +143,15 @@
                 </div>
             </main>
             <jsp:include page="footer.jsp"/>
-
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="assets/js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/chart-area-demo.js"></script>
-    <script src="assets/demo/chart-bar-demo.js"></script>
+    <script src="assets/js/report.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
     <script src="assets/js/datatables-simple-demo.js"></script>
-
 </body>
 </html>

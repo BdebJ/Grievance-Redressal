@@ -215,7 +215,7 @@ public class AdminAction extends ActionSupport {
             if (getCtr() > 0) {
                 setMsg("Product added Successfully!");
             } else {
-                setMsg("Some error");
+                setMsg("Some error occured!");
             }
         } catch (Exception e) {
             e.printStackTrace();

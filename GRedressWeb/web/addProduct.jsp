@@ -52,43 +52,22 @@
                             <i class="fas fa-table me-1"></i>
                             Add Porduct
                         </div>
-
                         <div class="card-body">
-                            <form action ="addcustomers" method ="post">
+                            <form action ="addproduct" method ="post">
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="username" type="text" name ="username" placeholder="username" />
-                                    <label for="username">Product Name</label>
+                                    <input class="form-control" id="prodname" type="text" name ="prodname" placeholder="productname" />
+                                    <label for="prodname">Product Name</label>
                                 </div>        
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <div class="form-floating mb-3 mb-md-0">
-                                            <input class="form-control" name ="firstname" id="firstname" type="text" placeholder="Enter your first name" />
-                                            <label for="firstname">First name</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input class="form-control" name ="lastname" id="firstname" type="text" placeholder="Enter your last name" />
-                                            <label for="lastname">Last name</label>
-                                        </div>
-                                    </div>
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="prodmodel" type="text" name="prodmodel" placeholder="productmodel" />
+                                    <label for="productmodel">Product Model</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="inputEmail" type="email" name="email" placeholder="name@example.com" />
-                                    <label for="emai;">Product Model</label>
+                                    <input class="form-control" id="prodname" name="deptid" type ="text"  placeholder="Department Id" />
+                                    <label for="deptid">Department Id</label>
                                 </div>
-                                <div class="form-floating mb-3">
-                                    <input class="form-control" id="address" name="address" type ="text"  placeholder="adreess" />
-                                    <label for="address">Address</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input class="form-control" id="inputEmail" type="text" name ="phno" placeholder="Phone Number" />
-                                    <label for="phno">Phone Number</label>
-                                </div>
-
-
-                                <div class="mt-4 mb-0">
-                                    <div class="d-grid"><input type = "submit" class="btn btn-primary btn-block" value="Add Customer"></div>
+                                 <div class="mt-4 mb-0">
+                                    <div class="d-grid"><input type = "submit" class="btn btn-primary btn-block" value="Add Product"></div>
                                 </div>
                             </form>
                         </div>

@@ -31,6 +31,25 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link href="assets/css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    <script type="module">
+            const table = new simpleDatatables.DataTable("table")
+            document.getElementById("csv").addEventListener("click", () => {
+            table.export({
+            type: "csv",
+            download: true,
+            lineDelimiter: "\n\n",
+            columnDelimiter: ";"
+            })
+            })
+            document.getElementById("json").addEventListener("click", () => {
+            table.export({
+            type: "json",
+            download: true,
+            escapeHTML: true,
+            space: 3
+            })
+            })
+        </script>
     </head>
     <body class="sb-nav-fixed">
 
@@ -71,6 +90,10 @@
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
                             Complaint List
+                            <div class="btn-toolbar mb-2 mb-md-0" style="position: absolute; right: 10px ; top: 5px">
+                                <button id = "json" class="btn btn-sm btn-outline-secondary">Export JSON</button>
+                                <button id ="csv" class="btn btn-sm btn-outline-secondary">Export CSV</button>
+                            </div>
                         </div>
                         <div class="card-body">
                             <table id="datatablesSimple">

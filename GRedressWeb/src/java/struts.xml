@@ -33,8 +33,11 @@
         <action name="customesize" class="com.redress.actions.AdminAction" method="execute">
             <result name="success">/adminDashboard.jsp</result>
             <result name="login">/login.jsp</result>
-        </action>
-               
+        </action>   
+        
+<!--Login End here-->
+            
+                    
         <!--List Show Action-->
         <action name="showcustomerlist" class="com.redress.actions.AdminAction" method="listCustomer">
             <result name="customer_list_success">/showCustomers.jsp</result>
@@ -133,7 +136,7 @@
         <action name="addcustomers" class="com.redress.actions.AdminAction" method = "addCustomers">
             <result name="ADDCUSTOMERS">/addCustomers.jsp</result>               
         </action> 
-        <action name="addProduct" class="com.redress.actions.AdminAction" method = "addProduct">
+        <action name="addproduct" class="com.redress.actions.AdminAction" method = "addProduct">
             <result name="ADDPRODUCT">/addProduct.jsp</result>   
         </action> 
         
@@ -191,6 +194,9 @@
         <action name="addcomplaint" class="com.redress.actions.CustomerAction" method = "addComplaint">
             <result name="ADDCOMPLAINT">/addGrievance.jsp</result>  
         </action> 
+        <action name="complaintpid" class="com.redress.actions.CustomerAction" method = "showComplaintbyPid">
+            <result name="PIDCOMPLAINTLIST">/myGrievances.jsp</result>
+        </action>
         <action name="addFeedback" class="com.redress.actions.CustomerAction" method = "addFeedback">
             <result name="ADDFEEDBACK">/Feedback.jsp</result>  
         </action> 
@@ -209,10 +215,9 @@
         <action name="customerDefects" class="com.redress.actions.CustomerAction" method = "viewDefect">
             <result name="VIEWDEFECT">/defects.jsp</result>  
         </action> 
-
-        <action name="complaintpid" class="com.redress.actions.CustomerAction" method = "showComplaintbyPid">
-            <result name="PIDCOMPLAINTLIST">/myGrievances.jsp</result>
-        </action>
+        
+        
+        <!--CSR Action-->
         
         <action name="cusdefects" class="com.redress.actions.CSRAction" method="customerDefects">
             <result name="DEFECTS">/Showall_cus_defect.jsp</result>
@@ -226,12 +231,12 @@
         <action name="customer" class="com.redress.actions.CSRAction" method="showCustomers">
             <result name="CUSTOMERLIST">/Showallcustomer.jsp</result>
         </action>
-        <action name="showtechnician" class="com.redress.actions.CSRAction" method="showTechnicians">
+        <action name="showtechnicianbyid" class="com.redress.actions.CSRAction" method="showTechnicians">
             <result name="TECHNICIAN">/Showalltechnician.jsp</result>
         </action>
         <action name="updateComplaint" class="com.redress.actions.CSRAction" method="updateComplaints">
             <result name="UPDATE">/Complaintupdate.jsp</result>
         </action>
-
+        
     </package>
 </struts>

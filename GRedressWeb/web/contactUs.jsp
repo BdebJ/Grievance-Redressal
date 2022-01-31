@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no, user-scalable=no">
-    <title>Free CCTv Website Templates | Smarteyeapps.com</title>
+    <title>Contact Us</title>
 
     <link rel="shortcut icon" href="assets/images/fav.jpg">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -16,64 +16,15 @@
 
 <body>
 
-    <!--###################### Navigation Starts Here ############################-->
+    <!--Navbar -->
+    <jsp:include page="navbarCustomer.jsp"/> 
 
-    <div class="header-container">
-        <div class="header-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-7 col-md-12 left-item">
-                        <ul>
-                            <li><i class="fas fa-envelope-square"></i> sales@smarteyeapps.dcom</li>
-                            <li class="d-none d-sm-block"><i class="fas fa-phone-square"></i> +123 987 887 765</li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-5 d-none d-lg-block right-item">
-                        <ul>
-                            <li><a><i class="fab fa-github"></i></a></li>
-                            <li><a><i class="fab fa-linkedin-in"></i></a></li>
-                            <li> <a><i class="fab fa-pinterest-p"></i></a></li>
-                            <li><a><i class="fab fa-twitter"></i></a></li>
-                            <li> <a><i class="fab fa-facebook-f"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <nav id="menu-jk" class="container-fluid  no-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-sm-12 logo">
-                        <img class="log" src="assets/images/logo.png" alt="">
-                        <img class="log-gray" src="assets/images/logo-gray.png" alt="">
-                        <a data-toggle="collapse" data-target="#nav-head" href="#nav-head"><i class="fas d-block d-md-none small-menu fa-bars"></i></a>
-                    </div>
-                    <div id="nav-head" class="col-md-9 nav-div d-none d-md-block">
-                        <ul>
-                            <li><a class="js-scroll-trigger" href="index.html">Home</a></li>
-                            <li><a class="js-scroll-trigger" href="about_us.html">About Company</a></li>
-                            <li class="yc"><a class="js-scroll-trigger" href="why.html">Why Choos Us</a></li>
-                            <li><a class="js-scroll-trigger" href="service.html">Services</a></li>
-                            <li><a class="js-scroll-trigger" href="blog.html">Our Blog</a></li>
-                       
-                            <li><a class="js-scroll-trigger" href="contact_us.html">Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-
-
-
-    <!--###################### Slider Starts Here ############################-->
     
     <div class="page-title titl-2">
         <div class="container">
             <div class="row">
-                <h2>Why Choos Us</h2>
-                <p> Home <i class="fas fa-angle-double-right"></i> Why Choos Us </p>
+                <h2>Contact Us</h2>
+                <p> Home <i class="fas fa-angle-double-right"></i> Contact Us </p>
             </div>
         </div>
     </div>
@@ -82,7 +33,7 @@
 
        <div style="margin-top:0px;" class="row no-margin">
         
-        <iframe style="width:100%" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d249759.19784092825!2d79.10145254589841!3d12.009924873581818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1448883859107"  height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        <iframe style="width:100%" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d471220.56313305674!2d88.04952067043779!3d22.675752066447867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f882db4908f667%3A0x43e330e68f6c2cbc!2sKolkata%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1643630160076!5m2!1sen!2sin"  height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 
 
       </div>
@@ -127,21 +78,16 @@
              
                               
               
-          <h2 style="margin-top:10px;">Address</h2>
+          <h2 style="margin-top:10px;">How to Contact us</h2>
 
-    Smart Hospital <br>
-    Daman Street<br>
-    K.K District<br>
-    Phone:+91 9159669599<br>
-    Email:info@smart-eye.in<br>
-    Website:www.smart-eye.com<br>
-
- 
-       
-            
-                
-                
-              
+    Grievance Redressal <br>
+         Group B,
+    Kolkata<br>
+    fill all the required details<br>
+    and send the message to us <br>
+    one of our representative will get in touch with you <br>
+    24 X 7 Customer services.
+   
            </div>    
                 
              
@@ -192,57 +138,8 @@
         </div>
     </div>
 
-    <!--###################### Footer Starts Here ############################-->
-
-<footer>
-   <div class="foot-det">
-       
-   
-    <div class="container foot-cont">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="foot-about">
-                    <h4>Smarteye</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla vel nisl a dictum. Donec ut est arcu.</p>
-                    <ul>
-                            <li><a><i class="fab fa-github"></i></a></li>
-                            <li><a><i class="fab fa-linkedin-in"></i></a></li>
-                            <li> <a><i class="fab fa-pinterest-p"></i></a></li>
-                            <li><a><i class="fab fa-twitter"></i></a></li>
-                            <li> <a><i class="fab fa-facebook-f"></i></a></li>
-                        </ul>
-                </div>
-            </div>
-            <div class="col-md-4 menu-foot">
-                <h4>Menu</h4>
-                <ul>
-                    <li><a href="">Home</a></li>
-                    <li><a href="">About Us</a></li>
-                    <li><a href="">Pricing</a></li>
-                    <li><a href="">Servicesv</a></li>
-                    <li><a href="">Projects</a></li>
-                    <li><a href="">Clients</a></li>
-                    <li><a href="">Blogs</a></li>
-                    <li><a href="">Contacts</a></li>
-                </ul>
-            </div>
-            <div class="col-md-4 cont-foot">
-                <h4>Contacts</h4>
-                <h5>+876 876 654</h5>
-                <p>454 New Seard St.Antony, Toranto</p>
-                <a href="">sales@smarteyeapps.com</a>
-            </div>
-        </div>
-    </div>
-    <div class="copy-right">
-        <div class="container">
-            <p>2015 © All Rights Reserved | Designed and Developed by <a href="https://www.smarteyeapps.com/">Smarteyeapps.com</a></p>
-        </div>
-    </div>
-    </div>
-</footer>
-   
-
+        <!--Footer -->
+    <jsp:include page="footerCustomer.jsp"/>
 
 
 </body>

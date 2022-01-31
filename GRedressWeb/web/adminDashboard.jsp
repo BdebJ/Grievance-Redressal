@@ -3,9 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%--<s:if test="validUser == null">
-    
-    <s:set var="msg" value="jsj" />
-    
     <s:forward page="log.action?msg=You will have to login first"></jsp:forward>
 </s:if>--%>
 <%--<s:elseif test="#session.role=='emp'">
@@ -44,6 +41,27 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="assets/css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    
+        <script>
+            // Set new default font family and font color to mimic Bootstrap's default styling
+function chart(data){
+Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = '#292b2c';
+
+// Pie Chart Example
+var ctx = document.getElementById("myPieChart");
+var myPieChart = new Chart(ctx, {
+  type: 'pie',
+  data: {
+    labels: ["Blue", "Red", "Yellow", "Green"],
+    datasets: [{
+      data: [data, 15.58, 11.25, 8.32],
+      backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
+    }],
+  },
+});
+}
+        </script>
     </head>
     <body class="sb-nav-fixed">
         <jsp:include page="navbar.jsp"/> 
@@ -111,7 +129,7 @@
                                     <i class="fas fa-chart-bar me-1"></i>
                                     Bar Chart Example
                                 </div>
-                                <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                                <div class="card-body"><canvas id="myPieChart" width="100%" height="40"></canvas></div>
                             </div>
                         </div>
                     </div>
@@ -126,6 +144,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/chart-area-demo.js"></script>
     <script src="assets/demo/chart-bar-demo.js"></script>
+    <script src="assets/demo/chart-pie-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
     <script src="assets/js/datatables-simple-demo.js"></script>
 </body>
