@@ -6,7 +6,7 @@
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">   
         
-        <!--Login Actions-->
+
         <action name="logon" class="com.redress.actions.LoginAction" method = "validateLoginCredentials">
             <result name="successAdmin" type ="chain">admindashboard</result>  
             <result name="successCSR">/csr_dashboard.jsp</result> 
