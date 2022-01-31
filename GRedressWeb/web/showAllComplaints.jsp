@@ -1,5 +1,23 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@taglib prefix="s" uri="/struts-tags"%>
+
+<%
+    response.setHeader("Cache-control","no-cache, no-store, must-revalidate");
+    if (request.getSession().getAttribute("validUser") == null) {
+        String errormsg = "You are not logged in. Please login first!!";
+        request.setAttribute("errormsg", errormsg);
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+    }
+    else if((Integer)request.getSession().getAttribute("roleid") != 1){
+        String errormsg = "You are not logged in. Please login first!!";
+        request.setAttribute("errormsg", errormsg);
+        
+        if(session!=null){  
+        session.invalidate();
+    }
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -30,10 +48,12 @@
 
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
-                        <div class="btn-group me-2">
+                        <div class="btn-group me-3">
                    
-                            <a href="showdeletedproducts"><button type="button" class="btn btn-sm btn-outline-success"><i class='fa fa-check'></i> Resolved Complaints</button></a>
-                            <a href="showdeletedproducts"><button type="button" class="btn btn-sm btn-outline-warning"><i class='fa fa-clock'></i> Unresolved Complaints</button></a>
+                            <a href="showresolvedcomplaints"><button type="button" class="btn btn-sm btn-outline-success"><i class='fa fa-check'></i> Resolved Complaints</button></a>
+                            <a href="showunresolvedcomplaints"><button type="button" class="btn btn-sm btn-outline-warning"><i class='fa fa-clock'></i> Unresolved Complaints</button></a>
+                            <a href="showrejectedcomplaints"><button type="button" class="btn btn-sm btn-outline-danger"><i class='fa fa-ban'></i> Rejected Complaints</button></a>
+
                         </div>
                         <div class="btn-toolbar mb-2 mb-md-0">
 

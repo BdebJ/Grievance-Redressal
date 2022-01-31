@@ -45,6 +45,7 @@ public class AdminAction extends ActionSupport {
     private int deptid;
     private String prodmodel;
     private String prodname;
+    private int prodstatus;
 
     // Technician
     private int techid;
@@ -110,16 +111,28 @@ public class AdminAction extends ActionSupport {
         
 
     public String updateProduct() throws Exception {
-        admin = new Admin();
+       admin = new Admin();
         try {
+            if (getSubmitType().equals("updatedata")) {
+                System.out.println("Here I am");
+                Product product = admin.fetchProductDetails(prodid);
+                if (product != null) {
+                    prodid = product.getProdid();
+                    deptid = product.getDeptid();
+                   prodname = product.getProdname();
+                   prodmodel = product.getProdmodel();
+                    prodstatus = product.getProdstatus();
+                            }
+            } else {
             
-            setCtr(admin.updateProduct(prodid, prodname, deptid, prodmodel));
+            setCtr(admin.updateProduct(prodid, prodname, deptid, prodmodel,prodstatus));
             if (getCtr() > 0) {
                 setMsg("Product updated Successfully!");
             } else {
                 setMsg("Some error");
             }
-        } catch (Exception e) {
+        } 
+        }catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -245,16 +258,17 @@ public class AdminAction extends ActionSupport {
 
     public String deleteProd() throws Exception {
         try {
-            int isDeleted = admin.deleteProdDetails(getProdid());
-            if (isDeleted > 0) {
+           setCtr(admin.deleteProdDetails(getProdid()));
+            if (getCtr() > 0) {
                 setMsg("Product deleted successfully");
             } else {
+                setCtr(-1);
                 setMsg("Some error");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "prod_delete_success";
+        return "DELETEPRODUCT";
     }
 
     public String deleteTech() throws Exception {
@@ -502,24 +516,6 @@ public class AdminAction extends ActionSupport {
         return "SHOWPRODUCTS";
     }
     
-//    public String showResolvedComplaints() {
-//
-//        try {
-//            setComplaintList(new ArrayList<Complaint>());
-//            setComplaintList(csr.complaintList());
-//
-//            if (!complaintList.isEmpty()) {
-//                setNoData(false);
-//                System.out.println("Users retrieve = " + getComplaintList().size());
-//                System.out.println("setting nodata=false");
-//            } else {
-//                setNoData(true);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return "COMPLAINTLIST";
-//    }
     
     
 
@@ -907,5 +903,19 @@ public class AdminAction extends ActionSupport {
 
     public void setProductList(List<Product> productList) {
         this.productList = productList;
+    }
+
+    /**
+     * @return the prodstatus
+     */
+    public int getProdstatus() {
+        return prodstatus;
+    }
+
+    /**
+     * @param prodstatus the prodstatus to set
+     */
+    public void setProdstatus(int prodstatus) {
+        this.prodstatus = prodstatus;
     }
 }

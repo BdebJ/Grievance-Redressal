@@ -1,5 +1,23 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@taglib prefix="s" uri="/struts-tags"%>
+
+<%
+    response.setHeader("Cache-control","no-cache, no-store, must-revalidate");
+    if (request.getSession().getAttribute("validUser") == null) {
+        String errormsg = "You are not logged in. Please login first!!";
+        request.setAttribute("errormsg", errormsg);
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+    }
+    else if((Integer)request.getSession().getAttribute("roleid") != 1){
+        String errormsg = "You are not logged in. Please login first!!";
+        request.setAttribute("errormsg", errormsg);
+        
+        if(session!=null){  
+        session.invalidate();
+    }
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -37,7 +55,7 @@
                         </div>
                         <div class="btn-toolbar mb-2 mb-md-0">
 
-                            <a href="addTechnician.jsp"><button type="button" class="btn btn-sm btn-outline-secondary">Add Product</button></a>
+                            <a href="addTechnician.jsp"><button type="button" class="btn btn-sm btn-outline-secondary"><i class = "fa fa-plus"></i> Add Product</button></a>
                         </div>
                     </div>
                     <s:if test="ctr>0">
@@ -81,11 +99,13 @@
                                             <td><s:property value="prodname"/></td>
                                             <td><s:property value="prodmodel"/></td>
                                             <td><s:property value="deptname"/></td>
-                                            <td><s:property value="prodstatus"/></td>
+                                            <s:if test ="prodstatus == 1"><td>Active</td> </s:if>
+                                            <s:elseif test ="prodstatus==0"><td>Inactive</td></s:elseif>
+                                            
                                             <td>
-                                                <a href = "fetchtechniciandetails.action?submitType=updatedata&techid=<s:property value="techid"/>"><i class="fa fa-edit"></i></a>
+                                                <a href = "fetchproductdetails.action?submitType=updatedata&prodid=<s:property value="prodid"/>"><i class="fa fa-edit"></i></a>
 
-                                                <a href="deletetech.action?techid=<s:property value="techid"/>"><i class="fa fa-archive"></i></a>
+                                                <a href="deleteprod.action?prodid=<s:property value="prodid"/>"><i class="fa fa-archive"></i></a>
                                             </td>
 
                                         </tr>

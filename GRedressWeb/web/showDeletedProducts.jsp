@@ -1,5 +1,23 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@taglib prefix="s" uri="/struts-tags"%>
+
+<%
+    response.setHeader("Cache-control","no-cache, no-store, must-revalidate");
+    if (request.getSession().getAttribute("validUser") == null) {
+        String errormsg = "You are not logged in. Please login first!!";
+        request.setAttribute("errormsg", errormsg);
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+    }
+    else if((Integer)request.getSession().getAttribute("roleid") != 1){
+        String errormsg = "You are not logged in. Please login first!!";
+        request.setAttribute("errormsg", errormsg);
+        
+        if(session!=null){  
+        session.invalidate();
+    }
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -23,7 +41,7 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Products List</h1>
+                    <h1 class="mt-4">Deleted Products List</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">View all Deleted Products details</li>
                     </ol>
@@ -32,11 +50,11 @@
 
                         <div class="btn-group me-2">
                             <a href="showproducts"><button type="button" class="btn btn-sm btn-outline-success">Active Products</button></a>
-<!--                            <button type="button" class="btn btn-sm btn-outline-danger"><i class='fa fa-user'></i>Deleted Technician</button>-->
+                            <!--                            <button type="button" class="btn btn-sm btn-outline-danger"><i class='fa fa-user'></i>Deleted Technician</button>-->
                         </div>
                         <div class="btn-toolbar mb-2 mb-md-0">
 
-                            <a href="addTechnician.jsp"><button type="button" class="btn btn-sm btn-outline-secondary">Add Product</button></a>
+                            <a href="addTechnician.jsp"><button type="button" class="btn btn-sm btn-outline-secondary"><i class ="fa fa-plus"></i> Add Product</button></a>
                         </div>
                     </div>
                     <s:if test="ctr>0">
@@ -82,9 +100,7 @@
                                             <td><s:property value="deptname"/></td>
                                             <td><s:property value="prodstatus"/></td>
                                             <td>
-                                                <a href = "fetchtechniciandetails.action?submitType=updatedata&techid=<s:property value="techid"/>"><i class="fa fa-edit"></i></a>
-
-                                                <a href="deletetech.action?techid=<s:property value="techid"/>"><i class="fa fa-archive"></i></a>
+                                                <a href = "fetchproductdetails.action?submitType=updatedata&prodid=<s:property value="prodid"/>"><i class="fa fa-edit"></i></a>
                                             </td>
 
                                         </tr>

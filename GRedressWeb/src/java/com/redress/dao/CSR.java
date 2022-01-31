@@ -152,6 +152,177 @@ public class CSR {
         return complaintList;
     }  //To change body of generated methods, choose Tools | Templates.
 
+    
+    public List<Complaint> resolvedComplaintList() throws SQLException, Exception {
+        ResultSet rs = null;
+        Connection con = null;
+        List<Complaint> complaintList = new ArrayList<>();
+
+        try {
+
+            con = ConnectionManager.getConnection();
+            String sql = "SELECT c.pid,c.complid,ui.firstname,ui.lastname,c.compltime,p.prodmodel,"
+                    + "p.prodname,c.subject,c.description, c.compl_status,t.techid,t.techname, "
+                    + "c.startprog, c.ongoingprog,c.endprog, c.res_status FROM complaint c "
+                    + "LEFT JOIN userinfo ui ON c.pid = ui.pid "
+                    + "LEFT JOIN technician t ON c.techid = t.techid "
+                    + "LEFT JOIN productowned po ON c.ownid = po.ownid "
+                    + "LEFT JOIN product p ON c.ownid = p.prodid WHERE c.res_status = 1";
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Complaint complaint = new Complaint();
+                complaint.setPid(rs.getInt("pid"));
+                complaint.setComplid(rs.getInt("complid"));
+                complaint.setFirstname(rs.getString("firstname"));
+                complaint.setLastname(rs.getString("lastname"));
+                complaint.setCompltime(rs.getString("compltime"));
+                complaint.setProdmodel(rs.getString("prodmodel"));
+                complaint.setProdname(rs.getString("prodname"));
+                complaint.setSubject(rs.getString("subject"));
+                complaint.setDescription(rs.getString("description"));
+                complaint.setTechid(rs.getInt("techid"));
+                complaint.setTechname(rs.getString("techname"));
+                complaint.setCompl_status(rs.getInt("compl_status"));
+                complaint.setStartprog(rs.getString("startprog"));
+                complaint.setOngoingprog(rs.getString("ongoingprog"));
+                complaint.setEndprog(rs.getString("endprog"));
+                complaint.setRes_status(rs.getInt("res_status"));
+                
+                System.out.println("pid"+rs.getInt("pid"));
+                complaintList.add(complaint);
+
+            }
+            System.out.println("Total number of customers = " + complaintList.size());
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return complaintList;
+    }  //To change body of generated methods, choose Tools | Templates.
+
+    
+    public List<Complaint> unResolvedComplaintList() throws SQLException, Exception {
+        ResultSet rs = null;
+        Connection con = null;
+        List<Complaint> complaintList = new ArrayList<>();
+
+        try {
+
+            con = ConnectionManager.getConnection();
+            String sql = "SELECT c.pid,c.complid,ui.firstname,ui.lastname,c.compltime,p.prodmodel,"
+                    + "p.prodname,c.subject,c.description, c.compl_status,t.techid,t.techname, "
+                    + "c.startprog, c.ongoingprog,c.endprog, c.res_status FROM complaint c "
+                    + "LEFT JOIN userinfo ui ON c.pid = ui.pid "
+                    + "LEFT JOIN technician t ON c.techid = t.techid "
+                    + "LEFT JOIN productowned po ON c.ownid = po.ownid "
+                    + "LEFT JOIN product p ON c.ownid = p.prodid WHERE c.compl_status = 1 and c.res_status = 0";
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Complaint complaint = new Complaint();
+                complaint.setPid(rs.getInt("pid"));
+                complaint.setComplid(rs.getInt("complid"));
+                complaint.setFirstname(rs.getString("firstname"));
+                complaint.setLastname(rs.getString("lastname"));
+                complaint.setCompltime(rs.getString("compltime"));
+                complaint.setProdmodel(rs.getString("prodmodel"));
+                complaint.setProdname(rs.getString("prodname"));
+                complaint.setSubject(rs.getString("subject"));
+                complaint.setDescription(rs.getString("description"));
+                complaint.setTechid(rs.getInt("techid"));
+                complaint.setTechname(rs.getString("techname"));
+                complaint.setCompl_status(rs.getInt("compl_status"));
+                complaint.setStartprog(rs.getString("startprog"));
+                complaint.setOngoingprog(rs.getString("ongoingprog"));
+                complaint.setEndprog(rs.getString("endprog"));
+                complaint.setRes_status(rs.getInt("res_status"));
+                
+                System.out.println("pid"+rs.getInt("pid"));
+                complaintList.add(complaint);
+
+            }
+            System.out.println("Total number of customers = " + complaintList.size());
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return complaintList;
+    }  //To change body of generated methods, choose Tools | Templates.
+
+    public List<Complaint> rejectedComplaintList() throws SQLException, Exception {
+        ResultSet rs = null;
+        Connection con = null;
+        List<Complaint> complaintList = new ArrayList<>();
+
+        try {
+
+            con = ConnectionManager.getConnection();
+            String sql = "SELECT c.pid,c.complid,ui.firstname,ui.lastname,c.compltime,p.prodmodel,"
+                    + "p.prodname,c.subject,c.description, c.compl_status,t.techid,t.techname, "
+                    + "c.startprog, c.ongoingprog,c.endprog, c.res_status FROM complaint c "
+                    + "LEFT JOIN userinfo ui ON c.pid = ui.pid "
+                    + "LEFT JOIN technician t ON c.techid = t.techid "
+                    + "LEFT JOIN productowned po ON c.ownid = po.ownid "
+                    + "LEFT JOIN product p ON c.ownid = p.prodid WHERE c.compl_status = 2";
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Complaint complaint = new Complaint();
+                complaint.setPid(rs.getInt("pid"));
+                complaint.setComplid(rs.getInt("complid"));
+                complaint.setFirstname(rs.getString("firstname"));
+                complaint.setLastname(rs.getString("lastname"));
+                complaint.setCompltime(rs.getString("compltime"));
+                complaint.setProdmodel(rs.getString("prodmodel"));
+                complaint.setProdname(rs.getString("prodname"));
+                complaint.setSubject(rs.getString("subject"));
+                complaint.setDescription(rs.getString("description"));
+                complaint.setTechid(rs.getInt("techid"));
+                complaint.setTechname(rs.getString("techname"));
+                complaint.setCompl_status(rs.getInt("compl_status"));
+                complaint.setStartprog(rs.getString("startprog"));
+                complaint.setOngoingprog(rs.getString("ongoingprog"));
+                complaint.setEndprog(rs.getString("endprog"));
+                complaint.setRes_status(rs.getInt("res_status"));
+                
+                System.out.println("pid"+rs.getInt("pid"));
+                complaintList.add(complaint);
+
+            }
+            System.out.println("Total number of customers = " + complaintList.size());
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return complaintList;
+    }  //To change body of generated methods, choose Tools | Templates.
+
+    
     public List<CustomerDefect> customerDefect() throws SQLException, Exception {
         ResultSet rs = null;
         Connection con = null;

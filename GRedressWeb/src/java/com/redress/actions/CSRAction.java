@@ -81,6 +81,62 @@ public class CSRAction {
         return "COMPLAINTLIST";
     }
     
+    public String showResolvedComplaint() {
+
+        try {
+            setComplaintList(new ArrayList<Complaint>());
+            setComplaintList(csr.resolvedComplaintList());
+
+            if (!complaintList.isEmpty()) {
+                setNoData(false);
+                System.out.println("Users retrieve = " + getComplaintList().size());
+                System.out.println("setting nodata=false");
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "COMPLAINTLIST";
+    }
+    
+    public String showUnresolvedComplaint() {
+
+        try {
+            setComplaintList(new ArrayList<Complaint>());
+            setComplaintList(csr.unResolvedComplaintList());
+
+            if (!complaintList.isEmpty()) {
+                setNoData(false);
+                System.out.println("Users retrieve = " + getComplaintList().size());
+                System.out.println("setting nodata=false");
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "COMPLAINTLIST";
+    }
+    
+    public String showRejectedComplaint() {
+
+        try {
+            setComplaintList(new ArrayList<Complaint>());
+            setComplaintList(csr.rejectedComplaintList());
+
+            if (!complaintList.isEmpty()) {
+                setNoData(false);
+                System.out.println("Users retrieve = " + getComplaintList().size());
+                System.out.println("setting nodata=false");
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "COMPLAINTLIST";
+    }
     
     private List<CustomerDefect> customerdefect = null;
 

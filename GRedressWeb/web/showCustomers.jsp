@@ -1,8 +1,58 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@taglib prefix="s" uri="/struts-tags"%>
+
+<%
+    response.setHeader("Cache-control","no-cache, no-store, must-revalidate");
+    if (request.getSession().getAttribute("validUser") == null) {
+        String errormsg = "You are not logged in. Please login first!!";
+        request.setAttribute("errormsg", errormsg);
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+    }
+    else if((Integer)request.getSession().getAttribute("roleid") != 1){
+        String errormsg = "You are not logged in. Please login first!!";
+        request.setAttribute("errormsg", errormsg);
+        
+        if(session!=null){  
+        session.invalidate();
+    }
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <script type="module">
+            const table = new simpleDatatables.DataTable("table")
+            document.querySelector("button.csv").addEventListener("click", () => {
+            table.export({
+            type: "csv",
+            download: true,
+            lineDelimiter: "\n\n",
+            columnDelimiter: ";"
+            })
+            })
+            document.querySelector("button.sql").addEventListener("click", () => {
+            table.export({
+            type: "sql",
+            download: true,
+            tableName: "export_table"
+            })
+            })
+            document.querySelector("button.txt").addEventListener("click", () => {
+            table.export({
+            type: "txt",
+            download: true,
+            })
+            })
+            document.querySelector("button.json").addEventListener("click", () => {
+            table.export({
+            type: "json",
+            download: true,
+            escapeHTML: true,
+            space: 3
+            })
+            })
+        </script>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -19,6 +69,10 @@
 
         <div id="layoutSidenav_content">
             <main>
+                <button class="csv">Export CSV</button>
+                <button class="sql">Export SQL</button>
+                <button class="txt">Export TXT</button>
+                <button class="json">Export JSON</button>
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">Customers List</h1>
                     <ol class="breadcrumb mb-4">
@@ -100,6 +154,7 @@
                 </div>
             </main>
             <jsp:include page="footer.jsp"/>
+
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -109,5 +164,6 @@
     <script src="assets/demo/chart-bar-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
     <script src="assets/js/datatables-simple-demo.js"></script>
+
 </body>
 </html>

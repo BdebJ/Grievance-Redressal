@@ -124,14 +124,6 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="pid" class="col-sm-2 col-form-label">Pid</label>
-                                            <div class="col-sm-7">
-                                                <input type="text" class="form-control" name="pid"
-                                                       placeholder="Enter Pid">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
                                             <label for="ownid" class="col-sm-2 col-form-label">Owned Product</label>
                                             <div class="col-sm-7">
                                                 <input type="text" class="form-control" name="ownid"

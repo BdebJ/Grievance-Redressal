@@ -9,8 +9,13 @@ import com.redress.models.User;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpSession;
+import org.apache.struts2.ServletActionContext;
 
 public class CustomerAction {
+
+    HttpSession session = ServletActionContext.getRequest().getSession(false);
+    User validUser = (User) session.getAttribute("validUser");
 
     private int pid;
     private String username;
@@ -23,7 +28,6 @@ public class CustomerAction {
     private int roleid;
     private int userstatus;
     private String submitType;
-    private boolean validUser;
     private int complid;
     private String compltime;
     private String subject;
@@ -50,82 +54,6 @@ public class CustomerAction {
     Customer customer = null;
     private String msg = "";
 
-    public String showComplaintbyPid() {
-        customer = new Customer();
-        try {
-            setComplaintList(new ArrayList<Complaint>());
-            setComplaintList(customer.complaintListbyPid(pid));
-
-            if (!complaintList.isEmpty()) {
-                setNoData(false);
-                System.out.println("Users retrieve = " + getComplaintList().size());
-                System.out.println("setting nodata=false");
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "PIDCOMPLAINTLIST";
-    }
-    
-    public String showActiveComplaintbyPid() {
-        customer = new Customer();
-        try {
-            setComplaintList(new ArrayList<Complaint>());
-            setComplaintList(customer.activeComplaintListbyPid(pid));
-
-            if (!complaintList.isEmpty()) {
-                setNoData(false);
-                System.out.println("Users retrieve = " + getComplaintList().size());
-                System.out.println("setting nodata=false");
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "PIDACTIVECOMPLAINTLIST";
-    }
-    
-    public String showRejectedComplaintbyPid() {
-        customer = new Customer();
-        try {
-            setComplaintList(new ArrayList<Complaint>());
-            setComplaintList(customer.rejectedComplaintListbyPid(pid));
-
-            if (!complaintList.isEmpty()) {
-                setNoData(false);
-                System.out.println("Users retrieve = " + getComplaintList().size());
-                System.out.println("setting nodata=false");
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "PIDREJECTEDCOMPLAINTLIST";
-    }  
-    
-    public String showResolvedComplaintbyPid() {
-        customer = new Customer();
-        try {
-            setComplaintList(new ArrayList<Complaint>());
-            setComplaintList(customer.resolvedComplaintListbyPid(pid));
-
-            if (!complaintList.isEmpty()) {
-                setNoData(false);
-                System.out.println("Users retrieve = " + getComplaintList().size());
-                System.out.println("setting nodata=false");
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "PIDRESOLVEDCOMPLAINTLIST";
-    }
-   
     public String showUser() throws Exception {
         customer = new Customer();
 
@@ -148,12 +76,13 @@ public class CustomerAction {
 
     public String addComplaint() throws Exception {
         customer = new Customer();
+        System.out.println("MY PID" + validUser.getPid());
         try {
-            setCtr(customer.ComplaintRegister(compltime, subject, description, pid, ownid));
+            setCtr(customer.ComplaintRegister(compltime, subject, description, validUser.getPid(), ownid));
             if (getCtr() > 0) {
-                setMsg("Complaint Registration Successfull");
+                setMsg("Complaint Registered Successfully");
             } else {
-                setMsg("Some error");
+                setMsg("Some error occured! Try again..");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -203,21 +132,44 @@ public class CustomerAction {
         return "SHOWCOMPLAINT";
     }
 
-    public String closeComplaint() throws Exception {
-        Customer dao = new Customer();
-        System.out.println(complid);
+    public String showComplaintbyPid() {
+
         try {
-            int isDeleted = dao.closeComplaintDetails(complid);
-            if (isDeleted > 0) {
-                msg = "Record deleted successfully";
+            customer = new Customer();
+            setComplaintList(new ArrayList<Complaint>());
+            setComplaintList(customer.complaintListbyPid(validUser.getPid()));
+
+            if (!complaintList.isEmpty()) {
+                setNoData(false);
+                System.out.println("Users retrieve = " + getComplaintList().size());
+                System.out.println("setting nodata=false");
             } else {
-                msg = "Some error";
+                setNoData(true);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "CLOSECOMPLAINT";
+        return "PIDCOMPLAINTLIST";
+    }
 
+    public String closeComplaint() throws Exception {
+        Customer customer = new Customer();
+        try {
+            setComplaintList(new ArrayList<Complaint>());
+            setComplaintList(customer.closedComplaintDetails(getPid()));
+
+            if (!complaintList.isEmpty()) {
+
+                setNoData(false);
+                System.out.println("Complaints retrieve = " + getComplaintList().size());
+                System.out.println("setting nodata=false");
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "CLOSEDCUSTOMERCOMPLAINT";
     }
 
     public String showProductOwned() throws Exception {
@@ -413,17 +365,16 @@ public class CustomerAction {
     /**
      * @return the validUser
      */
-    public boolean isValidUser() {
-        return validUser;
-    }
-
-    /**
-     * @param validUser the validUser to set
-     */
-    public void setValidUser(boolean validUser) {
-        this.validUser = validUser;
-    }
-
+//    public boolean isValidUser() {
+//        return validUser;
+//    }
+//
+//    /**
+//     * @param validUser the validUser to set
+//     */
+//    public void setValidUser(boolean validUser) {
+//        this.validUser = validUser;
+//    }
     /**
      * @return the ctr
      */

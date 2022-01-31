@@ -14,13 +14,17 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpSession;
+import org.apache.struts2.ServletActionContext;
 
 /**
  *
  * @author bjena
  */
 public class LoginAction  implements SessionAware {
-    private SessionMap<String,Object> sessionMap;  
+    private SessionMap<String,Object> sessionMap; 
+    HttpSession session = ServletActionContext.getRequest().getSession(false);
+    User valUser = (User) session.getAttribute("validUser");
     
 
     private int pid;
@@ -36,11 +40,14 @@ public class LoginAction  implements SessionAware {
     private boolean validUser;
     private static String success;
     private String msg ="";
+    private int ctr = 0;
+    
     
     Login login = null;
     
     @Override
-    public void setSession(Map<String, Object> map) {  
+    public void setSession(Map<String, Object> map) { 
+        
         setSessionMap((SessionMap<String, Object>) (SessionMap)map);  
 }  
     
@@ -63,6 +70,8 @@ public class LoginAction  implements SessionAware {
                     email = validUser.getEmail();
                     phno = validUser.getPhno();
                     roleid = validUser.getRoleid();
+                    userstatus = validUser.getUserstatus();
+                            
                     System.out.println("roleid = "+ validUser.getRoleid());
                    
 //                    success = (user.getRole());
@@ -70,10 +79,16 @@ public class LoginAction  implements SessionAware {
                         success = "successAdmin";
                     }
                     else if(roleid == 2){
+                        
                         success = "successCSR";
                     }
                     else{
+                        if(userstatus == 0){
+                            success = "changePassword";
+                        }
+                        else{
                         success = "successCustomer";
+                        }
                     }
                 }
              else {
@@ -86,6 +101,26 @@ public class LoginAction  implements SessionAware {
         }
 
         return success;
+    }
+    
+    public String changePassword() throws Exception{
+        login = new Login();
+        try {
+             setCtr(login.changePassword(password,valUser.getPid()));
+             if(getCtr() > 0){
+                 setMsg("Password Changed Successfully.");
+                 return "successchangepassword";
+             }
+             else{
+                 setMsg("Some error!");
+             }
+                 
+               
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "failurechangepassword";
     }
     
     public String logout(){  
@@ -275,6 +310,20 @@ public class LoginAction  implements SessionAware {
      */
     public void setSessionMap(SessionMap<String,Object> sessionMap) {
         this.sessionMap = sessionMap;
+    }
+
+    /**
+     * @return the ctr
+     */
+    public int getCtr() {
+        return ctr;
+    }
+
+    /**
+     * @param ctr the ctr to set
+     */
+    public void setCtr(int ctr) {
+        this.ctr = ctr;
     }
 
 }

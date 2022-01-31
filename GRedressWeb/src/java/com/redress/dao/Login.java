@@ -62,5 +62,27 @@ public class Login {
             }
         }
     }
-    
+
+    public int changePassword(String password,int pid)throws Exception {
+        int i = 0;
+        Connection con = null;
+        try {
+//            System.out.println("all etch"+ techname + techid);
+            con = ConnectionManager.getConnection();
+            String sql = "UPDATE userinfo SET password =?,userstatus = 1 WHERE pid = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, password);
+            ps.setInt(2, pid);
+             System.out.println("SQL for insert=" + ps);
+            i = ps.executeUpdate();
+            return i;
+             } catch (Exception e) {
+            e.printStackTrace();
+            return i;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
 }

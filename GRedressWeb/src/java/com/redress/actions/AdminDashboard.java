@@ -5,6 +5,8 @@
 package com.redress.actions;
 
 import com.redress.dao.Admin;
+import com.redress.dao.CSR;
+import com.redress.models.Complaint;
 import com.redress.models.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +20,11 @@ import org.apache.struts2.ServletActionContext;
 public class AdminDashboard {
     private String msg = "";
      private List<User> userList = null;
+     private List<Complaint> complaintList = null;
+     private List<Complaint> resolvedComplaint = null;
+     private List<Complaint> unresolvedComplaint = null;
      Admin admin = new Admin();
+     CSR csr = new CSR();
 
     public String execute() throws Exception {
         
@@ -30,6 +36,9 @@ public class AdminDashboard {
         } else {
             setUserList(new ArrayList<User>());
             setUserList(admin.getAllCustomers());
+            setComplaintList(csr.complaintList());
+            setResolvedComplaint(csr.resolvedComplaintList());
+            setUnresolvedComplaint(csr.unResolvedComplaintList());
             return "success";
         }
 
@@ -61,5 +70,47 @@ public class AdminDashboard {
      */
     public void setUserList(List<User> userList) {
         this.userList = userList;
+    }
+
+    /**
+     * @return the complaintList
+     */
+    public List<Complaint> getComplaintList() {
+        return complaintList;
+    }
+
+    /**
+     * @param complaintList the complaintList to set
+     */
+    public void setComplaintList(List<Complaint> complaintList) {
+        this.complaintList = complaintList;
+    }
+
+    /**
+     * @return the resolvedComplaint
+     */
+    public List<Complaint> getResolvedComplaint() {
+        return resolvedComplaint;
+    }
+
+    /**
+     * @param resolvedComplaint the resolvedComplaint to set
+     */
+    public void setResolvedComplaint(List<Complaint> resolvedComplaint) {
+        this.resolvedComplaint = resolvedComplaint;
+    }
+
+    /**
+     * @return the unresolvedComplaint
+     */
+    public List<Complaint> getUnresolvedComplaint() {
+        return unresolvedComplaint;
+    }
+
+    /**
+     * @param unresolvedComplaint the unresolvedComplaint to set
+     */
+    public void setUnresolvedComplaint(List<Complaint> unresolvedComplaint) {
+        this.unresolvedComplaint = unresolvedComplaint;
     }
 }

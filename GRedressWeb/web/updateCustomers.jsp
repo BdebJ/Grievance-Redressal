@@ -1,5 +1,23 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@taglib prefix="s" uri="/struts-tags"%>
+
+<%
+    response.setHeader("Cache-control","no-cache, no-store, must-revalidate");
+    if (request.getSession().getAttribute("validUser") == null) {
+        String errormsg = "You are not logged in. Please login first!!";
+        request.setAttribute("errormsg", errormsg);
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+    }
+    else if((Integer)request.getSession().getAttribute("roleid") != 1){
+        String errormsg = "You are not logged in. Please login first!!";
+        request.setAttribute("errormsg", errormsg);
+        
+        if(session!=null){  
+        session.invalidate();
+    }
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -68,12 +86,14 @@
                                     <label for="phno">Phone Number</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <select class="form-control" name="userstatus" id="userstatus">
-                                        <option value="0">Initiated</option>
+                                    <select class="form-control" name="userstatus" id="prodstatus" required>
+                                        
+                                        <option value="0">Inactive</option>
                                         <option value="1">Active</option>
-                                        <option value="2">Deleted</option>
-                                    </select>
+                                        <option value="2">Delete</option>
+                                    </select>     
                                     <label for="userstatus">User Status</label>
+                                    <!--<span style="font-size: 80%; color: grey;">0 - Inactive / 1 - Active / 2 - Delete </span>-->
                                 </div>
 
 

@@ -201,21 +201,21 @@ public class Admin {
         }
     }
 
-    public int updateProduct(int prodid, String prodname, int deptid, String prodmodel) throws Exception {
+    public int updateProduct(int prodid, String prodname, int deptid, String prodmodel, int prodstatus) throws Exception {
 
         int i = 0;
         Connection con = null;
         try {
 //            System.out.println("all etch"+ techname + techid);
             con = ConnectionManager.getConnection();
-            String sql = "UPDATE product SET prodname = ?, deptid =?, prodmodel =? WHERE prodid = ?";
+            String sql = "UPDATE product SET prodname = ?, deptid =?, prodmodel =?,prodstatus = ? WHERE prodid = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, prodname);
 
             ps.setInt(2, deptid);
             ps.setString(3, prodmodel);
-            ps.setInt(4, prodid);
-
+            ps.setInt(4, prodstatus);
+            ps.setInt(5, prodid);
             System.out.println("SQL for insert=" + ps);
             i = ps.executeUpdate();
             return i;
@@ -398,7 +398,6 @@ public class Admin {
         }
     }
 
-    
     public List<User> getAllCSR() throws SQLException, Exception {
 
         ResultSet rs = null;
@@ -542,7 +541,7 @@ public class Admin {
         }
 
     }
-    
+
     public List<Technician> getAllTechnician() throws SQLException, Exception {
 
         ResultSet rs = null;
@@ -560,9 +559,6 @@ public class Admin {
                 tech.setTechname(rs.getString("techname"));
                 tech.setDeptid(rs.getInt("deptid"));
                 tech.setTechstatus(rs.getInt("techstatus"));
-                
-                
-                
 
                 technicianList.add(tech);
             }
@@ -577,7 +573,7 @@ public class Admin {
         }
 
     }
-    
+
     public List<Technician> getActiveTechnician() throws SQLException, Exception {
 
         ResultSet rs = null;
@@ -595,9 +591,6 @@ public class Admin {
                 tech.setTechname(rs.getString("techname"));
                 tech.setDeptid(rs.getInt("deptid"));
                 tech.setTechstatus(rs.getInt("techstatus"));
-                
-                
-                
 
                 technicianList.add(tech);
             }
@@ -630,9 +623,6 @@ public class Admin {
                 tech.setTechname(rs.getString("techname"));
                 tech.setDeptid(rs.getInt("deptid"));
                 tech.setTechstatus(rs.getInt("techstatus"));
-                
-                
-                
 
                 technicianList.add(tech);
             }
@@ -647,7 +637,6 @@ public class Admin {
         }
 
     }
-
 
     public int deleteUserDetails(int pid) throws SQLException, Exception {
         Connection con = ConnectionManager.getConnection();
@@ -717,6 +706,7 @@ public class Admin {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, prodid);
             i = ps.executeUpdate();
+            System.out.println(i);
             return i;
         } catch (Exception e) {
             e.printStackTrace();
@@ -764,7 +754,38 @@ public class Admin {
             }
         }
     }
-    
+
+    public Product fetchProductDetails(int prodid) throws Exception {
+        ResultSet rs = null;
+        Connection con = null;
+        Product product = new Product();
+        try {
+            con = ConnectionManager.getConnection();
+            String sql = "SELECT prodid,deptid,prodname,prodmodel,prodstatus FROM product WHERE prodid=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            System.out.println("pid in fetch = " + prodid);
+            ps.setInt(1, prodid);
+            System.out.println("Select SQL = " + ps);
+
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                product.setProdid(rs.getInt("prodid"));
+                product.setProdname(rs.getString("prodname"));
+                product.setProdmodel(rs.getString("prodmodel"));
+                product.setDeptid(rs.getInt("deptid"));
+                product.setProdstatus(rs.getInt("prodstatus"));
+            }
+            return product;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+
     public Technician fetchTechnicianDetails(int techid) throws Exception {
         ResultSet rs = null;
         Connection con = null;
@@ -795,13 +816,13 @@ public class Admin {
         }
     }
 
-    public List<Product> getAllProducts()throws SQLException, Exception {
+    public List<Product> getAllProducts() throws SQLException, Exception {
         ResultSet rs = null;
         Connection con = null;
 
         List<Product> productList = new ArrayList<>();
         try {
-            String sql = "SELECT prodid,prodname,prodmodel,deptname,prodstatus FROM product,department where product.deptid = department.deptid";
+            String sql = "SELECT prodid,prodname,prodmodel,deptname,prodstatus FROM product,department where product.deptid = department.deptid AND prodstatus = 1";
             con = ConnectionManager.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             System.out.println(sql);
@@ -826,8 +847,8 @@ public class Admin {
         }
 
     }
-    
-    public List<Product> getDeletedProducts()throws SQLException, Exception {
+
+    public List<Product> getDeletedProducts() throws SQLException, Exception {
         ResultSet rs = null;
         Connection con = null;
 
@@ -859,9 +880,4 @@ public class Admin {
 
     }
 
-    }
-
-
-   
-
-    
+}
