@@ -201,5 +201,25 @@
         <action name="complaintresolvedpid" class="com.redress.actions.CustomerAction" method = "showResolvedComplaintbyPid">
             <result name="PIDRESOLVEDCOMPLAINTLIST">/complaint_list.jsp</result>
         </action>
+        
+        
+        <action name="cusdefects" class="com.redress.actions.CSRAction" method="customerDefects">
+            <result name="DEFECTS">/Showall_cus_defect.jsp</result>  
+        </action>  
+        <action name="complaint" class="com.redress.actions.CSRAction" method="showComplaint">
+            <result name="COMPLAINTLIST">/Showallcomplaint.jsp</result>  
+        </action>   
+        <action name="department" class="com.redress.actions.CSRAction" method="showDepartments">
+            <result name="DEPARTEMNTLIST">/Showalldepartment.jsp</result>  
+        </action> 
+        <action name="customer" class="com.redress.actions.CSRAction" method="showCustomers">
+            <result name="CUSTOMERLIST">/Showallcustomer.jsp</result>  
+        </action> 
+        <action name="showtechnician" class="com.redress.actions.CSRAction" method="showTechnicians">
+            <result name="TECHNICIAN">/Showalltechnician.jsp</result>  
+        </action>
+        <action name="updateComplaint" class="com.redress.actions.CSRAction" method="updateComplaints">
+            <result name="UPDATE">/Complaintupdate.jsp</result>  
+        </action>
     </package>
 </struts>
