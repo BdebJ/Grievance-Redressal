@@ -217,7 +217,7 @@
         </action> 
         
         
-        <!--CSR Action-->
+        <!--CSR Actions-->
         
         <action name="cusdefects" class="com.redress.actions.CSRAction" method="customerDefects">
             <result name="DEFECTS">/Showall_cus_defect.jsp</result>
