@@ -1,5 +1,6 @@
 package com.redress.actions;
 
+import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.redress.dao.Customer;
 import com.redress.models.Complaint;
 import com.redress.models.CustomerDefect;
@@ -13,9 +14,16 @@ import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
+import org.apache.log4j.Logger;
 
 public class CustomerAction {
+    private static final Logger logger = Logger.getLogger(CustomerAction.class);
 
+    public String execute() {
+        logger.info("inside CustomerAction execute method");
+        return SUCCESS;
+    }
+    
     HttpSession session = ServletActionContext.getRequest().getSession(false);
     User validUser = (User) session.getAttribute("validUser");
 
