@@ -25,10 +25,10 @@ public class CSRAction {
     CSR csr = new CSR();
     private boolean noData = false;
 
-    private static final Logger logger = Logger.getLogger(AdminAction.class);
+    private static final Logger logger = Logger.getLogger(CSRAction.class);
 
     public String execute() {
-        logger.info("inside AdminAction execute method");
+        logger.info("inside CSRAction execute method");
         return SUCCESS;
     }
     public String showCustomers() {

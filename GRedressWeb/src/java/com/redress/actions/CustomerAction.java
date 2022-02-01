@@ -16,13 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 import org.apache.log4j.Logger;
 
-public class CustomerAction {
-    private static final Logger logger = Logger.getLogger(CustomerAction.class);
-
-    public String execute() {
-        logger.info("inside CustomerAction execute method");
-        return SUCCESS;
-    }
+public class CustomerAction {  
     
     HttpSession session = ServletActionContext.getRequest().getSession(false);
     User validUser = (User) session.getAttribute("validUser");
@@ -66,6 +60,12 @@ public class CustomerAction {
     private String msg = "";
     Timestamp date = new Timestamp(new Date().getTime());
 
+    private static final Logger logger = Logger.getLogger(CustomerAction.class);
+
+    public String execute() {
+        logger.info("inside CustomerAction execute method");
+        return SUCCESS;
+    }
     public String showUser() throws Exception {
         customer = new Customer();
 
