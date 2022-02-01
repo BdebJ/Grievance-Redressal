@@ -195,7 +195,8 @@
                                                 <td><s:property value="address"/></td>
                                                 <td><s:property value="email"/></td>
                                                 <td><s:property value="phno"/></td>
-                                                <td><s:property value="userstatus" /></td>
+                                                 <s:if test ="userstatus == 1"><td>Active</td> </s:if>
+                                            <s:elseif test ="userstatus==0"><td>Inactive</td></s:elseif>
                                               <!--  <td>
                                                     <a href=#>
                                                         <button class="button"><span>Update</span></button>

@@ -110,6 +110,11 @@
         <action name="showrejectedcomplaints" class="com.redress.actions.CSRAction" method="showRejectedComplaint">
             <result name="COMPLAINTLIST">/showRejectedComplaints.jsp</result>
         </action>
+         <action name="complaint" class="com.redress.actions.CSRAction" method="showcsrComplaint">
+            <result name="CSRCOMPLAINTLIST">/Showallcomplaint.jsp</result>
+        </action>
+        
+        
         
         <!--Delete Actions-->
         <action name="deleteuser" class="com.redress.actions.AdminAction" method="deleteUser">

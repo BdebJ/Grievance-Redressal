@@ -59,171 +59,174 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="cusdefects">customer defects</a>
                                     <a class="nav-link" href="complaint.action">Complaint</a>
-                                     <a class="nav-link" href="department.action">Department</a>
-                                      <a class="nav-link" href="customer.action">Customer</a>
+                                    <a class="nav-link" href="department.action">Department</a>
+                                    <a class="nav-link" href="customer.action">Customer</a>
                                 </nav>
                             </div>
-                           
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        CSR
-                    </div>
-                </nav>
-            </div>
-            <div id="layoutSidenav_content">
-                <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Customers</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="customer">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
+
+                            <div class="sb-sidenav-footer">
+                                <div class="small">Logged in as:</div>
+                                CSR
                             </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Department</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="department">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Customer Defects</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="cusdefects">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Complaints</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="complaint">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
+                            </nav>
                         </div>
-                       
-                        <style>
-            table, td, th {border: 0.5px solid black;}
-            table {border-collapse: collapse;width: 100%;}
-            th {height: 10px;}
-            .button {background-color: #008CBA;color: white;}
-            .button-delete {background-color: red;color: white;}
-        </style>
-          <style>
+                        <div id="layoutSidenav_content">
+                            <main>
+                                <div class="container-fluid px-4">
+                                    <h1 class="mt-4">Dashboard</h1>
+                                    <ol class="breadcrumb mb-4">
+                                        <li class="breadcrumb-item active">Dashboard</li>
+                                    </ol>
+                                    <div class="row">
+                                        <div class="col-xl-3 col-md-6">
+                                            <div class="card bg-primary text-white mb-4">
+                                                <div class="card-body">Customers</div>
+                                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                                    <a class="small text-white stretched-link" href="customer">View Details</a>
+                                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-md-6">
+                                            <div class="card bg-warning text-white mb-4">
+                                                <div class="card-body">Department</div>
+                                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                                    <a class="small text-white stretched-link" href="department">View Details</a>
+                                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-md-6">
+                                            <div class="card bg-success text-white mb-4">
+                                                <div class="card-body">Customer Defects</div>
+                                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                                    <a class="small text-white stretched-link" href="cusdefects">View Details</a>
+                                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-md-6">
+                                            <div class="card bg-danger text-white mb-4">
+                                                <div class="card-body">Complaints</div>
+                                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                                    <a class="small text-white stretched-link" href="complaint">View Details</a>
+                                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                          
+                                    <style>
+                                        table, td, th {border: 0.5px solid black;}
+                                        table {border-collapse: collapse;width: 100%;}
+                                        th {height: 10px;}
+                                        .button {background-color: #008CBA;color: white;}
+                                        .button-delete {background-color: red;color: white;}
+                                    </style>
+                                    <style>
 
-                            .button span {
-                                cursor: pointer;
-                                display: inline-block;
-                                position: relative;
-                                transition: 0.5s;
-                            }
 
-                            .button span:after {
-                                content: '\00bb';
-                                position: absolute;
-                                opacity: 0;
-                                top: 0;
-                                right: -20px;
-                                transition: 0.5s;
-                            }
 
-                            .button:hover span {
-                                padding-right: 25px;
-                            }
+                                        .button span {
+                                            cursor: pointer;
+                                            display: inline-block;
+                                            position: relative;
+                                            transition: 0.5s;
+                                        }
 
-                            .button:hover span:after {
-                                opacity: 1;
-                                right: 0;
-                            }
-                        </style>
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                DataTable Example
-                            </div>
-                            <div class="card-body">
-                                <s:if test="noData==false">
-                              <table id="datatablesSimple">
-                    <thead>
-                        <tr style="background-color: #E0E0E1;">
-                            <th>Complaint ID</th>
-                            <th>complaint time</th>
-                            
-                            <th>subject</th>
-                            <th style="width:200px;">desc</th>
-                            <th>P ID</th>
-                            <th>TECH ID</th>
-                            <th>com status</th>
-                            <th>start progress</th>
-                            <th>on going</th>
-                            <th>end prog</th>
-                            <th style="width:50px;">res status</th>
-                            
-                        </tr>
-                    </thead>
-                    <s:iterator value="complaintList">
-                        <tr>
-                        <td><s:property value="complid" /></td>
-                        <td><s:property value="compltime" /></td>
-                        
-                        <td><s:property value="subject" /></td>
-                        <td><s:property value="description" /></td>
-                       <td><s:property value="pid" /></td>
-                       <td><s:property value="techid" /></td>
-                       <td><s:property value="compl_status" /></td>
-                       <td><s:property value="startprog" /></td>
-                       <td><s:property value="ongoingprog" /></td>
-                       <td><s:property value="endprog" /></td>
-                       <td><s:property value="res_status" /></td>
-                       
-                      
-                        </tr>
-                    </s:iterator>
-                </table>
-                                </s:if>
-                                <s:else>
-                                    <div style="color: red;">No Data Found.</div>
-                                </s:else>
-                            </div>
+                                        .button span:after {
+                                            content: '\00bb';
+                                            position: absolute;
+                                            opacity: 0;
+                                            top: 0;
+                                            right: -20px;
+                                            transition: 0.5s;
+                                        }
+
+                                        .button:hover span {
+                                            padding-right: 25px;
+                                        }
+
+                                        .button:hover span:after {
+                                            opacity: 1;
+                                            right: 0;
+                                        }
+                                    </style>
+                                    <div class="card mb-4">
+                                        <div class="card-header">
+                                            <i class="fas fa-table me-1"></i>
+                                            DataTable Example
+                                        </div>
+                                        <div class="card-body">
+                                            <s:if test="noData==false">
+                                                <table id="datatablesSimple">
+                                                    <thead>
+                                                        <tr style="background-color: #E0E0E1;">
+                                                            <th>Complaint id</th>
+                                                            <th>Complaint Time</th>
+                                                            <th>Subject</th>
+                                                            <th>Description</th>
+                                                            <th>Customer id</th> 
+                                                            <th>Customer Name</th> 
+                                                            <th>Product Name</th> 
+                                                            <th>Product Model</th>
+                                                            <th>Technician Id</th>
+                                                            <th>Technician Name</th> 
+                                                            <th>Complaint Status</th>
+                                                            <th>Resolution Status</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <s:iterator value="csrcomplaintList">
+                                                        <tr>
+                                                            <td><s:property value="complid"/></td>
+                                                            <td><s:property value="compltime"/></td>
+                                                            <td><s:property value="subject"/></td>
+                                                            <td><s:property value="description"/></td>
+                                                            <td><s:property value="pid"/></td>
+                                                            <td><s:property value="firstname"/> <s:property value="lastname"/></td>
+                                                            <td><s:property value="prodname"/></td>
+                                                            <td><s:property value="prodmodel"/></td>
+                                                            <td><s:property value="techid"/></td>
+                                                            <td><s:property value="techname"/></td>
+                                                            <s:if test="compl_status==0"><td> Initiated </td> </s:if>
+                                                            <s:elseif test="compl_status==1"> <td> Accepted </td> </s:elseif>
+                                                            <s:else> <td> Rejected </td> </s:else>
+                                                            <s:if test="res_status==0"><td> Unresolved </td> </s:if>
+                                                            <s:else> <td> Resolved </td> </s:else>
+
+
+                                                            </tr>
+                                                    </s:iterator>
+                                                </table>
+                                            </s:if>
+                                            <s:else>
+                                                <div style="color: red;">No Data Found.</div>
+                                            </s:else>
+                                        </div>
+                                    </div>
+                                </div>
+                            </main>
+                            <footer class="py-4 bg-light mt-auto">
+                                <div class="container-fluid px-4">
+                                    <div class="d-flex align-items-center justify-content-between small">
+                                        <div class="text-muted">Copyright &copy; Your Website 2021</div>
+                                        <div>
+                                            <a href="#">Privacy Policy</a>
+                                            &middot;
+                                            <a href="#">Terms &amp; Conditions</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </footer>
                         </div>
                     </div>
-                </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2021</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="assets/js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="assets/js/datatables-simple-demo.js"></script>
-    </body>
-</html>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+                    <script src="assets/js/scripts.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+                    <script src="assets/demo/chart-area-demo.js"></script>
+                    <script src="assets/demo/chart-bar-demo.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+                    <script src="assets/js/datatables-simple-demo.js"></script>
+                    </body>
+                    </html>

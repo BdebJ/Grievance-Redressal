@@ -80,7 +80,26 @@ public class CSRAction {
         }
         return "COMPLAINTLIST";
     }
-    
+       private List<Complaint> csrcomplaintList = null;
+
+    public String showcsrComplaint() {
+
+        try {
+            setCsrcomplaintList(new ArrayList<Complaint>());
+            setCsrcomplaintList(csr.csrcomplaintList());
+
+            if (!csrcomplaintList.isEmpty()) {
+                setNoData(false);
+                System.out.println("Users retrieve = " + getCsrcomplaintList().size());
+                System.out.println("setting nodata=false");
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "CSRCOMPLAINTLIST";
+    }
     public String showResolvedComplaint() {
 
         try {
@@ -371,5 +390,19 @@ public class CSRAction {
      */
     public void setTechnician(List<Technician> technician) {
         this.technician = technician;
+    }
+
+    /**
+     * @return the csrcomplaintList
+     */
+    public List<Complaint> getCsrcomplaintList() {
+        return csrcomplaintList;
+    }
+
+    /**
+     * @param csrcomplaintList the csrcomplaintList to set
+     */
+    public void setCsrcomplaintList(List<Complaint> csrcomplaintList) {
+        this.csrcomplaintList = csrcomplaintList;
     }
 }

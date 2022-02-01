@@ -138,7 +138,8 @@
                                             <tr>
                                                 <td><s:property value="deptid" /></td>
                                                 <td><s:property value="deptname" /></td>
-                                                <td><s:property value="deptstatus" /></td>
+                                                <s:if test ="deptstatus == 1"><td>Active</td> </s:if>
+                                            <s:elseif test ="deptstatus==0"><td>Inactive</td></s:elseif>
 
 
 
