@@ -97,9 +97,8 @@
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
-                                        <th>Technician id</th>
+                                        <th width="7%" >Technician ID</th>
                                         <th>Technician Name</th>
-                                        <th>Department id</th>
                                         <th>Department Name</th>
                                         <th>Status</th>                                       
                                         <th>Actions</th>
@@ -108,9 +107,8 @@
                                 <tfoot>
 
                                     <tr>
-                                        <th>Technician id</th>
+                                        <th>Technician ID</th>
                                         <th>Technician Name</th>
-                                        <th>Department id</th>
                                         <th>Department Name</th>
                                         <th>Status</th>                                       
                                         <th>Actions</th>
@@ -121,13 +119,12 @@
                                         <tr>
                                             <td><s:property value="techid"/></td>
                                             <td><s:property value="techname"/></td>
-                                            <td><s:property value="deptid"/></td>
                                             <td><s:property value="deptname"/></td>
                                             <s:if test="techstatus==0"><td> Inactive </td> </s:if>
                                             <s:else> <td> Active </td> </s:else>
                                             
                                             <td>
-                                                <a href = "fetchtechniciandetails.action?submitType=updatedata&techid=<s:property value="techid"/>"><i class="fa fa-edit"></i></a>
+                                                <a href="fetchtechniciandetails.action?submitType=updatedata&techid=<s:property value="techid"/>"><i class="fa fa-edit"></i></a>
 
                                                 <a href="deletetech.action?techid=<s:property value="techid"/>"><i class="fa fa-archive"></i></a>
                                             </td>

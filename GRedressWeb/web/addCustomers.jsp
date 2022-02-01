@@ -37,9 +37,9 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Customers List</h1>
+                    <h1 class="mt-4">Add Customer</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Customers</li>
+                        <li class="breadcrumb-item active">Add Customer details by filling all the required details</li>
                     </ol>
 
                     <s:if test="ctr>0">
@@ -51,7 +51,7 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            Customer List
+                            New Customer
                         </div>
 
                         <div class="card-body">

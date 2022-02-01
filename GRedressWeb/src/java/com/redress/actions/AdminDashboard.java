@@ -23,6 +23,7 @@ public class AdminDashboard {
      private List<Complaint> complaintList = null;
      private List<Complaint> resolvedComplaint = null;
      private List<Complaint> unresolvedComplaint = null;
+     private List<Complaint> rejectedComplaint = null;
      Admin admin = new Admin();
      CSR csr = new CSR();
 
@@ -39,6 +40,7 @@ public class AdminDashboard {
             setComplaintList(csr.complaintList());
             setResolvedComplaint(csr.resolvedComplaintList());
             setUnresolvedComplaint(csr.unResolvedComplaintList());
+            setRejectedComplaint(csr.rejectedComplaintList());
             return "success";
         }
 
@@ -112,5 +114,19 @@ public class AdminDashboard {
      */
     public void setUnresolvedComplaint(List<Complaint> unresolvedComplaint) {
         this.unresolvedComplaint = unresolvedComplaint;
+    }
+
+    /**
+     * @return the rejectedComplaint
+     */
+    public List<Complaint> getRejectedComplaint() {
+        return rejectedComplaint;
+    }
+
+    /**
+     * @param rejectedComplaint the rejectedComplaint to set
+     */
+    public void setRejectedComplaint(List<Complaint> rejectedComplaint) {
+        this.rejectedComplaint = rejectedComplaint;
     }
 }
