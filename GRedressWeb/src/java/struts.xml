@@ -6,7 +6,7 @@
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">   
         
-        <!--Login Action-->
+        <!--Login Actions-->
         <action name="logon" class="com.redress.actions.LoginAction" method = "validateLoginCredentials">
             <result name="successAdmin" type ="chain">admindashboard</result>  
             <result name="successCSR">/csr_dashboard.jsp</result> 
@@ -111,7 +111,7 @@
             <result name="COMPLAINTLIST">/showRejectedComplaints.jsp</result>
         </action>
         
-        <!--Delete Action-->
+        <!--Delete Actions-->
         <action name="deleteuser" class="com.redress.actions.AdminAction" method="deleteUser">
             <result name="user_delete_success" type = "chain">showcustomerlist</result>
         </action>
