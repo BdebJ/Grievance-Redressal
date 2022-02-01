@@ -4,6 +4,7 @@
  */
 package com.redress.actions;
 
+import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.redress.dao.CSR;
 import com.redress.models.Complaint;
 import com.redress.models.CustomerDefect;
@@ -12,6 +13,7 @@ import com.redress.models.Technician;
 import com.redress.models.User;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -23,6 +25,12 @@ public class CSRAction {
     CSR csr = new CSR();
     private boolean noData = false;
 
+    private static final Logger logger = Logger.getLogger(AdminAction.class);
+
+    public String execute() {
+        logger.info("inside AdminAction execute method");
+        return SUCCESS;
+    }
     public String showCustomers() {
 
         try {
