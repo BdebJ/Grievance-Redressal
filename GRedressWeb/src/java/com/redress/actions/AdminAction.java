@@ -4,6 +4,7 @@
  */
 package com.redress.actions;
 
+import com.lambdaworks.crypto.SCryptUtil;
 import com.opensymphony.xwork2.ActionSupport;
 import com.redress.dao.Admin;
 import com.redress.models.Complaint;
@@ -178,6 +179,7 @@ public class AdminAction extends ActionSupport {
         admin = new Admin();
 
         try {
+             password = SCryptUtil.scrypt("1234", 2048, 8, 1);
             setCtr(admin.addCustomers(getUsername(), getPassword(), getFirstname(), getLastname(), getAddress(), getEmail(), getPhno()));
             if (getCtr() > 0) {
                 setMsg("Customer added successfully");
@@ -195,6 +197,7 @@ public class AdminAction extends ActionSupport {
         admin = new Admin();
 
         try {
+            password = SCryptUtil.scrypt("1234", 2048, 8, 1);
             setCtr(admin.addCSR(getUsername(), getPassword(), getFirstname(), getLastname(), getAddress(), getEmail(), getPhno()));
             if (getCtr() > 0) {
                 setMsg("CSR added successfully");

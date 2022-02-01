@@ -31,7 +31,7 @@ public class Admin {
             String sql = "INSERT INTO userinfo(username,password,firstname,lastname,address,email,phno,roleid,userstatus) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, username);
-            ps.setString(2, "1234");
+            ps.setString(2, password);
             ps.setString(3, firstname);
             ps.setString(4, lastname);
             ps.setString(5, address);
