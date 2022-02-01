@@ -41,27 +41,7 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="assets/css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-    
-        <script>
-            // Set new default font family and font color to mimic Bootstrap's default styling
-function chart(data){
-Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-Chart.defaults.global.defaultFontColor = '#292b2c';
 
-// Pie Chart Example
-var ctx = document.getElementById("myPieChart");
-var myPieChart = new Chart(ctx, {
-  type: 'pie',
-  data: {
-    labels: ["Blue", "Red", "Yellow", "Green"],
-    datasets: [{
-      data: [data, 24, 11.20, 8.32],
-      backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
-    }],
-  },
-});
-}
-        </script>
     </head>
     <body class="sb-nav-fixed">
         <jsp:include page="navbar.jsp"/> 
@@ -76,7 +56,7 @@ var myPieChart = new Chart(ctx, {
                     <div class="row">
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-primary text-white mb-4">
-                               
+
                                 <div class="card-body">Total Customers <c:out value="${userList.size()}" /> </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
                                     <a class="small text-white stretched-link" href="showcustomerlist">View Details</a>
@@ -84,15 +64,17 @@ var myPieChart = new Chart(ctx, {
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-xl-3 col-md-6">
-                            <div class="card bg-danger text-white mb-4">
-                                <div class="card-body">Total Complaints <c:out value="${complaintList.size()}" /></div>
+                            <div class="card bg-success text-white mb-4">
+                                <div class="card-body">Resolved Complaints <c:out value="${resolvedComplaint.size()}" /></div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="showcomplaintsforadmin">View Details</a>
+                                    <a class="small text-white stretched-link" href="showresolvedcomplaints">View Details</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-warning text-white mb-4">
                                 <div class="card-body">Unresolved Complaints <c:out value="${unresolvedComplaint.size()}" /></div>
@@ -102,11 +84,12 @@ var myPieChart = new Chart(ctx, {
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-xl-3 col-md-6">
-                            <div class="card bg-success text-white mb-4">
-                                <div class="card-body">Resolved Complaints <c:out value="${resolvedComplaint.size()}" /></div>
+                            <div class="card bg-danger text-white mb-4">
+                                <div class="card-body">Rejected Complaints <c:out value="${complaintList.size()}" /></div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="showresolvedcomplaints">View Details</a>
+                                    <a class="small text-white stretched-link" href="showrejectedcomplaints">View Details</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
@@ -126,14 +109,14 @@ var myPieChart = new Chart(ctx, {
                         <div class="col-xl-6">
                             <div class="card mb-4">
                                 <div class="card-header">
-                                    <i class="fas fa-chart-bar me-1"></i>
-                                    Bar Chart Example
+                                    <i class="fas fa-chart-pie me-1"></i>
+                                    Pie Chart Example
                                 </div>
                                 <div class="card-body"><canvas id="myPieChart" width="100%" height="40"></canvas></div>
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </main>
             <jsp:include page="footer.jsp"/> 
@@ -144,7 +127,24 @@ var myPieChart = new Chart(ctx, {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/chart-area-demo.js"></script>
     <script src="assets/demo/chart-bar-demo.js"></script>
-    <script src="assets/demo/chart-pie-demo.js"></script>
+    <script>
+        // Set new default font family and font color to mimic Bootstrap's default styling
+        Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+        Chart.defaults.global.defaultFontColor = '#292b2c';
+
+        var ctx = document.getElementById("myPieChart");
+        var myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ["Resolved", "Unresolved", "Rejected"],
+                datasets: [{
+                        data: [${resolvedComplaint.size()}, ${unresolvedComplaint.size()}, ${complaintList.size()}],
+                        backgroundColor: ['#28a745', '#ffc107', '#dc3545'],
+                    }],
+            },
+        });
+
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
     <script src="assets/js/datatables-simple-demo.js"></script>
 </body>
