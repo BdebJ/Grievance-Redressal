@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,7 +84,7 @@ public class Customer {
         }
     }
 
-    public int ComplaintRegister(String compltime, String subject, String description, int pid, int ownid)
+    public int ComplaintRegister(Timestamp compltime, String subject, String description, int pid, int ownid)
             throws Exception {
         int i = 0;
         Connection con = null;
@@ -91,7 +92,7 @@ public class Customer {
             con = ConnectionManager.getConnection();
             String sql = "INSERT INTO complaint(compltime,subject,description,pid,ownid) VALUES (?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, compltime);
+            ps.setTimestamp(1, compltime);
             ps.setString(2, subject);
             ps.setString(3, description);
             ps.setInt(4, pid);
@@ -328,6 +329,33 @@ public class Customer {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+
+    public int sendMessage(String firstname, String email, String phno, String message, int pid, String username)throws Exception {
+       int i = 0;
+        Connection con = null;
+        try {
+            con = ConnectionManager.getConnection();
+            String sql = "INSERT INTO contact(name,email,phno,message,pid,username) VALUES (?,?,?,?,?,?)";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, firstname);
+            ps.setString(2, email);
+            ps.setString(3, phno);
+            ps.setString(4, message);
+            ps.setInt(5, pid);
+            ps.setString(6, username);
+
+            System.out.println("SQL for insert=" + ps);
+            i = ps.executeUpdate();
+            return i;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return i;
         } finally {
             if (con != null) {
                 con.close();

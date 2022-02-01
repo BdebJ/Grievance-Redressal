@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@taglib prefix="s" uri="/struts-tags"%>
 <jsp:include page="sessionValidation.jsp"/>
+<jsp:useBean id="date" class="java.util.Date" />
 <!doctype html>
 <html lang="en">
 
@@ -47,7 +48,7 @@
                         <div class="row cont-row">
                             <div  class="col-sm-3"><label>Complaint Time </label><span>:</span></div>
                             <div class="col-sm-8"><input type="text" class="form-control" name="compltime"
-                                                         placeholder="Enter Complaint time"></div>
+                                                         placeholder="Enter Complaint time" value='${date}' readonly> </div>
                         </div>
                         <div  class="row cont-row">
                             <div  class="col-sm-3"><label>Subject </label><span>:</span></div>

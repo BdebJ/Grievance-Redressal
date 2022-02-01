@@ -21,6 +21,8 @@ public class User {
     private int roleid;
     private int userstatus;
     private boolean validUser;
+    private String message;
+    
 
     /**
      * @return the pid
@@ -174,5 +176,19 @@ public class User {
      */
     public void setValidUser(boolean validUser) {
         this.validUser = validUser;
+    }
+
+    /**
+     * @return the message
+     */
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * @param message the message to set
+     */
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

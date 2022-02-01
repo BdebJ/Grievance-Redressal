@@ -215,6 +215,9 @@
         <action name="customerDefects" class="com.redress.actions.CustomerAction" method = "viewDefect">
             <result name="VIEWDEFECT">/defects.jsp</result>  
         </action> 
+        <action name="sendmessage" class="com.redress.actions.CustomerAction" method = "sendMessage">
+            <result name="SENDMESSAGE">/contactUs.jsp</result>  
+        </action> 
         
         
         <!--CSR Actions-->

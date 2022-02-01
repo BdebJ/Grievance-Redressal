@@ -7,7 +7,9 @@ import com.redress.models.Product;
 import com.redress.models.ProductOwned;
 import com.redress.models.User;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
@@ -24,9 +26,10 @@ public class CustomerAction {
     private String lastname;
     private String address;
     private String email;
-    private int phno;
+    private String phno;
     private int roleid;
     private int userstatus;
+    private String message;
     private String submitType;
     private int complid;
     private String compltime;
@@ -53,6 +56,7 @@ public class CustomerAction {
     private ResultSet rs = null;
     Customer customer = null;
     private String msg = "";
+    Timestamp date = new Timestamp(new Date().getTime());
 
     public String showUser() throws Exception {
         customer = new Customer();
@@ -78,7 +82,7 @@ public class CustomerAction {
         customer = new Customer();
         System.out.println("MY PID" + validUser.getPid());
         try {
-            setCtr(customer.ComplaintRegister(compltime, subject, description, validUser.getPid(), ownid));
+            setCtr(customer.ComplaintRegister(date, subject, description, validUser.getPid(), ownid));
             if (getCtr() > 0) {
                 setMsg("Complaint Registered Successfully");
             } else {
@@ -212,6 +216,23 @@ public class CustomerAction {
         }
         return "VIEWDEFECT";
     }
+    
+    public String sendMessage() throws Exception {
+        customer = new Customer();
+        System.out.println("MY PID" + validUser.getPid());
+        try {
+            setCtr(customer.sendMessage(firstname, email, phno, message,validUser.getPid(), validUser.getUsername()));
+            if (getCtr() > 0) {
+                setMsg("Message sent Successfully");
+            } else {
+                setMsg("Some error occured! Try again..");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "SENDMESSAGE";
+    }
 
     public List<User> getUserList() {
 
@@ -323,14 +344,14 @@ public class CustomerAction {
     /**
      * @return the phno
      */
-    public int getPhno() {
+    public String getPhno() {
         return phno;
     }
 
     /**
      * @param phno the phno to set
      */
-    public void setPhno(int phno) {
+    public void setPhno(String phno) {
         this.phno = phno;
     }
 
@@ -662,6 +683,20 @@ public class CustomerAction {
      */
     public void setOwnid(int ownid) {
         this.ownid = ownid;
+    }
+
+    /**
+     * @return the message
+     */
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * @param message the message to set
+     */
+    public void setMessage(String message) {
+        this.message = message;
     }
 
 }

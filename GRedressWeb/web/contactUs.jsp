@@ -1,3 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html lang="en">
 
@@ -44,32 +47,43 @@
                
           
             <div style="padding:20px" class="col-sm-7">
+                
             <h2 style="font-size:18px">Contact Form</h2>
+            <form action="sendmessage" method="post">
                 <div class="row cont-row">
                     <div  class="col-sm-3"><label>Enter Name </label><span>:</span></div>
-                    <div class="col-sm-8"><input type="text" placeholder="Enter Name" name="name" class="form-control input-sm"  ></div>
+                    <div class="col-sm-8"><input type="text" placeholder="Enter Name" name="firstname" class="form-control input-sm"  ></div>
                 </div>
                 <div  class="row cont-row">
                     <div  class="col-sm-3"><label>Email Address </label><span>:</span></div>
-                    <div class="col-sm-8"><input type="text" name="name" placeholder="Enter Email Address" class="form-control input-sm"  ></div>
+                    <div class="col-sm-8"><input type="email" name="email" placeholder="email" class="form-control input-sm"  ></div>
                 </div>
                  <div  class="row cont-row">
                     <div  class="col-sm-3"><label>Mobile Number</label><span>:</span></div>
-                    <div class="col-sm-8"><input type="text" name="name" placeholder="Enter Mobile Number" class="form-control input-sm"  ></div>
+                    <div class="col-sm-8"><input type="text" name="phno" placeholder="Enter Mobile Number" class="form-control input-sm"  ></div>
                 </div>
                  <div  class="row cont-row">
                     <div  class="col-sm-3"><label>Enter Message</label><span>:</span></div>
                     <div class="col-sm-8">
-                      <textarea rows="5" placeholder="Enter Your Message" class="form-control input-sm"></textarea>
+                        <textarea rows="5" placeholder="Enter Your Message" class="form-control input-sm" name="message"></textarea>
                     </div>
                 </div>
                  <div style="margin-top:10px;" class="row">
                     <div style="padding-top:10px;" class="col-sm-3"><label></label></div>
                     <div class="col-sm-8">
-                     <button class="btn btn-success btn-sm">Send Message</button>
+                        <button class="btn btn-success btn-sm" type="submit">Send Message</button>
+                        <s:if test="ctr>0">
+                        <div class = "alert alert-success mt-2" role = "alert"><s:property value="msg" /></div>
+                    </s:if>
+                    <s:elseif test= "ctr==-1">
+                        <div class = "alert alert-danger mt-2" role = "alert"><s:property value="msg" /></div>
+                    </s:elseif>
                     </div>
+                     
                 </div>
+            </form>
             </div>
+              
              <div class="col-sm-5">
                     
                   <div style="margin:50px" class="serv"> 

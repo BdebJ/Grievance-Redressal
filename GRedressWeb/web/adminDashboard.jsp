@@ -55,7 +55,7 @@ var myPieChart = new Chart(ctx, {
   data: {
     labels: ["Blue", "Red", "Yellow", "Green"],
     datasets: [{
-      data: [data, 15.58, 11.25, 8.32],
+      data: [data, 24, 11.20, 8.32],
       backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
     }],
   },
