@@ -129,7 +129,6 @@
                                             <td>
                                                 <a href = "fetchactivecustomerdetails.action?submitType=updatedata&pid=<s:property value="pid"/>"><i class="fa fa-edit"></i></a>
 
-                                                <a href="deleteuser.action?pid=<s:property value="pid"/>"><i class="fa fa-archive"></i></a>
                                             </td>
 
                                         </tr>

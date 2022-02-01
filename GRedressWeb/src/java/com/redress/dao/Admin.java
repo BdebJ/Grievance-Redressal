@@ -549,7 +549,8 @@ public class Admin {
 
         List<Technician> technicianList = new ArrayList<>();
         try {
-            String sql = "SELECT techid,techname,deptid,techstatus FROM technician";
+            String sql = "SELECT techid,techname,technician.deptid,deptname,techstatus "
+                    + "FROM technician,department WHERE technician.deptid = department.deptid";
             con = ConnectionManager.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -559,6 +560,7 @@ public class Admin {
                 tech.setTechname(rs.getString("techname"));
                 tech.setDeptid(rs.getInt("deptid"));
                 tech.setTechstatus(rs.getInt("techstatus"));
+                tech.setDeptname(rs.getString("deptname"));
 
                 technicianList.add(tech);
             }
@@ -581,7 +583,8 @@ public class Admin {
 
         List<Technician> technicianList = new ArrayList<>();
         try {
-            String sql = "SELECT techid,techname,deptid,techstatus FROM technician WHERE techstatus = 1";
+            String sql = "SELECT techid,techname,technician.deptid,deptname,techstatus "
+                    + "FROM technician,department WHERE technician.deptid = department.deptid AND techstatus = 1";
             con = ConnectionManager.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -591,6 +594,8 @@ public class Admin {
                 tech.setTechname(rs.getString("techname"));
                 tech.setDeptid(rs.getInt("deptid"));
                 tech.setTechstatus(rs.getInt("techstatus"));
+                tech.setDeptname(rs.getString("deptname"));
+                
 
                 technicianList.add(tech);
             }
@@ -613,7 +618,8 @@ public class Admin {
 
         List<Technician> technicianList = new ArrayList<>();
         try {
-            String sql = "SELECT techid,techname,deptid,techstatus FROM technician WHERE techstatus = 0";
+            String sql = "SELECT techid,techname,technician.deptid,deptname,techstatus "
+                    + "FROM technician,department WHERE technician.deptid = department.deptid AND techstatus = 0";
             con = ConnectionManager.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -623,6 +629,8 @@ public class Admin {
                 tech.setTechname(rs.getString("techname"));
                 tech.setDeptid(rs.getInt("deptid"));
                 tech.setTechstatus(rs.getInt("techstatus"));
+                tech.setDeptname(rs.getString("deptname"));
+                
 
                 technicianList.add(tech);
             }

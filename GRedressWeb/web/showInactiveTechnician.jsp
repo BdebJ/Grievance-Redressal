@@ -69,7 +69,7 @@
 
                         <div class="btn-group me-2">
                             <a href="showactivetechnician"><button type="button" class="btn btn-sm btn-outline-success"><i class='fa fa-user'></i>Active Technician</button></a>
-                            <a href="showinactivetechnician"><button type="button" class="btn btn-sm btn-outline-warning"><i class='fa fa-user'></i>Inactive Technician</button></a>
+                            <!--<a href="showinactivetechnician"><button type="button" class="btn btn-sm btn-outline-warning"><i class='fa fa-user'></i>Inactive Technician</button></a>-->
 <!--                            <button type="button" class="btn btn-sm btn-outline-danger"><i class='fa fa-user'></i>Deleted Technician</button>-->
                         </div>
                         <div class="btn-toolbar mb-2 mb-md-0">
@@ -120,7 +120,8 @@
                                             <td><s:property value="techid"/></td>
                                             <td><s:property value="techname"/></td>
                                             <td><s:property value="deptid"/></td>
-                                            <td><s:property value="techstatus"/></td>
+                                            <s:if test="techstatus==0"><td> Inactive </td> </s:if>
+                                            <s:else> <td> Active </td> </s:else>
                                             
                                             <td>
                                                 <a href = "fetchtechniciandetails.action?submitType=updatedata&techid=<s:property value="techid"/>"><i class="fa fa-edit"></i></a>

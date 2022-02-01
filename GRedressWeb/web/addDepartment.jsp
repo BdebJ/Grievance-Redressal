@@ -37,9 +37,9 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Department List</h1>
+                    <h1 class="mt-4">Add Department</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Departments</li>
+                        <li class="breadcrumb-item active">Add department by filling all the details</li>
                     </ol>
 
                     <s:if test="ctr>0">

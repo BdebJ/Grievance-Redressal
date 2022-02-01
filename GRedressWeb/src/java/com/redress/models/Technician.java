@@ -14,6 +14,7 @@ public class Technician {
     private String techname;
     private int deptid;
     private int techstatus;
+    private String deptname;
 
     /**
      * @return the techid
@@ -69,6 +70,20 @@ public class Technician {
      */
     public void setTechstatus(int techstatus) {
         this.techstatus = techstatus;
+    }
+
+    /**
+     * @return the deptname
+     */
+    public String getDeptname() {
+        return deptname;
+    }
+
+    /**
+     * @param deptname the deptname to set
+     */
+    public void setDeptname(String deptname) {
+        this.deptname = deptname;
     }
 
 }

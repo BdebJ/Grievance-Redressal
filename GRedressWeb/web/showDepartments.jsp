@@ -69,7 +69,7 @@
 
                         <div class="btn-group me-1">
                    
-                            <a href="showdeletedproducts"><button type="button" class="btn btn-sm btn-outline-danger">Deleted Products</button></a>
+                            <!--<a href="showdeleteddepartments"><button type="button" class="btn btn-sm btn-outline-danger">Deleted Departments</button></a>-->
 <!--                            <button type="button" class="btn btn-sm btn-outline-danger"><i class='fa fa-user'></i>Deleted Technician</button>-->
                         </div>
                         <div class="btn-toolbar mb-2 mb-md-0">
@@ -117,7 +117,8 @@
                                         <tr>
                                             <td><s:property value="deptid"/></td>
                                             <td><s:property value="deptname"/></td>
-                                            <td><s:property value="deptstatus"/></td>
+                                            <s:if test="deptstatus==0"><td> Inactive </td> </s:if>
+                                            <s:else> <td> Active </td> </s:else>
                                             
                                             <td>
                                                 <a href = "fetchtechniciandetails.action?submitType=updatedata&techid=<s:property value="techid"/>"><i class="fa fa-edit"></i></a>

@@ -142,8 +142,11 @@
                                             <td><s:property value="prodmodel"/></td>
                                             <td><s:property value="techid"/></td>
                                             <td><s:property value="techname"/></td>
-                                            <td><s:property value="compl_status"/></td>
-                                            <td><s:property value="res_status"/></td>
+                                             <s:if test="compl_status==0"><td> Initiated </td> </s:if>
+                                            <s:elseif test="compl_status==1"> <td> Accepted </td> </s:elseif>
+                                            <s:else> <td> Rejected </td> </s:else>
+                                            <s:if test="res_status==0"><td> Unresolved </td> </s:if>
+                                            <s:else> <td> Resolved </td> </s:else>
                                             <!--                                            <td>
                                                                                             <a href = "fetchtechniciandetails.action?submitType=updatedata&techid=<s:property value="techid"/>"><i class="fa fa-edit"></i></a>
                                             

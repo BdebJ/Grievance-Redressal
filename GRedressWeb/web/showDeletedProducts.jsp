@@ -121,7 +121,8 @@
                                             <td><s:property value="prodname"/></td>
                                             <td><s:property value="prodmodel"/></td>
                                             <td><s:property value="deptname"/></td>
-                                            <td><s:property value="prodstatus"/></td>
+                                             <s:if test="prodstatus==0"><td> Inactive </td> </s:if>
+                                            <s:else> <td> Active </td> </s:else>
                                             <td>
                                                 <a href = "fetchproductdetails.action?submitType=updatedata&prodid=<s:property value="prodid"/>"><i class="fa fa-edit"></i></a>
                                             </td>
