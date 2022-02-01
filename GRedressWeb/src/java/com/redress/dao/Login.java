@@ -18,18 +18,47 @@ import java.sql.SQLException;
  */
 public class Login {
 
-    public User validLoginCredential(String username, String password) throws SQLException, Exception {
+    public String getPasswordHash(String username) throws SQLException, Exception {
+        ResultSet rs = null;
+        Connection con = null;
+        String hash = null;
+        try {
+            con = ConnectionManager.getConnection();
+            String sql = "SELECT password FROM userinfo WHERE username=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            System.out.println("userName = " + username);
+            ps.setString(1, username);
+            System.out.println("Select SQL = " + ps);
+
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                
+                hash = rs.getString("password");
+                System.out.println("Password hash:" + hash);
+               
+            }
+            return hash;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+    
+    public User validLoginCredential(String username) throws SQLException, Exception {
         ResultSet rs = null;
         Connection con = null;
         User user = new User();
         user.setValidUser(false);
         try {
             con = ConnectionManager.getConnection();
-            String sql = "SELECT pid,username,password,firstname,lastname,address,email,phno,roleid,userstatus FROM userinfo WHERE username=? and password = ?";
+            String sql = "SELECT pid,username,password,firstname,lastname,address,email,phno,roleid,userstatus FROM userinfo WHERE username=?";
             PreparedStatement ps = con.prepareStatement(sql);
             System.out.println("userName = " + username);
             ps.setString(1, username);
-            ps.setString(2, password);
             System.out.println("Select SQL = " + ps);
 
             rs = ps.executeQuery();
@@ -45,8 +74,6 @@ public class Login {
                 user.setPhno(rs.getString("phno"));
                 user.setRoleid(rs.getInt("roleid"));
                 user.setUserstatus(rs.getInt("userstatus"));
-//                user.setRole(rs.getString("role"));
-                user.setValidUser(true);
                 System.out.println("Username"+user.getUsername());
                 System.out.println(user.getPhno());
 

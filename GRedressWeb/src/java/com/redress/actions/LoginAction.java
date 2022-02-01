@@ -3,9 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.redress.actions;
-import org.apache.struts2.dispatcher.SessionMap;  
-import org.apache.struts2.interceptor.SessionAware;  
 
+import org.apache.struts2.dispatcher.SessionMap;
+import org.apache.struts2.interceptor.SessionAware;
+import com.lambdaworks.crypto.SCryptUtil;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.redress.dao.Login;
@@ -21,12 +22,12 @@ import org.apache.struts2.ServletActionContext;
  *
  * @author bjena
  */
-public class LoginAction  implements SessionAware {
-    private SessionMap<String,Object> sessionMap; 
+public class LoginAction implements SessionAware {
+
+    private SessionMap<String, Object> sessionMap;
     HttpSession session = ServletActionContext.getRequest().getSession(false);
     User valUser = (User) session.getAttribute("validUser");
-    
-
+    private String hash;
     private int pid;
     private String username;
     private String password;
@@ -39,60 +40,70 @@ public class LoginAction  implements SessionAware {
     private int userstatus;
     private boolean validUser;
     private static String success;
-    private String msg ="";
+    private String msg = "";
     private int ctr = 0;
-    
-    
+
     Login login = null;
-    
+
     @Override
-    public void setSession(Map<String, Object> map) { 
-        
-        setSessionMap((SessionMap<String, Object>) (SessionMap)map);  
-}  
-    
-    public String validateLoginCredentials() throws Exception{
-        
+    public void setSession(Map<String, Object> map) {
+
+        setSessionMap((SessionMap<String, Object>) (SessionMap) map);
+    }
+
+    public boolean validatePassword(String username, String password) throws Exception {
         login = new Login();
-        try{
+        boolean check = false;
+        setHash(login.getPasswordHash(username));
+        try {
+        check = SCryptUtil.check(password, getHash());
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return check;
+    }
+    
+    public String validateLoginCredentials() throws Exception {
+
+        login = new Login();
+        try {
+                         
+            User validUser = login.validLoginCredential(username);
+            if(validatePassword(username,password)){
+                validUser.setValidUser(true);
+            }
             
-                User validUser = login.validLoginCredential(username,password);
-                
-                if (validUser.isValidUser()) {
-                    
-                    sessionMap.put("validUser", validUser);
-                    sessionMap.put("roleid", validUser.getRoleid());
-                    
-                    username = validUser.getUsername();
-                    password = validUser.getPassword();
-                    firstname = validUser.getFirstname();
-                    lastname = validUser.getLastname();
-                    email = validUser.getEmail();
-                    phno = validUser.getPhno();
-                    roleid = validUser.getRoleid();
-                    userstatus = validUser.getUserstatus();
-                            
-                    System.out.println("roleid = "+ validUser.getRoleid());
-                   
+            if (validUser.isValidUser()) {
+
+                sessionMap.put("validUser", validUser);
+                sessionMap.put("roleid", validUser.getRoleid());
+
+                username = validUser.getUsername();
+                password = validUser.getPassword();
+                firstname = validUser.getFirstname();
+                lastname = validUser.getLastname();
+                email = validUser.getEmail();
+                phno = validUser.getPhno();
+                roleid = validUser.getRoleid();
+                userstatus = validUser.getUserstatus();
+
+                System.out.println("roleid = " + validUser.getRoleid());
+
 //                    success = (user.getRole());
-                    if (roleid == 1){
-                        success = "successAdmin";
-                    }
-                    else if(roleid == 2){
-                        
-                        success = "successCSR";
-                    }
-                    else{
-                        if(userstatus == 0){
-                            success = "changePassword";
-                        }
-                        else{
+                if (roleid == 1) {
+                    success = "successAdmin";
+                } else if (roleid == 2) {
+
+                    success = "successCSR";
+                } else {
+                    if (userstatus == 0) {
+                        success = "changePassword";
+                    } else {
                         success = "successCustomer";
-                        }
                     }
                 }
-             else {
-                    this.msg = "Invalid Username or Password!!";
+            } else {
+                this.msg = "Invalid Username or Password!!";
                 return "failure";
             }
 
@@ -102,33 +113,31 @@ public class LoginAction  implements SessionAware {
 
         return success;
     }
-    
-    public String changePassword() throws Exception{
+
+    public String changePassword() throws Exception {
         login = new Login();
         try {
-             setCtr(login.changePassword(password,valUser.getPid()));
-             if(getCtr() > 0){
-                 setMsg("Password Changed Successfully.");
-                 return "successchangepassword";
-             }
-             else{
-                 setMsg("Some error!");
-             }
-                 
-               
-        }
-        catch (Exception e) {
+            String generatedSecuredPasswordHash = SCryptUtil.scrypt(password, 2048, 8, 1);
+            setCtr(login.changePassword(generatedSecuredPasswordHash, valUser.getPid()));
+            if (getCtr() > 0) {
+                setMsg("Password Changed Successfully.");
+                return "successchangepassword";
+            } else {
+                setMsg("Some error!");
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "failurechangepassword";
     }
-    
-    public String logout(){  
-    if(sessionMap!=null){  
-        sessionMap.invalidate();  
-    }  
-    return "success";  
-}  
+
+    public String logout() {
+        if (sessionMap != null) {
+            sessionMap.invalidate();
+        }
+        return "success";
+    }
 
     /**
      * @return the pid
@@ -301,14 +310,14 @@ public class LoginAction  implements SessionAware {
     /**
      * @return the sessionMap
      */
-    public SessionMap<String,Object> getSessionMap() {
+    public SessionMap<String, Object> getSessionMap() {
         return sessionMap;
     }
 
     /**
      * @param sessionMap the sessionMap to set
      */
-    public void setSessionMap(SessionMap<String,Object> sessionMap) {
+    public void setSessionMap(SessionMap<String, Object> sessionMap) {
         this.sessionMap = sessionMap;
     }
 
@@ -324,6 +333,20 @@ public class LoginAction  implements SessionAware {
      */
     public void setCtr(int ctr) {
         this.ctr = ctr;
+    }
+
+    /**
+     * @return the hash
+     */
+    public String getHash() {
+        return hash;
+    }
+
+    /**
+     * @param hash the hash to set
+     */
+    public void setHash(String hash) {
+        this.hash = hash;
     }
 
 }
