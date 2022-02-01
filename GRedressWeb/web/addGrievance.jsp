@@ -71,14 +71,15 @@
                             <div style="padding-top:10px;" class="col-sm-3"><label></label></div>
                             <div class="col-sm-8">
                                 <button type = "submit" class="btn btn-success btn-sm">Submit</button>
+                                  <s:if test="ctr>0">
+                        <div class = "alert alert-success mt-2" role = "alert"><s:property value="msg" /></div>
+                    </s:if>
+                    <s:elseif test= "ctr==-1">
+                        <div class = "alert alert-danger mt-2" role = "alert"><s:property value="msg" /></div>
+                    </s:elseif>
                             </div>
                             <div class="col-sm-8">
-                            <s:if test="ctr>0">
-                            <span style="color: green;"><s:property value="msg" /></span>
-                        </s:if>
-                        <s:else>
-                            <span style="color: red;"><s:property value="msg" /></span>
-                        </s:else>
+                           
                             </div>
                         </div>
                             </form>
