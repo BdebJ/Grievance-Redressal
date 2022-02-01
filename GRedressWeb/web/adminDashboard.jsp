@@ -2,15 +2,6 @@
 <%@taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<%--<s:if test="validUser == null">
-    <s:forward page="log.action?msg=You will have to login first"></jsp:forward>
-</s:if>--%>
-<%--<s:elseif test="#session.role=='emp'">
-    // show something
-</s:elseif>
-<s:else>
-    // show something
-</s:else>--%>
 <%
     response.setHeader("Cache-control","no-cache, no-store, must-revalidate");
     if (request.getSession().getAttribute("validUser") == null) {
@@ -87,7 +78,7 @@
 
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-danger text-white mb-4">
-                                <div class="card-body">Rejected Complaints <c:out value="${complaintList.size()}" /></div>
+                                <div class="card-body">Rejected Complaints <c:out value="${rejectedComplaint.size()}" /></div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
                                     <a class="small text-white stretched-link" href="showrejectedcomplaints">View Details</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -138,7 +129,7 @@
             data: {
                 labels: ["Resolved", "Unresolved", "Rejected"],
                 datasets: [{
-                        data: [${resolvedComplaint.size()}, ${unresolvedComplaint.size()}, ${complaintList.size()}],
+                        data: [${resolvedComplaint.size()}, ${unresolvedComplaint.size()}, ${rejectedComplaint.size()}],
                         backgroundColor: ['#28a745', '#ffc107', '#dc3545'],
                     }],
             },
