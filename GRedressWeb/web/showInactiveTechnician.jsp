@@ -67,9 +67,10 @@
 
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
-                        <div class="btn-group me-2">
+                        <div class="btn-group me-3">
+                            <a href="showtechnician"><button type="button" class="btn btn-sm btn-outline-primary"><i class='fa fa-user'></i>All Technician</button></a>
                             <a href="showactivetechnician"><button type="button" class="btn btn-sm btn-outline-success"><i class='fa fa-user'></i>Active Technician</button></a>
-                            <!--<a href="showinactivetechnician"><button type="button" class="btn btn-sm btn-outline-warning"><i class='fa fa-user'></i>Inactive Technician</button></a>-->
+                            <a href="showinactivetechnician"><button type="button" class="btn btn-sm btn-outline-warning active"><i class='fa fa-user'></i>Inactive Technician</button></a>
                             <!--                            <button type="button" class="btn btn-sm btn-outline-danger"><i class='fa fa-user'></i>Deleted Technician</button>-->
                         </div>
                         <div class="btn-toolbar mb-2 mb-md-0">

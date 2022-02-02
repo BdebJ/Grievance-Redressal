@@ -64,10 +64,11 @@
 
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
-                       <div class="btn-group me-3">
+                       <div class="btn-group me-4">
+                            <a href="showcustomerlist"><button type="button" class="btn btn-sm btn-outline-primary"><i class='fa fa-user'></i>All Customers</button></a>
                             <a href="showactivecustomers"><button type="button" class="btn btn-sm btn-outline-success"><i class='fa fa-user'></i>Active Customers</button></a>
                             <a href="showinactivecustomers"><button type="button" class="btn btn-sm btn-outline-warning"><i class='fa fa-user'></i>Inactive Customers</button></a>
-                            <a href="showdeletedcustomers"><button type="button" class="btn btn-sm btn-outline-danger"><i class='fa fa-user'></i>Deleted Customers</button></a>
+                            <a href="showdeletedcustomers"><button type="button" class="btn btn-sm btn-outline-danger active"><i class='fa fa-user'></i>Deleted Customers</button></a>
                         </div>
                         <div class="btn-toolbar mb-2 mb-md-0">
 
@@ -124,7 +125,9 @@
                                             <td><s:property value="address"/></td>
                                             <td><s:property value="email"/></td>
                                             <td><s:property value="phno"/></td>
-                                            <td><s:property value="userstatus" /></td>
+                                            <s:if test="userstatus==0"><td> Inactive </td> </s:if>
+                                            <s:elseif test ="userstatus==1"> <td> Active </td> </s:elseif>
+                                            <s:else> <td>Removed </td> </s:else>
                                             <td>
                                                 <a href = "fetchactivecustomerdetails.action?submitType=updatedata&pid=<s:property value="pid"/>"><i class="fa fa-edit"></i></a>
 

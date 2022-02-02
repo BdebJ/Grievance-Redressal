@@ -99,6 +99,7 @@ public class AdminAction extends ActionSupport {
                     techname = tech.getTechname();
                     deptid = tech.getDeptid();
                     techstatus = tech.getTechstatus();
+                    deptname = tech.getDeptname();
 
                 }
             } else {
@@ -126,6 +127,7 @@ public class AdminAction extends ActionSupport {
                 if (product != null) {
                     prodid = product.getProdid();
                     deptid = product.getDeptid();
+                    deptname = product.getDeptname();
                     prodname = product.getProdname();
                     prodmodel = product.getProdmodel();
                     prodstatus = product.getProdstatus();

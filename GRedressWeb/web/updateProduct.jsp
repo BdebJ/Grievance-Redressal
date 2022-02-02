@@ -61,8 +61,15 @@
                                     <label for="prodid">Poduct id</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="username" type="text" name ="deptid" placeholder="Department id" value='<s:property value="deptid"/>'/>
-                                    <label for="deptid">Department Id</label>
+                                    <select class="form-control" name="deptid" required>
+                                        <option value="" disabled selected><s:property value="deptname"/></option>
+                                        <s:iterator value="departmentList">
+                                            <option value="<s:property value="deptid"/>">
+                                                <s:property value="deptname"/>
+                                            </option>
+                                        </s:iterator>
+                                    </select>                                    
+                                        <label for="deptid">Department Name</label>
                                 </div>        
 
                                 <div class="form-floating mb-3">

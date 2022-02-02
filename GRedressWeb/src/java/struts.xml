@@ -142,12 +142,18 @@
             <result name="ADDCUSTOMERS">/addCustomers.jsp</result>               
         </action> 
         <action name="addproduct" class="com.redress.actions.AdminAction" method = "addProduct">
-            <result name="ADDPRODUCT">/addProduct.jsp</result>   
+            <result name="ADDPRODUCT" type = "chain">departmentfortech</result>   
         </action> 
+        <action name="departmentfortech" class="com.redress.actions.CSRAction" method = "showDepartments">
+            <result name="DEPARTEMNTLIST">/addProduct.jsp</result>   
+        </action>  
         
         <action name="addtechnician" class="com.redress.actions.AdminAction" method = "addTechnician">
-            <result name="ADDTECHNICIAN">/addTechnician.jsp</result>   
-        </action>          
+            <result name="ADDTECHNICIAN" type = "chain">departmentname</result>   
+        </action> 
+        <action name="departmentname" class="com.redress.actions.CSRAction" method = "showDepartments">
+            <result name="DEPARTEMNTLIST">/addTechnician.jsp</result>   
+        </action>         
          
         <action name="addDepartment" class="com.redress.actions.AdminAction" method = "addDepartment">
             <result name="ADDDEPARTMENT">/addDepartment.jsp</result>   
@@ -163,10 +169,13 @@
             <result name="UPDATETECHNICIAN">/updateTechnician.jsp</result>   
         </action>
         <action name="fetchproductdetails" class="com.redress.actions.AdminAction" method = "updateProduct">
-            <result name="UPDATEPRODUCT">/updateProduct.jsp</result>  
+            <result name="UPDATEPRODUCT" type ="chain">departmentforproduct</result>  
         </action>
+         <action name="departmentforproduct" class="com.redress.actions.CSRAction" method = "showDepartments">
+            <result name="DEPARTEMNTLIST">/updateProduct.jsp</result>   
+        </action>  
         <action name="updateproductdetails" class="com.redress.actions.AdminAction" method = "updateProduct">
-            <result name="UPDATEPRODUCT">/updateProduct.jsp</result>  
+            <result name="UPDATEPRODUCT" type = "chain">showproducts</result>  
         </action>
         <action name="updatecustomer" class="com.redress.actions.AdminAction" method = "updateUser">
             <result name="UPDATEUSER" type = "chain">showcustomerlist</result>  
@@ -185,11 +194,14 @@
             <result name="UPDATEUSER" type = "chain">showcsr</result>  
         </action>
         <action name="fetchtechniciandetails" class="com.redress.actions.AdminAction" method = "updateTechnician">
-            <result name="UPDATETECHNICIAN">/updateTechnician.jsp</result>
+            <result name="UPDATETECHNICIAN" type ="chain">departmentfortechupdate</result>
         </action>
         <action name="updatetechnician" class="com.redress.actions.AdminAction" method = "updateTechnician">
             <result name="UPDATETECHNICIAN" type = "chain">showtechnician</result>  
         </action>
+        <action name="departmentfortechupdate" class="com.redress.actions.CSRAction" method = "showDepartments">
+            <result name="DEPARTEMNTLIST">/updateTechnician.jsp</result> 
+            </action>
         
         
         <!--Customer Action-->

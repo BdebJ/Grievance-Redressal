@@ -769,12 +769,11 @@ public class Admin {
         Product product = new Product();
         try {
             con = ConnectionManager.getConnection();
-            String sql = "SELECT prodid,deptid,prodname,prodmodel,prodstatus FROM product WHERE prodid=?";
+            String sql = "SELECT prodid,prodname,prodmodel,prodstatus,product.deptid,deptname FROM product,department WHERE product.deptid = department.deptid AND prodid = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             System.out.println("pid in fetch = " + prodid);
             ps.setInt(1, prodid);
             System.out.println("Select SQL = " + ps);
-
             rs = ps.executeQuery();
             if (rs.next()) {
                 product.setProdid(rs.getInt("prodid"));
@@ -782,6 +781,7 @@ public class Admin {
                 product.setProdmodel(rs.getString("prodmodel"));
                 product.setDeptid(rs.getInt("deptid"));
                 product.setProdstatus(rs.getInt("prodstatus"));
+                product.setDeptname(rs.getString("deptname"));
             }
             return product;
         } catch (Exception e) {
@@ -800,7 +800,8 @@ public class Admin {
         Technician tech = new Technician();
         try {
             con = ConnectionManager.getConnection();
-            String sql = "SELECT techid,techname,deptid,techstatus FROM technician WHERE techid =?";
+            String sql = "SELECT techid,techname,technician.deptid,techstatus,deptname "
+                    + "FROM technician,department WHERE technician.deptid = department.deptid AND techid =?";
             PreparedStatement ps = con.prepareStatement(sql);
             System.out.println("techid in fetch = " + techid);
             ps.setInt(1, techid);
@@ -812,6 +813,7 @@ public class Admin {
                 tech.setTechname(rs.getString("techname"));
                 tech.setDeptid(rs.getInt("deptid"));
                 tech.setTechstatus(rs.getInt("techstatus"));
+                tech.setDeptname(rs.getString("deptname"));
             }
             return tech;
         } catch (Exception e) {

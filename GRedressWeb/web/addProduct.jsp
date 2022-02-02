@@ -63,8 +63,16 @@
                                     <label for="productmodel">Product Model</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="prodname" name="deptid" type ="text"  placeholder="Department Id" />
-                                    <label for="deptid">Department Id</label>
+                                    
+                                     <select class="form-control" name="deptid" required>
+                                        <option value="" disabled selected>Select Department</option>
+                                        <s:iterator value="departmentList">
+                                            <option value="<s:property value="deptid"/>">
+                                                <s:property value="deptname"/>
+                                                </option>
+                                        </s:iterator>
+                                    </select>
+                                    <label for="deptid">Department</label>
                                 </div>
                                  <div class="mt-4 mb-0">
                                     <div class="d-grid"><input type = "submit" class="btn btn-primary btn-block" value="Add Product"></div>

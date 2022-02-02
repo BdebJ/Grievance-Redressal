@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
     response.setHeader("Cache-control","no-cache, no-store, must-revalidate");
     if (request.getSession().getAttribute("validUser") == null) {
@@ -46,7 +47,7 @@
                     <s:if test="ctr>0">
                         <div class = "alert alert-success mt-2" role = "alert"><s:property value="msg" /></div>
                     </s:if>
-                        
+
                     <s:elseif test= "ctr=0">
                         <div class = "alert alert-danger mt-2" role = "alert"><s:property value="msg" /></div>
                     </s:elseif>
@@ -65,9 +66,17 @@
                                 </div>        
 
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="inputEmail" type="text" name="deptid" placeholder="department id" required/>
-                                    <label for="deptid">Department id</label>
+                                    <select class="form-control" name="deptid" required>
+                                        <option value="" disabled selected>Select Department</option>
+                                        <s:iterator value="departmentList">
+                                            <option value="<s:property value="deptid"/>">
+                                                <s:property value="deptname"/>
+                                                </option>
+                                        </s:iterator>
+                                    </select>
+                                    
                                 </div>
+                          
 
                                 <div class="mt-4 mb-0">
                                     <div class="d-grid"><input type = "submit" class="btn btn-primary btn-block" value="Add Technician"></a></div>

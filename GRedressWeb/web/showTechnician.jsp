@@ -31,7 +31,7 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link href="assets/css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-    <script type="module">
+        <script type="module">
             const table = new simpleDatatables.DataTable("table")
             document.getElementById("csv").addEventListener("click", () => {
             table.export({
@@ -67,14 +67,15 @@
 
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
-                        <div class="btn-group me-2">
+                        <div class="btn-group me-3">
+                            <a href="showtechnician"><button type="button" class="btn btn-sm btn-outline-primary active"><i class='fa fa-user'></i>All Technician</button></a>
                             <a href="showactivetechnician"><button type="button" class="btn btn-sm btn-outline-success"><i class='fa fa-user'></i>Active Technician</button></a>
                             <a href="showinactivetechnician"><button type="button" class="btn btn-sm btn-outline-warning"><i class='fa fa-user'></i>Inactive Technician</button></a>
-<!--                            <button type="button" class="btn btn-sm btn-outline-danger"><i class='fa fa-user'></i>Deleted Technician</button>-->
+                            <!--                            <button type="button" class="btn btn-sm btn-outline-danger"><i class='fa fa-user'></i>Deleted Technician</button>-->
                         </div>
                         <div class="btn-toolbar mb-2 mb-md-0">
 
-                            <a href="addTechnician.jsp"><button type="button" class="btn btn-sm btn-outline-secondary"><i class='fa fa-user-plus'></i>Add Technician</button></a>
+                            <a href="departmentname"><button type="button" class="btn btn-sm btn-outline-secondary"><i class='fa fa-user-plus'></i>Add Technician</button></a>
                         </div>
                     </div>
                     <s:if test="ctr>0">
@@ -122,9 +123,9 @@
                                             <td><s:property value="deptname"/></td>
                                             <s:if test="techstatus==0"><td> Inactive </td> </s:if>
                                             <s:else> <td> Active </td> </s:else>
-                                            
-                                            <td>
-                                                <a href="fetchtechniciandetails.action?submitType=updatedata&techid=<s:property value="techid"/>"><i class="fa fa-edit"></i></a>
+
+                                                <td>
+                                                    <a href="fetchtechniciandetails.action?submitType=updatedata&techid=<s:property value="techid"/>"><i class="fa fa-edit"></i></a>
 
                                                 <a href="deletetech.action?techid=<s:property value="techid"/>"><i class="fa fa-archive"></i></a>
                                             </td>

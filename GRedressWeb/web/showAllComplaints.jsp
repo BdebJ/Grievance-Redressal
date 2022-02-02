@@ -67,8 +67,8 @@
 
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
-                        <div class="btn-group me-3">
-                   
+                        <div class="btn-group me-4">
+                            <a href="showcomplaintsforadmin"><button type="button" class="btn btn-sm btn-outline-primary active"><i class='fa fa-user'></i>All Complaints</button></a>
                             <a href="showresolvedcomplaints"><button type="button" class="btn btn-sm btn-outline-success"><i class='fa fa-check'></i> Resolved Complaints</button></a>
                             <a href="showunresolvedcomplaints"><button type="button" class="btn btn-sm btn-outline-warning"><i class='fa fa-clock'></i> Unresolved Complaints</button></a>
                             <a href="showrejectedcomplaints"><button type="button" class="btn btn-sm btn-outline-danger"><i class='fa fa-ban'></i> Rejected Complaints</button></a>
@@ -103,11 +103,11 @@
                                         <th>Complaint Time</th>
                                         <th>Subject</th>
                                         <th>Description</th>
-                                        <th>Customer id</th> 
+                                        <!--<th>Customer id</th>--> 
                                         <th>Customer Name</th> 
                                         <th>Product Name</th> 
                                         <th>Product Model</th>
-                                        <th>Technician Id</th>
+                                        <!--<th>Technician Id</th>-->
                                         <th>Technician Name</th> 
                                         <th>Complaint Status</th>
                                         <th>Resolution Status</th>
@@ -119,11 +119,11 @@
                                         <th>Complaint Time</th>
                                         <th>Subject</th>
                                         <th>Description</th>
-                                        <th>Customer id</th> 
+                                        <!--<th>Customer id</th>--> 
                                         <th>Customer Name</th> 
                                         <th>Product Name</th> 
                                         <th>Product Model</th>
-                                        <th>Technician Id</th>
+                                        <!--<th>Technician Id</th>-->
                                         <th>Technician Name</th> 
                                         <th>Complaint Status</th>
                                         <th>Resolution Status</th>
@@ -136,19 +136,19 @@
                                             <td><s:property value="compltime"/></td>
                                             <td><s:property value="subject"/></td>
                                             <td><s:property value="description"/></td>
-                                            <td><s:property value="pid"/></td>
+                                            <!--<td><s:property value="pid"/></td>-->
                                             <td><s:property value="firstname"/> <s:property value="lastname"/></td>
                                             <td><s:property value="prodname"/></td>
                                             <td><s:property value="prodmodel"/></td>
-                                            <td><s:property value="techid"/></td>
+                                            <!--<td><s:property value="techid"/></td>-->
                                             <td><s:property value="techname"/></td>
                                             <s:if test="compl_status==0"><td> Initiated </td> </s:if>
                                             <s:elseif test="compl_status==1"> <td> Accepted </td> </s:elseif>
                                             <s:else> <td> Rejected </td> </s:else>
                                             <s:if test="res_status==0"><td> Unresolved </td> </s:if>
                                             <s:else> <td> Resolved </td> </s:else>
-                                            
-                                        </tr>
+
+                                            </tr>
                                     </s:iterator>
 
                                 </tbody>

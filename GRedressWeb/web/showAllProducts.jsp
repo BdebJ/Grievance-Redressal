@@ -74,7 +74,7 @@
                         </div>
                         <div class="btn-toolbar mb-2 mb-md-0">
 
-                            <a href="addProduct.jsp"><button type="button" class="btn btn-sm btn-outline-secondary"><i class = "fa fa-plus"></i> Add Product</button></a>
+                            <a href="departmentfortech"><button type="button" class="btn btn-sm btn-outline-secondary"><i class = "fa fa-plus"></i> Add Product</button></a>
                         </div>
                     </div>
                     <s:if test="ctr>0">
