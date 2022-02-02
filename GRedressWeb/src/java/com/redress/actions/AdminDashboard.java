@@ -7,6 +7,7 @@ package com.redress.actions;
 import com.redress.dao.Admin;
 import com.redress.dao.CSR;
 import com.redress.models.Complaint;
+import com.redress.models.Department;
 import com.redress.models.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ public class AdminDashboard {
      private List<Complaint> resolvedComplaint = null;
      private List<Complaint> unresolvedComplaint = null;
      private List<Complaint> rejectedComplaint = null;
+     private List<Department> deptList = null;
      Admin admin = new Admin();
      CSR csr = new CSR();
 
@@ -41,6 +43,7 @@ public class AdminDashboard {
             setResolvedComplaint(csr.resolvedComplaintList());
             setUnresolvedComplaint(csr.unResolvedComplaintList());
             setRejectedComplaint(csr.rejectedComplaintList());
+            setDeptList(admin.getDeptComplaintsNum());
             return "success";
         }
 
@@ -128,5 +131,19 @@ public class AdminDashboard {
      */
     public void setRejectedComplaint(List<Complaint> rejectedComplaint) {
         this.rejectedComplaint = rejectedComplaint;
+    }
+
+    /**
+     * @return the deptList
+     */
+    public List<Department> getDeptList() {
+        return deptList;
+    }
+
+    /**
+     * @param deptList the deptList to set
+     */
+    public void setDeptList(List<Department> deptList) {
+        this.deptList = deptList;
     }
 }

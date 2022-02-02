@@ -595,7 +595,6 @@ public class Admin {
                 tech.setDeptid(rs.getInt("deptid"));
                 tech.setTechstatus(rs.getInt("techstatus"));
                 tech.setDeptname(rs.getString("deptname"));
-                
 
                 technicianList.add(tech);
             }
@@ -630,11 +629,44 @@ public class Admin {
                 tech.setDeptid(rs.getInt("deptid"));
                 tech.setTechstatus(rs.getInt("techstatus"));
                 tech.setDeptname(rs.getString("deptname"));
-                
 
                 technicianList.add(tech);
             }
             return technicianList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+
+    }
+
+    public List<Department> getDeptComplaintsNum() throws SQLException, Exception {
+
+        ResultSet rs = null;
+        Connection con = null;
+
+        List<Department> departmentComplaintCountList = new ArrayList<>();
+        try {
+            String sql = "select dpp.deptname, (select COUNT(dp.deptid) from complaint c\n"
+                    + "inner join productowned p on c.ownid = p.ownid\n"
+                    + "inner join product pd on p.prodid = pd.prodid\n"
+                    + "inner join department dp on pd.deptid = dp.deptid where dp.deptid = dpp.deptid) complaints from department dpp";
+            con = ConnectionManager.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Department departmentComplaintCount = new Department();
+                departmentComplaintCount.setDeptname(rs.getString("deptname"));
+                departmentComplaintCount.setNoOfComplaints(rs.getInt("complaints"));
+                departmentComplaintCountList.add(departmentComplaintCount);
+                System.out.println(departmentComplaintCount.getDeptname()+" "+departmentComplaintCount.getNoOfComplaints());
+            }
+            System.out.println(departmentComplaintCountList.size());
+            return departmentComplaintCountList;
         } catch (Exception e) {
             e.printStackTrace();
             return null;

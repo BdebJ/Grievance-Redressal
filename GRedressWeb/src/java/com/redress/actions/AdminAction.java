@@ -56,7 +56,7 @@ public class AdminAction extends ActionSupport {
     // Department
     private String deptname;
     private List<User> userList = null;
-
+    private List<Department> deptList = null;
     private String submitType;
     Department dept = null;
     Product prod = null;
@@ -524,6 +524,21 @@ public class AdminAction extends ActionSupport {
         }
         return "SHOWPRODUCTS";
     }
+    
+    public String listDepartmentComplaints() {
+        try {
+            setDeptList(new ArrayList<Department>());
+            setDeptList(admin.getDeptComplaintsNum());
+            if (!deptList.isEmpty()) {
+                setNoData(false);
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "DEPTCOMPLAINTSNUM";
+    }
 
     /**
      * @return the noData
@@ -923,5 +938,19 @@ public class AdminAction extends ActionSupport {
      */
     public void setProdstatus(int prodstatus) {
         this.prodstatus = prodstatus;
+    }
+
+    /**
+     * @return the deptList
+     */
+    public List<Department> getDeptList() {
+        return deptList;
+    }
+
+    /**
+     * @param deptList the deptList to set
+     */
+    public void setDeptList(List<Department> deptList) {
+        this.deptList = deptList;
     }
 }

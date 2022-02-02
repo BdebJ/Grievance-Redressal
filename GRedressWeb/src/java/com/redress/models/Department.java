@@ -13,6 +13,7 @@ public class Department {
     private int deptid;
     private String deptname;
     private int deptstatus;
+    private int noOfComplaints;
 
     /**
      * @return the deptid
@@ -54,5 +55,19 @@ public class Department {
      */
     public void setDeptstatus(int deptstatus) {
         this.deptstatus = deptstatus;
+    }
+
+    /**
+     * @return the noOfComplaints
+     */
+    public int getNoOfComplaints() {
+        return noOfComplaints;
+    }
+
+    /**
+     * @param noOfComplaints the noOfComplaints to set
+     */
+    public void setNoOfComplaints(int noOfComplaints) {
+        this.noOfComplaints = noOfComplaints;
     }
 }
