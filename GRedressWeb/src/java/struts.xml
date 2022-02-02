@@ -9,7 +9,7 @@
         <!--Login Actions-->
         <action name="logon" class="com.redress.actions.LoginAction" method = "validateLoginCredentials">
             <result name="successAdmin" type ="chain">admindashboard</result>  
-            <result name="successCSR">/csr_dashboard.jsp</result> 
+            <result name="successCSR" type ="chain">csrdashboard</result> 
             <result name="successCustomer" type = "chain">customerdashboard</result> 
             <result name="changePassword">/changePassword.jsp</result> 
             <result name="failure">/login.jsp</result>  
@@ -22,6 +22,11 @@
             <result name="success">/adminDashboard.jsp</result>
             <result name="login">/login.jsp</result>
         </action>
+        <action name="csrdashboard" class="com.redress.actions.AdminDashboard" method="execute">
+            <result name="success">/csr_dashboard.jsp</result>
+            <result name="login">/login.jsp</result>
+        </action>
+        
         <action name="customerdashboard" class="com.redress.actions.CustomerDashboard" method="execute">
             <result name="success">/customerDashboard.jsp</result>
             <result name="login">/login.jsp</result>
@@ -59,9 +64,6 @@
         </action>
         <action name="showdeletedcsr" class="com.redress.actions.AdminAction" method="showDeletedCSR">
             <result name="SHOWDELETEDCSR">/showDeletedCSR.jsp</result>
-        </action>
-        <action name="showcsrcustomer" class="com.redress.actions.CSRAction" method="showCustomers">
-            <result name="CUSTOMERLIST"></result>
         </action>
         <action name="showdept" class="com.redress.actions.CSRAction" method="showDepartments">
             <result name="DEPARTEMNTLIST">/department_list.jsp</result>
@@ -235,6 +237,10 @@
         <action name="sendmessage" class="com.redress.actions.CustomerAction" method = "sendMessage">
             <result name="SENDMESSAGE">/contactUs.jsp</result>  
         </action> 
+         <action name="ProductOwnedList" class="com.redress.actions.CustomerAction" method="fetchProductsByPid">
+            <result name="PRODUCTOWNEDLIST">/addGrievance.jsp</result>
+        </action>
+        
         
         
         <!--CSR Actions-->
@@ -248,7 +254,7 @@
         <action name="department" class="com.redress.actions.CSRAction" method="showDepartments">
             <result name="DEPARTEMNTLIST">/Showalldepartment.jsp</result>
         </action>
-        <action name="customer" class="com.redress.actions.CSRAction" method="showCustomers">
+        <action name="customers" class="com.redress.actions.CSRAction" method="showCustomers">
             <result name="CUSTOMERLIST">/Showallcustomer.jsp</result>
         </action>
         <action name="showtechnicianbyid" class="com.redress.actions.CSRAction" method="showTechnicians">
@@ -256,6 +262,27 @@
         </action>
         <action name="updateComplaint" class="com.redress.actions.CSRAction" method="updateComplaints">
             <result name="UPDATE">/Complaintupdate.jsp</result>
+        </action>
+        <action name="shownewcomplaints" class="com.redress.actions.CSRAction" method="showNewComplaint">
+            <result name="NEWCOMPLAINTLIST">/showNewComplaintsCSR.jsp</result>
+        </action>
+         <action name="showresolvedcomplaintscsr" class="com.redress.actions.CSRAction" method="showResolvedComplaint">
+            <result name="COMPLAINTLIST">/showResolvedComplaintsCSR.jsp</result>
+        </action>
+        <action name="showunresolvedcomplaintscsr" class="com.redress.actions.CSRAction" method="showUnresolvedComplaint">
+            <result name="COMPLAINTLIST">/showUnresolvedComplaintsCSR.jsp</result>
+        </action>
+        <action name="showrejectedcomplaintscsr" class="com.redress.actions.CSRAction" method="showRejectedComplaint">
+            <result name="COMPLAINTLIST">/showRejectedComplaintsCSR.jsp</result>
+        </action>
+        <action name="updatecomplaint" class="com.redress.actions.CSRAction" method = "updateComplaints">
+            <result name="UPDATECOMPLAINT">/updateComplaint.jsp</result>  
+        </action>
+        <action name="fetchcomplaintdetails" class="com.redress.actions.CSRAction" method = "updateComplaints">
+            <result name="UPDATECOMPLAINT" type = "chain">technicianlist</result>  
+        </action>
+        <action name="technicianlist" class="com.redress.actions.AdminAction" method="showTechnician">
+            <result name="SHOWTECHNICIAN">/updateComplaint.jsp</result>
         </action>
         
     </package>

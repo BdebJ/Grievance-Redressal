@@ -16,8 +16,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 import org.apache.log4j.Logger;
 
-public class CustomerAction {  
-    
+public class CustomerAction {
+
     HttpSession session = ServletActionContext.getRequest().getSession(false);
     User validUser = (User) session.getAttribute("validUser");
 
@@ -53,6 +53,7 @@ public class CustomerAction {
     private List<Product> productList = null;
     private List<CustomerDefect> CustomerDefectList = null;
     private List<ProductOwned> ProductOwnedList = null;
+    
     private int ctr = 0;
     private boolean noData = false;
     private ResultSet rs = null;
@@ -66,6 +67,7 @@ public class CustomerAction {
         logger.info("inside CustomerAction execute method");
         return SUCCESS;
     }
+
     public String showUser() throws Exception {
         customer = new Customer();
 
@@ -224,12 +226,33 @@ public class CustomerAction {
         }
         return "VIEWDEFECT";
     }
-    
+
+    public String fetchProductsByPid() throws Exception {
+
+        Customer customer = new Customer();
+        try {
+
+            setProductOwnedList(new ArrayList<ProductOwned>());
+            setProductOwnedList(customer.productsByPid(validUser.getPid()));
+
+            if (!ProductOwnedList.isEmpty()) {
+                setNoData(false);
+                System.out.println("Product Owned retrieve = " + getProductOwnedList().size());
+                System.out.println("setting nodata=false");
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "PRODUCTOWNEDLIST";
+    }
+
     public String sendMessage() throws Exception {
         customer = new Customer();
         System.out.println("MY PID" + validUser.getPid());
         try {
-            setCtr(customer.sendMessage(firstname, email, phno, message,validUser.getPid(), validUser.getUsername()));
+            setCtr(customer.sendMessage(firstname, email, phno, message, validUser.getPid(), validUser.getUsername()));
             if (getCtr() > 0) {
                 setMsg("Message sent Successfully");
             } else {

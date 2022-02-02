@@ -63,8 +63,16 @@
                         </div>
                         <div  class="row cont-row">
                             <div  class="col-sm-3"><label>Owned Id</label><span>:</span></div>
-                            <div class="col-sm-8"><input type="text" class="form-control" name="ownid"
-                                                         placeholder="Enter Owned Product"></div>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="ownid" required>
+                                        <option value="" disabled selected>Select Product</option>
+                                        <s:iterator value="ProductOwnedList">
+                                            <option value="<s:property value="ownid"/>">
+                                                <s:property value="prodname"/>
+                                                </option>
+                                        </s:iterator>
+                                    </select>
+                                    </div>
                         </div>
 
                         <div style="margin-top:10px;" class="row">

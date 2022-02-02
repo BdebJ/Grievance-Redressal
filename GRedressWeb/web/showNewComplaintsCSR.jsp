@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Complaints</title>
+        <title>New Complaints</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -19,16 +19,16 @@
             <main>
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Complaints Details</h1>
+                        <h1 class="mt-4">New Complaint Details</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">View all Complaint details</li>
+                            <li class="breadcrumb-item active">New Complaints</li>
                         </ol>
 
                         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
                             <div class="btn-group me-4">
-                                <a href="shownewcomplaints"><button type="button" class="btn btn-sm btn-outline-info"><i class='fas fa-columns'></i>New Complaints</button></a>
-                                <a href="complaint"><button type="button" class="btn btn-sm btn-outline-primary active"><i class='fas fa-columns'></i>All Complaints</button></a>
+                                <a href="shownewcomplaints"><button type="button" class="btn btn-sm btn-outline-info active"><i class='fas fa-columns'></i>New Complaints</button></a>
+                                <a href="complaint"><button type="button" class="btn btn-sm btn-outline-primary"><i class='fas fa-columns'></i>All Complaints</button></a>
 
                             </div>
                             <div class="btn-toolbar mb-2 mb-md-0">
@@ -49,14 +49,14 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                Complaints
+                                New Complaints
                             </div>
                             <div class="card-body">
                                 <s:if test="noData==false">
                                     <table id="datatablesSimple">
                                         <thead>
-                                            <tr style="background-color: #E0E0E1;">
-                                                <th>Complaint id</th>
+                                            <tr>
+                                                <th width="7%">Complaint id</th>
                                                 <th>Complaint Time</th>
                                                 <th>Subject</th>
                                                 <th>Description</th>
@@ -67,7 +67,6 @@
                                                 <th>Complaint Status</th>
                                                 <th>Resolution Status</th>
                                                 <th>Actions</th>
-
                                             </tr>
                                         </thead>
                                         <s:iterator value="complaintList">

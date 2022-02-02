@@ -55,6 +55,38 @@ public class Customer {
         }
     }
 
+    public List productsByPid(int pid) throws SQLException, Exception {
+        ResultSet rs = null;
+        Connection con = null;
+        List<ProductOwned> ProductOwnedList = new ArrayList<>();
+        try {
+            String sql = "SELECT po.ownid,p.prodmodel,p.prodname FROM product p LEFT JOIN productowned po ON p.prodid = po.prodid WHERE po.pid =?";
+            con = ConnectionManager.getConnection();
+            System.out.println("Connection is " + con);
+            PreparedStatement ps = con.prepareStatement(sql);
+            System.out.println("query " + ps);
+            ps.setInt(1, pid);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                ProductOwned ownedProduct = new ProductOwned();
+
+                ownedProduct.setOwnid(rs.getInt("ownid"));
+                ownedProduct.setProdmodel(rs.getString("prodmodel"));
+                ownedProduct.setProdname(rs.getString("prodname"));
+                ProductOwnedList.add(ownedProduct);
+            }
+            return ProductOwnedList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+
     public ProductOwned fetchUserDetails(String pid) throws SQLException, Exception {
         ResultSet rs = null;
         Connection con = null;
@@ -336,8 +368,8 @@ public class Customer {
         }
     }
 
-    public int sendMessage(String firstname, String email, String phno, String message, int pid, String username)throws Exception {
-       int i = 0;
+    public int sendMessage(String firstname, String email, String phno, String message, int pid, String username) throws Exception {
+        int i = 0;
         Connection con = null;
         try {
             con = ConnectionManager.getConnection();

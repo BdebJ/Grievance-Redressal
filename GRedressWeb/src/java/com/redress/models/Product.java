@@ -16,7 +16,8 @@ public class Product {
     private String prodname;
     private String deptname;
     private int prodstatus;
-
+    private int ownid;
+    
     /**
      * @return the prodid
      */
@@ -99,5 +100,19 @@ public class Product {
      */
     public void setProdstatus(int prodstatus) {
         this.prodstatus = prodstatus;
+    }
+
+    /**
+     * @return the ownid
+     */
+    public int getOwnid() {
+        return ownid;
+    }
+
+    /**
+     * @param ownid the ownid to set
+     */
+    public void setOwnid(int ownid) {
+        this.ownid = ownid;
     }
 }

@@ -13,6 +13,8 @@ public class ProductOwned {
     private int ownid;
     private int pid;
     private int prodid;
+    private String prodname;
+    private String prodmodel;
 
     /**
      * @return the ownid
@@ -54,5 +56,33 @@ public class ProductOwned {
      */
     public void setProdid(int prodid) {
         this.prodid = prodid;
+    }
+
+    /**
+     * @return the prodname
+     */
+    public String getProdname() {
+        return prodname;
+    }
+
+    /**
+     * @param prodname the prodname to set
+     */
+    public void setProdname(String prodname) {
+        this.prodname = prodname;
+    }
+
+    /**
+     * @return the prodmodel
+     */
+    public String getProdmodel() {
+        return prodmodel;
+    }
+
+    /**
+     * @param prodmodel the prodmodel to set
+     */
+    public void setProdmodel(String prodmodel) {
+        this.prodmodel = prodmodel;
     }
 }

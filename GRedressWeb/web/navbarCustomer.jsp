@@ -48,7 +48,7 @@
                     <ul>
                         <li><a class="js-scroll-trigger" href="customerdashboard">Home</a></li>
 
-                        <li class="yc"><a class="js-scroll-trigger" href="addGrievance.jsp">Add Grievance</a></li>
+                        <li class="yc"><a class="js-scroll-trigger" href="ProductOwnedList">Add Grievance</a></li>
                         <li><a class="js-scroll-trigger" href="complaintpid">My Grievances</a></li>
                         <li><a class="js-scroll-trigger" href="aboutUs.jsp">About Us</a></li>
                         <li><a class="js-scroll-trigger" href="contactUs.jsp">Contact Us</a></li>
