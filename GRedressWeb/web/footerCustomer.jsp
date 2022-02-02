@@ -29,9 +29,9 @@
                 <ul>
                     <li><a href="customerdashboard">Home</a></li>
                     <li><a href="addGrievance.jsp">Add Grievance</a></li>
-                    <li><a href="">My Grievances</a></li>
-                    <li><a href="">About us</a></li>
-                    <li><a href="">Contacts</a></li>
+                    <li><a href="complaintpid">My Grievances</a></li>
+                    <li><a href="aboutUs.jsp">About us</a></li>
+                    <li><a href=contactUs.jsp"">Contacts</a></li>
                 </ul>
             </div>
             <div class="col-md-4 cont-foot">

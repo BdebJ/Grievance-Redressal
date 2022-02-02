@@ -45,7 +45,7 @@
                     <div class="row">
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-primary text-white mb-4">
-                                <div class="card-body">New Complaints <c:out value="${NewComplaintList.size()}" /> </div>
+                                <div class="card-body">Total Customers <c:out value="${userList.size()}" /> </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
                                     <a class="small text-white stretched-link" href="showcustomerlist">View Details</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>

@@ -62,8 +62,7 @@
                                 </div>        
                                 
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="deptstatus" type="text" name="deptstatus" placeholder="1"  />
-                                    <label for="deptstatus;">Department Status</label>
+                                    <input class="form-control" id="deptstatus" type="hidden" name="deptstatus" value = "1" />
                                 </div>
                                 
 

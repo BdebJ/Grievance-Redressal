@@ -21,11 +21,9 @@ import org.apache.struts2.ServletActionContext;
 public class CSRDashboard {
     private String msg = "";
      private List<User> userList = null;
-     private List<Complaint> newComplaintList = null;
      private List<Complaint> complaintList = null;
      private List<Complaint> closedComplaint = null;
      private List<Complaint> unresolvedComplaint = null;
-     
      Admin admin = new Admin();
      CSR csr = new CSR();
      Customer customer = new Customer();
@@ -44,8 +42,6 @@ public class CSRDashboard {
             setComplaintList(new ArrayList<Complaint>());
             setComplaintList(customer.showcomplaints(validUser.getPid()));
             setClosedComplaint(customer.closedComplaintDetails(validUser.getPid()));
-            setNewComplaintList(new ArrayList<Complaint>());
-            setNewComplaintList(csr.newComplaintList());
             return "success";
         }
 
@@ -119,19 +115,5 @@ public class CSRDashboard {
      */
     public void setUnresolvedComplaint(List<Complaint> unresolvedComplaint) {
         this.unresolvedComplaint = unresolvedComplaint;
-    }
-
-    /**
-     * @return the newComplaintList
-     */
-    public List<Complaint> getNewComplaintList() {
-        return newComplaintList;
-    }
-
-    /**
-     * @param newComplaintList the newComplaintList to set
-     */
-    public void setNewComplaintList(List<Complaint> newComplaintList) {
-        this.newComplaintList = newComplaintList;
     }
 }

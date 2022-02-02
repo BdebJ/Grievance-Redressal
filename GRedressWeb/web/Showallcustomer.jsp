@@ -1,5 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
+
+
 <%
     response.setHeader("Cache-control","no-cache, no-store, must-revalidate");
     if (request.getSession().getAttribute("validUser") == null) {

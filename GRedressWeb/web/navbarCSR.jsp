@@ -50,7 +50,7 @@
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">                                  
                                     <a class="nav-link" href="shownewcomplaints">New Complaints</a>
-                                    <a class="nav-link" href="showunresolvedcomplaintscsr">Resolved Complaints</a>
+                                    <a class="nav-link" href="showresolvedcomplaintscsr">Resolved Complaints</a>
                                     <a class="nav-link" href="showunresolvedcomplaintscsr">Pending Complaints</a>
                                     <a class="nav-link" href="showrejectedcomplaintscsr">Rejected Complaints</a>
                                     <a class="nav-link" href="complaint">All Complaints</a>

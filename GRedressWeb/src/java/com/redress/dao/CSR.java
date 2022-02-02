@@ -308,7 +308,7 @@ public class CSR {
                 complaintList.add(complaint);
 
             }
-            System.out.println("Total number of complaints = " + complaintList.size());
+            System.out.println("Total number of customers = " + complaintList.size());
 
         } catch (SQLException ex) {
             ex.printStackTrace();
