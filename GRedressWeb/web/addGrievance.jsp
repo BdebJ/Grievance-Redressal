@@ -64,8 +64,8 @@
                         <h2 style="font-size:18px">Register Grievance</h2>
                         <form action="addcomplaint.action" method="post">
                         <div class="row cont-row">
-                            <div  class="col-sm-3"><label>Complaint Time </label><span>:</span></div>
-                            <div class="col-sm-8"><input type="text" class="form-control" name="compltime"
+                            
+                            <div class="col-sm-8"><input type="hidden" class="form-control" name="compltime"
                                                          placeholder="Enter Complaint time" value='${date}' readonly> </div>
                         </div>
                         <div  class="row cont-row">
