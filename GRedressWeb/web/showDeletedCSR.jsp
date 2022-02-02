@@ -80,7 +80,7 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            Deleted CSR List
+                            Deleted CSR List 
                             <div class="btn-toolbar mb-2 mb-md-0" style="position: absolute; right: 10px ; top: 5px">
                                 <button id = "json" class="btn btn-sm btn-outline-secondary">Export JSON</button>
                                 <button id ="csv" class="btn btn-sm btn-outline-secondary">Export CSV</button>
