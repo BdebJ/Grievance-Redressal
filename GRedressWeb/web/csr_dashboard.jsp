@@ -89,7 +89,7 @@
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-area me-1"></i>
-                                    Bar Chart Example
+                                    Department Complaint
                                 </div>
                                 <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                             </div>
@@ -129,7 +129,7 @@ var myLineChart = new Chart(ctx, {
       label: "Revenue",
       backgroundColor: "rgba(2,117,216,1)",
       borderColor: "rgba(2,117,216,1)",
-                        data: [${resolvedComplaint.size()}, ${unresolvedComplaint.size()}, ${rejectedComplaint.size()}],
+                        data: [],
     }],
   },
   options: {
