@@ -47,7 +47,7 @@
                             <div class="card bg-primary text-white mb-4">
                                 <div class="card-body">Total Customers <c:out value="${userList.size()}" /> </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="showcustomerlist">View Details</a>
+                                    <a class="small text-white stretched-link" href="customers">View Details</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                             <div class="card bg-success text-white mb-4">
                                 <div class="card-body">Resolved Complaints <c:out value="${resolvedComplaint.size()}" /></div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="showresolvedcomplaints">View Details</a>
+                                    <a class="small text-white stretched-link" href="showresolvedcomplaintscsr">View Details</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
                             <div class="card bg-warning text-white mb-4">
                                 <div class="card-body">Unresolved Complaints <c:out value="${unresolvedComplaint.size()}" /></div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="showunresolvedcomplaints">View Details</a>
+                                    <a class="small text-white stretched-link" href="showunresolvedcomplaintscsr">View Details</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
@@ -77,7 +77,7 @@
                             <div class="card bg-danger text-white mb-4">
                                 <div class="card-body">Rejected Complaints <c:out value="${rejectedComplaint.size()}" /></div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="showrejectedcomplaints">View Details</a>
+                                    <a class="small text-white stretched-link" href="showrejectedcomplaintscsr">View Details</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
