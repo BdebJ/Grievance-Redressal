@@ -110,8 +110,8 @@
         <%if((Integer)request.getSession().getAttribute("roleid") == 1){%> 
         <jsp:include page="navbar.jsp"/>
         <%} else if((Integer)request.getSession().getAttribute("roleid") == 2){%>
-         <jsp:include page="navbarCSR.jsp"/>
-         <%}%>
+        <jsp:include page="navbarCSR.jsp"/>
+        <%}%>
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
@@ -155,8 +155,11 @@
                                                         <input class="form-control" id="username" type="text" value="${sessionScope.validUser.getUsername()}" name ="username" placeholder="username" readonly/>
                                                         <input class="form-control" id="pid" type="hidden" value="${sessionScope.validUser.getPid()}" name ="pid" />
 
-                                                        <label for="username">Username</label>
-                                                    </div>        
+                                                        <label for="username">Username</label
+
+                                                    </div>
+                                                    <span style="font-size: 80%; color: grey;">username can't be changed right now.</span>
+
                                                     <div class="row mb-3">
                                                         <div class="col-md-6">
                                                             <div class="form-floating mb-3 mb-md-0">
@@ -180,7 +183,7 @@
                                                         <label for="address">Address</label>
                                                     </div>
                                                     <div class="form-floating mb-3">
-                                                        <input class="form-control" id="inputEmail" type="text" value="${sessionScope.validUser.getPhno()}" name ="phno" placeholder="Phone Number" />
+                                                        <input class="form-control" id="inputEmail" type="number" value="${sessionScope.validUser.getPhno()}" name ="phno" placeholder="Phone Number" />
                                                         <label for="phno">Phone Number</label>
                                                     </div>
 
@@ -196,6 +199,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                         <input type="radio" class="tabs__radio" name="tabs-example" id="tab2">
                         <label for="tab2" class="tabs__label">Change Password</label>
                         <div class="tabs__content">
