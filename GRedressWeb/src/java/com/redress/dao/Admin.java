@@ -258,6 +258,35 @@ public class Admin {
             }
         }
     }
+    
+    public int editProfile(int pid, String firstname, String lastname, String address, String email, String phno) throws Exception {
+        int i = 0;
+        Connection con = null;
+        try {
+//            System.out.println("all etch"+ techname + techid);
+            con = ConnectionManager.getConnection();
+            String sql = "UPDATE userinfo SET firstname =? , lastname = ?, address =?, email =?, phno =? WHERE pid = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setString(1, firstname);
+            ps.setString(2, lastname);
+            ps.setString(3, address);
+            ps.setString(4, email);
+            ps.setString(5, phno);
+            ps.setInt(6, pid);
+
+            System.out.println("SQL for insert=" + ps);
+            i = ps.executeUpdate();
+            return i;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return i;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
 
     public List getAllCustomers() throws SQLException, Exception {
         ResultSet rs = null;

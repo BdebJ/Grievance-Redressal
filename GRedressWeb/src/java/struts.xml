@@ -164,6 +164,9 @@
         
         
         <!--Update Action-->
+        <action name="editprofile" class="com.redress.actions.AdminAction" method = "editProfile">
+            <result name="EDITUSER">/profile.jsp</result>   
+        </action>
         <action name="updatedepartmentdetails" class="com.redress.actions.AdminAction" method = "updateDepartment">
             <result name="UPDATEDEPARTMENT">/updateDepartment.jsp</result>   
         </action>

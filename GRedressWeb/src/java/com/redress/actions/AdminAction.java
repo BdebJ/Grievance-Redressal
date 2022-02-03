@@ -15,7 +15,10 @@ import java.util.List;
 
 import com.redress.models.User;
 import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
+
 /**
  *
  * @author bjena
@@ -180,6 +183,29 @@ public class AdminAction extends ActionSupport {
         }
 
         return "UPDATEUSER";
+    }
+
+    public String editProfile() throws Exception {
+        admin = new Admin();
+        try {
+            setCtr(admin.editProfile(pid, firstname, lastname, address, email, phno));
+            if (getCtr() > 0) {
+                User validUser = admin.fetchUserDetails(pid);
+                HttpSession session = ServletActionContext.getRequest().getSession(false);
+                session.setAttribute("validUser", validUser);
+               
+                setMsg("Profile updated Successfully!");
+            } else {
+                setCtr(-1);
+                setMsg("Some error occured!");
+            }
+//            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "EDITUSER";
     }
 
     public String addCustomers() throws Exception {
@@ -524,7 +550,7 @@ public class AdminAction extends ActionSupport {
         }
         return "SHOWPRODUCTS";
     }
-    
+
     public String listDepartmentComplaints() {
         try {
             setDeptList(new ArrayList<Department>());
