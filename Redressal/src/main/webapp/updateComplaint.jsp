@@ -102,7 +102,7 @@
                                    <div class="form-floating mb-3">
                                     <select class="form-control" name="techid" required>
                                         <option value="" disabled selected>Select Technician</option>
-                                        <s:iterator value="ProductOwnedList">
+                                        <s:iterator value="technicianList">
                                             <option value="<s:property value="techid"/>">
                                                 <s:property value="techname"/>
                                                 </option>

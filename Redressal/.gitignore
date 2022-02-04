@@ -1,4 +1,6 @@
 /build/
+/dist/
+/conf/
 /logs/
 /nbproject/
 /.settings/
