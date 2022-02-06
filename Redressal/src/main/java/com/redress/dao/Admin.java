@@ -288,7 +288,7 @@ public class Admin {
         }
     }
 
-    public List getAllCustomers() throws SQLException, Exception {
+    public List<User> getAllCustomers() throws SQLException, Exception {
         ResultSet rs = null;
         Connection con = null;
 
@@ -322,7 +322,7 @@ public class Admin {
         }
     }
 
-    public List getActiveCustomers() throws SQLException, Exception {
+    public List<User> getActiveCustomers() throws SQLException, Exception {
         ResultSet rs = null;
         Connection con = null;
 
@@ -357,7 +357,7 @@ public class Admin {
         }
     }
 
-    public List getInactiveCustomers() throws SQLException, Exception {
+    public List<User> getInactiveCustomers() throws SQLException, Exception {
         ResultSet rs = null;
         Connection con = null;
 
@@ -392,7 +392,7 @@ public class Admin {
         }
     }
 
-    public List getDeletedCustomers() throws SQLException, Exception {
+    public List<User> getDeletedCustomers() throws SQLException, Exception {
         ResultSet rs = null;
         Connection con = null;
 

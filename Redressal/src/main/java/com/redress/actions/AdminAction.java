@@ -7,7 +7,6 @@ package com.redress.actions;
 import com.lambdaworks.crypto.SCryptUtil;
 import com.opensymphony.xwork2.ActionSupport;
 import com.redress.dao.Admin;
-import com.redress.models.Complaint;
 import com.redress.models.Department;
 import com.redress.models.Product;
 import com.redress.models.Technician;
@@ -25,7 +24,9 @@ import org.apache.struts2.ServletActionContext;
  */
 public class AdminAction extends ActionSupport {
 
-    //User
+
+	private static final long serialVersionUID = 6148745128300923361L;
+	//User
     private int pid;
     private String username;
     private String password;

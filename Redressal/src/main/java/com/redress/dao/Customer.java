@@ -20,7 +20,7 @@ import java.util.List;
 
 public class Customer {
 
-    public List report(int pid) throws SQLException, Exception {
+    public List<User> report(int pid) throws SQLException, Exception {
         ResultSet rs = null;
         Connection con = null;
         List<User> userList = new ArrayList<>();
@@ -55,7 +55,7 @@ public class Customer {
         }
     }
 
-    public List productsByPid(int pid) throws SQLException, Exception {
+    public List<ProductOwned> productsByPid(int pid) throws SQLException, Exception {
         ResultSet rs = null;
         Connection con = null;
         List<ProductOwned> ProductOwnedList = new ArrayList<>();
@@ -168,7 +168,7 @@ public class Customer {
 
     }
 
-    public List showcomplaints(int pid) throws SQLException, Exception {
+    public List<Complaint> showcomplaints(int pid) throws SQLException, Exception {
         ResultSet rs = null;
         Connection con = null;
         List<Complaint> complaintList = new ArrayList<>();
@@ -265,7 +265,7 @@ public class Customer {
         return complaintList;
     }
 
-    public List closedComplaintDetails(int pid) throws SQLException, Exception {
+    public List<Complaint> closedComplaintDetails(int pid) throws SQLException, Exception {
         ResultSet rs = null;
         Connection con = null;
         List<Complaint> complaintList = new ArrayList<>();
@@ -305,7 +305,7 @@ public class Customer {
         }
     }
 
-    public List productOwn(int pid) throws SQLException, Exception {
+    public List<Product> productOwn(int pid) throws SQLException, Exception {
         ResultSet rs = null;
         Connection con = null;
         List<Product> ProductOwnedList = new ArrayList<>();
@@ -335,7 +335,7 @@ public class Customer {
         }
     }
 
-    public List viewDefect() throws SQLException, Exception {
+    public List<CustomerDefect> viewDefect() throws SQLException, Exception {
 
         ResultSet rs = null;
         Connection con = null;
