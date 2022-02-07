@@ -74,7 +74,7 @@
                                 </nav>
                             </div>
                             <div class="sb-sidenav-menu-heading">Admin</div>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="profile.jsp">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                                 Profile
                             </a>

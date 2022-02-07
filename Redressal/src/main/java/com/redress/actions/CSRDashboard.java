@@ -19,17 +19,21 @@ import org.apache.struts2.ServletActionContext;
  * @author PALLAB
  */
 public class CSRDashboard {
+
     private String msg = "";
-     private List<User> userList = null;
-     private List<Complaint> complaintList = null;
-     private List<Complaint> closedComplaint = null;
+    private List<User> userList = null;
+    private List<Complaint> complaintList = null;
+    private List<Complaint> closedComplaint = null;
+    private List<Complaint> resolvedComplaint = null;
      private List<Complaint> unresolvedComplaint = null;
-     Admin admin = new Admin();
-     CSR csr = new CSR();
-     Customer customer = new Customer();
+     private List<Complaint> rejectedComplaint = null;
+    private List<Complaint> newComplaint = null;
+    Admin admin = new Admin();
+    CSR csr = new CSR();
+    Customer customer = new Customer();
 
     public String execute() throws Exception {
-        
+
         HttpSession session = ServletActionContext.getRequest().getSession(false);
         User validUser = (User) session.getAttribute("validUser");
         if (session == null || session.getAttribute("validUser") == null) {
@@ -41,7 +45,11 @@ public class CSRDashboard {
             System.out.println(validUser.getPid());
             setComplaintList(new ArrayList<Complaint>());
             setComplaintList(customer.showcomplaints(validUser.getPid()));
+            setNewComplaint(csr.newComplaintList());
             setClosedComplaint(customer.closedComplaintDetails(validUser.getPid()));
+            setResolvedComplaint(csr.resolvedComplaintList());
+            setUnresolvedComplaint(csr.unResolvedComplaintList());
+            setRejectedComplaint(csr.rejectedComplaintList());
             return "success";
         }
 
@@ -115,5 +123,47 @@ public class CSRDashboard {
      */
     public void setUnresolvedComplaint(List<Complaint> unresolvedComplaint) {
         this.unresolvedComplaint = unresolvedComplaint;
+    }
+
+    /**
+     * @return the newComplaint
+     */
+    public List<Complaint> getNewComplaint() {
+        return newComplaint;
+    }
+
+    /**
+     * @param newComplaint the newComplaint to set
+     */
+    public void setNewComplaint(List<Complaint> newComplaint) {
+        this.newComplaint = newComplaint;
+    }
+
+    /**
+     * @return the resolvedComplaint
+     */
+    public List<Complaint> getResolvedComplaint() {
+        return resolvedComplaint;
+    }
+
+    /**
+     * @param resolvedComplaint the resolvedComplaint to set
+     */
+    public void setResolvedComplaint(List<Complaint> resolvedComplaint) {
+        this.resolvedComplaint = resolvedComplaint;
+    }
+
+    /**
+     * @return the rejectedComplaint
+     */
+    public List<Complaint> getRejectedComplaint() {
+        return rejectedComplaint;
+    }
+
+    /**
+     * @param rejectedComplaint the rejectedComplaint to set
+     */
+    public void setRejectedComplaint(List<Complaint> rejectedComplaint) {
+        this.rejectedComplaint = rejectedComplaint;
     }
 }
