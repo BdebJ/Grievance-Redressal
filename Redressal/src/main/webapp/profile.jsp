@@ -188,7 +188,7 @@
                                                         <input class="form-control" id="username" name="username" type="text" value="${sessionScope.validUser.getUsername()}" placeholder="username" />
                                                         <input class="form-control" id="pid" type="hidden" value="${sessionScope.validUser.getPid()}" name ="pid" />
 
-                                                        <label for="username">Username</label
+                                                        <label for="username">Username</label>
 
                                                     </div>
                                                        <span id="availability"></span>
@@ -275,7 +275,7 @@
                                                         <input class="form-control" id="input" name="username" type="text" value="${sessionScope.validUser.getUsername()}" placeholder="username" readonly/>
                                                         <input class="form-control" id="pid" type="hidden" value="${sessionScope.validUser.getPid()}" name ="pid" />
 
-                                                        <label for="username">Username</label
+                                                        <label for="username">Username</label>
 
                                                     </div>
                                                         <span id ="availability"></span>

@@ -13,6 +13,10 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 
+/**
+*
+* @author bjena
+*/
 public class CustomerAction implements CustomerInterface{
 
     HttpSession session = ServletActionContext.getRequest().getSession(false);

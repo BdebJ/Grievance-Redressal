@@ -5,12 +5,17 @@ import com.redress.interfaces.CSRInterface;
 import com.redress.models.Complaint;
 import com.redress.models.CustomerDefect;
 import com.redress.models.Department;
+import com.redress.models.Product;
 import com.redress.models.Technician;
 import com.redress.models.User;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+*
+* @author bjena
+*/
 public class CSRAction implements CSRInterface{
 
 	 private List<User> customerList = null;
@@ -18,6 +23,7 @@ public class CSRAction implements CSRInterface{
 	 private List<Department> departmentList = null;
 	 private List<CustomerDefect> customerdefect = null;
 	 private List<Technician> technicianList = null;
+	 private List<Product> productList = null;
 
 	 private String submitType;
 	 private String firstname;
@@ -31,20 +37,21 @@ public class CSRAction implements CSRInterface{
      private String ongoingprog;
      private String endprog;	    
      private int pid;
+     private int deptid;
      private int techid;
      private int complid;
+     private int ownid;
      private int compl_status;
      private int res_status;
      
 	 private String msg = "";
 	 private int ctr;
 	    
+	 private boolean noData = false;
 	 
 	 
-	 private int deptid;
 	 
 	 CSRDAO csr = new CSRDAO();
-	 private boolean noData = false;
 	
 	@Override
 	public String showAllCustomers() {
@@ -128,14 +135,34 @@ public class CSRAction implements CSRInterface{
 
 	@Override
 	public String showActiveTechnicians() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+            setTechnicianList(new ArrayList<Technician>());
+            setTechnicianList(csr.getAllTechnician().stream().filter(technician -> technician.getTechstatus() == 1).collect(Collectors.toList()));
+            if (!technicianList.isEmpty()) {
+                setNoData(false);
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "SHOWACTIVETECHNICIANS";
 	}
 
 	@Override
 	public String showInactiveTechnicians() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+            setTechnicianList(new ArrayList<Technician>());
+            setTechnicianList(csr.getAllTechnician().stream().filter(technician -> technician.getTechstatus() == 0).collect(Collectors.toList()));
+            if (!technicianList.isEmpty()) {
+                setNoData(false);
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "SHOWINACTIVETECHNICIANS";
 	}
 	
 	@Override
@@ -208,20 +235,50 @@ public class CSRAction implements CSRInterface{
 
 	@Override
 	public String showAllProducts() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+            setProductList(new ArrayList<Product>());
+            setProductList(csr.getAllProducts());
+            if (!productList.isEmpty()) {
+                setNoData(false);
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "SHOWALLPRODUCTS";
 	}
 
 	@Override
 	public String showActiveProducts() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+            setProductList(new ArrayList<Product>());
+            setProductList(csr.getAllProducts().stream().filter(product -> product.getProdstatus() == 1).collect(Collectors.toList()));
+            if (!productList.isEmpty()) {
+                setNoData(false);
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "SHOWACTIVEPRODUCTS";
 	}
 
 	@Override
 	public String showInactiveProducts() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+            setProductList(new ArrayList<Product>());
+            setProductList(csr.getAllProducts().stream().filter(product -> product.getProdstatus() == 0).collect(Collectors.toList()));
+            if (!productList.isEmpty()) {
+                setNoData(false);
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "SHOWINACTIVEPRODUCTS";
 	}
 
 	@Override
@@ -311,14 +368,36 @@ public class CSRAction implements CSRInterface{
 
 	@Override
 	public String showComplaintByComplaintID() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+            setComplaintList(new ArrayList<Complaint>());
+            setComplaintList(csr.complaintList().stream().filter(complaint -> (complaint.getComplid() == getComplid())).collect(Collectors.toList()));
+
+            if (!complaintList.isEmpty()) {
+                setNoData(false);
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "COMPLIDCOMPLAINTLIST";
 	}
 
 	@Override
 	public String showComplaintsByUserID() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+            setComplaintList(new ArrayList<Complaint>());
+            setComplaintList(csr.complaintList().stream().filter(complaint -> (complaint.getPid() == getPid())).collect(Collectors.toList()));
+
+            if (!complaintList.isEmpty()) {
+                setNoData(false);
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "USERIDCOMPLAINTLIST";
 	}
 
 	@Override
@@ -340,8 +419,19 @@ public class CSRAction implements CSRInterface{
 
 	@Override
 	public String showCustomerDefectByOwnerID() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+            setCustomerdefect(new ArrayList<CustomerDefect>());
+            setCustomerdefect(csr.customerDefect().stream().filter(defect -> (defect.getOwnid() == getOwnid())).collect(Collectors.toList()));
+
+            if (!customerdefect.isEmpty()) {
+                setNoData(false);
+            } else {
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "CUSTOMERDEFECTSBYOWNID";
 	}
 
 	@Override
@@ -384,6 +474,14 @@ public class CSRAction implements CSRInterface{
 	}
 
 
+
+	public List<Product> getProductList() {
+		return productList;
+	}
+
+	public void setProductList(List<Product> productList) {
+		this.productList = productList;
+	}
 
 	public List<Technician> getTechnicianList() {
 		return technicianList;
@@ -471,6 +569,14 @@ public class CSRAction implements CSRInterface{
 
 	public void setComplid(int complid) {
 		this.complid = complid;
+	}
+
+	public int getOwnid() {
+		return ownid;
+	}
+
+	public void setOwnid(int ownid) {
+		this.ownid = ownid;
 	}
 
 	public String getCompltime() {
@@ -586,67 +692,3 @@ public class CSRAction implements CSRInterface{
 	}
 	
 }
-/*
-    
-
-   
-
-    private String submitType;
-    private String msg = "";
-    private int complid;
-    private String compltime;
-    private String subject;
-    private String description;
-    private int pid;
-    private int techid;
-    private int compl_status;
-    private String startprog;
-    private String ongoingprog;
-    private String endprog;
-    private String prodname;
-    private String prodmodel;
-    private String firstname;
-    private String lastname;
-    private int ctr;
-    private int res_status;
-
-    public String updateComplaints() throws Exception {
-
-        try {
-            if (getSubmitType().equals("updatedata")) {
-                Complaint complaint = csr.fetchComplaintDetails(getComplid());
-                if (complaint != null) {
-                    setFirstname(complaint.getFirstname());
-                    setLastname(complaint.getLastname());
-                    setComplid(complaint.getComplid());
-                    setCompltime(complaint.getCompltime());
-                    setSubject(complaint.getSubject());
-                    setDescription(complaint.getDescription());
-                    setProdname(complaint.getProdname());
-                    setProdmodel(complaint.getProdmodel());
-                    setPid(complaint.getPid());
-                    setTechid(complaint.getTechid());
-                    setCompl_status(complaint.getCompl_status());
-                    setStartprog(complaint.getStartprog());
-                    setOngoingprog(complaint.getOngoingprog());
-                    setEndprog(complaint.getEndprog());
-                    setRes_status(complaint.getRes_status());
-                }
-            } else {
-                setCtr(csr.updateComplaintDetails(complid, getTechid(), getCompl_status(), getStartprog(), getOngoingprog(), getEndprog(), getRes_status()));
-                if (ctr > 0) {
-                    setMsg("Record Updated Successfuly");
-                } else {
-                    setCtr(-1);
-                    setMsg("some error occured.. Try again!");
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return "UPDATECOMPLAINT";
-    }
-    */
-    

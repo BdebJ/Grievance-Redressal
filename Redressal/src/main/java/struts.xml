@@ -99,30 +99,20 @@
         <action name="updatecomplaint" class="com.redress.actions.CSRAction" method = "updateComplaint">
             <result name="UPDATECOMPLAINT">/updateComplaint.jsp</result>  
         </action>
-        <action name="fetchcomplaintdetails" class="com.redress.actions.CSRAction" method = "updateComplaint">	<!-- Unnecessary -->
+        <action name="fetchcomplaintdetails" class="com.redress.actions.CSRAction" method = "updateComplaint">
             <result name="UPDATECOMPLAINT" type = "chain">technicianlist</result>  
         </action>
-        
-        
-        
-        <!-- Admin Actions start, All of the CSR actions below are redundant and useless-->
-        
-
-
-            
-                    
-        <!--List Show Acton-->
-        <action name="showcustomerlist" class="com.redress.actions.AdminAction" method="listCustomer">
-            <result name="customer_list_success">/showCustomers.jsp</result>
+        <action name="showproducts" class="com.redress.actions.CSRAction" method="showAllProducts">
+            <result name="SHOWALLPRODUCTS">/showAllProducts.jsp</result>
         </action>
-        <action name="showactivecustomers" class="com.redress.actions.AdminAction" method="showActiveCustomers">
-            <result name="SHOWACTIVECUSTOMERS">/showActiveCustomers.jsp</result>
-        </action>
-        <action name="showinactivecustomers" class="com.redress.actions.AdminAction" method="showInactiveCustomers">
-            <result name="SHOWINACTIVECUSTOMERS">/showInactiveCustomers.jsp</result>
-        </action>
-        <action name="showdeletedcustomers" class="com.redress.actions.AdminAction" method="showDeletedCustomers">
-            <result name="SHOWDELETEDCUSTOMERS">/showDeletedCustomers.jsp</result>
+        
+        
+        <!-- Admin Actions -->
+        
+        
+        <!-- Show -->
+        <action name="showcsr" class="com.redress.actions.AdminAction" method="showCSR">
+            <result name="SHOWCSR">/showCSR.jsp</result>
         </action>
         <action name="showactivecsr" class="com.redress.actions.AdminAction" method="showActiveCSR">
             <result name="SHOWACTIVECSR">/showActiveCSR.jsp</result>
@@ -133,121 +123,13 @@
         <action name="showdeletedcsr" class="com.redress.actions.AdminAction" method="showDeletedCSR">
             <result name="SHOWDELETEDCSR">/showDeletedCSR.jsp</result>
         </action>
-        <action name="showdept" class="com.redress.actions.CSRAction" method="showDepartments">
-            <result name="DEPARTEMNTLIST">/department_list.jsp</result>
+ 
+ 
+ 		<!-- Update -->
+        <action name="updateCSR" class="com.redress.actions.AdminAction" method = "updateUser">
+            <result name="UPDATEUSER" type = "chain">showcsr</result>  
         </action>
-        <action name="showcomplaint" class="com.redress.actions.CSRAction" method="showComplaint">
-            <result name="COMPLAINTLIST">/complaint_list.jsp</result>
-        </action>
-        <action name="showdefect" class="com.redress.actions.CSRAction" method="customerDefects">
-            <result name="DEFECTS">/cus_defect.jsp</result>
-        </action>
-        <action name="showtech" class="com.redress.actions.CSRAction" method="showTechnicians">
-            <result name="TECHNICIAN">/technicianlist.jsp</result>
-        </action>
-        <action name="showcsr" class="com.redress.actions.AdminAction" method="showCSR">
-            <result name="SHOWCSR">/showCSR.jsp</result>
-        </action>
-        <action name="showtechnician" class="com.redress.actions.AdminAction" method="showTechnician">
-            <result name="SHOWTECHNICIAN">/showTechnician.jsp</result>
-        </action>
-        <action name="showactivetechnician" class="com.redress.actions.AdminAction" method="showActiveTechnician">
-            <result name="SHOWACTIVETECHNICIAN">/showActiveTechnician.jsp</result>
-        </action>
-        <action name="showinactivetechnician" class="com.redress.actions.AdminAction" method="showInactiveTechnician">
-            <result name="SHOWINACTIVETECHNICIAN">/showInactiveTechnician.jsp</result>
-        </action>
-        <action name="showproducts" class="com.redress.actions.AdminAction" method="showProducts">
-            <result name="SHOWPRODUCTS">/showAllProducts.jsp</result>
-        </action>
-        <action name="showdeletedproducts" class="com.redress.actions.AdminAction" method="showDeletedProducts">
-            <result name="SHOWPRODUCTS">/showDeletedProducts.jsp</result>
-        </action>
-        <action name="showdepartments" class="com.redress.actions.CSRAction" method="showDepartments">
-            <result name="DEPARTEMNTLIST">/showDepartments.jsp</result>
-        </action>
-        <action name="showcomplaintsforadmin" class="com.redress.actions.CSRAction" method="showComplaint">
-            <result name="COMPLAINTLIST">/showAllComplaints.jsp</result>
-        </action>
-         
-        <action name="showresolvedcomplaints" class="com.redress.actions.CSRAction" method="showResolvedComplaint">
-            <result name="COMPLAINTLIST">/showResolvedComplaints.jsp</result>
-        </action>
-        <action name="showunresolvedcomplaints" class="com.redress.actions.CSRAction" method="showUnresolvedComplaint">
-            <result name="COMPLAINTLIST">/showUnresolvedComplaints.jsp</result>
-        </action>
-        <action name="showrejectedcomplaints" class="com.redress.actions.CSRAction" method="showRejectedComplaint">
-            <result name="COMPLAINTLIST">/showRejectedComplaints.jsp</result>
-        </action>
-         
-        
-        
-        
-        <!--Delete Actions-->
-        <action name="deleteuser" class="com.redress.actions.AdminAction" method="deleteUser">
-            <result name="user_delete_success" type = "chain">showcustomerlist</result>
-        </action>
-        <action name="deletecsr" class="com.redress.actions.AdminAction" method="deleteUser">
-            <result name="user_delete_success" type = "chain">showcsr</result>
-        </action>
-        <action name="deletedepartment" class="com.redress.actions.AdminAction" method="deleteDept">
-            <result name="DELETEDEPARTMENT" type = "chain">showdepartments</result>
-        </action>
-        <action name="deletetech" class="com.redress.actions.AdminAction" method="deleteTech">
-            <result name="DELETETECHNICIAN" type = "chain">showtechnician</result>
-        </action>
-        <action name="deleteprod" class="com.redress.actions.AdminAction" method="deleteProd">
-            <result name="DELETEPRODUCT" type = "chain">showproducts</result>
-        </action>
-        
-        
-        <!--Add Action-->
-        <action name="addcsr" class="com.redress.actions.AdminAction" method = "addCSR">
-            <result name="ADDCSR">/addCSR.jsp</result>               
-        </action> 
-        <action name="addcustomers" class="com.redress.actions.AdminAction" method = "addCustomers">
-            <result name="ADDCUSTOMERS">/addCustomers.jsp</result>               
-        </action> 
-        <action name="addproduct" class="com.redress.actions.AdminAction" method = "addProduct">
-            <result name="ADDPRODUCT" type = "chain">departmentfortech</result>   
-        </action> 
-        <action name="departmentfortech" class="com.redress.actions.CSRAction" method = "showDepartments">
-            <result name="DEPARTEMNTLIST">/addProduct.jsp</result>   
-        </action>  
-        
-        <action name="addtechnician" class="com.redress.actions.AdminAction" method = "addTechnician">
-            <result name="ADDTECHNICIAN" type = "chain">departmentname</result>   
-        </action> 
-        <action name="departmentname" class="com.redress.actions.CSRAction" method = "showDepartments">
-            <result name="DEPARTEMNTLIST">/addTechnician.jsp</result>   
-        </action>         
-         
-        <action name="addDepartment" class="com.redress.actions.AdminAction" method = "addDepartment">
-            <result name="ADDDEPARTMENT">/addDepartment.jsp</result>   
-        </action>  
-         
-        
-        
-        <!--Update Action-->
-        <action name="editprofile" class="com.redress.actions.AdminAction" method = "editProfile">
-            <result name="EDITUSER">/profile.jsp</result>   
-        </action>
-        <action name="updatedepartmentdetails" class="com.redress.actions.AdminAction" method = "updateDepartment">
-            <result name="UPDATEDEPARTMENT">/updateDepartment.jsp</result>   
-        </action>
-        <action name="updatetechniciandetails" class="com.redress.actions.AdminAction" method = "updateTechnician">
-            <result name="UPDATETECHNICIAN">/updateTechnician.jsp</result>   
-        </action>
-        <action name="fetchproductdetails" class="com.redress.actions.AdminAction" method = "updateProduct">
-            <result name="UPDATEPRODUCT" type ="chain">departmentforproduct</result>  
-        </action>
-         <action name="departmentforproduct" class="com.redress.actions.CSRAction" method = "showDepartments">
-            <result name="DEPARTEMNTLIST">/updateProduct.jsp</result>   
-        </action>  
-        <action name="updateproductdetails" class="com.redress.actions.AdminAction" method = "updateProduct">
-            <result name="UPDATEPRODUCT" type = "chain">showproducts</result>  
-        </action>
-        <action name="updatecustomer" class="com.redress.actions.AdminAction" method = "updateUser">
+         <action name="updatecustomer" class="com.redress.actions.AdminAction" method = "updateUser">
             <result name="UPDATEUSER" type = "chain">showcustomerlist</result>  
         </action>
         <action name="fetchcustomerdetails" class="com.redress.actions.AdminAction" method = "updateUser">
@@ -260,18 +142,124 @@
         <action name="fetchCSRdetails" class="com.redress.actions.AdminAction" method = "updateUser">
             <result name="UPDATEUSER">/updateCSR.jsp</result>  
         </action>
-        <action name="updateCSR" class="com.redress.actions.AdminAction" method = "updateUser">
-            <result name="UPDATEUSER" type = "chain">showcsr</result>  
-        </action>
+        
+        
+        
         <action name="fetchtechniciandetails" class="com.redress.actions.AdminAction" method = "updateTechnician">
             <result name="UPDATETECHNICIAN" type ="chain">departmentfortechupdate</result>
         </action>
         <action name="updatetechnician" class="com.redress.actions.AdminAction" method = "updateTechnician">
             <result name="UPDATETECHNICIAN" type = "chain">showtechnician</result>  
+        </action> 
+        <action name="updatetechniciandetails" class="com.redress.actions.AdminAction" method = "updateTechnician">
+            <result name="UPDATETECHNICIAN">/updateTechnician.jsp</result>   
         </action>
-        <action name="departmentfortechupdate" class="com.redress.actions.CSRAction" method = "showDepartments">
-            <result name="DEPARTEMNTLIST">/updateTechnician.jsp</result> 
-            </action>   
+        
+        
+        
+        <action name="updatedepartmentdetails" class="com.redress.actions.AdminAction" method = "updateDepartment">
+            <result name="UPDATEDEPARTMENT">/updateDepartment.jsp</result>   
+        </action>
+        
+        
+        
+        <action name="fetchproductdetails" class="com.redress.actions.AdminAction" method = "updateProduct">
+            <result name="UPDATEPRODUCT" type ="chain">departmentforproduct</result>  
+        </action>        
+        <action name="updateproductdetails" class="com.redress.actions.AdminAction" method = "updateProduct">
+            <result name="UPDATEPRODUCT" type = "chain">showproducts</result>  
+        </action>
+        
+        
+        <!-- Add -->
+        <action name="addcustomers" class="com.redress.actions.AdminAction" method = "addCustomers">
+            <result name="ADDCUSTOMER">/addCustomers.jsp</result>               
+        </action>
+        <action name="addcsr" class="com.redress.actions.AdminAction" method = "addCSR">
+            <result name="ADDCSR">/addCSR.jsp</result>               
+        </action>  
+        <action name="addproduct" class="com.redress.actions.AdminAction" method = "addProduct">
+            <result name="ADDPRODUCT" type = "chain">departmentfortech</result>   
+        </action> 
+		<action name="addtechnician" class="com.redress.actions.AdminAction" method = "addTechnician">
+            <result name="ADDTECHNICIAN" type = "chain">departmentname</result>   
+        </action>        
+        <action name="addDepartment" class="com.redress.actions.AdminAction" method = "addDepartment">
+            <result name="ADDDEPARTMENT">/addDepartment.jsp</result>   
+        </action> 
+
+
+		<!-- Delete -->
+		<action name="deleteuser" class="com.redress.actions.AdminAction" method="deleteUser">
+            <result name="user_delete_success" type = "chain">showcustomerlist</result>
+        </action>
+        <action name="deletecsr" class="com.redress.actions.AdminAction" method="deleteUser">
+            <result name="user_delete_success" type = "chain">showcsr</result>
+        </action>
+
+
+
+		<action name="deletedepartment" class="com.redress.actions.AdminAction" method="deleteDept">
+            <result name="DELETEDEPARTMENT" type = "chain">showdepartments</result>
+        </action>
+        <action name="deletetech" class="com.redress.actions.AdminAction" method="deleteTech">
+            <result name="DELETETECHNICIAN" type = "chain">showtechnician</result>
+        </action>
+        <action name="deleteprod" class="com.redress.actions.AdminAction" method="deleteProd">
+            <result name="DELETEPRODUCT" type = "chain">showproducts</result>
+        </action>
+
+
+
+
+		<!-- Redundant methods (Fix links)-->
+
+
+
+        <action name="showcustomerlist" class="com.redress.actions.AdminAction" method="listCustomer">
+            <result name="customer_list_success">/showCustomers.jsp</result>
+        </action>
+        <action name="showactivecustomers" class="com.redress.actions.AdminAction" method="showActiveCustomers">
+            <result name="SHOWACTIVECUSTOMERS">/showActiveCustomers.jsp</result>
+        </action>
+        <action name="showinactivecustomers" class="com.redress.actions.AdminAction" method="showInactiveCustomers">
+            <result name="SHOWINACTIVECUSTOMERS">/showInactiveCustomers.jsp</result>
+        </action>
+        <action name="showdeletedcustomers" class="com.redress.actions.AdminAction" method="showDeletedCustomers">
+            <result name="SHOWDELETEDCUSTOMERS">/showDeletedCustomers.jsp</result>
+        </action>
+        
+        <action name="showtechnician" class="com.redress.actions.AdminAction" method="showTechnician">
+            <result name="SHOWTECHNICIAN">/showTechnician.jsp</result>
+        </action>
+        <action name="showactivetechnician" class="com.redress.actions.AdminAction" method="showActiveTechnician">
+            <result name="SHOWACTIVETECHNICIAN">/showActiveTechnician.jsp</result>
+        </action>
+        <action name="showinactivetechnician" class="com.redress.actions.AdminAction" method="showInactiveTechnician">
+            <result name="SHOWINACTIVETECHNICIAN">/showInactiveTechnician.jsp</result>
+        </action>
+       
+        <action name="showdeletedproducts" class="com.redress.actions.AdminAction" method="showDeletedProducts">
+            <result name="SHOWPRODUCTS">/showDeletedProducts.jsp</result>
+        </action>
+
+        
+        <action name="departmentfortech" class="com.redress.actions.CSRAction" method = "showDepartments">
+            <result name="DEPARTEMNTLIST">/addProduct.jsp</result>   
+        </action>  
+        
+         
+
+        <action name="editprofile" class="com.redress.actions.AdminAction" method = "editProfile">
+            <result name="EDITUSER">/profile.jsp</result>   
+        </action>
+        <action name="departmentforproduct" class="com.redress.actions.CSRAction" method = "showDepartments">
+            <result name="DEPARTEMNTLIST">/updateProduct.jsp</result>   
+        </action>  
+        
+        
+        
+         
         
     </package>
 </struts>

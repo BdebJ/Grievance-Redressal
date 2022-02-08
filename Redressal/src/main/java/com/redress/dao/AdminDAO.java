@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.redress.dao;
 
 import java.sql.Connection;
@@ -16,10 +12,6 @@ import com.redress.models.Department;
 import com.redress.models.Product;
 import com.redress.models.Technician;
 
-/**
- *
- * @author bjena
- */
 public class AdminDAO {
 
     public int addCustomers(String username, String password, String firstname, String lastname, String address,
@@ -887,37 +879,6 @@ public class AdminDAO {
         }
     }
 
-    public List<Product> getAllProducts() throws SQLException, Exception {
-        ResultSet rs = null;
-        Connection con = null;
-
-        List<Product> productList = new ArrayList<>();
-        try {
-            String sql = "SELECT prodid,prodname,prodmodel,deptname,prodstatus FROM product,department where product.deptid = department.deptid AND prodstatus = 1";
-            con = ConnectionManager.getConnection();
-            PreparedStatement ps = con.prepareStatement(sql);
-            System.out.println(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                Product product = new Product();
-                product.setProdname(rs.getString("prodname"));
-                product.setProdid(rs.getInt("prodid"));
-                product.setProdmodel(rs.getString("prodmodel"));
-                product.setDeptname(rs.getString("deptname"));
-                product.setProdstatus(rs.getInt("prodstatus"));
-                productList.add(product);
-            }
-            return productList;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            if (con != null) {
-                con.close();
-            }
-        }
-
-    }
 
     public List<Product> getDeletedProducts() throws SQLException, Exception {
         ResultSet rs = null;

@@ -1,5 +1,9 @@
 package com.redress.interfaces;
 
+/**
+*
+* @author bjena
+*/
 public interface AdminInterface extends CSRInterface {
 
 	//Show CSR details
@@ -23,8 +27,11 @@ public interface AdminInterface extends CSRInterface {
 	
 	//Delete functions
 	public abstract String deleteUser();
-	public abstract String deleteTech();
-	public abstract String deleteDept();
-	public abstract String deleteProd();
+	public abstract String deleteTechnician();
+	public abstract String deleteDepartment();
+	public abstract String deleteProduct();
+	
+	//Utility functions
+	public abstract String listDepartmentComplaints();
 	
 }
