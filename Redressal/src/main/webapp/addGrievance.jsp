@@ -86,7 +86,7 @@
                                         <option value="" disabled selected>Select Product</option>
                                         <s:iterator value="ProductOwnedList">
                                             <option value="<s:property value="ownid"/>">
-                                                <s:property value="prodname"/>
+                                                <s:property value="prodmodel+' '+prodname"/>
                                                 </option>
                                         </s:iterator>
                                     </select>

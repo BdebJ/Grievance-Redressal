@@ -16,7 +16,7 @@ import java.sql.SQLException;
  *
  * @author PALLAB
  */
-public class Login {
+public class LoginDAO {
 
     public String getPasswordHash(String username) throws SQLException, Exception {
         ResultSet rs = null;

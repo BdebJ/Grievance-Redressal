@@ -67,19 +67,7 @@
             <div style="padding:20px" class="col-sm-7">
                 
             <h2 style="font-size:18px">Contact Form</h2>
-            <form action="sendmessage" method="post">
-                <div class="row cont-row">
-                    <div  class="col-sm-3"><label>Enter Name </label><span>:</span></div>
-                    <div class="col-sm-8"><input type="text" placeholder="Enter Name" name="firstname" class="form-control input-sm"  ></div>
-                </div>
-                <div  class="row cont-row">
-                    <div  class="col-sm-3"><label>Email Address </label><span>:</span></div>
-                    <div class="col-sm-8"><input type="email" name="email" placeholder="email" class="form-control input-sm"  ></div>
-                </div>
-                 <div  class="row cont-row">
-                    <div  class="col-sm-3"><label>Mobile Number</label><span>:</span></div>
-                    <div class="col-sm-8"><input type="text" name="phno" placeholder="Enter Mobile Number" class="form-control input-sm"  ></div>
-                </div>
+            <form action="sendmessage" method="post">             
                  <div  class="row cont-row">
                     <div  class="col-sm-3"><label>Enter Message</label><span>:</span></div>
                     <div class="col-sm-8">

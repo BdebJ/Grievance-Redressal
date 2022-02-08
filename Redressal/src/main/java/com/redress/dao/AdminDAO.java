@@ -20,7 +20,7 @@ import com.redress.models.Technician;
  *
  * @author bjena
  */
-public class Admin {
+public class AdminDAO {
 
     public int addCustomers(String username, String password, String firstname, String lastname, String address,
             String email, String phno) throws Exception {

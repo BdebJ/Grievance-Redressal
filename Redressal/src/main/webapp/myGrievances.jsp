@@ -43,8 +43,6 @@
         <!--Navbar -->
         <jsp:include page="navbarCustomer.jsp"/> 
 
-
-
         <!--###################### Slider Starts Here ############################-->
 
         <div class="page-title titl-2">
@@ -55,13 +53,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
 
         <!--###################### About Company Starts Here ############################-->
         <section class="with-medical">

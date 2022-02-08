@@ -12,6 +12,7 @@ public class Product {
 
     private int prodid;
     private int deptid;
+    private int pid;
     private String prodmodel;
     private String prodname;
     private String deptname;
@@ -32,7 +33,15 @@ public class Product {
         this.prodid = prodid;
     }
 
-    /**
+    public int getPid() {
+		return pid;
+	}
+
+	public void setPid(int pid) {
+		this.pid = pid;
+	}
+
+	/**
      * @return the deptid
      */
     public int getDeptid() {

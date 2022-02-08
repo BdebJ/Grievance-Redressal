@@ -31,7 +31,7 @@
                     <li><a href="addGrievance.jsp">Add Grievance</a></li>
                     <li><a href="complaintpid">My Grievances</a></li>
                     <li><a href="aboutUs.jsp">About us</a></li>
-                    <li><a href=contactUs.jsp"">Contacts</a></li>
+                    <li><a href="contactUs.jsp">Contacts</a></li>
                 </ul>
             </div>
             <div class="col-md-4 cont-foot">

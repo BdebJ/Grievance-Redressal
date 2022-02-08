@@ -6,7 +6,7 @@ package com.redress.actions;
 
 import com.lambdaworks.crypto.SCryptUtil;
 import com.opensymphony.xwork2.ActionSupport;
-import com.redress.dao.Admin;
+import com.redress.dao.AdminDAO;
 import com.redress.models.Department;
 import com.redress.models.Product;
 import com.redress.models.Technician;
@@ -25,7 +25,7 @@ import org.apache.struts2.ServletActionContext;
 public class AdminAction extends ActionSupport {
 
 
-	private static final long serialVersionUID = 6148745128300923361L;
+
 	//User
     private int pid;
     private String username;
@@ -42,7 +42,7 @@ public class AdminAction extends ActionSupport {
     private boolean noData = false;
 
     private String msg = "";    //for error or success message
-    Admin admin = new Admin();
+    AdminDAO admin = new AdminDAO();
     private int ctr = 0;
 
     // Product 
@@ -75,7 +75,7 @@ public class AdminAction extends ActionSupport {
 
     // Update Methods
     public String updateDepartment() throws Exception {
-        admin = new Admin();
+        admin = new AdminDAO();
         try {
             setCtr(admin.updateDepartment(deptid, deptname));
             if (getCtr() > 0) {
@@ -91,9 +91,9 @@ public class AdminAction extends ActionSupport {
     }
 
     public String updateTechnician() throws Exception {
-        admin = new Admin();
+        admin = new AdminDAO();
         try {
-            admin = new Admin();
+            admin = new AdminDAO();
 
             if (getSubmitType().equals("updatedata")) {
                 System.out.println("Here I am");
@@ -123,7 +123,7 @@ public class AdminAction extends ActionSupport {
     }
 
     public String updateProduct() throws Exception {
-        admin = new Admin();
+        admin = new AdminDAO();
         try {
             if (getSubmitType().equals("updatedata")) {
                 System.out.println("Here I am");
@@ -137,7 +137,6 @@ public class AdminAction extends ActionSupport {
                     prodstatus = product.getProdstatus();
                 }
             } else {
-
                 setCtr(admin.updateProduct(prodid, prodname, deptid, prodmodel, prodstatus));
                 if (getCtr() > 0) {
                     setMsg("Product updated Successfully!");
@@ -153,7 +152,7 @@ public class AdminAction extends ActionSupport {
     }
 
     public String updateUser() throws Exception {
-        admin = new Admin();
+        admin = new AdminDAO();
         try {
             if (getSubmitType().equals("updatedata")) {
                 System.out.println("Here I am");
@@ -187,7 +186,7 @@ public class AdminAction extends ActionSupport {
     }
 
     public String editProfile() throws Exception {
-        admin = new Admin();
+        admin = new AdminDAO();
         try {
             setCtr(admin.editProfile(pid, firstname, lastname, address, email, phno));
             if (getCtr() > 0) {
@@ -210,7 +209,7 @@ public class AdminAction extends ActionSupport {
     }
 
     public String addCustomers() throws Exception {
-        admin = new Admin();
+        admin = new AdminDAO();
 
         try {
             password = SCryptUtil.scrypt("1234", 2048, 8, 1);
@@ -228,7 +227,7 @@ public class AdminAction extends ActionSupport {
     }
 
     public String addCSR() throws Exception {
-        admin = new Admin();
+        admin = new AdminDAO();
 
         try {
             password = SCryptUtil.scrypt("1234", 2048, 8, 1);
@@ -246,7 +245,7 @@ public class AdminAction extends ActionSupport {
     }
 
     public String addProduct() throws Exception {
-        admin = new Admin();
+        admin = new AdminDAO();
         try {
             setCtr(admin.addProduct(getDeptid(), getProdname(), getProdmodel()));
             if (getCtr() > 0) {
@@ -262,7 +261,7 @@ public class AdminAction extends ActionSupport {
     }
 
     public String addTechnician() throws Exception {
-        admin = new Admin();
+        admin = new AdminDAO();
         try {
             setCtr(admin.addTechnician(getDeptid(), getTechname()));
             if (getCtr() > 0) {
@@ -278,7 +277,7 @@ public class AdminAction extends ActionSupport {
     }
 
     public String addDepartment() throws Exception {
-        admin = new Admin();
+        admin = new AdminDAO();
         try {
             setCtr(admin.addDepartment(getDeptname()));
             if (getCtr() > 0) {

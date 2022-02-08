@@ -4,8 +4,8 @@
  */
 package com.redress.actions;
 
-import com.redress.dao.Admin;
-import com.redress.dao.CSR;
+import com.redress.dao.AdminDAO;
+import com.redress.dao.CSRDAO;
 import com.redress.models.Complaint;
 import com.redress.models.Department;
 import com.redress.models.User;
@@ -26,8 +26,8 @@ public class AdminDashboard {
      private List<Complaint> unresolvedComplaint = null;
      private List<Complaint> rejectedComplaint = null;
      private List<Department> deptList = null;
-     Admin admin = new Admin();
-     CSR csr = new CSR();
+     AdminDAO admin = new AdminDAO();
+     CSRDAO csr = new CSRDAO();
 
     public String execute() throws Exception {
         

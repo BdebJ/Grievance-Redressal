@@ -21,7 +21,7 @@ import java.util.List;
  *
  * @author bjena
  */
-public class CSR {
+public class CSRDAO {
 
     public List<User> customerList() throws SQLException, Exception {
 
@@ -488,7 +488,41 @@ public class CSR {
             if (con != null) {
                 con.close();
             }
-        }    //To change body of generated methods, choose Tools | Templates.
+        }    
+    }
+    
+    public List<Technician> getAllTechnician() throws SQLException, Exception {
+
+        ResultSet rs = null;
+        Connection con = null;
+
+        List<Technician> technicianList = new ArrayList<>();
+        try {
+            String sql = "SELECT techid,techname,technician.deptid,deptname,techstatus "
+                    + "FROM technician,department WHERE technician.deptid = department.deptid";
+            con = ConnectionManager.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Technician tech = new Technician();
+                tech.setTechid(rs.getInt("techid"));
+                tech.setTechname(rs.getString("techname"));
+                tech.setDeptid(rs.getInt("deptid"));
+                tech.setTechstatus(rs.getInt("techstatus"));
+                tech.setDeptname(rs.getString("deptname"));
+
+                technicianList.add(tech);
+            }
+            return technicianList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+
     }
 
     public List<Technician> fetchTechnician(int deptid) throws SQLException {
@@ -519,7 +553,7 @@ public class CSR {
             if (con != null) {
                 con.close();
             }
-        }//To change body of generated methods, choose Tools | Templates.
+        }
     }
      public List<Complaint> csrcomplaintList() throws SQLException, Exception {
         ResultSet rs = null;

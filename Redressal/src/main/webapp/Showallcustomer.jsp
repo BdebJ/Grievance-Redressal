@@ -95,14 +95,6 @@
                                             <td><s:property value="phno"/></td>
                                             <s:if test ="userstatus == 1"><td>Active</td> </s:if>
                                             <s:elseif test ="userstatus==0"><td>Inactive</td></s:elseif>
-                                                <!--  <td>
-                                                      <a href=#>
-                                                          <button class="button"><span>Update</span></button>
-                                                      </a>
-                                                      <a href="deleteuser.action?pid=<s:property value="pid"/>">
-                                                          <button class="button" ><span>Delete</span></button>
-                                                      </a>
-                                                  </td>--->
                                         </tr>
                                     </s:iterator>
                                 </table>

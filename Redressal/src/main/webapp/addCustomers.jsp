@@ -83,7 +83,7 @@
                                     <label for="address">Address</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="inputEmail" type="text" name ="phno" placeholder="Phone Number" />
+                                    <input class="form-control" id="inputEmail" type="number" name ="phno" placeholder="Phone Number" />
                                     <label for="phno">Phone Number</label>
                                 </div>
 

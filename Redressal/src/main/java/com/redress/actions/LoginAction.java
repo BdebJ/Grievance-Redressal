@@ -7,7 +7,7 @@ package com.redress.actions;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
 import com.lambdaworks.crypto.SCryptUtil;
-import com.redress.dao.Login;
+import com.redress.dao.LoginDAO;
 import com.redress.models.User;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
@@ -38,16 +38,16 @@ public class LoginAction implements SessionAware {
     private String msg = "";
     private int ctr = 0;
 
-    Login login = null;
+    LoginDAO login = null;
 
     @Override
     public void setSession(Map<String, Object> map) {
 
-        setSessionMap((SessionMap<String, Object>) (SessionMap) map);
+        setSessionMap((SessionMap<String, Object>) map);
     }
 
     public boolean validatePassword(String username, String password) throws Exception {
-        login = new Login();
+        login = new LoginDAO();
         boolean check = false;
         setHash(login.getPasswordHash(username));
         try {
@@ -60,7 +60,7 @@ public class LoginAction implements SessionAware {
     
     public String validateLoginCredentials() throws Exception {
 
-        login = new Login();
+        login = new LoginDAO();
         try {
                          
             User validUser = login.validLoginCredential(username);
@@ -110,7 +110,7 @@ public class LoginAction implements SessionAware {
     }
 
     public String changePassword() throws Exception {
-        login = new Login();
+        login = new LoginDAO();
         try {
             String generatedSecuredPasswordHash = SCryptUtil.scrypt(password, 2048, 8, 1);
             setCtr(login.changePassword(generatedSecuredPasswordHash, valUser.getPid()));
