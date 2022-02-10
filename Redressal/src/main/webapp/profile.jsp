@@ -210,7 +210,7 @@
                                                     <div class="form-floating mb-3">
                                                         <input class="form-control" id="username" name="username" type="text" value="${sessionScope.validUser.getUsername()}" placeholder="username" onkeyup="checkUsername(username)"/>
                                                         <input class="form-control" id="pid" type="hidden" value="${sessionScope.validUser.getPid()}" name ="pid" />
-                                                        <label for="username">Username </label>
+                                                        <label for="username">Username </label
 
                                                     </div>
                                                     <span id="availability"></span>
@@ -259,6 +259,7 @@
                     <input type="radio" class="tabs__radio" name="tabs-example" id="tab2">
                     <label for="tab2" class="tabs__label">Change Password</label>
                     <div class="tabs__content">
+               
                         <div class="container rounded bg-white">
                             <div class="row">
                                 <div class="col-md-4 border-right">
@@ -302,7 +303,7 @@
                                                 <span style="font-size: 80%; color: grey;">username can't be changed right now.</span>
 
                                                 <div class="form-floating mb-3">
-                                                    <input class="form-control" id="password" name="password" value="" type ="password"  placeholder="#####" />
+                                                    <input class="form-control" id="password" name="password" value="" type ="text"  placeholder="********" />
                                                     <label for="newpassword">New password</label>
                                                 </div>
 

@@ -99,7 +99,7 @@
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
-                                        <th>Complaint id</th>
+                                       
                                         <th>Complaint Time</th>
                                         <th>Subject</th>
                                         <th>Description</th>
@@ -115,7 +115,7 @@
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Complaint id</th>
+                                     
                                         <th>Complaint Time</th>
                                         <th>Subject</th>
                                         <th>Description</th>
@@ -132,7 +132,7 @@
                                 <tbody>
                                     <s:iterator value="complaintList">
                                         <tr>
-                                            <td><s:property value="complid"/></td>
+                                          
                                             <td><s:property value="compltime"/></td>
                                             <td><s:property value="subject"/></td>
                                             <td><s:property value="description"/></td>
