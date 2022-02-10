@@ -290,7 +290,7 @@
                                         </div>
 
                                         <div class="card-body">
-                                            <form action="#" method ="post">
+                                            <form action="updatepassword" method ="post">
                                                 <div class="form-floating mb-3">
                                                     <input class="form-control" id="input" name="username" type="text" value="${sessionScope.validUser.getUsername()}" placeholder="username" readonly/>
                                                     <input class="form-control" id="pid" type="hidden" value="${sessionScope.validUser.getPid()}" name ="pid" />
@@ -301,13 +301,8 @@
                                                 <span id ="availability"></span>
                                                 <span style="font-size: 80%; color: grey;">username can't be changed right now.</span>
 
-
                                                 <div class="form-floating mb-3">
-                                                    <input class="form-control" id="email" value="" type="text" name="email" placeholder="name@example.com" />
-                                                    <label for="oldpassword">old password</label>
-                                                </div>
-                                                <div class="form-floating mb-3">
-                                                    <input class="form-control" id="address" name="address" value="" type ="text"  placeholder="adreess" />
+                                                    <input class="form-control" id="password" name="password" value="" type ="password"  placeholder="#####" />
                                                     <label for="newpassword">New password</label>
                                                 </div>
 

@@ -224,6 +224,9 @@
         <action name="updateproductdetails" class="com.redress.actions.AdminAction" method = "updateProduct">
             <result name="UPDATEPRODUCT" type = "chain">showproducts</result>  
         </action>
+        <action name="updatepassword" class="com.redress.actions.AdminAction" method = "updatePassword">
+			<result name="UPDATEPASSWORD">/profile.jsp</result>
+		</action>
         
         
         <!-- Add -->
@@ -276,6 +279,7 @@
         <action name="departmentname" class="com.redress.actions.AdminAction" method = "showAllDepartments">
             <result name="ALLDEPARTEMNTLIST">/addTechnician.jsp</result>   
         </action>     
+        
         
     </package>
 </struts>

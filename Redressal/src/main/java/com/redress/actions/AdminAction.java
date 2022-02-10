@@ -392,6 +392,25 @@ public class AdminAction extends CSRAction implements AdminInterface {
 		return "DEPTCOMPLAINTSNUM";
 	}
 
+	@Override
+	public String updatePassword() {
+		try {
+			password = SCryptUtil.scrypt(password, 2048, 8, 1);
+			setCtr(admin.updatePassword(password, pid));
+			if (getCtr() > 0) {
+				setMsg("Password updated Successfully!");
+			} else {
+				setCtr(-1);
+				setMsg("Some error");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "UPDATEPASSWORD";
+	}
+	
+	
 	public List<Department> getDeptList() {
 		return deptList;
 	}

@@ -938,5 +938,26 @@ public class AdminDAO {
         }
 
     }
+    
+	public int updatePassword(String password, int pid) throws Exception {
+		int i = 0;
+		Connection con = null;
+		try {
+			con = ConnectionManager.getConnection();
+			String sql = "UPDATE userinfo SET password = ? WHERE pid = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, password);
+			ps.setInt(2, pid);
+			i = ps.executeUpdate();
+			return i;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return i;
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+	}
 
 }

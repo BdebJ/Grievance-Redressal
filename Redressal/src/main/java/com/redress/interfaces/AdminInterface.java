@@ -33,5 +33,6 @@ public interface AdminInterface extends CSRInterface {
 	
 	//Utility functions
 	public abstract String listDepartmentComplaints();
+	public abstract String updatePassword();
 	
 }
