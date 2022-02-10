@@ -58,7 +58,7 @@ public class CSRAction implements CSRInterface{
 	
 	@Override
 	public String showAllCustomers() {
-		logger.info("inside CSRAction showAllCustomers method");
+		logger.info("inside CSRAction showAllCustomers method. Showing all Customers");
 		try {
             setCustomerList(new ArrayList<User>());
             setCustomerList(csr.customerList());
@@ -123,6 +123,7 @@ public class CSRAction implements CSRInterface{
 
 	@Override
 	public String showAllTechnicians() {
+		logger.info("inside CSRAction showAllTechnicians method. Showing all Technicians");
 		try {
             setTechnicianList(new ArrayList<Technician>());
             setTechnicianList(csr.getAllTechnician());
@@ -188,6 +189,7 @@ public class CSRAction implements CSRInterface{
 
 	@Override
 	public String showAllDepartments() {
+		logger.info("inside CSRAction showAllDepartments method. Showing all Departments");
 		try {
             setDepartmentList(new ArrayList<Department>());
             setDepartmentList(csr.departmentList());
@@ -239,6 +241,7 @@ public class CSRAction implements CSRInterface{
 
 	@Override
 	public String showAllProducts() {
+		logger.info("inside CSRAction showAllProducts method. Showing all Products");
 		try {
             setProductList(new ArrayList<Product>());
             setProductList(csr.getAllProducts());
@@ -287,6 +290,7 @@ public class CSRAction implements CSRInterface{
 
 	@Override
 	public String showAllComplaints() {
+		logger.info("inside CSRAction showAllComplaints method. Showing all Complaints");
 		try {
             setComplaintList(new ArrayList<Complaint>());
             setComplaintList(csr.complaintList());
@@ -406,6 +410,7 @@ public class CSRAction implements CSRInterface{
 
 	@Override
 	public String showAllCustomerDefects() {
+		logger.info("inside CSRAction showAllCustomerDefects method. Showing all Customer Defects");
 		try {
             setCustomerdefect(new ArrayList<CustomerDefect>());
             setCustomerdefect(csr.customerDefect());
@@ -440,6 +445,7 @@ public class CSRAction implements CSRInterface{
 
 	@Override
 	public String updateComplaint() {
+		logger.info("inside CSRAction updateComplaint method. Updating Complaint");
 		try {
             if (getSubmitType().equals("updatedata")) {
                 Complaint complaint = csr.fetchComplaintDetails(getComplid());

@@ -49,7 +49,7 @@ public class AdminAction extends CSRAction implements AdminInterface {
 	
 	@Override
 	public String showCSR() {
-		logger.info("inside AdminAction showCSR method");
+		logger.info("inside AdminAction showCSR method, Showing csr list");
 		try {
 			setCsrList(new ArrayList<User>());
 			setCsrList(admin.getAllCSR());
@@ -114,6 +114,7 @@ public class AdminAction extends CSRAction implements AdminInterface {
 
 	@Override
 	public String updateUser() {
+		logger.info("inside AdminAction updateUser method, Updating user");
 		try {
 			if (getSubmitType().equals("updatedata")) {
 				User user = admin.fetchUserDetails(pid);
@@ -146,6 +147,7 @@ public class AdminAction extends CSRAction implements AdminInterface {
 
 	@Override
 	public String updateTechnician() {
+		logger.info("inside AdminAction updateTechnician method, Updating Technician");
 		try {
 			if (getSubmitType().equals("updatedata")) {
 				Technician tech = admin.fetchTechnicianDetails(techid);
@@ -173,6 +175,7 @@ public class AdminAction extends CSRAction implements AdminInterface {
 
 	@Override
 	public String updateDepartment() {
+		logger.info("inside AdminAction updateDepartment method, Updating Department");
 		try {
             if (getSubmitType().equals("updatedata")) {
                 System.out.println("Here I am");
@@ -199,6 +202,7 @@ public class AdminAction extends CSRAction implements AdminInterface {
 
 	@Override
 	public String updateProduct() {
+		logger.info("inside AdminAction updateProduct method, Updating product");
 		try {
 			if (getSubmitType().equals("updatedata")) {
 				Product product = admin.fetchProductDetails(prodid);
@@ -226,6 +230,7 @@ public class AdminAction extends CSRAction implements AdminInterface {
 
 	@Override
 	public String addCustomer() {
+		logger.info("inside AdminAction addCustomer method, Adding Customer");
 		try {
 			password = SCryptUtil.scrypt("1234", 2048, 8, 1);
 			setCtr(admin.addCustomers(getUsername(), getPassword(), getFirstname(), getLastname(), getAddress(),
@@ -244,6 +249,7 @@ public class AdminAction extends CSRAction implements AdminInterface {
 
 	@Override
 	public String addCSR() {
+		logger.info("inside AdminAction addCSR method, Adding CSR");
 		try {
 			password = SCryptUtil.scrypt("1234", 2048, 8, 1);
 			setCtr(admin.addCSR(getUsername(), getPassword(), getFirstname(), getLastname(), getAddress(), getEmail(),
@@ -262,6 +268,7 @@ public class AdminAction extends CSRAction implements AdminInterface {
 
 	@Override
 	public String addProduct() {
+		logger.info("inside AdminAction addProduct method, Adding Product");
 		try {
 			setCtr(admin.addProduct(getDeptid(), getProdname(), getProdmodel()));
 			if (getCtr() > 0) {
@@ -277,6 +284,7 @@ public class AdminAction extends CSRAction implements AdminInterface {
 
 	@Override
 	public String addTechnician() {
+		logger.info("inside AdminAction addTechnician method, Adding Technician");
 		try {
 			setCtr(admin.addTechnician(getDeptid(), getTechname()));
 			if (getCtr() > 0) {
@@ -292,6 +300,7 @@ public class AdminAction extends CSRAction implements AdminInterface {
 
 	@Override
 	public String addDepartment() {
+		logger.info("inside AdminAction addDepartment method, Adding Department");
 		try {
 			setCtr(admin.addDepartment(getDeptname()));
 			if (getCtr() > 0) {
@@ -307,6 +316,7 @@ public class AdminAction extends CSRAction implements AdminInterface {
 
 	@Override
 	public String deleteUser() {
+		logger.info("inside AdminAction deleteUser method, Deleting User");
 		try {
 			int isDeleted = admin.deleteUserDetails(getPid());
 			if (isDeleted > 0) {
@@ -322,6 +332,7 @@ public class AdminAction extends CSRAction implements AdminInterface {
 
 	@Override
 	public String deleteTechnician() {
+		logger.info("inside AdminAction deleteTechnician method, Deleting Technician");
 		try {
 			int isDeleted = admin.deleteTechDetails(getTechid());
 			if (isDeleted > 0) {

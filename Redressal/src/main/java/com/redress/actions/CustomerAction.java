@@ -64,7 +64,7 @@ public class CustomerAction implements CustomerInterface{
 	
 	@Override
 	public String showCustomerInfoByUserID() {
-		logger.info("inside CustomerAction showCustomerInfoByUserID method");
+		logger.info("inside CustomerAction showCustomerInfoByUserID method. Showing customer info");
 		try {
             setUserList(new ArrayList<User>());
             setUserList(customer.report(validUser.getPid()));
@@ -82,7 +82,7 @@ public class CustomerAction implements CustomerInterface{
 	
 	@Override
 	public String showComplaintsByUserID() {
-		logger.info("inside CustomerAction showComplaintsByUserID method");
+		logger.info("inside CustomerAction showComplaintsByUserID method. Showing user complaints");
 		try {
             setComplaintList(new ArrayList<Complaint>());
             setComplaintList(customer.complaintListbyPid(validUser.getPid()));
@@ -100,6 +100,7 @@ public class CustomerAction implements CustomerInterface{
 
 	@Override
 	public String showProductsOwnedByUserID() {
+		logger.info("inside CustomerAction showProductsOwnedByUserID method. Showing Products owned by user");
 		try {
 
             setProductOwnedList(new ArrayList<ProductOwned>());
@@ -118,6 +119,7 @@ public class CustomerAction implements CustomerInterface{
 	
 	@Override
 	public String addComplaint() {
+		logger.info("inside CustomerAction addComplaint method. Registering complaint");
 		try {
             setCtr(customer.ComplaintRegister(date, subject, description, validUser.getPid(), ownid));
             if (getCtr() > 0) {
@@ -134,6 +136,7 @@ public class CustomerAction implements CustomerInterface{
 	
 	@Override
 	public String addFeedback() {
+		logger.info("inside CustomerAction addFeedback method. Getting feedback");
 		try {
             setCtr(customer.FeedbackRegister(feedback, rating));
             if (getCtr() > 0) {
@@ -150,7 +153,7 @@ public class CustomerAction implements CustomerInterface{
 	
 	@Override
 	public String sendMessage() {
-
+		logger.info("inside CustomerAction sendMessage method. Getting help request message");
         try {
             setCtr(customer.sendMessage(validUser.getFirstname(), validUser.getEmail(), validUser.getPhno(), message, validUser.getPid(), validUser.getUsername()));
             if (getCtr() > 0) {
