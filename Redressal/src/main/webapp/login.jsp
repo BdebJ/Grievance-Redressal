@@ -38,15 +38,15 @@
                   </div>
                   <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Login">
                 </form>
-                <a href="#!" class="forgot-password-link">Forgot password?</a>
+                <!-- <a href="#!" class="forgot-password-link">Forgot password?</a> -->
                 
-                <nav class="login-card-footer-nav">
+                <!-- <nav class="login-card-footer-nav">
                   <a href="#!">Terms of use.</a>
                   <a href="#!">Privacy policy</a>
                   
-                  <!--<span style="color: red;"><s:property value="msg" /> <c:out value='${requestScope.msg}'/></span>-->
+                  <span style="color: red;"><s:property value="msg" /> <c:out value='${requestScope.msg}'/></span>
                   
-                </nav>
+                </nav> -->
        <s:if test="msg !=null">
                         <div class = "alert alert-warning mt-2" role = "alert"><s:property value="msg" /><c:out value='${requestScope.errormsg}'/></div>
               </s:if>    
