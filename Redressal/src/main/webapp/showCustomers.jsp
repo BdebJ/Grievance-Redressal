@@ -92,7 +92,7 @@
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
-                                        <th>Customer id</th>
+                                       
                                         <th>Username</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
@@ -106,7 +106,7 @@
                                 <tfoot>
 
                                     <tr>
-                                        <th>Customer id</th>
+                                    
                                         <th>Username</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
@@ -120,7 +120,7 @@
                                 <tbody>
                                     <s:iterator value="customerList">
                                         <tr>
-                                            <td><s:property value="pid"/></td>
+                                     
                                             <td><s:property value="username"/></td>
                                             <td><s:property value="firstname"/></td>
                                             <td><s:property value="lastname"/></td>

@@ -97,7 +97,7 @@
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
-                                        <th>Product id</th>
+                                     
                                         <th>Product Name</th>
                                         <th>Product Model</th>
                                         <th>Department Name</th>
@@ -107,7 +107,7 @@
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Product id</th>
+                                      
                                         <th>Product Name</th>
                                         <th>Product Model</th>
                                         <th>Department Name</th>
@@ -118,7 +118,7 @@
                                 <tbody>
                                     <s:iterator value="productList">
                                         <tr>
-                                            <td><s:property value="prodid"/></td>
+                                         
                                             <td><s:property value="prodname"/></td>
                                             <td><s:property value="prodmodel"/></td>
                                             <td><s:property value="deptname"/></td>

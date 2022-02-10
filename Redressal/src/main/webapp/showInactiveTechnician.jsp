@@ -98,7 +98,7 @@
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
-                                        <th width="7%" >Technician ID</th>
+                                      
                                         <th>Technician Name</th>
                                         <th>Department Name</th>
                                         <th>Status</th>                                       
@@ -108,7 +108,7 @@
                                 <tfoot>
 
                                     <tr>
-                                        <th width="7%" >Technician ID</th>
+                                   
                                         <th>Technician Name</th>
                                         <th>Department Name</th>
                                         <th>Status</th>                                       
@@ -118,7 +118,7 @@
                                 <tbody>
                                     <s:iterator value="technicianList">
                                         <tr>
-                                            <td><s:property value="techid"/></td>
+                                   
                                             <td><s:property value="techname"/></td>
                                             <td><s:property value="deptname"/></td>
                                             <s:if test="techstatus==0"><td> Inactive </td> </s:if>

@@ -97,7 +97,7 @@
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
-                                        <th>Department id</th>
+                                      
                                         <th>Department Name</th>
                                         <th>Department Status</th>
                                         <th>Actions</th>
@@ -106,7 +106,7 @@
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Department id</th>
+                                      
                                         <th>Department Name</th>
                                         <th>Department Status</th>
                                         <th>Actions</th>
@@ -115,7 +115,7 @@
                                 <tbody>
                                     <s:iterator value="departmentList">
                                         <tr>
-                                            <td><s:property value="deptid"/></td>
+                                           
                                             <td><s:property value="deptname"/></td>
                                             <s:if test="deptstatus==0"><td> Inactive </td> </s:if>
                                             <s:else> <td> Active </td> </s:else>

@@ -75,7 +75,7 @@
                                         <thead>
                                             <tr style="background-color: #E0E0E1;">
                                                 <th>Defect ID</th>
-                                                <th>owner ide</th>
+                                                <th>owner id</th>
                                                 <th>Customer Defect</th>
 
 

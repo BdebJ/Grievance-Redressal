@@ -73,14 +73,14 @@
                                     <table id="datatablesSimple">
                                         <thead>
                                             <tr style="background-color: #E0E0E1;">
-                                                <th>Department ID</th>
+                                                
                                                 <th>Department name</th>
                                                 <th>Department Status</th>
                                             </tr>
                                         </thead>
                                         <s:iterator value="departmentList">
                                             <tr>
-                                                <td><s:property value="deptid" /></td>
+                                             
                                                 <td><s:property value="deptname" /></td>
                                                 <s:if test ="deptstatus == 1"><td>Active</td> </s:if>
                                             <s:elseif test ="deptstatus==0"><td>Inactive</td></s:elseif>

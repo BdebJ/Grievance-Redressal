@@ -26,7 +26,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - Admin</title>
+        <title>Active Products</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link href="assets/css/styles.css" rel="stylesheet" />
@@ -97,7 +97,7 @@
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
-                                        <th>Product id</th>
+                                   
                                         <th>Product Name</th>
                                         <th>Product Model</th>
                                         <th>Department Name</th>
@@ -107,7 +107,7 @@
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Product id</th>
+                                       
                                         <th>Product Name</th>
                                         <th>Product Model</th>
                                         <th>Department Name</th>
@@ -118,7 +118,7 @@
                                 <tbody>
                                     <s:iterator value="productList">
                                         <tr>
-                                            <td><s:property value="prodid"/></td>
+                                            
                                             <td><s:property value="prodname"/></td>
                                             <td><s:property value="prodmodel"/></td>
                                             <td><s:property value="deptname"/></td>
