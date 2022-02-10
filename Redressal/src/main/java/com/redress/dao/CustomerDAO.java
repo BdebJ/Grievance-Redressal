@@ -21,7 +21,7 @@ public class CustomerDAO {
 		try {
 			String sql = "SELECT pid, username, firstname, lastname, address, email, phno  FROM userinfo WHERE pid=?";
 			con = ConnectionManager.getConnection();
-			System.out.println("Connection is " + con);
+
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, pid);
 			rs = ps.executeQuery();
@@ -64,7 +64,7 @@ public class CustomerDAO {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, pid);
 			rs = ps.executeQuery();
-			System.out.println("Pallab");
+
 			while (rs.next()) {
 				Complaint complaint = new Complaint();
 
@@ -217,7 +217,6 @@ public class CustomerDAO {
 			ps.setInt(5, pid);
 			ps.setString(6, username);
 
-			System.out.println("SQL for insert=" + ps);
 			i = ps.executeUpdate();
 			return i;
 		} catch (Exception e) {

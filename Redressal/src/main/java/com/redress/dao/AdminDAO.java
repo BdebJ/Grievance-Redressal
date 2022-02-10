@@ -31,7 +31,7 @@ public class AdminDAO {
             ps.setString(7, phno);
             ps.setInt(8, 3);
             ps.setInt(9, 0);
-            System.out.println("SQL for insert=" + ps);
+
             i = ps.executeUpdate();
             return i;
         } catch (Exception e) {
@@ -61,7 +61,7 @@ public class AdminDAO {
             ps.setString(7, phno);
             ps.setInt(8, 2);
             ps.setInt(9, 0);
-            System.out.println("SQL for insert=" + ps);
+
             i = ps.executeUpdate();
             return i;
         } catch (Exception e) {
@@ -84,7 +84,7 @@ public class AdminDAO {
             ps.setInt(1, deptid);
             ps.setString(2, prodmodel);
             ps.setString(3, prodname);
-            System.out.println("SQL for insert=" + ps);
+
             i = ps.executeUpdate();
             return i;
         } catch (Exception e) {
@@ -107,7 +107,7 @@ public class AdminDAO {
             ps.setString(1, techname);
             ps.setInt(2, deptid);
 
-            System.out.println("SQL for insert=" + ps);
+
             i = ps.executeUpdate();
             return i;
         } catch (Exception e) {
@@ -129,7 +129,7 @@ public class AdminDAO {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, deptname);
 
-            System.out.println("SQL for insert=" + ps);
+
             i = ps.executeUpdate();
             return i;
         } catch (Exception e) {
@@ -154,7 +154,6 @@ public class AdminDAO {
             ps.setInt(2, deptstatus);
             ps.setInt(3, deptid);
 
-            System.out.println("SQL for insert=" + ps);
             i = ps.executeUpdate();
             return i;
         } catch (Exception e) {
@@ -171,7 +170,7 @@ public class AdminDAO {
         int i = 0;
         Connection con = null;
         try {
-            System.out.println("all etch" + techname + techid);
+
             con = ConnectionManager.getConnection();
             String sql = "UPDATE technician SET techname = ?, deptid =? , techstatus = ? WHERE techid = ?";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -181,7 +180,7 @@ public class AdminDAO {
             ps.setInt(3, techstatus);
             ps.setInt(4, techid);
 
-            System.out.println("SQL for insert=" + ps);
+
             i = ps.executeUpdate();
             return i;
         } catch (Exception e) {
@@ -199,7 +198,7 @@ public class AdminDAO {
         int i = 0;
         Connection con = null;
         try {
-//            System.out.println("all etch"+ techname + techid);
+
             con = ConnectionManager.getConnection();
             String sql = "UPDATE product SET prodname = ?, deptid =?, prodmodel =?,prodstatus = ? WHERE prodid = ?";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -209,7 +208,7 @@ public class AdminDAO {
             ps.setString(3, prodmodel);
             ps.setInt(4, prodstatus);
             ps.setInt(5, prodid);
-            System.out.println("SQL for insert=" + ps);
+
             i = ps.executeUpdate();
             return i;
         } catch (Exception e) {
@@ -226,7 +225,7 @@ public class AdminDAO {
         int i = 0;
         Connection con = null;
         try {
-//            System.out.println("all etch"+ techname + techid);
+
             con = ConnectionManager.getConnection();
             String sql = "UPDATE userinfo SET firstname =? , lastname = ?, address =?, email =?, phno =?, userstatus = ? WHERE pid = ?";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -239,7 +238,7 @@ public class AdminDAO {
             ps.setInt(6, userstatus);
             ps.setInt(7, pid);
 
-            System.out.println("SQL for insert=" + ps);
+
             i = ps.executeUpdate();
             return i;
         } catch (Exception e) {
@@ -256,7 +255,7 @@ public class AdminDAO {
         int i = 0;
         Connection con = null;
         try {
-//            System.out.println("all etch"+ techname + techid);
+
             con = ConnectionManager.getConnection();
             String sql = "UPDATE userinfo SET firstname =? , lastname = ?, address =?, email =?, phno =? WHERE pid = ?";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -268,7 +267,7 @@ public class AdminDAO {
             ps.setString(5, phno);
             ps.setInt(6, pid);
 
-            System.out.println("SQL for insert=" + ps);
+
             i = ps.executeUpdate();
             return i;
         } catch (Exception e) {
@@ -323,7 +322,7 @@ public class AdminDAO {
         try {
             String sql = "SELECT pid,username,firstname,lastname,address,email,phno,userstatus FROM userinfo WHERE roleid= 3 AND userstatus=1";
             con = ConnectionManager.getConnection();
-            System.out.println(sql);
+
             PreparedStatement ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -358,7 +357,7 @@ public class AdminDAO {
         try {
             String sql = "SELECT pid,username,firstname,lastname,address,email,phno,userstatus FROM userinfo WHERE roleid= 3 AND userstatus=0";
             con = ConnectionManager.getConnection();
-            System.out.println(sql);
+
             PreparedStatement ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -393,7 +392,7 @@ public class AdminDAO {
         try {
             String sql = "SELECT pid,username,firstname,lastname,address,email,phno,userstatus FROM userinfo WHERE roleid= 3 AND userstatus=2";
             con = ConnectionManager.getConnection();
-            System.out.println(sql);
+
             PreparedStatement ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -685,9 +684,9 @@ public class AdminDAO {
                 departmentComplaintCount.setDeptname(rs.getString("deptname"));
                 departmentComplaintCount.setNoOfComplaints(rs.getInt("complaints"));
                 departmentComplaintCountList.add(departmentComplaintCount);
-                System.out.println(departmentComplaintCount.getDeptname()+" "+departmentComplaintCount.getNoOfComplaints());
+
             }
-            System.out.println(departmentComplaintCountList.size());
+
             return departmentComplaintCountList;
         } catch (Exception e) {
             e.printStackTrace();
@@ -768,7 +767,7 @@ public class AdminDAO {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, prodid);
             i = ps.executeUpdate();
-            System.out.println(i);
+
             return i;
         } catch (Exception e) {
             e.printStackTrace();
@@ -790,9 +789,9 @@ public class AdminDAO {
             con = ConnectionManager.getConnection();
             String sql = "SELECT pid,username,password,firstname,lastname,address,email,phno,userstatus FROM userinfo WHERE pid=?";
             PreparedStatement ps = con.prepareStatement(sql);
-            System.out.println("pid in fetch = " + pid);
+
             ps.setInt(1, pid);
-            System.out.println("Select SQL = " + ps);
+
 
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -825,9 +824,9 @@ public class AdminDAO {
             con = ConnectionManager.getConnection();
             String sql = "SELECT deptid,deptname,deptstatus from department WHERE deptid = ?";
             PreparedStatement ps = con.prepareStatement(sql);
-            System.out.println("pid in fetch = " + deptid);
+
             ps.setInt(1, deptid);
-            System.out.println("Select SQL = " + ps);
+
             rs = ps.executeQuery();
             if (rs.next()) {
                 department.setDeptid(rs.getInt("deptid"));
@@ -853,9 +852,9 @@ public class AdminDAO {
             con = ConnectionManager.getConnection();
             String sql = "SELECT prodid,prodname,prodmodel,prodstatus,product.deptid,deptname FROM product,department WHERE product.deptid = department.deptid AND prodid = ?";
             PreparedStatement ps = con.prepareStatement(sql);
-            System.out.println("pid in fetch = " + prodid);
+
             ps.setInt(1, prodid);
-            System.out.println("Select SQL = " + ps);
+
             rs = ps.executeQuery();
             if (rs.next()) {
                 product.setProdid(rs.getInt("prodid"));
@@ -885,9 +884,8 @@ public class AdminDAO {
             String sql = "SELECT techid,techname,technician.deptid,techstatus,deptname "
                     + "FROM technician,department WHERE technician.deptid = department.deptid AND techid =?";
             PreparedStatement ps = con.prepareStatement(sql);
-            System.out.println("techid in fetch = " + techid);
+
             ps.setInt(1, techid);
-            System.out.println("Select SQL = " + ps);
 
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -918,7 +916,7 @@ public class AdminDAO {
             String sql = "SELECT prodid,prodname,prodmodel,deptname,prodstatus FROM product,department where product.deptid = department.deptid and prodstatus = 0";
             con = ConnectionManager.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
-            System.out.println(sql);
+
             rs = ps.executeQuery();
             while (rs.next()) {
                 Product product = new Product();

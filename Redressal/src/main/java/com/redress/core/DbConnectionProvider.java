@@ -31,9 +31,6 @@ public class DbConnectionProvider {
     
     public void getDbConnection()
     {
-        // here I will write some code for connection
-        System.out.println("You can get a DB Connection by calling this method");
-        //First I need the DB parameters
         ConfigFileReader configFileReader = new ConfigFileReader();
         ConfigParam configParam = configFileReader.getConfigParam();
         System.out.println("userid ="+configParam.getUserid());

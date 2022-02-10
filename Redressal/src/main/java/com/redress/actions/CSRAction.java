@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.log4j.Logger;
+
 /**
 *
 * @author bjena./
@@ -52,9 +54,11 @@ public class CSRAction implements CSRInterface{
 	 
 	 
 	 CSRDAO csr = new CSRDAO();
+	 private static final Logger logger = Logger.getLogger(CSRAction.class);
 	
 	@Override
 	public String showAllCustomers() {
+		logger.info("inside CSRAction showAllCustomers method");
 		try {
             setCustomerList(new ArrayList<User>());
             setCustomerList(csr.customerList());

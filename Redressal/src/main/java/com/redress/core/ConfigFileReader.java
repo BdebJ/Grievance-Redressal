@@ -17,15 +17,15 @@ public class ConfigFileReader {
 
     public ConfigParam getConfigParam() {
         ConfigParam configParam = new ConfigParam();
-        //here I will read the file and bound the values of all params
+
         Properties prop = new Properties();
         String propFileName = "redress_config.properties";
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
 
         if (inputStream != null) {
             try {
-                prop.load(inputStream); //load method of Properties class, give by Java
-                System.out.println("Got the property file..........................");
+                prop.load(inputStream); 
+
                 String userid = prop.getProperty("userid");
                 String password = prop.getProperty("password");
                 String host = prop.getProperty("host");
@@ -42,7 +42,7 @@ public class ConfigFileReader {
             }
 
         } else {
-            System.out.println("Didn't get the property file..........................");
+
         }
 
         return configParam;

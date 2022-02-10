@@ -33,7 +33,6 @@ public class CSRDAO {
             String sql = "SELECT prodid,prodname,prodmodel,deptname,prodstatus FROM product,department where product.deptid = department.deptid";
             con = ConnectionManager.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
-            System.out.println(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
@@ -115,7 +114,6 @@ public class CSRDAO {
                 departmentList.add(department);
 
             }
-            System.out.println("Total number of Department = " + departmentList.size());
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -167,11 +165,11 @@ public class CSRDAO {
                 complaint.setEndprog(rs.getString("endprog"));
                 complaint.setRes_status(rs.getInt("res_status"));
                 
-                System.out.println("pid"+rs.getInt("pid"));
+
                 complaintList.add(complaint);
 
             }
-            System.out.println("Total number of customers = " + complaintList.size());
+
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -224,11 +222,11 @@ public class CSRDAO {
                 complaint.setEndprog(rs.getString("endprog"));
                 complaint.setRes_status(rs.getInt("res_status"));
                 
-                System.out.println("pid"+rs.getInt("pid"));
+
                 complaintList.add(complaint);
 
             }
-            System.out.println("Total number of customers = " + complaintList.size());
+
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -281,11 +279,10 @@ public class CSRDAO {
                 complaint.setEndprog(rs.getString("endprog"));
                 complaint.setRes_status(rs.getInt("res_status"));
                 
-                System.out.println("pid"+rs.getInt("pid"));
+
                 complaintList.add(complaint);
 
             }
-            System.out.println("Total number of customers = " + complaintList.size());
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -390,11 +387,9 @@ public class CSRDAO {
                 complaint.setEndprog(rs.getString("endprog"));
                 complaint.setRes_status(rs.getInt("res_status"));
                 
-                System.out.println("pid"+rs.getInt("pid"));
                 complaintList.add(complaint);
 
             }
-            System.out.println("Total number of customers = " + complaintList.size());
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -431,7 +426,6 @@ public class CSRDAO {
                 customerdefect.add(defect);
 
             }
-            System.out.println("Total number of customers = " + customerdefect.size());
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -508,7 +502,7 @@ public class CSRDAO {
             ps.setString(5,endprog);
             ps.setInt(6,res_status);
             ps.setInt(7,complid);
-            System.out.println("Select SQL = " + ps);
+            
             i = ps.executeUpdate();
             return i;
         } catch (Exception e) {
@@ -566,8 +560,6 @@ public class CSRDAO {
             String sql = "SELECT techid,techname FROM technician where deptid = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, deptid);
-            System.out.println("DepartmentId = " + deptid);
-            System.out.println("Select SQL = " + ps);
 
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -623,13 +615,11 @@ public class CSRDAO {
                 complaint.setEndprog(rs.getString("endprog"));
                 complaint.setRes_status(rs.getInt("res_status"));
                 
-                System.out.println("pid"+rs.getInt("pid"));
                 complaintList.add(complaint);
 
           
 
             }
-            System.out.println("Total number of customers = " + complaintList.size());
 
         } catch (SQLException ex) {
             ex.printStackTrace();

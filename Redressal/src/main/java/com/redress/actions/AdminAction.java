@@ -9,6 +9,8 @@ import com.redress.models.Technician;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.log4j.Logger;
+
 import com.redress.models.User;
 import java.util.ArrayList;
 
@@ -43,9 +45,11 @@ public class AdminAction extends CSRAction implements AdminInterface {
 	private List<Department> deptList = null;
 
 	AdminDAO admin = new AdminDAO();
-
+	private static final Logger logger = Logger.getLogger(AdminAction.class);
+	
 	@Override
 	public String showCSR() {
+		logger.info("inside AdminAction showCSR method");
 		try {
 			setCsrList(new ArrayList<User>());
 			setCsrList(admin.getAllCSR());

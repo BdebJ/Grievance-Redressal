@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
+
+import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 
 /**
@@ -41,7 +43,7 @@ public class CustomerAction implements CustomerInterface{
     
     CustomerDAO customer = new CustomerDAO();
     Timestamp date = new Timestamp(new Date().getTime());
-    
+    private static final Logger logger = Logger.getLogger(CustomerAction.class);
     
     @Override
 	public String editFeedbackByComplaintID() {
@@ -62,7 +64,7 @@ public class CustomerAction implements CustomerInterface{
 	
 	@Override
 	public String showCustomerInfoByUserID() {
-		
+		logger.info("inside CustomerAction showCustomerInfoByUserID method");
 		try {
             setUserList(new ArrayList<User>());
             setUserList(customer.report(validUser.getPid()));
@@ -80,6 +82,7 @@ public class CustomerAction implements CustomerInterface{
 	
 	@Override
 	public String showComplaintsByUserID() {
+		logger.info("inside CustomerAction showComplaintsByUserID method");
 		try {
             setComplaintList(new ArrayList<Complaint>());
             setComplaintList(customer.complaintListbyPid(validUser.getPid()));
