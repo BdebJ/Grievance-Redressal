@@ -143,15 +143,16 @@ public class AdminDAO {
     }
 
     // Update Methods
-    public int updateDepartment(int deptid, String deptname) throws Exception {
-        int i = 0;
+    public int updateDepartment(int deptid, String deptname,int deptstatus) throws Exception {
+    	int i = 0;
         Connection con = null;
         try {
             con = ConnectionManager.getConnection();
-            String sql = "UPDATE department SET deptname = ? WHERE deptid = ?";
+            String sql = "UPDATE department SET deptname = ?, deptstatus = ? WHERE deptid = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, deptname);
-            ps.setInt(2, deptid);
+            ps.setInt(2, deptstatus);
+            ps.setInt(3, deptid);
 
             System.out.println("SQL for insert=" + ps);
             i = ps.executeUpdate();
@@ -815,7 +816,35 @@ public class AdminDAO {
             }
         }
     }
-
+    
+    public Department fetchDepartmentDetails(int deptid) throws Exception {
+        ResultSet rs = null;
+        Connection con = null;
+        Department department = new Department();
+        try {
+            con = ConnectionManager.getConnection();
+            String sql = "SELECT deptid,deptname,deptstatus from department WHERE deptid = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            System.out.println("pid in fetch = " + deptid);
+            ps.setInt(1, deptid);
+            System.out.println("Select SQL = " + ps);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                department.setDeptid(rs.getInt("deptid"));
+                department.setDeptname(rs.getString("deptname"));
+                department.setDeptstatus(rs.getInt("deptstatus"));
+            }
+            return department;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+    
     public Product fetchProductDetails(int prodid) throws Exception {
         ResultSet rs = null;
         Connection con = null;

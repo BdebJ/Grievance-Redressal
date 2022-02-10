@@ -67,13 +67,14 @@
 
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
-                        <div class="btn-group me-2">
-                            <a href="showproducts"><button type="button" class="btn btn-sm btn-outline-success">Active Products</button></a>
-                            <!--                            <button type="button" class="btn btn-sm btn-outline-danger"><i class='fa fa-user'></i>Deleted Technician</button>-->
-                        </div>
+                        <div class="btn-group me-3">
+							<a href="showproducts"><button type="button" class="btn btn-sm btn-outline-primary"><i class='fas fa-book-open'></i> All Products</button></a>
+                            <a href="showactiveproducts"><button type="button" class="btn btn-sm btn-outline-success"><i class='fa fa-check'></i> Active Products</button></a>
+                            <a href="showinactiveproducts"><button type="button" class="btn btn-sm btn-outline-warning active"><i class='fa fa-clock'></i> Inactive Products</button></a>
+                       </div>
                         <div class="btn-toolbar mb-2 mb-md-0">
 
-                            <a href="addTechnician.jsp"><button type="button" class="btn btn-sm btn-outline-secondary"><i class ="fa fa-plus"></i> Add Product</button></a>
+                            <a href="departmentfortech"><button type="button" class="btn btn-sm btn-outline-secondary"><i class = "fa fa-plus"></i> Add Product</button></a>
                         </div>
                     </div>
                     <s:if test="ctr>0">

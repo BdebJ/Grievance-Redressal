@@ -30,7 +30,7 @@ public class CSRDAO {
 
         List<Product> productList = new ArrayList<>();
         try {
-            String sql = "SELECT prodid,prodname,prodmodel,deptname,prodstatus FROM product,department where product.deptid = department.deptid AND prodstatus = 1";
+            String sql = "SELECT prodid,prodname,prodmodel,deptname,prodstatus FROM product,department where product.deptid = department.deptid";
             con = ConnectionManager.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             System.out.println(sql);
@@ -336,13 +336,10 @@ public class CSRDAO {
                 complaint.setOngoingprog(rs.getString("ongoingprog"));
                 complaint.setEndprog(rs.getString("endprog"));
                 complaint.setRes_status(rs.getInt("res_status"));
-                
-                System.out.println("pid"+rs.getInt("pid"));
                 complaintList.add(complaint);
 
             }
-            System.out.println("Total number of customers = " + complaintList.size());
-
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {

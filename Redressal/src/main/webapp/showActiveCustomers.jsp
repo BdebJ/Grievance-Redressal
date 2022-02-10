@@ -115,7 +115,7 @@
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <s:iterator value="userList">
+                                    <s:iterator value="customerList">
                                         <tr>
                                             <td><s:property value="pid"/></td>
                                             <td><s:property value="username"/></td>

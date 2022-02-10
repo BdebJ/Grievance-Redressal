@@ -121,7 +121,7 @@
                                             <s:else> <td> Active </td> </s:else>
                                             
                                             <td>
-                                                <a href = "#"><i class="fa fa-edit"></i></a>
+                                                <a href = "fetchdepartmentdetails.action?submitType=updatedata&deptid=<s:property value="deptid"/>"><i class="fa fa-edit"></i></a>
 
                                                 <a href="deletedepartment.action?deptid=<s:property value="deptid"/>"><i class="fa fa-archive"></i></a>
                                             </td>

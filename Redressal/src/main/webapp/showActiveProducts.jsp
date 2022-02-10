@@ -60,16 +60,16 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Products List</h1>
+                    <h1 class="mt-4">Active Products List</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">View all Product details</li>
+                        <li class="breadcrumb-item active">View all Active Product details</li>
                     </ol>
 
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
-                       <div class="btn-group me-3">
-							<a href="showproducts"><button type="button" class="btn btn-sm btn-outline-primary active"><i class='fas fa-book-open'></i> All Products</button></a>
-                            <a href="showactiveproducts"><button type="button" class="btn btn-sm btn-outline-success"><i class='fa fa-check'></i> Active Products</button></a>
+                        <div class="btn-group me-3">
+							<a href="showproducts"><button type="button" class="btn btn-sm btn-outline-primary"><i class='fas fa-book-open'></i> All Products</button></a>
+                            <a href="showactiveproducts"><button type="button" class="btn btn-sm btn-outline-success active"><i class='fa fa-check'></i> Active Products</button></a>
                             <a href="showinactiveproducts"><button type="button" class="btn btn-sm btn-outline-warning"><i class='fa fa-clock'></i> Inactive Products</button></a>
                        </div>
                         <div class="btn-toolbar mb-2 mb-md-0">

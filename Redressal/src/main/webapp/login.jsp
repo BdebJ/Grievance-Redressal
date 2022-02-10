@@ -47,7 +47,7 @@
                   <!--<span style="color: red;"><s:property value="msg" /> <c:out value='${requestScope.msg}'/></span>-->
                   
                 </nav>
-       <s:if test="msg !=''">
+       <s:if test="msg !=null">
                         <div class = "alert alert-warning mt-2" role = "alert"><s:property value="msg" /><c:out value='${requestScope.errormsg}'/></div>
               </s:if>    
                     

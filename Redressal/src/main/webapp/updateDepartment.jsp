@@ -26,7 +26,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - Admin</title>
+        <title>Update Department</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link href="assets/css/styles.css" rel="stylesheet" />
@@ -37,11 +37,15 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Update Product</h1>
+                    <h1 class="mt-4">Update Department</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Update Product details by filling all the fields.</li>
+                        <li class="breadcrumb-item active">Update Department details by filling all the fields.</li>
                     </ol>
-
+ <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <div class="d-flex flex-row align-items-center back"><i class="fa fa-arrow-left mr-1 mb-1"></i>
+                                                    <a style="text-decoration:none" href="showdepartments"><h6 style="color:black">Back to Departments</h6></a>
+                                                </div>
+                                            </div>
                     <s:if test="ctr>0">
                         <div class = "alert alert-success mt-2" role = "alert"><s:property value="msg" /></div>
                     </s:if>
@@ -51,47 +55,35 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            Update Product
+                            Update Department
                         </div>
 
                         <div class="card-body">
-                            <form action ="updateproductdetails" method ="post">
+                            <form action ="updatedepartmentdetails" method ="post">
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="pid" type="text" name ="prodid" placeholder="Product id" value='<s:property value="prodid"/>' readonly/>
-                                    <label for="prodid">Poduct id</label>
+                                    <input class="form-control" id="pid" type="text" name ="deptid" placeholder="Department id" value='<s:property value="deptid"/>' readonly/>
+                                    <label for="prodid">Department id</label>
                                 </div>
-                                <div class="form-floating mb-3">
-                                    <select class="form-control" name="deptid" required>
-                                        <option value="<s:property value="deptid"/>" disabled selected><s:property value="deptname"/></option>
-                                        <s:iterator value="departmentList">
-                                            <option value="<s:property value="deptid"/>">
-                                                <s:property value="deptname"/>
-                                            </option>
-                                        </s:iterator>
-                                    </select>                                    
-                                        <label for="deptid">Department Name</label>
-                                </div>        
+                                   
 
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="prodname" type="text" name="prodname" placeholder="prodname"value='<s:property value="prodname"/>' />
-                                    <label for="prodname">Product Name</label>
+                                    <input class="form-control" id="prodname" type="text" name="deptname" placeholder="Department name"value='<s:property value="deptname"/>' />
+                                    <label for="prodname">Department Name</label>
                                 </div>
+                               
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="address" name="prodmodel" type ="text"  placeholder="prodmodel" value='<s:property value="prodmodel"/>'/>
-                                    <label for="prodmodel">Product Model</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <select class="form-control" name="prodstatus" id="prodstatus" required>
-                                        <option value="0">Inactive</option>
+                                    <select class="form-control" name="deptstatus" id="deptstatus" required>
                                         <option value="1">Active</option> 
+                                        <option value="0">Inactive</option>
+                                        
                                     </select>                                                
-                                    <label for="prodstatus">Product Status</label>
+                                    <label for="deptstatus">Department Status</label>
                                 </div>
 
 
 
                                 <div class="mt-4 mb-0">
-                                    <div class="d-grid"><input type = "submit" class="btn btn-primary btn-block" name="submitType" value="Update Product"></div>
+                                    <div class="d-grid"><input type = "submit" class="btn btn-primary btn-block" name="submitType" value="Update Department"></div>
                                 </div>
                             </form>
                         </div>

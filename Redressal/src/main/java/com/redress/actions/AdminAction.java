@@ -30,6 +30,7 @@ public class AdminAction extends CSRAction implements AdminInterface {
 	private String prodname;
 	private String techname;
 	private String deptname;
+	private int deptstatus;
 	private String username;
 	private String password;
 	private String firstname;
@@ -169,17 +170,28 @@ public class AdminAction extends CSRAction implements AdminInterface {
 	@Override
 	public String updateDepartment() {
 		try {
-			setCtr(admin.updateDepartment(deptid, deptname));
-			if (getCtr() > 0) {
-				setMsg("Department updated Successfully!");
-			} else {
-				setMsg("Some error");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "UPDATEDEPARTMENT";
-	}
+            if (getSubmitType().equals("updatedata")) {
+                System.out.println("Here I am");
+                Department dept = admin.fetchDepartmentDetails(deptid);
+                if (dept != null) {
+                    deptid = dept.getDeptid();
+                    deptname = dept.getDeptname();
+                    deptstatus = dept.getDeptstatus();
+                }
+            } else {
+                setCtr(admin.updateDepartment(deptid, deptname, deptstatus));
+                if (getCtr() > 0) {
+                    setMsg("Department updated Successfully!");
+                } else {
+                    setMsg("Some error");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "UPDATEDEPARTMENT";
+    }
 
 	@Override
 	public String updateProduct() {
@@ -524,4 +536,11 @@ public class AdminAction extends CSRAction implements AdminInterface {
 	public void setProdname(String prodname) {
 		this.prodname = prodname;
 	}
+	public int getDeptstatus() {
+        return deptstatus;
+    }
+    public void setDeptstatus(int deptstatus) {
+        this.deptstatus = deptstatus;
+    }
+
 }

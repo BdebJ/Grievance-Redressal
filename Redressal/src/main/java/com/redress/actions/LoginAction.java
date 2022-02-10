@@ -130,6 +130,7 @@ public class LoginAction implements SessionAware {
     public String logout() {
         if (sessionMap != null) {
             sessionMap.invalidate();
+            setMsg(null);
         }
         return "success";
     }
