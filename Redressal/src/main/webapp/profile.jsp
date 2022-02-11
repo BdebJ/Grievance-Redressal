@@ -74,7 +74,7 @@
             {
 
                 var username = document.getElementById("username").value;
-                alert(username);
+                /* alert(username); */
                 $.ajax({
                     url: 'checkUsername',
                     method: "POST",
@@ -93,6 +93,7 @@
 
 
         </script>
+ 
         <style>
 
             .form-control:focus {
@@ -204,11 +205,10 @@
                                                     <%if((Integer)request.getSession().getAttribute("roleid") == 1){%><a href="admindashboard"><%} else{%><a href="csrdashboard"><%}%><h6 style="color:black">Back to Dashboard</h6></a>
                                                 </div>
                                             </div>
-
                                             <div class="card-body">
                                                 <form action="editprofile" method ="post">
                                                     <div class="form-floating mb-3">
-                                                        <input class="form-control" id="username" name="username" type="text" value="${sessionScope.validUser.getUsername()}" placeholder="username" onkeyup="checkUsername(username)"/>
+                                                        <input class="form-control" id="username" name="username" type="text" value="${sessionScope.validUser.getUsername()}" placeholder="username" onkeyup="checkUsername(username)" readonly/>
                                                         <input class="form-control" id="pid" type="hidden" value="${sessionScope.validUser.getPid()}" name ="pid" />
                                                         <label for="username">Username </label
 

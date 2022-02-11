@@ -57,7 +57,7 @@
             <result name="ADDCOMPLAINT">/addGrievance.jsp</result>  
         </action>         
         <action name="addFeedback" class="com.redress.actions.CustomerAction" method = "addFeedback">
-            <result name="ADDFEEDBACK">/Feedback.jsp</result>  
+            <result name="ADDFEEDBACK" type="chain">complaintpid</result>  
         </action>        
         <action name="sendmessage" class="com.redress.actions.CustomerAction" method = "sendMessage">
             <result name="SENDMESSAGE">/contactUs.jsp</result>  

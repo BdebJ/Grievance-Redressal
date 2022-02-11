@@ -178,16 +178,17 @@ public class CustomerDAO {
 		}
 	}
 
-	public int FeedbackRegister(String feedback, int rating) throws SQLException {
+	public int FeedbackRegister(int complid,String feedback, int rating) throws SQLException {
 		int i = 0;
 		Connection con = null;
 		try {
 			con = ConnectionManager.getConnection();
 
-			String sql = "INSERT INTO feedback(feedback,rating) VALUES(?,?);";
+			String sql = "INSERT INTO feedback(complid,feedback,rating) VALUES(?,?,?);";
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, feedback);
-			ps.setInt(2, rating);
+			ps.setInt(1, complid);
+			ps.setString(2, feedback);
+			ps.setInt(3, rating);
 
 			i = ps.executeUpdate();
 			return i;

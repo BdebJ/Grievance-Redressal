@@ -30,8 +30,10 @@ public class CustomerAction implements CustomerInterface{
     private String feedback;
     private int ownid;
     private int rating;
+    private int complid;
     
-    private List<User> userList = null;
+
+	private List<User> userList = null;
     private List<Complaint> complaintList = null;
     private List<Product> productList = null;
     private List<ProductOwned> ProductOwnedList = null;
@@ -138,11 +140,11 @@ public class CustomerAction implements CustomerInterface{
 	public String addFeedback() {
 		logger.info("inside CustomerAction addFeedback method. Getting feedback");
 		try {
-            setCtr(customer.FeedbackRegister(feedback, rating));
+            setCtr(customer.FeedbackRegister(complid, feedback, rating));
             if (getCtr() > 0) {
                 setMsg("Feedback Submitted Successfully");
             } else {
-                setMsg("Some error");
+                setMsg("Some error occured!");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -248,6 +250,12 @@ public class CustomerAction implements CustomerInterface{
 	}
 	public void setProductOwnedList(List<ProductOwned> productOwnedList) {
 		ProductOwnedList = productOwnedList;
+	}
+    public int getComplid() {
+		return complid;
+	}
+	public void setComplid(int complid) {
+		this.complid = complid;
 	}
 
 }

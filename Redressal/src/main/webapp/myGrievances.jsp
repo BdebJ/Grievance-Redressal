@@ -53,11 +53,24 @@ if (request.getSession().getAttribute("validUser") == null) {
 		modal.find('.modal-title').text('New message to ' + recipient)
 		modal.find('.modal-body input').val(recipient)
 	})
+	
+	$("#submit").click(function () {
+            var text = $("#textarea").val();
+            $("#modal_body").html(text);
+        });
+	
+	function fetchComplaint(complid)
+            {
+                $("input:text").val(complid);
+            }
+
+
 </script>
 
 </head>
 
 <body>
+
 	<!--Navbar -->
 	<jsp:include page="navbarCustomer.jsp" />
 
@@ -83,50 +96,68 @@ if (request.getSession().getAttribute("validUser") == null) {
 					<div class="card-header">
 						<i class="fas fa-table me-1"></i> Grievance List
 					</div>
-					
-					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Give your Feedback</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form>
-                                            
-                                            <div class="form-group">
-                                                <label for="message-text" class="col-form-label">Feedback:</label>
-                                                <textarea class="form-control" id="message-text"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="rating">Give rating</label>
-                                            <br>
-                                            <span class="star-rating">
-                                                <input type="radio" name="rating" value="1" ><i></i>
-                                                <input type="radio" name="rating" value="2"><i></i>
-                                                <input type="radio" name="rating" value="3"><i></i>
-                                                <input type="radio" name="rating" value="4"><i></i>
-                                                <input type="radio" name="rating" value="5" required><i></i>
-                                                
-                                            </span>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+					<div class="modal fade" id="exampleModal" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Give your
+										Feedback</h5>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<form action="addFeedback" method="post">
+
+										<div class="form-group">
+											<h1 id="complid"></h1>
+											<input type="text" hidden name="complid" /> <label
+												for="message-text" class="col-form-label">Feedback:</label>
+											<textarea class="form-control" id="message-text"
+												name="feedback"></textarea>
+										</div>
+										<div class="form-group">
+											<label for="rating">Give rating</label> <br> <span
+												class="star-rating"> <input type="radio"
+												name="rating" value="1"><i></i> <input type="radio"
+												name="rating" value="2"><i></i> <input type="radio"
+												name="rating" value="3"><i></i> <input type="radio"
+												name="rating" value="4"><i></i> <input type="radio"
+												name="rating" value="5" required><i></i>
+
+											</span>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+											<input type="submit" class="btn btn-primary" />
+										</div>
+									</form>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<s:if test="ctr>0">
+
+						<div class="alert alert-success mt-2" role="alert">
+							<s:property value="msg" />
+						</div>
+					</s:if>
+					<s:elseif test="ctr==-1">
+						<div class="alert alert-danger mt-2" role="alert">
+							<s:property value="msg" />
+						</div>
+					</s:elseif>
 
 					<div class="card-body">
 						<table id="datatablesSimple">
 							<thead>
 								<tr>
-
 									<th>Complaint Time</th>
 									<th>Product</th>
 									<th>Model</th>
@@ -170,11 +201,20 @@ if (request.getSession().getAttribute("validUser") == null) {
 										<s:else>
 											<td>Resolved</td>
 										</s:else>
+										<td style="display: none;"><input type="text"
+											id="textarea" value="<s:property value="complid" />"></input></td>
 
-										<!--<td><s:property value="res_status" /></td>-->
-                                            <s:if test="res_status==1"><td><button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" onclick ="fetchcomplaint(<s:property value="complid"/>)">Add Feedback</button></td></s:if>
-											<s:else>
-											<td style="font-size: 80%; color: grey;">not resolved yet</td>
+										<s:if test="res_status==1">
+											<td><button type="button"
+													class="btn btn-sm btn-outline-secondary"
+													data-toggle="modal" data-target="#exampleModal"
+													data-whatever="@getbootstrap"
+													onclick="fetchComplaint(<s:property value="complid" />)">Add
+													Feedback</button></td>
+										</s:if>
+										<s:else>
+											<td style="font-size: 80%; color: grey;">not resolved
+												yet</td>
 										</s:else>
 
 									</tr>

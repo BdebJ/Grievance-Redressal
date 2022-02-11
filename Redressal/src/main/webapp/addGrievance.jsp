@@ -97,10 +97,12 @@
                             <div style="padding-top:10px;" class="col-sm-3"><label></label></div>
                             <div class="col-sm-8">
                                 <button type = "submit" class="btn btn-success btn-sm">Submit</button>
-                                  <s:if test="ctr>0">
-                        <div class = "alert alert-success mt-2" role = "alert"><s:property value="msg" /></div>
-                    </s:if>
-                    <s:elseif test= "ctr==-1">
+								<s:if test="ctr>0">
+									<div class="alert alert-success mt-2" role="alert">
+										<s:property value="msg" />
+									</div>
+								</s:if>
+								<s:elseif test= "ctr==-1">
                         <div class = "alert alert-danger mt-2" role = "alert"><s:property value="msg" /></div>
                     </s:elseif>
                             </div>
