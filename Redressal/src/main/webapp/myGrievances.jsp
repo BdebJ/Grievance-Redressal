@@ -39,9 +39,22 @@ if (request.getSession().getAttribute("validUser") == null) {
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link href="assets/css/styles.css" rel="stylesheet" />
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
 	crossorigin="anonymous"></script>
+	
+	
+	<style>
+	body {
+		counter-reset: Serial; /* Set the Serial counter to 0 */
+	}
+	
+	tr td:first-child:before {
+		counter-increment: Serial; /* Increment the Serial counter */
+		content: counter(Serial); /* Display the counter */
+	}
+	</style>
 
 <script>
 	$('#exampleModal').on('show.bs.modal', function(event) {
@@ -158,6 +171,7 @@ if (request.getSession().getAttribute("validUser") == null) {
 						<table id="datatablesSimple">
 							<thead>
 								<tr>
+									<th>Sl no.</th>
 									<th>Complaint Time</th>
 									<th>Product</th>
 									<th>Model</th>
@@ -172,7 +186,7 @@ if (request.getSession().getAttribute("validUser") == null) {
 							<tfoot>
 
 								<tr>
-
+									<th>Sl no.</th>
 									<th>Complaint Time</th>
 									<th>Product</th>
 									<th>Model</th>
@@ -187,7 +201,7 @@ if (request.getSession().getAttribute("validUser") == null) {
 							<tbody>
 								<s:iterator value="complaintList">
 									<tr>
-
+										<td></td>
 										<td><s:property value="compltime" /></td>
 										<td><s:property value="prodname" /></td>
 										<td><s:property value="prodmodel" /></td>

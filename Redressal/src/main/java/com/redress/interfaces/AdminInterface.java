@@ -2,7 +2,7 @@ package com.redress.interfaces;
 
 /**
 *
-* @author bjena
+*  
 */
 public interface AdminInterface extends CSRInterface {
 

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author bjena
+ *  
  */
 public class AdminAction extends CSRAction implements AdminInterface {
 

@@ -26,7 +26,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - Admin</title>
+        <title>View All Customers</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link href="assets/css/styles.css" rel="stylesheet" />
@@ -50,6 +50,17 @@
             })
             })
         </script>
+        
+        <style>
+	body {
+		counter-reset: Serial; /* Set the Serial counter to 0 */
+	}
+	
+	tr td:first-child:before {
+		counter-increment: Serial; /* Increment the Serial counter */
+		content: counter(Serial); /* Display the counter */
+	}
+	</style>
     </head>
     <body class="sb-nav-fixed">
         <jsp:include page="navbar.jsp"/> 
@@ -92,7 +103,7 @@
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
-                                       
+                                       <th>Sl no.</th>
                                         <th>Username</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
@@ -106,7 +117,7 @@
                                 <tfoot>
 
                                     <tr>
-                                    
+                                    	<th>Sl no.</th>
                                         <th>Username</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
@@ -120,7 +131,7 @@
                                 <tbody>
                                     <s:iterator value="customerList">
                                         <tr>
-                                     
+                                     		<td></td>
                                             <td><s:property value="username"/></td>
                                             <td><s:property value="firstname"/></td>
                                             <td><s:property value="lastname"/></td>

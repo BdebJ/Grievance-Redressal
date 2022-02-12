@@ -80,7 +80,7 @@
                             </div>
                         </div>
                         <div  class="row cont-row">
-                            <div  class="col-sm-3"><label>Owned Id</label><span>:</span></div>
+                            <div  class="col-sm-3"><label>Product</label><span>:</span></div>
                             <div class="col-sm-8">
                                 <select class="form-control" name="ownid" required>
                                         <option value="" disabled selected>Select Product</option>
@@ -118,9 +118,6 @@
                         <div style="margin:50px" class="serv"> 
 
 
-
-
-
                             <h5 style="margin-top:10px;">Register Your Grievance </h5>
 
                             Fill all the required Details <br>
@@ -129,11 +126,6 @@
                             for further queries<br>
                             write us on<br> group-b_grievance@group-b.com<br>
                             
-
-
-
-
-
 
 
                         </div>    

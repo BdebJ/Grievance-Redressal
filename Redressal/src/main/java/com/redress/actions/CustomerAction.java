@@ -17,7 +17,7 @@ import org.apache.struts2.ServletActionContext;
 
 /**
 *
-* @author bjena
+*  
 */
 public class CustomerAction implements CustomerInterface{
 

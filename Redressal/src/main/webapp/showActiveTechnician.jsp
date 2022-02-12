@@ -50,6 +50,17 @@
             })
             })
         </script>
+        
+        <style>
+	body {
+		counter-reset: Serial; /* Set the Serial counter to 0 */
+	}
+	
+	tr td:first-child:before {
+		counter-increment: Serial; /* Increment the Serial counter */
+		content: counter(Serial); /* Display the counter */
+	}
+	</style>
     </head>
     <body class="sb-nav-fixed">
 
@@ -98,7 +109,7 @@
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
-                                       
+                                       <th> Sl no. </th>
                                         <th>Technician Name</th>
                                         <th>Department Name</th>
                                         <th>Status</th>                                       
@@ -108,7 +119,7 @@
                                 <tfoot>
 
                                     <tr>
-                              
+                              <th> Sl no. </th>
                                         <th>Technician Name</th>
                                         <th>Department Name</th>
                                         <th>Status</th>                                       
@@ -118,7 +129,7 @@
                                 <tbody>
                                     <s:iterator value="technicianList">
                                         <tr>
-                                        
+                                        <td></td>
                                             <td><s:property value="techname"/></td>
                                             <td><s:property value="deptname"/></td>
                                             <s:if test="techstatus==0"><td> Inactive </td> </s:if>
