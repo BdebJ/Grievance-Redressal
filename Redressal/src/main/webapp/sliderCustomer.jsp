@@ -13,17 +13,17 @@
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <span>Quality Data Entry Website Template</span>
+                            <span>Quality Service </span>
                             <h2>WE DO ALL! YOU JUST BUY AND ENJOY</h2>
                             <p>Enjoy the wonderful feeling with our design</p>
                         </div>
                         <div class="carousel-item">
-                            <span>Quality Data Entry Website Template</span>
-                            <h2>NEW HIGH QUALITY TEMPLATE BUY AND ENJOY</h2>
+                            <span>Quality Service</span>
+                            <h2>24 X 7 Customer Support</h2>
                             <p>Enjoy the wonderful feeling with our design</p>
                         </div>
                         <div class="carousel-item">
-                            <span>Quality Data Entry Website Template</span>
+                            <span>Quality Service</span>
                             <h2>WE DO ALL! YOU JUST BUY AND ENJOY</h2>
                             <p>Enjoy the wonderful feeling with our design</p>
                         </div>
