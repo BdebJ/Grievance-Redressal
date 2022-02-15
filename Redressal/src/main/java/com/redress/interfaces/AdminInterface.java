@@ -28,6 +28,7 @@ public interface AdminInterface extends CSRInterface {
 	public abstract String deleteProduct();
 	
 	//Utility functions
+	public abstract String editProfile();
 	public abstract String listDepartmentComplaints();
 	public abstract String updatePassword();
 	public abstract String checkUsername();

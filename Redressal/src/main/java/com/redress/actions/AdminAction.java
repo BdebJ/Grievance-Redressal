@@ -9,7 +9,10 @@ import com.redress.models.Technician;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
 
 import com.redress.models.User;
 import java.util.ArrayList;
@@ -407,7 +410,6 @@ public class AdminAction extends CSRAction implements AdminInterface {
 	}
 	
 	@Override
-	
 	public String checkUsername() {
         try {
             System.out.println("My username"+username);
@@ -427,6 +429,27 @@ public class AdminAction extends CSRAction implements AdminInterface {
         return "CHECKUSER";
     }
 	
+	@Override
+	public String editProfile() {
+        try {
+            setCtr(admin.editProfile(pid, firstname, lastname, address, email, phno));
+            if (getCtr() > 0) {
+                User validUser = admin.fetchUserDetails(pid);
+                HttpSession session = ServletActionContext.getRequest().getSession(false);
+                session.setAttribute("validUser", validUser);
+               
+                setMsg("Profile updated Successfully!");
+            } else {
+                setCtr(-1);
+                setMsg("Some error occured!");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "EDITUSER";
+    }
 	public List<Department> getDeptList() {
 		return deptList;
 	}

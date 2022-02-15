@@ -275,7 +275,7 @@
         
         <!-- Department Lists -->
         
-         <action name="departmentfortech" class="com.redress.actions.CSRAction" method = "showAllDepartments">
+         <action name="departmentfortech" class="com.redress.actions.AdminAction" method = "showAllDepartments">
             <result name="ALLDEPARTEMNTLIST">/addProduct.jsp</result>   
         </action>  
         <action name="departmentforproduct" class="com.redress.actions.AdminAction" method = "showAllDepartments">
