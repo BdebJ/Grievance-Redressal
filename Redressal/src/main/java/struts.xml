@@ -109,6 +109,11 @@
         
         <!-- Admin Actions -->
         
+        <!--  User Availability -->
+        
+        <action name="checkUsername" class="com.redress.actions.AdminAction" method = "checkUsername">
+            <result name="CHECKUSER" >/profile.jsp</result>
+        </action>
         
         <!-- Show -->
         

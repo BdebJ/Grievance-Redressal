@@ -15,10 +15,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 
-/**
-*
-*  
-*/
 public class CustomerAction implements CustomerInterface{
 
     HttpSession session = ServletActionContext.getRequest().getSession(false);

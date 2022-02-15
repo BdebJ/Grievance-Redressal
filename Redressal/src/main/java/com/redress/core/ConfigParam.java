@@ -5,10 +5,6 @@
  */
 package com.redress.core;
 
-/**
- *
- * @author Avijit Chattopadhyay
- */
 public class ConfigParam {
     private String userid;
     private String password;

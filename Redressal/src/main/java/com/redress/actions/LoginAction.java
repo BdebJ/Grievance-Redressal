@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.redress.actions;
 
 import org.apache.struts2.dispatcher.SessionMap;
@@ -13,10 +10,6 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 
-/**
- *
- *  
- */
 public class LoginAction implements SessionAware {
 
     private SessionMap<String, Object> sessionMap;

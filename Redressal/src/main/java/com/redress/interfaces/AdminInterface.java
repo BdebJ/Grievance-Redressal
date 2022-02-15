@@ -1,9 +1,5 @@
 package com.redress.interfaces;
 
-/**
-*
-*  
-*/
 public interface AdminInterface extends CSRInterface {
 
 	//Show CSR details
@@ -34,5 +30,6 @@ public interface AdminInterface extends CSRInterface {
 	//Utility functions
 	public abstract String listDepartmentComplaints();
 	public abstract String updatePassword();
+	public abstract String checkUsername();
 	
 }

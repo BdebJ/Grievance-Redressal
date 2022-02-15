@@ -1,9 +1,5 @@
 package com.redress.interfaces;
 
-/**
-*
-*  
-*/
 public interface CustomerInterface {
 	
 	public abstract String showCustomerInfoByUserID();

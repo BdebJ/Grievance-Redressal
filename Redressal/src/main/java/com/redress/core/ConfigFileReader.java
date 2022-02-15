@@ -9,10 +9,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-/**
- *
- * @author Avijit Chattopadhyay
- */
 public class ConfigFileReader {
 
     public ConfigParam getConfigParam() {

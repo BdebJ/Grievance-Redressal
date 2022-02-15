@@ -12,10 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- *
- * @author PALLAB
- */
 public class LoginDAO {
 
     public String getPasswordHash(String username) throws SQLException, Exception {

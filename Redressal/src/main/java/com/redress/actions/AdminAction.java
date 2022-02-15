@@ -14,10 +14,6 @@ import org.apache.log4j.Logger;
 import com.redress.models.User;
 import java.util.ArrayList;
 
-/**
- *
- *  
- */
 public class AdminAction extends CSRAction implements AdminInterface {
 
 	private int pid;
@@ -410,6 +406,26 @@ public class AdminAction extends CSRAction implements AdminInterface {
 		return "UPDATEPASSWORD";
 	}
 	
+	@Override
+	
+	public String checkUsername() {
+        try {
+            System.out.println("My username"+username);
+            setCtr(admin.checkUsername(username));
+            System.out.println("ctr"+getCtr());
+            if (getCtr() > 0) {
+                System.out.println(getCtr());
+                setMsg("Not available");
+                setNoData(false);
+            } else {
+                setMsg("available");
+                setNoData(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "CHECKUSER";
+    }
 	
 	public List<Department> getDeptList() {
 		return deptList;

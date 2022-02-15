@@ -959,5 +959,31 @@ public class AdminDAO {
 			}
 		}
 	}
+	
+	public int checkUsername(String username) throws Exception {
+        ResultSet rs = null;
+        Connection con = null;
+        try {
+            con = ConnectionManager.getConnection();
+            System.out.println(username);
+            String sql = "SELECT * FROM userinfo WHERE username =?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return 1;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+        return 0;
+    }
+
 
 }

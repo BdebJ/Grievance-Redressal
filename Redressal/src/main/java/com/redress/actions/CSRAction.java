@@ -14,10 +14,6 @@ import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 
-/**
-*
-*  ./
-*/
 public class CSRAction implements CSRInterface{
 
 	 private List<User> customerList = null;

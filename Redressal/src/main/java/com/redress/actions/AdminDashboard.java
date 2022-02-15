@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.redress.actions;
 
 import com.redress.dao.AdminDAO;
@@ -14,10 +10,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 
-/**
- *
- * @author PALLAB
- */
 public class AdminDashboard {
     private String msg = "";
      private List<User> userList = null;
