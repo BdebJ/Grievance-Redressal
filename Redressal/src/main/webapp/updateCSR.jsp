@@ -52,8 +52,8 @@
                         <div class="card-body">
                             <form action ="updateCSR" method ="post">
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="pid" type="text" name ="pid" placeholder="userid" value='<s:property value="pid"/>' readonly/>
-                                    <label for="username">User id</label>
+                                    <input class="form-control" id="pid" type="hidden" name ="pid" placeholder="userid" value='<s:property value="pid"/>' readonly/>
+                                    
                                 </div>
                                 <div class="form-floating mb-3">
                                     <input class="form-control" id="username" type="text" name ="username" placeholder="username" value='<s:property value="username"/>'/>

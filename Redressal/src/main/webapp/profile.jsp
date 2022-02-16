@@ -81,7 +81,6 @@
                     data: {username: username},
                     success: function (resultText) {
                         var h = ${sessionScope.validUser.getPid()};
-
                         alert(h);
                         $('#result').html(h);
                     },
@@ -93,6 +92,40 @@
 
 
         </script>
+        
+        <script type="text/javascript">
+function fetchTypeId(type) {
+var selectedText = type.options[type.selectedIndex].innerHTML;
+var selectedValue = type.value;
+alert("Selected Value: " + selectedValue );
+$.ajax({
+    url: 'checkUsername',
+    method: "POST",
+    data: {username: "11kk"},
+    success: function (data) {
+    	alert(data.msg);
+    	if(data.noData == false){                
+    	    $('#availability').html('<span>not available</span>');        
+    	    $('#update').attr("disabled",true);
+    	   }
+    	   else{   
+    	     $('#availability').html('<span>available</span>');
+    	     $('#update').attr("disabled",false);
+    	  }
+    	/* 
+        var h = resultText.noData;
+        alert(h);
+        $('#result').html(h); */
+    },
+    error: function (jqXHR, exception) {
+        console.log('Error occured!!');
+        var h = "Error";
+        alert(h);
+    }
+});
+
+}
+</script>
  
         <style>
 
@@ -178,6 +211,12 @@
                         <li class="breadcrumb-item active">Update your profile</li>
 
                     </ol>
+<%--                     <select name="type" id="type" onchange="fetchTypeId(this)">
+<option value=""></option>
+<option value="L1">L1</option>
+<option value="L2">L2</option>
+<option value="L3">L3</option>
+</select> --%>
                     <div class="tabs">
                         <input type="radio" class="tabs__radio" name="tabs-example" id="tab1" checked>
                         <label for="tab1" class="tabs__label">Profile</label>
@@ -208,6 +247,7 @@
                                             <div class="card-body">
                                                 <form action="editprofile" method ="post">
                                                     <div class="form-floating mb-3">
+                                            <%--         <span id = "availability" /> --%>
                                                         <input class="form-control" id="username" name="username" type="text" value="${sessionScope.validUser.getUsername()}" placeholder="username" onkeyup="checkUsername(username)" readonly/>
                                                         <input class="form-control" id="pid" type="hidden" value="${sessionScope.validUser.getPid()}" name ="pid" />
                                                         <label for="username">Username </label

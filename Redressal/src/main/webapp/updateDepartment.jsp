@@ -61,8 +61,8 @@
                         <div class="card-body">
                             <form action ="updatedepartmentdetails" method ="post">
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="pid" type="text" name ="deptid" placeholder="Department id" value='<s:property value="deptid"/>' readonly/>
-                                    <label for="prodid">Department id</label>
+                                    <input class="form-control" id="pid" type="hidden" name ="deptid" placeholder="Department id" value='<s:property value="deptid"/>' readonly/>
+                                    
                                 </div>
                                    
 

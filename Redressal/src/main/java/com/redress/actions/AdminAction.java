@@ -1,6 +1,7 @@
 package com.redress.actions;
 
 import com.lambdaworks.crypto.SCryptUtil;
+import com.opensymphony.xwork2.ActionSupport;
 import com.redress.dao.AdminDAO;
 import com.redress.interfaces.AdminInterface;
 import com.redress.models.Department;
@@ -412,9 +413,9 @@ public class AdminAction extends CSRAction implements AdminInterface {
 	@Override
 	public String checkUsername() {
         try {
-            System.out.println("My username"+username);
+            System.out.println("My username" +username);
             setCtr(admin.checkUsername(username));
-            System.out.println("ctr"+getCtr());
+            System.out.println("ctr "+getCtr());
             if (getCtr() > 0) {
                 System.out.println(getCtr());
                 setMsg("Not available");
@@ -426,7 +427,7 @@ public class AdminAction extends CSRAction implements AdminInterface {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "CHECKUSER";
+        return ActionSupport.SUCCESS;
     }
 	
 	@Override

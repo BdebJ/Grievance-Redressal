@@ -4,8 +4,15 @@
 
 <struts>
     <!-- Configuration for the default package. -->
-    <package name="default" extends="struts-default">   
-        
+<!--     <package name="base" namespace="/" extends="json-default">
+    <action name="checkUsername" class="com.redress.actions.AdminAction" method = "checkUsername">
+    <result type="json">
+        <param name="root">action</param>
+    </result>
+</action>
+    </package> -->
+
+    <package name="default" extends="struts-default">  
         <!--Login Actions-->
         <action name="logon" class="com.redress.actions.LoginAction" method = "validateLoginCredentials">
             <result name="successAdmin" type ="chain">admindashboard</result>  
@@ -111,10 +118,10 @@
         
         <!--  User Availability -->
         
-        <action name="checkUsername" class="com.redress.actions.AdminAction" method = "checkUsername">
+       <!--  <action name="checkUsername" class="com.redress.actions.AdminAction" method = "checkUsername">
             <result name="CHECKUSER" >/profile.jsp</result>
         </action>
-        
+         -->
         <!-- Show -->
         
         	<!-- Show Customers -->
@@ -283,7 +290,10 @@
         </action>  
         <action name="departmentname" class="com.redress.actions.AdminAction" method = "showAllDepartments">
             <result name="ALLDEPARTEMNTLIST">/addTechnician.jsp</result>   
-        </action>     
+        </action>  
+        <action name="departmentfortechupdate" class="com.redress.actions.AdminAction" method = "showAllDepartments">
+            <result name="ALLDEPARTEMNTLIST">/updateTechnician.jsp</result> 
+        </action>
         
         
     </package>

@@ -52,8 +52,8 @@
                         <div class="card-body">
                             <form action ="updatetechnician" method ="post">
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="pid" type="text" name ="techid" placeholder="techid" value='<s:property value="techid"/>' readonly/>
-                                    <label for="techid">Technician id</label>
+                                    <input class="form-control" id="pid" type="hidden" name ="techid" placeholder="techid" value='<s:property value="techid"/>' readonly/>
+                                 
                                 </div>
                                 <div class="form-floating mb-3">
                                     <input class="form-control" id="username" type="text" name ="techname" placeholder="techname" value='<s:property value="techname"/>'/>

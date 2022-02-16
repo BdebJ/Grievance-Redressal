@@ -57,8 +57,16 @@
                         <div class="card-body">
                             <form action ="updateproductdetails" method ="post">
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="pid" type="text" name ="prodid" placeholder="Product id" value='<s:property value="prodid"/>' readonly/>
-                                    <label for="prodid">Poduct id</label>
+                                    <input class="form-control" id="pid" type="hidden" name ="prodid" placeholder="Product id" value='<s:property value="prodid"/>' readonly/>
+                                    
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="prodname" type="text" name="prodname" placeholder="prodname"value='<s:property value="prodname"/>' />
+                                    <label for="prodname">Product Name</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="address" name="prodmodel" type ="text"  placeholder="prodmodel" value='<s:property value="prodmodel"/>'/>
+                                    <label for="prodmodel">Product Model</label>
                                 </div>
                                 <div class="form-floating mb-3">
                                     <select class="form-control" name="deptid" required>
@@ -72,14 +80,7 @@
                                         <label for="deptid">Department Name</label>
                                 </div>        
 
-                                <div class="form-floating mb-3">
-                                    <input class="form-control" id="prodname" type="text" name="prodname" placeholder="prodname"value='<s:property value="prodname"/>' />
-                                    <label for="prodname">Product Name</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input class="form-control" id="address" name="prodmodel" type ="text"  placeholder="prodmodel" value='<s:property value="prodmodel"/>'/>
-                                    <label for="prodmodel">Product Model</label>
-                                </div>
+                                
                                 <div class="form-floating mb-3">
                                     <select class="form-control" name="prodstatus" id="prodstatus" required>
                                         <option value="0">Inactive</option>
