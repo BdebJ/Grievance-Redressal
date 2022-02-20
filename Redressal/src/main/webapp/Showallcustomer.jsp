@@ -112,12 +112,15 @@ tr td:first-child:before {
 										<td><s:property value="address" /></td>
 										<td><s:property value="email" /></td>
 										<td><s:property value="phno" /></td>
-										<s:if test="userstatus == 1">
-											<td>Active</td>
-										</s:if>
-										<s:elseif test="userstatus==0">
+										<s:if test="userstatus==0">
 											<td>Inactive</td>
+										</s:if>
+										<s:elseif test="userstatus==1">
+											<td>Active</td>
 										</s:elseif>
+										<s:else>
+											<td>Removed</td>
+										</s:else>
 									</tr>
 								</s:iterator>
 							</table>

@@ -26,7 +26,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - Admin</title>
+        <title>Update Product</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link href="assets/css/styles.css" rel="stylesheet" />
@@ -41,6 +41,13 @@
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Update Product details by filling all the fields.</li>
                     </ol>
+                    
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                    <button onclick="history.back()" type="button"
+								class="btn btn-sm btn-outline-secondary">
+								<i class='fa fa-arrow-left'></i> Back
+							</button>
+                    </div>
 
                     <s:if test="ctr>0">
                         <div class = "alert alert-success mt-2" role = "alert"><s:property value="msg" /></div>
