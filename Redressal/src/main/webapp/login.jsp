@@ -20,7 +20,8 @@
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="assets/css/login.css">
-
+ <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style type="text/css">
 ::selection {
 	background: rgba(26, 188, 156, 0.3);
@@ -98,12 +99,20 @@ form .row input::placeholder {
 form .button input:hover {
 	background: #12876f;
 }
+.field-icon {
+  float: right;
+  margin-left: -25px;
+  margin-top: 15px;
+  position: relative;
+  z-index: 2;
+}
 
 </style>
 
 </head>
 
 <body>
+
 	<main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
 		<div class="container">
 			<div class="card login-card">
@@ -130,7 +139,11 @@ form .button input:hover {
 										<i class="fa fa-lock"></i> <input type="password"
 											name="password" id="password" class="form-control"
 											placeholder="***********" required>
-									</div>
+<%-- 											<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password" id ="toggle-password"></span>
+ --%>									
+ 											<span id = "togglepassword" class="fa fa-fw fa-eye field-icon"></span>
+ 											</div>
+									
 									<div class="row button">
 										<input name="login" id="login"
 											class="btn btn-block login-btn mb-4" type="submit"
@@ -158,11 +171,9 @@ form .button input:hover {
                   </div>
                   </div>
                   <div class="form-group mb-4">
-                  <div class="input-icons">
                     <label for="password" class="sr-only">Password</label>
                     <i class="fa fa-lock icon"></i>
                     <input type="password" name="password" id="password" class="form-control" placeholder="***********">
-                  </div>
                   </div>
                   <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Login"> 
                 </form> -->
@@ -193,4 +204,15 @@ form .button input:hover {
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
+<script>
+togglepassword.addEventListener('click',function(){
+	var x = document.getElementById("password");
+	$(this).toggleClass("fa-eye fa-eye-slash");
+	  if (x.type === "password") {
+	    x.type = "text";
+	  } else {
+	    x.type = "password";
+	  }
+	})
+</script>
 </html>

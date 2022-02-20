@@ -42,7 +42,6 @@
         <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
-        
         <script type="text/javascript">
 
             function checkUsername(username)
@@ -144,7 +143,14 @@
             .tabs__radio:checked + .tabs__label + .tabs__content {
                 display: initial;
             }
-
+.field-icon {
+  float: right;
+  margin-left: -25px;
+   margin-right: 15px;
+  margin-top: -35px;
+  position: relative;
+  z-index: 2;
+}
         </style>
     </head>
     <body oncontextmenu='return false' class="sb-nav-fixed">
@@ -274,7 +280,7 @@
                                         </div>
 
                                         <div class="card-body">
-                                            <form action="updatepassword" method ="post">
+                                            <form action="updatepassword" method ="post" autocomplete="off">
                                                 <div class="form-floating mb-3">
                                                     <input class="form-control" id="input" name="username" type="text" value="${sessionScope.validUser.getUsername()}" placeholder="username" readonly/>
                                                     <input class="form-control" id="pid" type="hidden" value="${sessionScope.validUser.getPid()}" name ="pid" />
@@ -286,8 +292,15 @@
                                                
 
                                                 <div class="form-floating mb-3">
-                                                    <input class="form-control" id="password" name="password" value="" type ="text"  placeholder="********" />
-                                                    <label for="newpassword">New password</label>
+                                                <!-- Fake password field to avoid autofilled -->
+                                                <input id="password" style="display:none" type="password" name="fakepasswordremembered">
+                                                    <input class="form-control"  autocomplete="new-password" id="assword" name="assword"  type ="password" value="" placeholder="********" />
+                                                    <label for="newpassword">New password</label>                                                    
+                                                </div>
+
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" id="password" name="password"  type ="password"  placeholder="********" />
+                                                    <label for="newpassword">Confirm Password</label>
                                                 </div>
 
                                                 <div class="mt-4 mb-0">
@@ -317,6 +330,5 @@
 <script src="assets/demo/chart-bar-demo.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
 <script src="assets/js/datatables-simple-demo.js"></script>
-
 </body>
 </html>
