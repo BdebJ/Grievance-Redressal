@@ -227,18 +227,17 @@ public class AdminDAO {
         try {
 
             con = ConnectionManager.getConnection();
-            String sql = "UPDATE userinfo SET firstname =? , lastname = ?, address =?, email =?, phno =?, userstatus = ? WHERE pid = ?";
+            String sql = "UPDATE userinfo SET username = ? , firstname =? , lastname = ?, address =?, email =?, phno =?, userstatus = ? WHERE pid = ?";
             PreparedStatement ps = con.prepareStatement(sql);
-
-            ps.setString(1, firstname);
-            ps.setString(2, lastname);
-            ps.setString(3, address);
-            ps.setString(4, email);
-            ps.setString(5, phno);
-            ps.setInt(6, userstatus);
-            ps.setInt(7, pid);
-
-
+            
+            ps.setString(1, username);
+            ps.setString(2, firstname);
+            ps.setString(3, lastname);
+            ps.setString(4, address);
+            ps.setString(5, email);
+            ps.setString(6, phno);
+            ps.setInt(7, userstatus);
+            ps.setInt(8, pid);
             i = ps.executeUpdate();
             return i;
         } catch (Exception e) {

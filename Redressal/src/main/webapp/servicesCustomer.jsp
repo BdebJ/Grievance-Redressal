@@ -3,7 +3,7 @@
         <div class="container sess-in-cont">
             <div class="session-title row">
                 <h2>Our Services</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse venenatis magna odio, eu vehicula augue suscipit ac. Pellentesque quis dui lorem. </p>
+                <p>Services Provide by us </p>
             </div>
             <div class="sess-row row">
                 <div class="col-md-4">
@@ -11,7 +11,7 @@
                         <figure class="imghvr-fade">
                             <img src="assets/images/services/s1.jpg" alt="">
                             <figcaption>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse venenatis magna odio, eu vehicula augue suscipit ac. Pellentesque quis dui lorem. Vestibulum sed blandit diam,
+                                CCTV Installation is Provided by us, Once you purchased our device our service team will install it within 12 hours. 
                             </figcaption>
                         </figure>
                         <h6>CCTV Installation</h6>
@@ -22,7 +22,7 @@
                         <figure class="imghvr-fade">
                             <img src="assets/images/services/s2.jpg" alt="">
                             <figcaption>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse venenatis magna odio, eu vehicula augue suscipit ac. Pellentesque quis dui lorem. Vestibulum sed blandit diam,
+                                We Provide Home Automation services.
                             </figcaption>
                         </figure>
                         <h6>Home Automation</h6>
@@ -33,7 +33,7 @@
                         <figure class="imghvr-fade">
                             <img src="assets/images/services/s3.jpg" alt="">
                             <figcaption>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse venenatis magna odio, eu vehicula augue suscipit ac. Pellentesque quis dui lorem. Vestibulum sed blandit diam,
+                               Make your home as well as your office Secured with Smart Security .
                             </figcaption>
                         </figure>
                         <h6>Home & Office Security</h6>

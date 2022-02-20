@@ -40,13 +40,22 @@ public class AdminAction extends CSRAction implements AdminInterface {
 	private String address;
 	private String email;
 	private String phno;
+	private boolean noData;
+
+	public boolean getNoData() {
+		return noData;
+	}
+
+	public void setNoData(boolean noData) {
+		this.noData = noData;
+	}
 
 	private List<User> csrList = null;
 	private List<Department> deptList = null;
 
 	AdminDAO admin = new AdminDAO();
 	private static final Logger logger = Logger.getLogger(AdminAction.class);
-	
+
 	@Override
 	public String showCSR() {
 		logger.info("inside AdminAction showCSR method, Showing csr list");
@@ -177,28 +186,28 @@ public class AdminAction extends CSRAction implements AdminInterface {
 	public String updateDepartment() {
 		logger.info("inside AdminAction updateDepartment method, Updating Department");
 		try {
-            if (getSubmitType().equals("updatedata")) {
-                System.out.println("Here I am");
-                Department dept = admin.fetchDepartmentDetails(deptid);
-                if (dept != null) {
-                    deptid = dept.getDeptid();
-                    deptname = dept.getDeptname();
-                    deptstatus = dept.getDeptstatus();
-                }
-            } else {
-                setCtr(admin.updateDepartment(deptid, deptname, deptstatus));
-                if (getCtr() > 0) {
-                    setMsg("Department updated Successfully!");
-                } else {
-                    setMsg("Some error");
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+			if (getSubmitType().equals("updatedata")) {
+				System.out.println("Here I am");
+				Department dept = admin.fetchDepartmentDetails(deptid);
+				if (dept != null) {
+					deptid = dept.getDeptid();
+					deptname = dept.getDeptname();
+					deptstatus = dept.getDeptstatus();
+				}
+			} else {
+				setCtr(admin.updateDepartment(deptid, deptname, deptstatus));
+				if (getCtr() > 0) {
+					setMsg("Department updated Successfully!");
+				} else {
+					setMsg("Some error");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-        return "UPDATEDEPARTMENT";
-    }
+		return "UPDATEDEPARTMENT";
+	}
 
 	@Override
 	public String updateProduct() {
@@ -409,48 +418,49 @@ public class AdminAction extends CSRAction implements AdminInterface {
 		}
 		return "UPDATEPASSWORD";
 	}
-	
+
 	@Override
 	public String checkUsername() {
-        try {
-            System.out.println("My username" +username);
-            setCtr(admin.checkUsername(username));
-            System.out.println("ctr "+getCtr());
-            if (getCtr() > 0) {
-                System.out.println(getCtr());
-                setMsg("Not available");
-                setNoData(false);
-            } else {
-                setMsg("available");
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return ActionSupport.SUCCESS;
-    }
-	
+		try {
+			System.out.println("My username" + username);
+			setCtr(admin.checkUsername(username));
+			System.out.println("ctr " + getCtr());
+			if (getCtr() > 0) {
+				System.out.println(getCtr());
+				setMsg("Not available");
+				setNoData(false);
+			} else {
+				setMsg("available");
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ActionSupport.SUCCESS;
+	}
+
 	@Override
 	public String editProfile() {
-        try {
-            setCtr(admin.editProfile(pid, firstname, lastname, address, email, phno));
-            if (getCtr() > 0) {
-                User validUser = admin.fetchUserDetails(pid);
-                HttpSession session = ServletActionContext.getRequest().getSession(false);
-                session.setAttribute("validUser", validUser);
-               
-                setMsg("Profile updated Successfully!");
-            } else {
-                setCtr(-1);
-                setMsg("Some error occured!");
-            }
+		try {
+			setCtr(admin.editProfile(pid, firstname, lastname, address, email, phno));
+			if (getCtr() > 0) {
+				User validUser = admin.fetchUserDetails(pid);
+				HttpSession session = ServletActionContext.getRequest().getSession(false);
+				session.setAttribute("validUser", validUser);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+				setMsg("Profile updated Successfully!");
+			} else {
+				setCtr(-1);
+				setMsg("Some error occured!");
+			}
 
-        return "EDITUSER";
-    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "EDITUSER";
+	}
+
 	public List<Department> getDeptList() {
 		return deptList;
 	}
@@ -610,11 +620,13 @@ public class AdminAction extends CSRAction implements AdminInterface {
 	public void setProdname(String prodname) {
 		this.prodname = prodname;
 	}
+
 	public int getDeptstatus() {
-        return deptstatus;
-    }
-    public void setDeptstatus(int deptstatus) {
-        this.deptstatus = deptstatus;
-    }
+		return deptstatus;
+	}
+
+	public void setDeptstatus(int deptstatus) {
+		this.deptstatus = deptstatus;
+	}
 
 }

@@ -35,35 +35,35 @@
         <div class="container">
             <div class="session-title row">
                 <h2>Key Features</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse venenatis magna odio, eu vehicula augue suscipit ac. Pellentesque quis dui lorem. </p>
+                <p> These are the key features of Smart Security </p>
             </div>
             <div class="key-row row">
                 <div class="col-md-3">
                     <div class="key-single">
                         <i class="fas fa-fingerprint"></i>
                         <h6>High Security</h6>
-                        <p>Sed ligula eros, convallis sit amet ullamcorper sit amet, consequat vel nulla. Maecenas quis convallis dolor. Ut enim lacus, aliquet at neque et,</p>
+                        <p>Make yourself highly secured with our Devices ,Once you purchase our device your security will be maintained by our devices.</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="key-single">
                         <i class="fas fa-user-lock"></i>
                         <h6>Full Device Protection</h6>
-                        <p>Sed ligula eros, convallis sit amet ullamcorper sit amet, consequat vel nulla. Maecenas quis convallis dolor. Ut enim lacus, aliquet at neque et,</p>
+                        <p>The Complete Device Protection is a 365 day complete post-purchase solution with personalized door-to-door service.We provide the complete Device protection for 2 years when you purchase a device from us.</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="key-single">
                         <i class="fas fa-video"></i>
                         <h6>Remote Monitoring</h6>
-                        <p>Sed ligula eros, convallis sit amet ullamcorper sit amet, consequat vel nulla. Maecenas quis convallis dolor. Ut enim lacus, aliquet at neque et,</p>
+                        <p>Remote Monitoring (RMON) is a standard specification that facilitates the monitoring of network operational activities through the use of remote devices known as monitors or probes.</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="key-single">
                         <i class="far fa-folder-open"></i>
                         <h6>Full Backup of Information</h6>
-                        <p>Sed ligula eros, convallis sit amet ullamcorper sit amet, consequat vel nulla. Maecenas quis convallis dolor. Ut enim lacus, aliquet at neque et,</p>
+                        <p>A full backup is the process of creating one or more copies of all organizational data files in a single backup operation to protect them.</p>
                     </div>
                 </div>
             </div>
@@ -75,37 +75,48 @@
         <div class="container test-container">
             <div class="session-title row">
                 <h2>Testimonial</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse venenatis magna odio, eu vehicula augue suscipit ac. Pellentesque quis dui lorem. </p>
+                <p>These are the developers of our website </p>
             </div>
             <div class="test-row row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="test-key">
-                        <img src="assets/images/testimonial/member-01.jpg" alt="">
+                        <img src="assets/images/testimonial/pallab.jpg" alt="">
 
-                        <h5>Raouth Samuel</h5>
-                        <a href="">Manager</a>
-
-                        <p><i>vehicula pharetra est. Phasellus sagittis turpis diam. Maecenas faucibus mollis diam, at facilisis ex sagittis vel</i></p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="test-key">
-                        <img src="assets/images/testimonial/member-02.jpg" alt="">
-
-                        <h5>Andrew Samuel</h5>
+                        <h5>Pallab Tewary</h5>
                         <a href="">Developer</a>
 
-                        <p>vehicula pharetra est. Phasellus sagittis turpis diam. Maecenas faucibus mollis diam, at facilisis ex sagittis vel</p>
+                        <p><i>Hello! This is Pallab Tewary , Pursuing MCA , Worked in this Project as a Developer</i></p>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="test-key">
-                        <img src="assets/images/testimonial/member-03.jpg" alt="">
+                        <img src="assets/images/testimonial/anirban.jpg" alt="">
 
-                        <h5>Arun Kumar</h5>
-                        <a href="">Manager</a>
+                        <h5>Anirban Das</h5>
+                        <a href="">Developer</a>
 
-                        <p>vehicula pharetra est. Phasellus sagittis turpis diam. Maecenas faucibus mollis diam, at facilisis ex sagittis vel</p>
+                        <p>Hello! This is Anirban Das , Pursuing MCA , Worked in this Project as a Developer</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="test-key">
+                        <img src="assets/images/testimonial/isita.jpg" alt="">
+
+                        <h5>Isita Ghosh</h5>
+                        <a href="">Developer</a>
+
+                        <p>Hello! This is Isita Ghosh , Pursuing MCA , Worked in this Project as a Developer</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="test-key">
+                        <img src="assets/images/testimonial/buddha.jpg" alt="">
+
+                        <h5>Buddhadeb Jena</h5>
+                        <a href="">Developer</a>
+
+                        <p>Hello! This is Buddhadeb Jena , Pursuing Btech , Worked in this Project as a Developer</p>
                     </div>
                 </div>
             </div>

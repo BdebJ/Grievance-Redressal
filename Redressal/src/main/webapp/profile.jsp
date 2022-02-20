@@ -36,97 +36,49 @@
         <title>Edit Profile</title>
         <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' rel='stylesheet'>
         <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css">
+        
         <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
-        <!--        <script>
-                    $(document).ready(function () {
-                        $("username").blur(function () {
-                            var input = $(this).val();
-                            alert(input);
-                            $.ajax({
-                                url:'checkUsername',
-                                method:"POST",
-                                data:{username:input},
-                                success:function(data)
-                                {
-                                     $("availability").ajaxComplete(
-                                function(event, request, settings) {
-                                    $("availability").html(data);
-                                });
-        //                            $('#availability').html(data);
-        //                            if(data!='0'){
-        //                                $('#availability').html('<span>not available</span>')
-        //                                $('#update').attr("disabled",true);
-        //                            }
-        //                            else{
-        //                                $('#availability').html('<span>available</span>')
-        //                                $('#update').attr("disabled",false);
-        //                            }
-                                }
-                            })
-                        });
-                    });
-                </script>-->
-        <script>
+        
+        <script type="text/javascript">
 
             function checkUsername(username)
             {
-
+            	var currUsername = '${sessionScope.validUser.getUsername()}';
+            	
                 var username = document.getElementById("username").value;
-                /* alert(username); */
+                if(currUsername == username){
+                
+                	$('#update').attr("disabled",false);
+                	return;
+                }
                 $.ajax({
                     url: 'checkUsername',
                     method: "POST",
                     data: {username: username},
-                    success: function (resultText) {
-                        var h = ${sessionScope.validUser.getPid()};
-                        alert(h);
-                        $('#result').html(h);
+                    success: function (data) {
+                    	if(!data.noData){                
+                    	    $('#availability').html('<span style="font-size: 80%; color: red;"><i class="fa fa-times"></i> username already exist</span>');        
+                    	    $('#update').attr("disabled",true);
+                    	   }
+                    	   else{   
+                    	     $('#availability').html('<span style="font-size: 100%; color: green;"><i class="fa fa-check"></i> username available</span>');
+                    	     $('#update').attr("disabled",false);
+                    	  }
+                    	
                     },
                     error: function (jqXHR, exception) {
                         console.log('Error occured!!');
+                        var h = "Error";
+                        alert(h);
                     }
                 });
-            }
 
-
-        </script>
-        
-        <script type="text/javascript">
-function fetchTypeId(type) {
-var selectedText = type.options[type.selectedIndex].innerHTML;
-var selectedValue = type.value;
-alert("Selected Value: " + selectedValue );
-$.ajax({
-    url: 'checkUsername',
-    method: "POST",
-    data: {username: "11kk"},
-    success: function (data) {
-    	alert(data.msg);
-    	if(data.noData == false){                
-    	    $('#availability').html('<span>not available</span>');        
-    	    $('#update').attr("disabled",true);
-    	   }
-    	   else{   
-    	     $('#availability').html('<span>available</span>');
-    	     $('#update').attr("disabled",false);
-    	  }
-    	/* 
-        var h = resultText.noData;
-        alert(h);
-        $('#result').html(h); */
-    },
-    error: function (jqXHR, exception) {
-        console.log('Error occured!!');
-        var h = "Error";
-        alert(h);
-    }
-});
-
-}
-</script>
- 
+                }
+                </script>
         <style>
 
             .form-control:focus {
@@ -193,8 +145,6 @@ $.ajax({
                 display: initial;
             }
 
-
-
         </style>
     </head>
     <body oncontextmenu='return false' class="sb-nav-fixed">
@@ -209,14 +159,8 @@ $.ajax({
                     <h1 class="mt-4">Edit Profile</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Update your profile</li>
-
                     </ol>
-<%--                     <select name="type" id="type" onchange="fetchTypeId(this)">
-<option value=""></option>
-<option value="L1">L1</option>
-<option value="L2">L2</option>
-<option value="L3">L3</option>
-</select> --%>
+                    
                     <div class="tabs">
                         <input type="radio" class="tabs__radio" name="tabs-example" id="tab1" checked>
                         <label for="tab1" class="tabs__label">Profile</label>
@@ -247,15 +191,14 @@ $.ajax({
                                             <div class="card-body">
                                                 <form action="editprofile" method ="post">
                                                     <div class="form-floating mb-3">
-                                            <%--         <span id = "availability" /> --%>
-                                                        <input class="form-control" id="username" name="username" type="text" value="${sessionScope.validUser.getUsername()}" placeholder="username" onkeyup="checkUsername(username)" readonly/>
+                                                        <input class="form-control" id="username" name="username" type="text" value="${sessionScope.validUser.getUsername()}" placeholder="username" onkeyup="checkUsername(username)" />
                                                         <input class="form-control" id="pid" type="hidden" value="${sessionScope.validUser.getPid()}" name ="pid" />
-                                                        <label for="username">Username </label
-
+                                                        <label for="username">Username </label>
+                                                         <span id="availability"></span>
                                                     </div>
-                                                    <span id="availability"></span>
-                                                    <span style="font-size: 80%; color: grey;">username can't be changed right now.</span>
-                                                    <span id ="result"> </span>
+                                                   
+                                                    <%-- <span style="font-size: 80%; color: grey;">username can't be changed right now.</span> --%>
+                                                   
                                                     <div class="row mb-3">
                                                         <div class="col-md-6">
                                                             <div class="form-floating mb-3 mb-md-0">
@@ -293,9 +236,9 @@ $.ajax({
                                         </div>
                                     </div>
                                 </div>
-           
+
                         </div>
-                    </div>
+                    
                     <input type="radio" class="tabs__radio" name="tabs-example" id="tab2">
                     <label for="tab2" class="tabs__label">Change Password</label>
                     <div class="tabs__content">
@@ -337,10 +280,10 @@ $.ajax({
                                                     <input class="form-control" id="pid" type="hidden" value="${sessionScope.validUser.getPid()}" name ="pid" />
 
                                                     <label for="username">Username</label>
-
+ 													<span style="font-size: 80%; color: grey;">username can't be changed.</span>
                                                 </div>
                                                 <span id ="availability"></span>
-                                                <span style="font-size: 80%; color: grey;">username can't be changed right now.</span>
+                                               
 
                                                 <div class="form-floating mb-3">
                                                     <input class="form-control" id="password" name="password" value="" type ="text"  placeholder="********" />
@@ -358,7 +301,7 @@ $.ajax({
                             </div>
                         </div>
                     </div>
-
+</div>
                 </div>
                 </main>
         </div>

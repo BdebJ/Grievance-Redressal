@@ -30,6 +30,39 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link href="assets/css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+            function checkUsername()
+            {
+
+                var username = document.getElementById("username").value;
+                
+                $.ajax({
+                    url: 'checkUsername',
+                    method: "POST",
+                    data: {username: username},
+                    success: function (data) {
+                    	if(!data.noData){                
+                    	    $('#availability').html('<span style="font-size: 80%; color: red;"><i class="fa fa-times"></i> username already exist</span>');        
+                    	    $('#add').attr("disabled",true);
+                    	   }
+                    	   else{   
+                    	     $('#availability').html('<span style="font-size: 80%; color: green;"><i class="fa fa-check"></i> username available</span>');
+                    	     $('#add').attr("disabled",false);
+                    	  }
+                    	
+                    },
+                    error: function (jqXHR, exception) {
+                        console.log('Error occured!!');
+                        var h = "Error";
+                        alert(h);
+                    }
+                });
+
+                }
+                </script>
+    
     </head>
     <body class="sb-nav-fixed">
         
@@ -43,6 +76,12 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Add CSR</li>
                         </ol>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                    <button onclick="history.back()" type="button"
+								class="btn btn-sm btn-outline-secondary">
+								<i class='fa fa-arrow-left'></i> Back
+							</button>
+                    </div>
                         <s:if test="ctr>0">
                         <div class = "alert alert-success mt-2" role = "alert"><s:property value="msg" /></div>
                     </s:if>
@@ -59,8 +98,9 @@
                             <div class="card-body">
                                 <form action ="addcsr" method ="post">
                                     <div class="form-floating mb-3">
-                                                <input class="form-control" id="username" type="text" name ="username" placeholder="username" required/>
+                                                <input class="form-control" id="username" type="text" name ="username" placeholder="username" onkeyup ="checkUsername()" required/>
                                                 <label for="username">Username</label>
+                                                <span id="availability"></span>
                                             </div>        
                                     <div class="row mb-3">
                                                 <div class="col-md-6">
@@ -91,7 +131,7 @@
                                     
                                             
                                             <div class="mt-4 mb-0">
-                                                <div class="d-grid"><input type = "submit" class="btn btn-primary btn-block" value="Add CSR"></a></div>
+                                                <div class="d-grid"><input type = "submit" class="btn btn-primary btn-block" id ="add" value="Add CSR" /></div>
                                             </div>
                                         </form>
                                  

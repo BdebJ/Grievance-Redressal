@@ -4,14 +4,14 @@
 
 <struts>
     <!-- Configuration for the default package. -->
-<!--     <package name="base" namespace="/" extends="json-default">
+    <package name="base" namespace="/" extends="json-default">
     <action name="checkUsername" class="com.redress.actions.AdminAction" method = "checkUsername">
     <result type="json">
         <param name="root">action</param>
     </result>
 </action>
-    </package> -->
-
+    </package>
+    
     <package name="default" extends="struts-default">  
         <!--Login Actions-->
         <action name="logon" class="com.redress.actions.LoginAction" method = "validateLoginCredentials">
