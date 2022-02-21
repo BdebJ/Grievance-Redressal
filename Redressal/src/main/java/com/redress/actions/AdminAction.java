@@ -41,6 +41,15 @@ public class AdminAction extends CSRAction implements AdminInterface {
 	private String email;
 	private String phno;
 	private boolean noData;
+	private int ctr;
+
+	public int getCtr() {
+		return ctr;
+	}
+
+	public void setCtr(int ctr) {
+		this.ctr = ctr;
+	}
 
 	public boolean getNoData() {
 		return noData;
@@ -404,7 +413,9 @@ public class AdminAction extends CSRAction implements AdminInterface {
 	@Override
 	public String updatePassword() {
 		try {
+			System.out.println("My password" + password);
 			password = SCryptUtil.scrypt(password, 2048, 8, 1);
+			System.out.println("My password" + password);
 			setCtr(admin.updatePassword(password, pid));
 			if (getCtr() > 0) {
 				setMsg("Password updated Successfully!");
@@ -416,7 +427,8 @@ public class AdminAction extends CSRAction implements AdminInterface {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "UPDATEPASSWORD";
+//		return "UPDATEPASSWORD";
+		return ActionSupport.SUCCESS;
 	}
 
 	@Override

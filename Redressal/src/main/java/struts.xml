@@ -3,14 +3,28 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-    <!-- Configuration for the default package. -->
+    <!-- Configuration for the base package. -->
+    	
     <package name="base" namespace="/" extends="json-default">
-    <action name="checkUsername" class="com.redress.actions.AdminAction" method = "checkUsername">
-    <result type="json">
-        <param name="root">action</param>
-    </result>
-</action>
+    	
+    	<!--Check username available or not-->
+    	
+	    <action name="checkUsername" class="com.redress.actions.AdminAction" method = "checkUsername">
+		    <result type="json">
+		        <param name="root">action</param>
+		    </result>
+		</action>
+		
+		<!--Change password-->
+			
+	 	<action name="updatepassword" class="com.redress.actions.AdminAction" method = "updatePassword">
+			<result type="json">
+	        	<param name="root">action</param>
+	    	</result>
+		</action>
     </package>
+    
+    <!-- Configuration for the default package. -->
     
     <package name="default" extends="struts-default">  
         <!--Login Actions-->
@@ -236,9 +250,9 @@
         <action name="updateproductdetails" class="com.redress.actions.AdminAction" method = "updateProduct">
             <result name="UPDATEPRODUCT" type = "chain">showproducts</result>  
         </action>
-        <action name="updatepassword" class="com.redress.actions.AdminAction" method = "updatePassword">
+       <!--  <action name="updatepassword" class="com.redress.actions.AdminAction" method = "updatePassword">
 			<result name="UPDATEPASSWORD">/profile.jsp</result>
-		</action>
+		</action> -->
         
         
         <!-- Add -->

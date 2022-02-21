@@ -42,8 +42,40 @@
         <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+        
         <script type="text/javascript">
+        
+        // Update password
+        
+        function changePassword()
+        {
+            var password = document.getElementById("password").value;
+            var pid = document.getElementById("pid").value;
+            $.ajax({
+                url: 'updatepassword',
+                method: "POST",
+                data: {password:password , pid:pid},
+                success: function (data) {
+                	 if(data.ctr > 0){                
+                	    $('#messagepassword').html('<div class = "alert alert-success mt-2" role = "alert"> Password Updated Successfully </div>');        
+                	   
+                	   }
+                	   else{   
+                	     $('#messagepassword').html('<div class = "alert alert-danger mt-2" role = "alert"> Some error occured </div>');
+                	  }
+                	
+                },
+                error: function (jqXHR, exception) {
+                    console.log('Error occured!!');
+                    var h = "Error";
+                    alert(h);
+                }
+            });
 
+            }
+        
+        // checking username available or not
+        
             function checkUsername(username)
             {
             	var currUsername = '${sessionScope.validUser.getUsername()}';
@@ -60,11 +92,11 @@
                     data: {username: username},
                     success: function (data) {
                     	if(!data.noData){                
-                    	    $('#availability').html('<span style="font-size: 80%; color: red;"><i class="fa fa-times"></i> username already exist</span>');        
+                    	    $('#availability').html('<span style="font-size: 90%; color: red;"><i class="fa fa-times"></i> username already exist</span>');        
                     	    $('#update').attr("disabled",true);
                     	   }
                     	   else{   
-                    	     $('#availability').html('<span style="font-size: 100%; color: green;"><i class="fa fa-check"></i> username available</span>');
+                    	     $('#availability').html('<span style="font-size: 90%; color: green;"><i class="fa fa-check"></i> username available</span>');
                     	     $('#update').attr("disabled",false);
                     	  }
                     	
@@ -77,7 +109,20 @@
                 });
 
                 }
-                </script>
+           
+            var check = function() {
+          	  if (document.getElementById('password').value ==
+          	    document.getElementById('confirm_password').value) {
+          		  $('#message').html('<span style="font-size: 90%; color: green;"><i class="fa fa-check"></i> Password Matched!</span>');        
+            	    $('#update_password').attr("disabled",false);
+          	  } else {
+          	  $('#message').html('<span style="font-size: 90%; color: red;" ><i class="fa fa-exclamation-triangle"></i> Passwords are not matching </span>');        
+          	  	    $('#update_password').attr("disabled",true);
+          	  }
+          	}
+                
+       </script>
+        
         <style>
 
             .form-control:focus {
@@ -143,16 +188,10 @@
             .tabs__radio:checked + .tabs__label + .tabs__content {
                 display: initial;
             }
-.field-icon {
-  float: right;
-  margin-left: -25px;
-   margin-right: 15px;
-  margin-top: -35px;
-  position: relative;
-  z-index: 2;
-}
+
         </style>
     </head>
+    
     <body oncontextmenu='return false' class="sb-nav-fixed">
         <%if((Integer)request.getSession().getAttribute("roleid") == 1){%> 
         <jsp:include page="navbar.jsp"/>
@@ -238,12 +277,10 @@
                                                     </div>
                                                 </form>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
-
-                        </div>
+                        	</div>
                     
                     <input type="radio" class="tabs__radio" name="tabs-example" id="tab2">
                     <label for="tab2" class="tabs__label">Change Password</label>
@@ -256,31 +293,21 @@
                                         <span class="font-weight-bold">${sessionScope.validUser.getFirstname()} ${sessionScope.validUser.getLastname()}</span>
                                         <span class="text-black-50">${sessionScope.validUser.getEmail()}</span>
                                         <span class="text-black-50">Hello This is ${sessionScope.validUser.getFirstname()} Currently <%if((Integer)request.getSession().getAttribute("roleid") == 1){%> an Admin <%} else{%> a CSR <%}%> of this web page.
-
                                         </span>
-
                                     </div>
                                 </div>
                                 <div class="col-md-8">
                                     <h5> Change Your Password</h5>
-                                    <div class="p-3 py-5">
-                                        <s:if test="ctr>0">
-                                            <div class = "alert alert-success mt-2" role = "alert"><s:property value="msg" /></div>
-                                        </s:if>
-                                        <s:elseif test= "ctr==-1">
-                                            <div class = "alert alert-danger mt-2" role = "alert"><s:property value="msg" /></div>
-                                        </s:elseif>
-
+                                    <div class="p-3 py-5">                                      
+                                            <div id ="messagepassword"></div>                       
                                         <div class="d-flex justify-content-between align-items-center mb-3">
-
                                             <div class="d-flex flex-row align-items-center back"><i class="fa fa-arrow-left mr-1 mb-1"></i>
-
                                                 <%if((Integer)request.getSession().getAttribute("roleid") == 1){%><a href="admindashboard"><%} else{%><a href="csrdashboard"><%}%><h6 style="color:black">Back to Dashboard</h6></a>
                                             </div>
                                         </div>
 
                                         <div class="card-body">
-                                            <form action="updatepassword" method ="post" autocomplete="off">
+                                            <form action="#">
                                                 <div class="form-floating mb-3">
                                                     <input class="form-control" id="input" name="username" type="text" value="${sessionScope.validUser.getUsername()}" placeholder="username" readonly/>
                                                     <input class="form-control" id="pid" type="hidden" value="${sessionScope.validUser.getPid()}" name ="pid" />
@@ -290,34 +317,35 @@
                                                 </div>
                                                 <span id ="availability"></span>
                                                
-
                                                 <div class="form-floating mb-3">
                                                 <!-- Fake password field to avoid autofilled -->
-                                                <input id="password" style="display:none" type="password" name="fakepasswordremembered">
-                                                    <input class="form-control"  autocomplete="new-password" id="assword" name="assword"  type ="password" value="" placeholder="********" />
+                                                <input id="fakepassword" style="display:none" type="password" name="fakepasswordremembered">
+                                                    <input class="form-control" id="password" name="password"  type ="password" onkeyup ="check()" placeholder="********" />
                                                     <label for="newpassword">New password</label>                                                    
                                                 </div>
-
                                                 <div class="form-floating mb-3">
-                                                    <input class="form-control" id="password" name="password"  type ="password"  placeholder="********" />
-                                                    <label for="newpassword">Confirm Password</label>
+                                                    <input class="form-control" id="confirm_password" name="confirm_password"  type ="password" onkeyup ="check()"  placeholder="********" />
+                                                    <label for="confirm_password">Confirm Password</label>
+                                                    <span id ="message"></span>
                                                 </div>
 
+
                                                 <div class="mt-4 mb-0">
-                                                    <div class="d-grid"><input type = "submit" class="btn btn-primary btn-block" id="update" name='update' value="Update Password"></div>
+                                                    <div class="d-grid"><input type = "button" class="btn btn-primary btn-block" id="update_password" name='update_password' value="Update Password" onclick = "changePassword()"></div>
                                                 </div>
                                             </form>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-</div>
-                </div>
-                </main>
-        </div>
+				</div>
+            </div>
+       </main>
+    </div>
+
+<!-- scripts -->
 
 <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
 <script type='text/javascript' src=''></script>
