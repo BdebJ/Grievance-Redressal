@@ -242,55 +242,8 @@ if (request.getSession().getAttribute("validUser") == null) {
 		</div>
 	</section>
 
-	<!--###################### Key Features Starts Here ##########################-->
-	<div class="key-features container-fluid">
-		<div class="container">
-			<div class="session-title row">
-				<h2>Key Features</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Suspendisse venenatis magna odio, eu vehicula augue suscipit ac.
-					Pellentesque quis dui lorem.</p>
-			</div>
-			<div class="key-row row">
-				<div class="col-md-3">
-					<div class="key-single">
-						<i class="fas fa-fingerprint"></i>
-						<h6>High Security</h6>
-						<p>Sed ligula eros, convallis sit amet ullamcorper sit amet,
-							consequat vel nulla. Maecenas quis convallis dolor. Ut enim
-							lacus, aliquet at neque et,</p>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="key-single">
-						<i class="fas fa-user-lock"></i>
-						<h6>Full Device Protection</h6>
-						<p>Sed ligula eros, convallis sit amet ullamcorper sit amet,
-							consequat vel nulla. Maecenas quis convallis dolor. Ut enim
-							lacus, aliquet at neque et,</p>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="key-single">
-						<i class="fas fa-video"></i>
-						<h6>Remote Monitoring</h6>
-						<p>Sed ligula eros, convallis sit amet ullamcorper sit amet,
-							consequat vel nulla. Maecenas quis convallis dolor. Ut enim
-							lacus, aliquet at neque et,</p>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="key-single">
-						<i class="far fa-folder-open"></i>
-						<h6>Full Backup of Information</h6>
-						<p>Sed ligula eros, convallis sit amet ullamcorper sit amet,
-							consequat vel nulla. Maecenas quis convallis dolor. Ut enim
-							lacus, aliquet at neque et,</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<!--key features -->
+    <jsp:include page="keyFeaturesCustomer.jsp"/>
 
 
 

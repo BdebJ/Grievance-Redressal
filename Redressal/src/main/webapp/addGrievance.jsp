@@ -109,7 +109,7 @@
                                                 </option>
                                         </s:iterator>
                                     </select>
-                                    </div>
+                                </div>
                         </div>
 
                         <div style="margin-top:10px;" class="row">
@@ -122,80 +122,32 @@
 									</div>
 								</s:if>
 								<s:elseif test= "ctr==-1">
-                        <div class = "alert alert-danger mt-2" role = "alert"><s:property value="msg" /></div>
-                    </s:elseif>
-                            </div>
-                            <div class="col-sm-8">
-                           
-                            </div>
+                        			<div class = "alert alert-danger mt-2" role = "alert"><s:property value="msg" /></div>
+                    			</s:elseif>
+                            </div>                           
                         </div>
-                            </form>
-                    </div>
+                    </form>
+                </div>
                          
                     <div class="col-sm-5">
 
                         <div style="margin:50px" class="serv"> 
-
-
                             <h5 style="margin-top:10px;">Register Your Grievance </h5>
-
                             Fill all the required Details <br>
                            Then simply Submit the form<br><br>
                            Our Technician will get in touch within 24 hours<br><br>
                             for further queries<br>
                             write us on<br> group-b_grievance@group-b.com<br>
                             
-
-
                         </div>    
-
-
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-
-        <!--###################### Key Features Starts Here ##########################-->
-        <div class="key-features container-fluid">
-            <div class="container">
-                <div class="session-title row">
-                    <h2>Key Features</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse venenatis magna odio, eu vehicula augue suscipit ac. Pellentesque quis dui lorem. </p>
-                </div>
-                <div class="key-row row">
-                    <div class="col-md-3">
-                        <div class="key-single">
-                            <i class="fas fa-fingerprint"></i>
-                            <h6>High Security</h6>
-                            <p>Sed ligula eros, convallis sit amet ullamcorper sit amet, consequat vel nulla. Maecenas quis convallis dolor. Ut enim lacus, aliquet at neque et,</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="key-single">
-                            <i class="fas fa-user-lock"></i>
-                            <h6>Full Device Protection</h6>
-                            <p>Sed ligula eros, convallis sit amet ullamcorper sit amet, consequat vel nulla. Maecenas quis convallis dolor. Ut enim lacus, aliquet at neque et,</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="key-single">
-                            <i class="fas fa-video"></i>
-                            <h6>Remote Monitoring</h6>
-                            <p>Sed ligula eros, convallis sit amet ullamcorper sit amet, consequat vel nulla. Maecenas quis convallis dolor. Ut enim lacus, aliquet at neque et,</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="key-single">
-                            <i class="far fa-folder-open"></i>
-                            <h6>Full Backup of Information</h6>
-                            <p>Sed ligula eros, convallis sit amet ullamcorper sit amet, consequat vel nulla. Maecenas quis convallis dolor. Ut enim lacus, aliquet at neque et,</p>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+  <!--key features -->
+    <jsp:include page="keyFeaturesCustomer.jsp"/>
+    
   <!--Footer -->
     <jsp:include page="footerCustomer.jsp"/>
 
