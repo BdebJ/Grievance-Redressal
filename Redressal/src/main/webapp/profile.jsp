@@ -236,10 +236,12 @@
                                             <div class="card-body">
                                                 <form action="editprofile" method ="post">
                                                     <div class="form-floating mb-3">
-                                                        <input class="form-control" id="username" name="username" type="text" value="${sessionScope.validUser.getUsername()}" placeholder="username" onkeyup="checkUsername(username)" />
+                                                    
+                                                        <input class="form-control" id="username" name="username" type="text" value="${sessionScope.validUser.getUsername()}" placeholder="username" onkeyup="checkUsername(username)" required/> 
                                                         <input class="form-control" id="pid" type="hidden" value="${sessionScope.validUser.getPid()}" name ="pid" />
                                                         <label for="username">Username </label>
                                                          <span id="availability"></span>
+                                                         <span id ="spacemsg"></span>
                                                     </div>
                                                    
                                                     <%-- <span style="font-size: 80%; color: grey;">username can't be changed right now.</span> --%>
@@ -358,5 +360,25 @@
 <script src="assets/demo/chart-bar-demo.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
 <script src="assets/js/datatables-simple-demo.js"></script>
+<script>
+ $("input#username").on({
+	  keypress: function(e) {
+	    if (e.which === 96 || (e.which >= 32 && e.which <= 47) || (e.which >= 58 && e.which <= 64) || (e.which >= 91 && e.which <= 94) || (e.which >= 123 && e.which <= 126) ){
+	    	$('#spacemsg').html('<span style="font-size: 90%; color: grey;">( <i class="fa fa-exclamation-triangle fa-sm"></i>  Usernames cannot contain spaces or special characters) </span>'); 
+	    	$('#update').attr("disabled",true);
+	    	return false;
+	    	}
+	    else{
+	    	$('#spacemsg').html('');
+	    	$('#update').attr("disabled",false);
+	    }
+	  },
+		change: function() {
+	    this.value = this.value.replace(/\s/g, "");
+	    this.value = this.value.replace(/[^\w\s]/gi, '');
+		}
+
+	});
+</script>
 </body>
 </html>
