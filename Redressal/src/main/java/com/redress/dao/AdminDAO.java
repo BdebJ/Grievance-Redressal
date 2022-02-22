@@ -250,21 +250,22 @@ public class AdminDAO {
         }
     }
     
-    public int editProfile(int pid, String firstname, String lastname, String address, String email, String phno) throws Exception {
+    public int editProfile(int pid, String username, String firstname, String lastname, String address, String email, String phno) throws Exception {
         int i = 0;
         Connection con = null;
         try {
 
             con = ConnectionManager.getConnection();
-            String sql = "UPDATE userinfo SET firstname =? , lastname = ?, address =?, email =?, phno =? WHERE pid = ?";
+            String sql = "UPDATE userinfo SET username = ? , firstname =? , lastname = ?, address =?, email =?, phno =? WHERE pid = ?";
             PreparedStatement ps = con.prepareStatement(sql);
 
-            ps.setString(1, firstname);
-            ps.setString(2, lastname);
-            ps.setString(3, address);
-            ps.setString(4, email);
-            ps.setString(5, phno);
-            ps.setInt(6, pid);
+            ps.setString(1, username);
+            ps.setString(2, firstname);
+            ps.setString(3, lastname);
+            ps.setString(4, address);
+            ps.setString(5, email);
+            ps.setString(6, phno);
+            ps.setInt(7, pid);
 
 
             i = ps.executeUpdate();

@@ -33,6 +33,23 @@
     <link rel="stylesheet" href="assets/plugins/image-hover/imagehover.min.css">
     <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function avoidSpace()
+    {
+	    var textarea = document.getElementById("message");
+	    var firstchar = ($("textarea").val().substring(0,1));
+	    while(firstchar.charCodeAt(0) == 32)
+	    {
+	        var temp = textarea.value;
+	        var str = temp.slice(1);
+	        textarea.value = str;
+	        firstchar = ($("textarea").val().substring(0,1));        
+		}
+	}
+</script>
+
 </head>
 
 <body>
@@ -71,7 +88,7 @@
                  <div  class="row cont-row">
                     <div  class="col-sm-3"><label>Enter Message</label><span>:</span></div>
                     <div class="col-sm-8">
-                        <textarea rows="5" placeholder="Enter Your Message" class="form-control input-sm" name="message"></textarea>
+                        <textarea rows="5" placeholder="Enter Your Message" class="form-control input-sm" id = "message" name ="message" onkeyup = "avoidSpace()"  required></textarea>
                     </div>
                 </div>
                  <div style="margin-top:10px;" class="row">

@@ -34,6 +34,25 @@
         <link rel="stylesheet" href="assets/plugins/image-hover/imagehover.min.css">
         <link rel="stylesheet" href="assets/css/animate.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function avoidSpace(message)
+    {
+	   /*  var textarea = document.getElementById("desciption"); */
+	    var firstchar = (message.value.charAt(0));
+	    while(firstchar.charCodeAt(0) == 32)
+	    {
+	        var temp = message.value;
+	        var str = temp.slice(1);
+	        message.value = str;
+	        firstchar = (message.value.charAt(0));        
+		}
+	    return message;
+	}
+</script>
+        
+        
     </head>
 
     <body>
@@ -70,13 +89,13 @@
                         </div>
                         <div  class="row cont-row">
                             <div  class="col-sm-3"><label>Subject </label><span>:</span></div>
-                            <div class="col-sm-8"><input type="text" class="form-control" name="subject"
-                                                         placeholder="Enter Complaint Subject"></div>
+                            <div class="col-sm-8"><input type="text" class="form-control" name="subject" id = "subject"
+                                                         placeholder="Enter Complaint Subject"  onkeyup = "return avoidSpace(document.getElementById('subject'))" required></div>
                         </div>
                         <div  class="row cont-row">
                             <div  class="col-sm-3"><label>Description</label><span>:</span></div>
                             <div class="col-sm-8">
-                                <textarea rows="5" placeholder="Describe You Problem" name="description" class="form-control input-sm"></textarea>
+                                <textarea rows="5" placeholder="Describe You Problem" id ="description" name="description" class="form-control input-sm" onkeyup = "return avoidSpace(document.getElementById('description'))" required></textarea>
                             </div>
                         </div>
                         <div  class="row cont-row">

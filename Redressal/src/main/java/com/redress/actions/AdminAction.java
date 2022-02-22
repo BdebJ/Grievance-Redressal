@@ -427,7 +427,6 @@ public class AdminAction extends CSRAction implements AdminInterface {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-//		return "UPDATEPASSWORD";
 		return ActionSupport.SUCCESS;
 	}
 
@@ -454,7 +453,7 @@ public class AdminAction extends CSRAction implements AdminInterface {
 	@Override
 	public String editProfile() {
 		try {
-			setCtr(admin.editProfile(pid, firstname, lastname, address, email, phno));
+			setCtr(admin.editProfile(pid, username, firstname, lastname, address, email, phno));
 			if (getCtr() > 0) {
 				User validUser = admin.fetchUserDetails(pid);
 				HttpSession session = ServletActionContext.getRequest().getSession(false);
