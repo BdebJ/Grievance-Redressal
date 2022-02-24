@@ -45,6 +45,28 @@
         
         <script type="text/javascript">
         
+        // Avaoid underscore as a First character in username
+        
+        function avoidUnderscore(message)
+        {
+    	    var firstchar = (message.value.charAt(0));
+    	    var isUnderscore = false;
+    	    while(firstchar.charCodeAt(0) == 95)
+    	    {	isUnderscore = true;
+    	        var temp = message.value;
+    	        var str = temp.slice(1);
+    	        message.value = str;
+    	        firstchar = (message.value.charAt(0));        
+    		}
+    	    
+    	    if(isUnderscore){
+    	    	$('#spacemsg').html('<span style="font-size: 90%; color: grey;">( <i class="fa fa-exclamation-triangle fa-sm"></i>  "_" as a first character is not allowed ) </span>'); 
+
+    	    }
+
+    	    return message;
+    	}
+        
         // Update password
         
         function changePassword()
@@ -237,7 +259,7 @@
                                                 <form action="editprofile" method ="post">
                                                     <div class="form-floating mb-3">
                                                     
-                                                        <input class="form-control" id="username" name="username" type="text" value="${sessionScope.validUser.getUsername()}" placeholder="username" onkeyup="checkUsername(username)" required/> 
+                                                        <input class="form-control" id="username" name="username" type="text" value="${sessionScope.validUser.getUsername()}" placeholder="username" onkeyup="checkUsername(username)" onblur = "return avoidUnderscore(document.getElementById('username'))" required/> 
                                                         <input class="form-control" id="pid" type="hidden" value="${sessionScope.validUser.getPid()}" name ="pid" />
                                                         <label for="username">Username </label>
                                                          <span id="availability"></span>

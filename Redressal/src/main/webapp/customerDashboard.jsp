@@ -31,11 +31,6 @@
 <!--testimonial -->
     <jsp:include page="testimonialCustomer.jsp"/>
 
-    
-    
-
-    
-   
 
     <!--###################### Client Details Starts Here ############################-->
     <div class="client-container container-fluid">

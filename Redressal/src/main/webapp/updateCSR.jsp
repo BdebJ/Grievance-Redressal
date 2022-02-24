@@ -31,6 +31,67 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link href="assets/css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    
+	    function avoidUnderscore(message)
+	    {
+		    var firstchar = (message.value.charAt(0));
+		    var isUnderscore = false;
+		    while(firstchar.charCodeAt(0) == 95)
+		    {	isUnderscore = true;
+		        var temp = message.value;
+		        var str = temp.slice(1);
+		        message.value = str;
+		        firstchar = (message.value.charAt(0));        
+			}
+		    
+		    if(isUnderscore){
+		    	$('#availability').html('<span style="font-size: 90%; color: grey;">( <i class="fa fa-exclamation-triangle fa-sm"></i>  "_" as a first character is not allowed ) </span>'); 
+		    	$('#add').attr("disabled",true);
+		    }
+		    
+	
+		    return message;
+		}
+
+
+            function checkUsername(currUsername)
+            {
+                var username = document.getElementById("username").value;
+                if(currUsername == username){
+                	$('#update').attr("disabled",false);
+                	return;
+                }
+                if(!username.length){
+                	return;
+                }
+                
+                
+                $.ajax({
+                    url: 'checkUsername',
+                    method: "POST",
+                    data: {username: username},
+                    success: function (data) {
+                    	if(!data.noData){                
+                    	    $('#availability').html('<span style="font-size: 80%; color: red;"><i class="fa fa-times"></i> username already exist</span>');        
+                    	    $('#update').attr("disabled",true);
+                    	   }
+                    	   else{   
+                    	     $('#availability').html('<span style="font-size: 80%; color: green;"><i class="fa fa-check"></i> username available</span>');
+                    	     $('#update').attr("disabled",false);
+                    	  }
+                    	
+                    },
+                    error: function (jqXHR, exception) {
+                        console.log('Error occured!!');
+                        var h = "Error";
+                        alert(h);
+                    }
+                });
+
+                }
+                </script>
     </head>
     <body class="sb-nav-fixed">
         <jsp:include page="navbar.jsp"/> 
@@ -61,8 +122,10 @@
                                     
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="username" type="text" name ="username" placeholder="username" value='<s:property value="username"/>'/>
+                                    <input class="form-control" id="username" type="text" name ="username" placeholder="username" value='<s:property value="username"/>' onkeyup ="checkUsername('<s:property value="username"/>')" onblur = "return avoidUnderscore(document.getElementById('username'));" />
                                     <label for="username">Username</label>
+                                    <span id="availability"></span>
+                                    <span id ="spacemsg"></span> 
                                 </div>        
                                 <div class="row mb-3">
                                     <div class="col-md-6">
@@ -103,7 +166,7 @@
 
 
                                 <div class="mt-4 mb-0">
-                                    <div class="d-grid"><input type = "submit" class="btn btn-primary btn-block" name="submitType" value="Update CSR"></div>
+                                    <div class="d-grid"><input type = "submit" id = "update" class="btn btn-primary btn-block" name="submitType" value="Update CSR"></div>
                                 </div>
                             </form>
                         </div>
@@ -120,5 +183,25 @@
     <script src="assets/demo/chart-bar-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
     <script src="assets/js/datatables-simple-demo.js"></script>
+    <script>
+			 $("input#username").on({
+				  keypress: function(e) {
+				    if (e.which === 96 || (e.which >= 32 && e.which <= 47) || (e.which >= 58 && e.which <= 64) || (e.which >= 91 && e.which <= 94) || (e.which >= 123 && e.which <= 126) ){
+				    	$('#spacemsg').html('<span style="font-size: 90%; color: grey;">( <i class="fa fa-exclamation-triangle fa-sm"></i>  Usernames cannot contain spaces or special characters) </span>'); 
+				    	$('#update').attr("disabled",true);
+				    	return false;
+				    	}
+				    else{
+				    	$('#spacemsg').html('');
+				    	$('#update').attr("disabled",false);
+				    }
+				  },
+					change: function() {
+				    this.value = this.value.replace(/\s/g, "");
+				    this.value = this.value.replace(/[^\w\s]/gi, '');
+					}
+			
+				});
+		</script>
 </body>
 </html>

@@ -39,7 +39,6 @@
 <script>
     function avoidSpace(message)
     {
-	   /*  var textarea = document.getElementById("desciption"); */
 	    var firstchar = (message.value.charAt(0));
 	    while(firstchar.charCodeAt(0) == 32)
 	    {
