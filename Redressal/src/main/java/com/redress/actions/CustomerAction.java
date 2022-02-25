@@ -138,6 +138,7 @@ public class CustomerAction implements CustomerInterface{
 		try {
             setCtr(customer.FeedbackRegister(complid, feedback, rating));
             if (getCtr() > 0) {
+            	customer.updateFeedbackStatus(complid);
                 setMsg("Feedback Submitted Successfully");
             } else {
                 setMsg("Some error occured!");

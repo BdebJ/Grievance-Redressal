@@ -118,7 +118,7 @@
             <result name="TECHNICIANSBYDEPTID"></result>
         </action>      
         <action name="updatecomplaint" class="com.redress.actions.CSRAction" method = "updateComplaint">
-            <result name="UPDATECOMPLAINT">/updateComplaint.jsp</result>  
+            <result name="UPDATECOMPLAINT" type = "chain">fetchcomplaintdetails</result>  
         </action>
         <action name="fetchcomplaintdetails" class="com.redress.actions.CSRAction" method = "updateComplaint">
             <result name="UPDATECOMPLAINT" type = "chain">technicianlist</result>  

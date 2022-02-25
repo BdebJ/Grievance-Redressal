@@ -37,11 +37,11 @@ if (request.getSession().getAttribute("validUser") == null) {
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
 	rel="stylesheet" />
 <link rel="stylesheet"
-	href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <link href="assets/css/styles.css" rel="stylesheet" />
 
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
 	crossorigin="anonymous"></script>
 	
 	
@@ -208,7 +208,20 @@ if (request.getSession().getAttribute("validUser") == null) {
 										<td><s:property value="subject" /></td>
 										<td><s:property value="description" /></td>
 										<td><s:property value="techname" /></td>
-										<td><s:property value="endprog" /></td>
+										
+										<s:if test="endprog!=NULL && endprog !=''">
+											<td><s:property value="endprog" /></td>
+										</s:if>
+										<s:elseif test = "ongoingprog!=NULL && ongoingprog !=''">
+											<td><s:property value="ongoingprog" /></td>
+										</s:elseif>
+										<s:elseif test = "startprog!=NULL && startprog !=''">
+											<td><s:property value="startprog" /></td>
+										</s:elseif>
+										<s:else>
+											<td style="font-size: 80%; color: #C0C0C0;">Grievance registered </td>
+										</s:else>
+										
 										<s:if test="res_status==0">
 											<td>Unresolved</td>
 										</s:if>
@@ -217,7 +230,10 @@ if (request.getSession().getAttribute("validUser") == null) {
 										</s:else>
 										<td style="display: none;"><input type="text"
 											id="textarea" value="<s:property value="complid" />"></input></td>
-
+										<s:if test="feedback_status==1">
+											<td style="font-size: 70%;font-weight: bold; color: green;"><i class="fa fa-circle-check"></i> feedback submitted</td>
+										</s:if>
+										<s:else>
 										<s:if test="res_status==1">
 											<td><button type="button"
 													class="btn btn-sm btn-outline-secondary"
@@ -227,8 +243,9 @@ if (request.getSession().getAttribute("validUser") == null) {
 													Feedback</button></td>
 										</s:if>
 										<s:else>
-											<td style="font-size: 80%; color: grey;">not resolved
+											<td style="font-size: 80%; color:#C0C0C0;">not resolved
 												yet</td>
+										</s:else>
 										</s:else>
 
 									</tr>

@@ -14,475 +14,502 @@ import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 
-public class CSRAction implements CSRInterface{
+public class CSRAction implements CSRInterface {
 
-	 private List<User> customerList = null;
-	 private List<Complaint> complaintList = null;
-	 private List<Department> departmentList = null;
-	 private List<CustomerDefect> customerdefect = null;
-	 private List<Technician> technicianList = null;
-	 private List<Product> productList = null;
+	private List<User> customerList = null;
+	private List<Complaint> complaintList = null;
+	private List<Department> departmentList = null;
+	private List<CustomerDefect> customerdefect = null;
+	private List<Technician> technicianList = null;
+	private List<Product> productList = null;
 
-	 private String submitType;
-	 private String firstname;
-	 private String lastname;	 
-     private String compltime;
-     private String subject;
-     private String description;
-     private String prodname;
-     private String prodmodel;
-     private String startprog;
-     private String ongoingprog;
-     private String endprog;	    
-     private int pid;
-     private int deptid;
-     private int techid;
-     private int complid;
-     private int ownid;
-     private int compl_status;
-     private int res_status;
-     
-	 private String msg = "";
-	 private int ctr;
-	    
-	 private boolean noData = false;
-	 
-	 
-	 
-	 CSRDAO csr = new CSRDAO();
-	 private static final Logger logger = Logger.getLogger(CSRAction.class);
-	
+	private String submitType;
+	private String firstname;
+	private String lastname;
+	private String compltime;
+	private String subject;
+	private String description;
+	private String prodname;
+	private String prodmodel;
+	private String startprog;
+	private String ongoingprog;
+	private String endprog;
+	private int pid;
+	private int deptid;
+	private int techid;
+	private String techname;
+	private int complid;
+	private int ownid;
+	private int compl_status;
+	private int res_status;
+	private int feedback_status;
+
+	private String msg = "";
+	private int ctr;
+
+	private boolean noData = false;
+
+	CSRDAO csr = new CSRDAO();
+	private static final Logger logger = Logger.getLogger(CSRAction.class);
+
 	@Override
 	public String showAllCustomers() {
 		logger.info("inside CSRAction showAllCustomers method. Showing all Customers");
 		try {
-            setCustomerList(new ArrayList<User>());
-            setCustomerList(csr.customerList());
-            if (!customerList.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "ALLCUSTOMERLIST";
+			setCustomerList(new ArrayList<User>());
+			setCustomerList(csr.customerList());
+			if (!customerList.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "ALLCUSTOMERLIST";
 	}
 
 	@Override
 	public String showActiveCustomers() {
 		try {
-            setCustomerList(new ArrayList<User>());
-            setCustomerList(csr.customerList().stream().filter(user -> user.getUserstatus() == 1).collect(Collectors.toList()));
-            if (!customerList.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "ACTIVECUSTOMERLIST";
+			setCustomerList(new ArrayList<User>());
+			setCustomerList(
+					csr.customerList().stream().filter(user -> user.getUserstatus() == 1).collect(Collectors.toList()));
+			if (!customerList.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "ACTIVECUSTOMERLIST";
 	}
 
 	@Override
 	public String showInactiveCustomers() {
 		try {
-            setCustomerList(new ArrayList<User>());
-            setCustomerList(csr.customerList().stream().filter(user -> user.getUserstatus() == 0).collect(Collectors.toList()));
-            if (!customerList.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "INACTIVECUSTOMERLIST";
+			setCustomerList(new ArrayList<User>());
+			setCustomerList(
+					csr.customerList().stream().filter(user -> user.getUserstatus() == 0).collect(Collectors.toList()));
+			if (!customerList.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "INACTIVECUSTOMERLIST";
 	}
 
 	@Override
 	public String showDeletedCustomers() {
 		try {
-            setCustomerList(new ArrayList<User>());
-            setCustomerList(csr.customerList().stream().filter(user -> user.getUserstatus() == 2).collect(Collectors.toList()));
-            if (!customerList.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "DELETEDCUSTOMERLIST";
+			setCustomerList(new ArrayList<User>());
+			setCustomerList(
+					csr.customerList().stream().filter(user -> user.getUserstatus() == 2).collect(Collectors.toList()));
+			if (!customerList.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "DELETEDCUSTOMERLIST";
 	}
 
 	@Override
 	public String showAllTechnicians() {
 		logger.info("inside CSRAction showAllTechnicians method. Showing all Technicians");
 		try {
-            setTechnicianList(new ArrayList<Technician>());
-            setTechnicianList(csr.getAllTechnician());
-            if (!technicianList.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "SHOWALLTECHNICIANS";
+			setTechnicianList(new ArrayList<Technician>());
+			setTechnicianList(csr.getAllTechnician());
+			if (!technicianList.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "SHOWALLTECHNICIANS";
 	}
 
 	@Override
 	public String showActiveTechnicians() {
 		try {
-            setTechnicianList(new ArrayList<Technician>());
-            setTechnicianList(csr.getAllTechnician().stream().filter(technician -> technician.getTechstatus() == 1).collect(Collectors.toList()));
-            if (!technicianList.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "SHOWACTIVETECHNICIANS";
+			setTechnicianList(new ArrayList<Technician>());
+			setTechnicianList(csr.getAllTechnician().stream().filter(technician -> technician.getTechstatus() == 1)
+					.collect(Collectors.toList()));
+			if (!technicianList.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "SHOWACTIVETECHNICIANS";
 	}
 
 	@Override
 	public String showInactiveTechnicians() {
 		try {
-            setTechnicianList(new ArrayList<Technician>());
-            setTechnicianList(csr.getAllTechnician().stream().filter(technician -> technician.getTechstatus() == 0).collect(Collectors.toList()));
-            if (!technicianList.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "SHOWINACTIVETECHNICIANS";
+			setTechnicianList(new ArrayList<Technician>());
+			setTechnicianList(csr.getAllTechnician().stream().filter(technician -> technician.getTechstatus() == 0)
+					.collect(Collectors.toList()));
+			if (!technicianList.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "SHOWINACTIVETECHNICIANS";
 	}
-	
+
 	@Override
 	public String showTechniciansByDeptID() {
 		try {
-            setTechnicianList(new ArrayList<Technician>());
-            setTechnicianList(csr.fetchTechnician(getDeptid()));
+			setTechnicianList(new ArrayList<Technician>());
+			setTechnicianList(csr.fetchTechnician(getDeptid()));
 
-            if (!technicianList.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "TECHNICIANSBYDEPTID";
+			if (!technicianList.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "TECHNICIANSBYDEPTID";
 	}
 
 	@Override
 	public String showAllDepartments() {
 		logger.info("inside CSRAction showAllDepartments method. Showing all Departments");
 		try {
-            setDepartmentList(new ArrayList<Department>());
-            setDepartmentList(csr.departmentList());
+			setDepartmentList(new ArrayList<Department>());
+			setDepartmentList(csr.departmentList());
 
-            if (!departmentList.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "ALLDEPARTEMNTLIST";
+			if (!departmentList.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "ALLDEPARTEMNTLIST";
 	}
 
 	@Override
 	public String showActiveDepartments() {
 		try {
-            setDepartmentList(new ArrayList<Department>());
-            setDepartmentList(csr.departmentList().stream().filter(dept -> dept.getDeptstatus() == 1).collect(Collectors.toList()));
+			setDepartmentList(new ArrayList<Department>());
+			setDepartmentList(csr.departmentList().stream().filter(dept -> dept.getDeptstatus() == 1)
+					.collect(Collectors.toList()));
 
-            if (!departmentList.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "ACTIVEDEPARTEMNTLIST";
+			if (!departmentList.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "ACTIVEDEPARTEMNTLIST";
 	}
 
 	@Override
 	public String showInactiveDepartments() {
 		try {
-            setDepartmentList(new ArrayList<Department>());
-            setDepartmentList(csr.departmentList().stream().filter(dept -> dept.getDeptstatus() == 0).collect(Collectors.toList()));
+			setDepartmentList(new ArrayList<Department>());
+			setDepartmentList(csr.departmentList().stream().filter(dept -> dept.getDeptstatus() == 0)
+					.collect(Collectors.toList()));
 
-            if (!departmentList.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "INACTIVEDEPARTEMNTLIST";
+			if (!departmentList.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "INACTIVEDEPARTEMNTLIST";
 	}
 
 	@Override
 	public String showAllProducts() {
 		logger.info("inside CSRAction showAllProducts method. Showing all Products");
 		try {
-            setProductList(new ArrayList<Product>());
-            setProductList(csr.getAllProducts());
-            if (!productList.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "SHOWALLPRODUCTS";
+			setProductList(new ArrayList<Product>());
+			setProductList(csr.getAllProducts());
+			if (!productList.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "SHOWALLPRODUCTS";
 	}
 
 	@Override
 	public String showActiveProducts() {
 		try {
-            setProductList(new ArrayList<Product>());
-            setProductList(csr.getAllProducts().stream().filter(product -> product.getProdstatus() == 1).collect(Collectors.toList()));
-            if (!productList.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "SHOWACTIVEPRODUCTS";
+			setProductList(new ArrayList<Product>());
+			setProductList(csr.getAllProducts().stream().filter(product -> product.getProdstatus() == 1)
+					.collect(Collectors.toList()));
+			if (!productList.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "SHOWACTIVEPRODUCTS";
 	}
 
 	@Override
 	public String showInactiveProducts() {
 		try {
-            setProductList(new ArrayList<Product>());
-            setProductList(csr.getAllProducts().stream().filter(product -> product.getProdstatus() == 0).collect(Collectors.toList()));
-            if (!productList.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "SHOWINACTIVEPRODUCTS";
+			setProductList(new ArrayList<Product>());
+			setProductList(csr.getAllProducts().stream().filter(product -> product.getProdstatus() == 0)
+					.collect(Collectors.toList()));
+			if (!productList.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "SHOWINACTIVEPRODUCTS";
 	}
 
 	@Override
 	public String showAllComplaints() {
 		logger.info("inside CSRAction showAllComplaints method. Showing all Complaints");
 		try {
-            setComplaintList(new ArrayList<Complaint>());
-            setComplaintList(csr.complaintList());
+			setComplaintList(new ArrayList<Complaint>());
+			setComplaintList(csr.complaintList());
 
-            if (!complaintList.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "ALLCOMPLAINTLIST";
+			if (!complaintList.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "ALLCOMPLAINTLIST";
 	}
 
 	@Override
 	public String showResolvedComplaints() {
 		try {
-            setComplaintList(new ArrayList<Complaint>());
-            setComplaintList(csr.complaintList().stream().filter(complaint -> (complaint.getCompl_status() == 1)&&(complaint.getRes_status() == 1)).collect(Collectors.toList()));
+			setComplaintList(new ArrayList<Complaint>());
+			setComplaintList(csr.complaintList().stream()
+					.filter(complaint -> (complaint.getCompl_status() == 1) && (complaint.getRes_status() == 1))
+					.collect(Collectors.toList()));
 
-            if (!complaintList.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "RESOLVEDCOMPLAINTLIST";
+			if (!complaintList.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "RESOLVEDCOMPLAINTLIST";
 	}
 
 	@Override
 	public String showUnresolvedComplaints() {
 		try {
-            setComplaintList(new ArrayList<Complaint>());
-            setComplaintList(csr.complaintList().stream().filter(complaint -> (complaint.getCompl_status() == 1)&&(complaint.getRes_status() == 0)).collect(Collectors.toList()));
+			setComplaintList(new ArrayList<Complaint>());
+			setComplaintList(csr.complaintList().stream()
+					.filter(complaint -> (complaint.getCompl_status() == 1) && (complaint.getRes_status() == 0))
+					.collect(Collectors.toList()));
 
-            if (!complaintList.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "UNRESOLVEDCOMPLAINTLIST";
+			if (!complaintList.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "UNRESOLVEDCOMPLAINTLIST";
 	}
 
 	@Override
 	public String showInitiatedComplaints() {
 		try {
-            setComplaintList(new ArrayList<Complaint>());
-            setComplaintList(csr.complaintList().stream().filter(complaint -> (complaint.getCompl_status() == 0)).collect(Collectors.toList()));
+			setComplaintList(new ArrayList<Complaint>());
+			setComplaintList(csr.complaintList().stream().filter(complaint -> (complaint.getCompl_status() == 0))
+					.collect(Collectors.toList()));
 
-            if (!complaintList.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "INITIATEDCOMPLAINTLIST";
+			if (!complaintList.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "INITIATEDCOMPLAINTLIST";
 	}
 
 	@Override
 	public String showRejectedComplaints() {
 		try {
-            setComplaintList(new ArrayList<Complaint>());
-            setComplaintList(csr.complaintList().stream().filter(complaint -> (complaint.getCompl_status() == 2)).collect(Collectors.toList()));
+			setComplaintList(new ArrayList<Complaint>());
+			setComplaintList(csr.complaintList().stream().filter(complaint -> (complaint.getCompl_status() == 2))
+					.collect(Collectors.toList()));
 
-            if (!complaintList.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "REJECTEDCOMPLAINTLIST";
+			if (!complaintList.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "REJECTEDCOMPLAINTLIST";
 	}
 
 	@Override
 	public String showComplaintByComplaintID() {
 		try {
-            setComplaintList(new ArrayList<Complaint>());
-            setComplaintList(csr.complaintList().stream().filter(complaint -> (complaint.getComplid() == getComplid())).collect(Collectors.toList()));
+			setComplaintList(new ArrayList<Complaint>());
+			setComplaintList(csr.complaintList().stream().filter(complaint -> (complaint.getComplid() == getComplid()))
+					.collect(Collectors.toList()));
 
-            if (!complaintList.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "COMPLIDCOMPLAINTLIST";
+			if (!complaintList.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "COMPLIDCOMPLAINTLIST";
 	}
 
 	@Override
 	public String showComplaintsByUserID() {
 		try {
-            setComplaintList(new ArrayList<Complaint>());
-            setComplaintList(csr.complaintList().stream().filter(complaint -> (complaint.getPid() == getPid())).collect(Collectors.toList()));
+			setComplaintList(new ArrayList<Complaint>());
+			setComplaintList(csr.complaintList().stream().filter(complaint -> (complaint.getPid() == getPid()))
+					.collect(Collectors.toList()));
 
-            if (!complaintList.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "USERIDCOMPLAINTLIST";
+			if (!complaintList.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "USERIDCOMPLAINTLIST";
 	}
 
 	@Override
 	public String showAllCustomerDefects() {
 		logger.info("inside CSRAction showAllCustomerDefects method. Showing all Customer Defects");
 		try {
-            setCustomerdefect(new ArrayList<CustomerDefect>());
-            setCustomerdefect(csr.customerDefect());
+			setCustomerdefect(new ArrayList<CustomerDefect>());
+			setCustomerdefect(csr.customerDefect());
 
-            if (!customerdefect.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "ALLCUSTOMERDEFECTS";
+			if (!customerdefect.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "ALLCUSTOMERDEFECTS";
 	}
 
 	@Override
 	public String showCustomerDefectByOwnerID() {
 		try {
-            setCustomerdefect(new ArrayList<CustomerDefect>());
-            setCustomerdefect(csr.customerDefect().stream().filter(defect -> (defect.getOwnid() == getOwnid())).collect(Collectors.toList()));
+			setCustomerdefect(new ArrayList<CustomerDefect>());
+			setCustomerdefect(csr.customerDefect().stream().filter(defect -> (defect.getOwnid() == getOwnid()))
+					.collect(Collectors.toList()));
 
-            if (!customerdefect.isEmpty()) {
-                setNoData(false);
-            } else {
-                setNoData(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "CUSTOMERDEFECTSBYOWNID";
+			if (!customerdefect.isEmpty()) {
+				setNoData(false);
+			} else {
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "CUSTOMERDEFECTSBYOWNID";
 	}
 
 	@Override
 	public String updateComplaint() {
 		logger.info("inside CSRAction updateComplaint method. Updating Complaint");
 		try {
-            if (getSubmitType().equals("updatedata")) {
-                Complaint complaint = csr.fetchComplaintDetails(getComplid());
-                if (complaint != null) {
-                    setFirstname(complaint.getFirstname());
-                    setLastname(complaint.getLastname());
-                    setComplid(complaint.getComplid());
-                    setCompltime(complaint.getCompltime());
-                    setSubject(complaint.getSubject());
-                    setDescription(complaint.getDescription());
-                    setProdname(complaint.getProdname());
-                    setProdmodel(complaint.getProdmodel());
-                    setPid(complaint.getPid());
-                    setTechid(complaint.getTechid());
-                    setCompl_status(complaint.getCompl_status());
-                    setStartprog(complaint.getStartprog());
-                    setOngoingprog(complaint.getOngoingprog());
-                    setEndprog(complaint.getEndprog());
-                    setRes_status(complaint.getRes_status());
-                }
-            } else {
-                setCtr(csr.updateComplaintDetails(complid, getTechid(), getCompl_status(), getStartprog(), getOngoingprog(), getEndprog(), getRes_status()));
-                if (ctr > 0) {
-                    setMsg("Record Updated Successfuly");
-                } else {
-                    setCtr(-1);
-                    setMsg("some error occured.. Try again!");
-                }
-            }
+			if (getSubmitType().equals("updatedata")) {
+				Complaint complaint = csr.fetchComplaintDetails(getComplid());
+				if (complaint != null) {
+					setFirstname(complaint.getFirstname());
+					setLastname(complaint.getLastname());
+					setComplid(complaint.getComplid());
+					setCompltime(complaint.getCompltime());
+					setSubject(complaint.getSubject());
+					setDescription(complaint.getDescription());
+					setProdname(complaint.getProdname());
+					setProdmodel(complaint.getProdmodel());
+					setPid(complaint.getPid());
+					setTechid(complaint.getTechid());
+					setTechname(complaint.getTechname());
+					setCompl_status(complaint.getCompl_status());
+					setStartprog(complaint.getStartprog());
+					setOngoingprog(complaint.getOngoingprog());
+					setEndprog(complaint.getEndprog());
+					setRes_status(complaint.getRes_status());
+					System.out.println("Technician Name "+getTechname());
+				}
+			} else {
+				setCtr(csr.updateComplaintDetails(complid, getTechid(), getCompl_status(), getStartprog(),
+						getOngoingprog(), getEndprog(), getRes_status()));
+				if (ctr > 0) {
+					setMsg("Record Updated Successfuly");
+				} else {
+					setCtr(-1);
+					setMsg("some error occured.. Try again!");
+				}
+			}
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-        return "UPDATECOMPLAINT";
+		return "UPDATECOMPLAINT";
 	}
-
-
 
 	public List<Product> getProductList() {
 		return productList;
+	}
+
+	public String getTechname() {
+		return techname;
+	}
+
+	public void setTechname(String techname) {
+		this.techname = techname;
 	}
 
 	public void setProductList(List<Product> productList) {
@@ -696,5 +723,13 @@ public class CSRAction implements CSRInterface{
 	public void setRes_status(int res_status) {
 		this.res_status = res_status;
 	}
-	
+
+	public int getFeedback_status() {
+		return feedback_status;
+	}
+
+	public void setFeedback_status(int feedback_status) {
+		this.feedback_status = feedback_status;
+	}
+
 }

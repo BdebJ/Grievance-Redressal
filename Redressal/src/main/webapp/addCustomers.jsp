@@ -119,7 +119,7 @@
                         <div class="card-body">
                             <form action ="addcustomers" method ="post">
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="username" type="text" name ="username" placeholder="username" onkeyup ="checkUsername()" onblur = "return avoidUnderscore(document.getElementById('username'));"  />
+                                    <input class="form-control" id="username" type="text" name ="username" placeholder="username" onkeyup ="checkUsername()" onblur = "return avoidUnderscore(document.getElementById('username'));" required />
                                     <label for="username">Username</label>
                                  <span id="availability"></span>   
                                  <span id ="spacemsg"></span>  

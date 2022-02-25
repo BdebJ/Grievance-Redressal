@@ -17,8 +17,7 @@
 	href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/login.css">
  <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -132,13 +131,12 @@ form .button input:hover {
 								<form action="logon.action" method="post">
 									<div class="row">
 										<i class="fa fa-user"></i> <input type="text" name="username"
-											id="username" class="form-control" placeholder="Username"
-											required>
+											id="username" class="form-control" placeholder="Username">
 									</div>
 									<div class="row">
-										<i class="fa fa-lock"></i> <input type="password"
+										<i class="fas fa-key"></i> <input type="password"
 											name="password" id="password" class="form-control"
-											placeholder="***********" required>
+											placeholder="***********" >
 <%-- 											<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password" id ="toggle-password"></span>
  --%>									
  											<span id = "togglepassword" class="fa fa-fw fa-eye field-icon"></span>

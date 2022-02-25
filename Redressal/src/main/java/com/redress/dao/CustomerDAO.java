@@ -57,7 +57,7 @@ public class CustomerDAO {
 			con = ConnectionManager.getConnection();
 			String sql = "SELECT c.complid,ui.firstname,ui.lastname,c.compltime,p.prodmodel,"
 					+ "p.prodname,c.subject,c.description, c.compl_status,t.techid,t.techname, "
-					+ "c.startprog, c.ongoingprog,c.endprog, c.res_status FROM complaint c "
+					+ "c.startprog, c.ongoingprog,c.endprog, c.res_status, c.feedback_status FROM complaint c "
 					+ "LEFT JOIN userinfo ui ON c.pid = ui.pid " + "LEFT JOIN technician t ON c.techid = t.techid "
 					+ "LEFT JOIN productowned po ON c.ownid = po.ownid "
 					+ "LEFT JOIN product p ON c.ownid = p.prodid WHERE c.pid = ?";
@@ -83,6 +83,7 @@ public class CustomerDAO {
 				complaint.setOngoingprog(rs.getString("ongoingprog"));
 				complaint.setEndprog(rs.getString("endprog"));
 				complaint.setRes_status(rs.getInt("res_status"));
+				complaint.setFeedback_status(rs.getInt("feedback_status"));
 
 				complaintList.add(complaint);
 			}
@@ -202,6 +203,30 @@ public class CustomerDAO {
 		}
 
 	}
+	
+	public int updateFeedbackStatus(int complid) throws SQLException {
+		int i = 0;
+		Connection con = null;
+		try {
+			con = ConnectionManager.getConnection();
+
+			String sql = "UPDATE complaint SET feedback_status = ? WHERE complid = ? ;";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, 1);
+			ps.setInt(2, complid);
+			i = ps.executeUpdate();
+			return i;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return i;
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+
+	}
+
 
 	public int sendMessage(String firstname, String email, String phno, String message, int pid, String username)
 			throws Exception {
