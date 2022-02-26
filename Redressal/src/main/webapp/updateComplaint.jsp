@@ -119,7 +119,7 @@ if (request.getSession().getAttribute("validUser") == null) {
 							</div>
 
 							<div class="form-floating mb-3">
-								<select class="form-control" name="techid" required>
+								<select class="form-select" name="techid" required>
 								<s:if test="techname != null">								
 											<option value="<s:property value="techid"/>" disabled selected>
 											<s:property value="techname" />
@@ -134,6 +134,7 @@ if (request.getSession().getAttribute("validUser") == null) {
 										</option>
 									</s:iterator>
 								</select>
+								<label for="phno">Technician Name</label>
 
 							</div>
 							<div class="form-floating mb-3">

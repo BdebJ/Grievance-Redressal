@@ -128,27 +128,27 @@
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3 mb-md-0">
-                                            <input class="form-control" name ="firstname" id="firstname" type="text" placeholder="Enter your first name" />
+                                            <input class="form-control" name ="firstname" id="firstname" type="text" placeholder="Enter your first name" required/>
                                             <label for="firstname">First name</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input class="form-control" name ="lastname" id="firstname" type="text" placeholder="Enter your last name" />
+                                            <input class="form-control" name ="lastname" id="firstname" type="text" placeholder="Enter your last name" required/>
                                             <label for="lastname">Last name</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="inputEmail" type="email" name="email" placeholder="name@example.com" />
+                                    <input class="form-control" id="inputEmail" type="email" name="email" placeholder="name@example.com" required/>
                                     <label for="emai;">Email address</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="address" name="address" type ="text"  placeholder="adreess" />
+                                    <input class="form-control" id="address" name="address" type ="text"  placeholder="adreess" required/>
                                     <label for="address">Address</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="inputEmail" type="number" name ="phno" placeholder="Phone Number" />
+                                    <input class="form-control" id="phno" type="tel" name ="phno" placeholder="Phone Number" pattern="[6789][0-9]{9}" title="Please enter valid phone number" required/>
                                     <label for="phno">Phone Number</label>
                                 </div>
 

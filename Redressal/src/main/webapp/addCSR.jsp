@@ -151,7 +151,7 @@
                                                 <label for="address">Address</label>
                                             </div>
                                     <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputEmail" type="text" name ="phno" placeholder="Phone Number" required/>
+                                                <input class="form-control" id="inputEmail" type="tel" name ="phno" placeholder="Phone Number" pattern="[6789][0-9]{9}" title="Please enter valid phone number" required/>
                                                 <label for="phno">Phone Number</label>
                                             </div>
                                     

@@ -66,7 +66,7 @@
                                 </div>        
 
                                <div class="form-floating mb-3">
-                                    <select class="form-control" name="deptid" required>
+                                    <select class="form-select" name="deptid" required>
                                         <option value="" disabled selected><s:property value="deptname"/></option>
                                         <s:iterator value="departmentList">
                                             <option value="<s:property value="deptid"/>">
@@ -77,7 +77,7 @@
                                         <label for="deptid">Department Name</label>
                                 </div>        
                                         <div class="form-floating mb-3">
-                                    <select class="form-control" name="prodstatus" id="prodstatus" required>
+                                    <select class="form-select" name="prodstatus" id="prodstatus" required>
                                         <option value="0">Inactive</option>
                                         <option value="1">Active</option> 
                                     </select>                                     

@@ -4,6 +4,7 @@
 
 <%
     response.setHeader("Cache-control","no-cache, no-store, must-revalidate");
+
     if (request.getSession().getAttribute("validUser") == null) {
         String errormsg = "You are not logged in. Please login first!!";
         request.setAttribute("errormsg", errormsg);
