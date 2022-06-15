@@ -248,7 +248,7 @@ public class AdminAction extends CSRAction implements AdminInterface {
 
 	@Override
 	public String addCustomer() {
-		logger.info("inside AdminAction addCustomer method, Adding Customer");
+		logger.info("inside AdminAction addProductToCustomer method, Adding Customer");
 		try {
 			password = SCryptUtil.scrypt("1234", 2048, 8, 1);
 			setCtr(admin.addCustomers(getUsername(), getPassword(), getFirstname(), getLastname(), getAddress(),
@@ -263,6 +263,22 @@ public class AdminAction extends CSRAction implements AdminInterface {
 			e.printStackTrace();
 		}
 		return "ADDCUSTOMER";
+	}
+	
+	@Override
+	public String addProductToCustomer() {
+		logger.info("inside AdminAction addProductToCustomer method, Adding Product");
+		try {
+			setCtr(admin.addProductToCustomer(getProdid(), getPid()));
+			if (getCtr() > 0) {
+				setMsg("Product added Successfully!");
+			} else {
+				setMsg("Some error occured!");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "ADDPRODUCTTOCUSTOMER";
 	}
 
 	@Override
@@ -416,9 +432,9 @@ public class AdminAction extends CSRAction implements AdminInterface {
 			System.out.println("My password" + password);
 			password = SCryptUtil.scrypt(password, 2048, 8, 1);
 			System.out.println("My password" + password);
-			setCtr(admin.updatePassword(password, pid));
+			setCtr(admin.updatePassword(password, email));
 			if (getCtr() > 0) {
-				setMsg("Password updated Successfully!");
+				setMsg("Password updated Successfully! login now");
 			} else {
 				setCtr(-1);
 				setMsg("Some error");
@@ -440,9 +456,11 @@ public class AdminAction extends CSRAction implements AdminInterface {
 				System.out.println(getCtr());
 				setMsg("Not available");
 				setNoData(false);
+				setPid(ctr);
 			} else {
 				setMsg("available");
 				setNoData(true);
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

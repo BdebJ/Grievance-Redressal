@@ -34,6 +34,8 @@
         <link rel="stylesheet" href="assets/plugins/image-hover/imagehover.min.css">
         <link rel="stylesheet" href="assets/css/animate.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+        <link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -65,11 +67,11 @@
         function changePassword()
         {
             var password = document.getElementById("password").value;
-            var pid = document.getElementById("pid").value;
+            var email = document.getElementById("email").value;
             $.ajax({
                 url: 'updatepassword',
                 method: "POST",
-                data: {password:password , pid:pid},
+                data: {password:password , email:email},
                 success: function (data) {
                 	document.getElementById("cpass").reset();
  
@@ -135,7 +137,7 @@
             var check = function() {
           	  if (document.getElementById('password').value ==
           	    document.getElementById('confirm_password').value) {
-          		  $('#message').html('<span style="font-size: 90%; color: green;"><i class="fa fa-check"></i> Password Matched!</span>');        
+          		  $('#message').html('<span style="font-size: 90%; color: green;"><i class="fa fa-circle-check"></i> Password Matched!</span>');        
             	    $('#update_password').attr("disabled",false);
             	    
           	  } else {
@@ -348,7 +350,7 @@
                                         <div class="card-body">
                                             <form action="#" id="cpass">
                                                 <div class="form-floating mb-3">
-                                                    <input class="form-control" id="pid" type="hidden" value="${sessionScope.validUser.getPid()}" name ="pid" />
+                                                    <input class="form-control" id="email" type="hidden" value="${sessionScope.validUser.getEmail()}" name ="email" />
 
                                                 </div>
                                                 <span id ="availability"></span>

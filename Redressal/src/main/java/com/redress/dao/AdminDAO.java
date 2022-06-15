@@ -74,6 +74,29 @@ public class AdminDAO {
         }
     }
 
+    public int addProductToCustomer(int prodid, int pid) throws Exception {
+        int i = 0;
+        Connection con = null;
+        try {
+            con = ConnectionManager.getConnection();
+            String sql = "INSERT INTO productowned(pid,prodid) VALUES(?,?)";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, pid);
+            ps.setInt(2, prodid);
+            System.out.println(ps);
+
+            i = ps.executeUpdate();
+            return i;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return i;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+    
     public int addProduct(int deptid, String prodname, String prodmodel) throws Exception {
         int i = 0;
         Connection con = null;
@@ -939,15 +962,15 @@ public class AdminDAO {
 
     }
     
-	public int updatePassword(String password, int pid) throws Exception {
+	public int updatePassword(String password, String email) throws Exception {
 		int i = 0;
 		Connection con = null;
 		try {
 			con = ConnectionManager.getConnection();
-			String sql = "UPDATE userinfo SET password = ? WHERE pid = ?";
+			String sql = "UPDATE userinfo SET password = ? WHERE email = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, password);
-			ps.setInt(2, pid);
+			ps.setString(2, email);
 			i = ps.executeUpdate();
 			return i;
 		} catch (Exception e) {
@@ -971,7 +994,9 @@ public class AdminDAO {
             ps.setString(1, username);
             rs = ps.executeQuery();
             if (rs.next()) {
-                return 1;
+            	User user = new User();
+            	user.setPid(rs.getInt("pid"));
+                return user.getPid();
             }
 
         } catch (Exception e) {

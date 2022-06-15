@@ -71,12 +71,13 @@ form .row input::placeholder {
 	justify-content: center;
 }
 
-.wrapper form .pass {
-	margin: -8px 0 20px 0;
-}
+.wrapper form .pass{
 
+height:18px;
+
+}
 .wrapper form .pass a {
-	color: #16a085;
+	color: #2596be;
 	font-size: 17px;
 	text-decoration: none;
 }
@@ -141,7 +142,7 @@ form .button input:hover {
  --%>									
  											<span id = "togglepassword" class="fa fa-fw fa-eye field-icon"></span>
  											</div>
-									
+									<div class="row pass"><a href="forgotPassword.jsp">Forgot password?</a></div>
 									<div class="row button">
 										<input name="login" id="login"
 											class="btn btn-block login-btn mb-4" type="submit"
@@ -149,10 +150,15 @@ form .button input:hover {
 									</div>
 									<div class="row">
 										<s:if test="msg !=null">
+										<s:if test="ctr>0">
+                                                <div class = "alert alert-success mt-2" role = "alert"><s:property value="msg" /></div>
+                                            </s:if>
+                                            <s:elseif test= "ctr==-1">
 											<div class="alert alert-warning mt-2" role="alert" style ="width:105%">
 												<s:property value="msg" />
 												<c:out value='${requestScope.errormsg}' />
 											</div>
+											</s:elseif>
 										</s:if>
 									</div>
 								</form>

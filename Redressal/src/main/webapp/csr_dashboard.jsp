@@ -85,7 +85,7 @@
 
                     </div>
                     <div class="row">
-                        <div class="col-xl-6">
+                        <%-- <div class="col-xl-6">
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-area me-1"></i>
@@ -93,14 +93,14 @@
                                 </div>
                                 <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                             </div>
-                        </div>
-                        <div class="col-xl-6">
+                        </div> --%>
+                        <div class="col-xl-12">
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-pie me-1"></i>
                                     Complaints Chart
                                 </div>
-                                <div class="card-body"><canvas id="myPieChart" width="100%" height="40"></canvas></div>
+                                <div class="card-body"><canvas id="myPieChart" width="100%" height="20"></canvas></div>
                             </div>
                         </div>
                     </div>

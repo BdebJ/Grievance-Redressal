@@ -72,11 +72,11 @@
         function changePassword()
         {
             var password = document.getElementById("password").value;
-            var pid = document.getElementById("pid").value;
+            var email = document.getElementById("email").value;
             $.ajax({
                 url: 'updatepassword',
                 method: "POST",
-                data: {password:password , pid:pid},
+                data: {password:password , email:email},
                 success: function (data) {
                 	 if(data.ctr > 0){                
                 	    $('#messagepassword').html('<div class = "alert alert-success mt-2" role = "alert"> Password Updated Successfully </div>');        
@@ -133,7 +133,7 @@
                 }
            
             var check = function() {
-          	  if (document.getElementById('password').value ==
+          	  if (document.getElementById('password').value !="" && document.getElementById('password').value ==
           	    document.getElementById('confirm_password').value) {
           		  $('#message').html('<span style="font-size: 90%; color: green;"><i class="fa fa-check"></i> Password Matched!</span>');        
             	    $('#update_password').attr("disabled",false);
@@ -333,11 +333,11 @@
                                         <div class="card-body">
                                             <form action="#">
                                                 <div class="form-floating mb-3">
-                                                    <input class="form-control" id="input" name="username" type="text" value="${sessionScope.validUser.getUsername()}" placeholder="username" readonly/>
-                                                    <input class="form-control" id="pid" type="hidden" value="${sessionScope.validUser.getPid()}" name ="pid" />
+                                                    <input class="form-control" id="input" name="username" type="hidden" value="${sessionScope.validUser.getUsername()}" placeholder="username" readonly/>
+                                                    <input class="form-control" id="email" type="hidden" value="${sessionScope.validUser.getEmail()}" name ="email" />
 
-                                                    <label for="username">Username</label>
- 													<span style="font-size: 80%; color: grey;">username can't be changed.</span>
+                                                   <%--  <label for="username">Username</label>
+ 													<span style="font-size: 80%; color: grey;">username can't be changed.</span> --%>
                                                 </div>
                                                 <span id ="availability"></span>
                                                
@@ -355,7 +355,7 @@
 
 
                                                 <div class="mt-4 mb-0">
-                                                    <div class="d-grid"><input type = "button" class="btn btn-primary btn-block" id="update_password" name='update_password' value="Update Password" onclick = "changePassword()"></div>
+                                                    <div class="d-grid"><input type = "button" class="btn btn-primary btn-block" id="update_password" name='update_password' value="Update Password" onclick = "changePassword()"disabled></div>
                                                 </div>
                                             </form>
                                         </div>

@@ -36,10 +36,10 @@
                                 Customers
                             </a> 
                             <div class="sb-sidenav-menu-heading">Services</div>
-                            <a class="nav-link" href="cusdefects.action">
+                            <!-- <a class="nav-link" href="cusdefects.action">
                                 <div class="sb-nav-link-icon"><i class="fas fa-bug"></i></div>
                                 Customer Defects
-                            </a>                          
+                            </a>     -->                      
                             <a class="nav-link" href="complaint">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Complaints

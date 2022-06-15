@@ -26,11 +26,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Add customer</title>
+        <title>Add Product to Customer</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
         <link href="assets/css/styles.css" rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="assets/css/styles.css" rel="stylesheet" />
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+	crossorigin="anonymous"></script>
+        <%-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script> --%>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
     
@@ -68,12 +75,16 @@
                     data: {username: username},
                     success: function (data) {
                     	if(!data.noData){                
-                    	    $('#availability').html('<span style="font-size: 80%; color: red;"><i class="fa fa-times"></i> username already exist</span>');        
-                    	    $('#add').attr("disabled",true);
+                    	    $('#availability').html('<span style="font-size: 80%; color: green;"><i class="fa fa-circle-check"></i> User is registered with us </span>');        
+                    	    $('#add').attr("disabled",false);
+                    	    
+                    	     var d = document.getElementById('hidden');
+                    	    d.innerHTML += "<input type='text' id='pid' name = 'pid' hidden><br >";
+                    	    document.getElementById('pid').value = data.pid;
                     	   }
                     	   else{   
-                    	     $('#availability').html('<span style="font-size: 80%; color: green;"><i class="fa fa-check"></i> username available</span>');
-                    	     $('#add').attr("disabled",false);
+                    	     $('#availability').html('<span style="font-size: 80%; color: red;"><i class="fa-solid fa-circle-xmark"></i> Please register the user first to add a product!! <a href ="addCustomers.jsp" > click here</a> to register.</span>');
+                    	     $('#add').attr("disabled",true);
                     	  }
                     	
                     },
@@ -86,6 +97,23 @@
 
                 }
                 </script>
+                <style>
+                select,
+					select option {
+					  color: #000000;
+					}
+					
+					select:invalid,
+					select option[value=""] {
+					  color: #999999;
+					}
+					
+					
+					/*Added for browser compatibility*/
+					[hidden] {
+					  display: none;
+					}
+                </style>
     
     </head>
     <body class="sb-nav-fixed">
@@ -93,11 +121,13 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Add Customer</h1>
+                    <h1 class="mt-4">Add Product To Customer</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Add Customer details by filling all the required details</li>
+                        <li class="breadcrumb-item active">Add Product details for the customer by filling all the required details</li>
                     </ol>
-                   <s:if test="ctr>0">
+                   
+
+                    <s:if test="ctr>0">
                      <div class="d-flex justify-content-between align-items-center mb-3">
                     <button onclick="history.go(-2)" type="button"
 								class="btn btn-sm btn-outline-secondary">
@@ -121,48 +151,38 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            New Customer
+                            Add product to the Customer
                         </div>
 
                         <div class="card-body">
-                            <form action ="addcustomers" method ="post">
-                                <div class="form-floating mb-3">
+                            <form action ="addproducttocustomer" method ="post">
+                                <div class="form-floating mb-3" id = "userq">
                                     <input class="form-control" id="username" type="text" name ="username" placeholder="username" onkeyup ="checkUsername()" onblur = "return avoidUnderscore(document.getElementById('username'));" required />
                                     <label for="username">Username</label>
                                  <span id="availability"></span>   
-                                 <span id ="spacemsg"></span>  
+                                 <span id ="spacemsg"></span>
+                                 <span id ="hidden"></span>  
                                 </div>   
-                                
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <div class="form-floating mb-3 mb-md-0">
-                                            <input class="form-control" name ="firstname" id="firstname" type="text" placeholder="Enter your first name" required/>
-                                            <label for="firstname">First name</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input class="form-control" name ="lastname" id="firstname" type="text" placeholder="Enter your last name" required/>
-                                            <label for="lastname">Last name</label>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="inputEmail" type="email" name="email" placeholder="name@example.com" required/>
-                                    <label for="emai;">Email address</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input class="form-control" id="address" name="address" type ="text"  placeholder="adreess" required/>
-                                    <label for="address">Address</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input class="form-control" id="phno" type="tel" name ="phno" placeholder="Phone Number" pattern="[6789][0-9]{9}" title="Please enter valid phone number" required/>
-                                    <label for="phno">Phone Number</label>
-                                </div>
-
-
+                                    <select class="form-control" name="prodid" required>
+                                        <option value="" disabled selected hidden>None</option>
+                                        <s:iterator value="productList">
+                                            <option value="<s:property value="prodid"/>">
+                                                <s:property value="prodname"/>
+                                            </option>
+                                        </s:iterator>
+                                    </select>                                    
+                                        <label for="prodid" id = "productLabel">Choose Product</label>
+                                </div>        
+                               
                                 <div class="mt-4 mb-0">
-                                    <div class="d-grid"><input type = "submit" class="btn btn-primary btn-block" id ="add" value="Add Customer"></div>
+                                    <div class="d-grid"><input type = "submit" class="btn btn-primary btn-block" id ="add" value="Add Product" disabled></div>
+                                    <s:if test="ctr>0">
+                                     <div class = "text-center"><button type="cancel" class="btn btn-default pull-right" onclick="history.go(-2)">Cancel</button></div>
+                                     </s:if>
+                                     <s:else>
+                                     <div class = "text-center"><button type="cancel" class="btn btn-default pull-right" onclick="history.back()">Cancel</button></div>
+                                     </s:else>
                                 </div>
                             </form>
                         </div>

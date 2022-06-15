@@ -102,6 +102,10 @@ tr td:first-child:before {
 								class="btn btn-sm btn-outline-secondary">
 								<i class='fa fa-user-plus'></i>Add Customer
 							</button></a>
+							<a href="productList"><button type="button"
+								class="btn btn-sm btn-outline-secondary">
+								<i class="fas fa-external-link-alt"></i>Link Product
+							</button></a>
 					</div>
 				</div>
 				<s:if test="ctr>0">

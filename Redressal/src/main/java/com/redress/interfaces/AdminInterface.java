@@ -18,6 +18,7 @@ public interface AdminInterface extends CSRInterface {
 	public abstract String addCustomer();
 	public abstract String addCSR();
 	public abstract String addProduct();
+	public abstract String addProductToCustomer();
 	public abstract String addTechnician();
 	public abstract String addDepartment();
 	

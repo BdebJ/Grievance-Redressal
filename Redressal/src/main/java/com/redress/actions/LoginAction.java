@@ -4,6 +4,7 @@ package com.redress.actions;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
 import com.lambdaworks.crypto.SCryptUtil;
+import com.opensymphony.xwork2.ActionSupport;
 import com.redress.dao.LoginDAO;
 import com.redress.models.User;
 import java.util.Map;
@@ -12,330 +13,305 @@ import org.apache.struts2.ServletActionContext;
 
 public class LoginAction implements SessionAware {
 
-    private SessionMap<String, Object> sessionMap;
-    HttpSession session = ServletActionContext.getRequest().getSession(false);
-    User valUser = (User) session.getAttribute("validUser");
-    private String hash;
-    private int pid;
-    private String username;
-    private String password;
-    private String firstname;
-    private String lastname;
-    private String address;
-    private String email;
-    private String phno;
-    private int roleid;
-    private int userstatus;
-    private boolean validUser;
-    private static String success;
-    private String msg = "";
-    private int ctr = 0;
+	private SessionMap<String, Object> sessionMap;
+	HttpSession session = ServletActionContext.getRequest().getSession(false);
+	User valUser = (User) session.getAttribute("validUser");
+	private String hash;
+	private int pid;
 
-    LoginDAO login = null;
+	private String username;
+	private String password;
+	private String firstname;
+	private String lastname;
+	private String address;
+	private String email;
+	private String phno;
+	private int roleid;
+	private String code;
+	private int userstatus;
+	private boolean validUser;
+	private boolean noData;
+	private boolean sendEmail;
+	private static String success;
+	private String msg = "";
+	private int ctr = 0;
 
-    @Override
-    public void setSession(Map<String, Object> map) {
+	LoginDAO login = null;
 
-        setSessionMap((SessionMap<String, Object>) map);
-    }
+	@Override
+	public void setSession(Map<String, Object> map) {
 
-    public boolean validatePassword(String username, String password) throws Exception {
-        login = new LoginDAO();
-        boolean check = false;
-        setHash(login.getPasswordHash(username));
-        try {
-        check = SCryptUtil.check(password, getHash());
-        } catch(Exception e){
-            e.printStackTrace();
-        }
-        return check;
-    }
-    
-    public String validateLoginCredentials() throws Exception {
+		setSessionMap((SessionMap<String, Object>) map);
+	}
 
-        login = new LoginDAO();
-        try {
-                         
-            User validUser = login.validLoginCredential(username);
-            if(validatePassword(username,password)){
-                validUser.setValidUser(true);
-            }
-            
-            if (validUser.isValidUser()) {
+	public boolean validatePassword(String username, String password) throws Exception {
+		login = new LoginDAO();
+		boolean check = false;
+		setHash(login.getPasswordHash(username));
+		try {
+			check = SCryptUtil.check(password, getHash());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return check;
+	}
 
-                sessionMap.put("validUser", validUser);
-                sessionMap.put("roleid", validUser.getRoleid());
+	public String validateLoginCredentials() throws Exception {
 
-                username = validUser.getUsername();
-                password = validUser.getPassword();
-                firstname = validUser.getFirstname();
-                lastname = validUser.getLastname();
-                email = validUser.getEmail();
-                phno = validUser.getPhno();
-                roleid = validUser.getRoleid();
-                userstatus = validUser.getUserstatus();
+		login = new LoginDAO();
+		try {
 
-                System.out.println("roleid = " + validUser.getRoleid());
+			User validUser = login.validLoginCredential(username);
+			if (validatePassword(username, password)) {
+				validUser.setValidUser(true);
+			}
+
+			if (validUser.isValidUser()) {
+
+				sessionMap.put("validUser", validUser);
+				sessionMap.put("roleid", validUser.getRoleid());
+
+				username = validUser.getUsername();
+				password = validUser.getPassword();
+				firstname = validUser.getFirstname();
+				lastname = validUser.getLastname();
+				email = validUser.getEmail();
+				phno = validUser.getPhno();
+				roleid = validUser.getRoleid();
+				userstatus = validUser.getUserstatus();
+
+				System.out.println("roleid = " + validUser.getRoleid());
 
 //                    success = (user.getRole());
-                if (roleid == 1) {
-                    success = "successAdmin";
-                } else if (roleid == 2) {
+				if (roleid == 1) {
+					success = "successAdmin";
+				} else if (roleid == 2) {
 
-                    success = "successCSR";
-                } else {
-                    if (userstatus == 0) {
-                        success = "changePassword";
-                    } else {
-                        success = "successCustomer";
-                    }
-                }
-            } else {
-                this.msg = "Invalid Username or Password!!";
-                return "failure";
-            }
+					success = "successCSR";
+				} else {
+					if (userstatus == 0) {
+						success = "changePassword";
+					} else {
+						success = "successCustomer";
+					}
+				}
+			} else {
+				setCtr(-1);
+				this.msg = "Invalid Username or Password!!";
+				return "failure";
+			}
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-        return success;
-    }
+		return success;
+	}
 
-    public String changePassword() throws Exception {
-        login = new LoginDAO();
-        try {
-            String generatedSecuredPasswordHash = SCryptUtil.scrypt(password, 2048, 8, 1);
-            setCtr(login.changePassword(generatedSecuredPasswordHash, valUser.getPid()));
-            if (getCtr() > 0) {
-                setMsg("Password Changed Successfully.");
-                return "successchangepassword";
-            } else {
-                setMsg("Some error!");
-            }
+	public String checkEmail() {
+		login = new LoginDAO();
+		try {
+			System.out.println("My Email" + email);
+			setCtr(login.checkEmail(email));
+			System.out.println("ctr " + getCtr());
+			if (getCtr() > 0) {
+				System.out.println(getCtr());
+				setMsg("Not available");
+				setNoData(false);
+			} else {
+				setMsg("available");
+				setNoData(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ActionSupport.SUCCESS;
+	}
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "failurechangepassword";
-    }
+	public String changePassword() throws Exception {
+		login = new LoginDAO();
+		try {
+			String generatedSecuredPasswordHash = SCryptUtil.scrypt(password, 2048, 8, 1);
+			setCtr(login.changePassword(generatedSecuredPasswordHash, valUser.getPid()));
+			if (getCtr() > 0) {
+				setMsg("Password Changed Successfully.");
+				return "successchangepassword";
+			} else {
+				setMsg("Some error!");
+			}
 
-    public String logout() {
-        if (sessionMap != null) {
-            sessionMap.invalidate();
-            setMsg(null);
-        }
-        return "success";
-    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "failurechangepassword";
+	}
 
-    /**
-     * @return the pid
-     */
-    public int getPid() {
-        return pid;
-    }
+	public String logout() {
+		if (sessionMap != null) {
+			sessionMap.invalidate();
+			setMsg(null);
+		}
+		return "success";
+	}
 
-    /**
-     * @param pid the pid to set
-     */
-    public void setPid(int pid) {
-        this.pid = pid;
-    }
+	public String forgotPassword() {
+		login = new LoginDAO();
+		setCode(login.getRandom());
+		boolean test = login.sendEmail(email, code);
+		if (test) {
+			setSendEmail(true);
+			sessionMap.put("authcode", getCode());
+			sessionMap.put("email", email);
+			
+		}
+		else {
+			setSendEmail(false);
+		}
+		return ActionSupport.SUCCESS;
+	}
 
-    /**
-     * @return the username
-     */
-    public String getUsername() {
-        return username;
-    }
+	public int getPid() {
+		return pid;
+	}
 
-    /**
-     * @param username the username to set
-     */
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public void setPid(int pid) {
+		this.pid = pid;
+	}
 
-    /**
-     * @return the password
-     */
-    public String getPassword() {
-        return password;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    /**
-     * @param password the password to set
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    /**
-     * @return the firstname
-     */
-    public String getFirstname() {
-        return firstname;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    /**
-     * @param firstname the firstname to set
-     */
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    /**
-     * @return the lastname
-     */
-    public String getLastname() {
-        return lastname;
-    }
+	public String getFirstname() {
+		return firstname;
+	}
 
-    /**
-     * @param lastname the lastname to set
-     */
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
 
-    /**
-     * @return the address
-     */
-    public String getAddress() {
-        return address;
-    }
+	public String getLastname() {
+		return lastname;
+	}
 
-    /**
-     * @param address the address to set
-     */
-    public void setAddress(String address) {
-        this.address = address;
-    }
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
 
-    /**
-     * @return the email
-     */
-    public String getEmail() {
-        return email;
-    }
+	public String getAddress() {
+		return address;
+	}
 
-    /**
-     * @param email the email to set
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-    /**
-     * @return the phno
-     */
-    public String getPhno() {
-        return phno;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    /**
-     * @param phno the phno to set
-     */
-    public void setPhno(String phno) {
-        this.phno = phno;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    /**
-     * @return the roleid
-     */
-    public int getRoleid() {
-        return roleid;
-    }
+	public String getPhno() {
+		return phno;
+	}
 
-    /**
-     * @param roleid the roleid to set
-     */
-    public void setRoleid(int roleid) {
-        this.roleid = roleid;
-    }
+	public void setPhno(String phno) {
+		this.phno = phno;
+	}
 
-    /**
-     * @return the userstatus
-     */
-    public int getUserstatus() {
-        return userstatus;
-    }
+	public int getRoleid() {
+		return roleid;
+	}
 
-    /**
-     * @param userstatus the userstatus to set
-     */
-    public void setUserstatus(int userstatus) {
-        this.userstatus = userstatus;
-    }
+	public void setRoleid(int roleid) {
+		this.roleid = roleid;
+	}
 
-    /**
-     * @return the validUser
-     */
-    public boolean isValidUser() {
-        return validUser;
-    }
+	public int getUserstatus() {
+		return userstatus;
+	}
 
-    /**
-     * @param validUser the validUser to set
-     */
-    public void setValidUser(boolean validUser) {
-        this.validUser = validUser;
-    }
+	public void setUserstatus(int userstatus) {
+		this.userstatus = userstatus;
+	}
 
-    /**
-     * @return the msg
-     */
-    public String getMsg() {
-        return msg;
-    }
+	public boolean isValidUser() {
+		return validUser;
+	}
 
-    /**
-     * @param msg the msg to set
-     */
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
+	public void setValidUser(boolean validUser) {
+		this.validUser = validUser;
+	}
 
-    /**
-     * @return the sessionMap
-     */
-    public SessionMap<String, Object> getSessionMap() {
-        return sessionMap;
-    }
+	public String getMsg() {
+		return msg;
+	}
 
-    /**
-     * @param sessionMap the sessionMap to set
-     */
-    public void setSessionMap(SessionMap<String, Object> sessionMap) {
-        this.sessionMap = sessionMap;
-    }
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
 
-    /**
-     * @return the ctr
-     */
-    public int getCtr() {
-        return ctr;
-    }
+	public SessionMap<String, Object> getSessionMap() {
+		return sessionMap;
+	}
 
-    /**
-     * @param ctr the ctr to set
-     */
-    public void setCtr(int ctr) {
-        this.ctr = ctr;
-    }
+	public void setSessionMap(SessionMap<String, Object> sessionMap) {
+		this.sessionMap = sessionMap;
+	}
 
-    /**
-     * @return the hash
-     */
-    public String getHash() {
-        return hash;
-    }
+	public int getCtr() {
+		return ctr;
+	}
 
-    /**
-     * @param hash the hash to set
-     */
-    public void setHash(String hash) {
-        this.hash = hash;
-    }
+	public void setCtr(int ctr) {
+		this.ctr = ctr;
+	}
+
+	public String getHash() {
+		return hash;
+	}
+
+	public void setHash(String hash) {
+		this.hash = hash;
+	}
+
+	public boolean getNoData() {
+		return noData;
+	}
+
+	public void setNoData(boolean noData) {
+		this.noData = noData;
+	}
+
+	
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public String getCode() {
+		return code;
+	}
+	public boolean getSendEmail() {
+		return sendEmail;
+	}
+
+	public void setSendEmail(boolean sendEmail) {
+		this.sendEmail = sendEmail;
+	}
 
 }

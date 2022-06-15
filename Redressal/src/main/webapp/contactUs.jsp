@@ -85,7 +85,7 @@
             <div style="padding:20px" class="col-sm-7">
                 
             <h2 style="font-size:18px">Contact Form</h2>
-            <form action="sendmessage" method="post">             
+            <form onsubmit="return sendEmail(); return false;" action="sendmessage" method="post">             
                  <div  class="row cont-row">
                     <div  class="col-sm-3"><label>Enter Message</label><span>:</span></div>
                     <div class="col-sm-8">
@@ -96,6 +96,7 @@
                     <div style="padding-top:10px;" class="col-sm-3"><label></label></div>
                     <div class="col-sm-8">
                         <button class="btn btn-success btn-sm" type="submit">Send Message</button>
+                        <!-- <button class="btn btn-success btn-sm" onclick="sendEmail()">dEMO</button> -->
                         <s:if test="ctr>0">
                         <div class = "alert alert-success mt-2" role = "alert"><s:property value="msg" /></div>
                     </s:if>
@@ -103,18 +104,13 @@
                         <div class = "alert alert-danger mt-2" role = "alert"><s:property value="msg" /></div>
                     </s:elseif>
                     </div>
-                     
                 </div>
             </form>
             </div>
               
              <div class="col-sm-5">
                     
-                  <div style="margin:50px" class="serv"> 
-                
-               
-             
-                              
+                  <div style="margin:50px" class="serv">          
               
           <h2 style="margin-top:10px;">How to Contact us</h2>
 
@@ -137,8 +133,52 @@
 
 <!--Footer -->
     <jsp:include page="footerCustomer.jsp"/>
-
-
+<!-- SMTP javascript library -->
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+<script>
+       /*  function sendEmail() {
+        	alert("Calling");
+        	var name = '${sessionScope.validUser.getFirstname()}' + " " + '${sessionScope.validUser.getLastname()}' ;
+        	var email = '${sessionScope.validUser.getEmail()}';
+        	var phone = '${sessionScope.validUser.getPhno()}' ;
+            Email.send({
+                Host: "smtp.elasticemail.com",
+                Username: "contact.grievanceredress@gmail.com",
+                Password: "2F279EE01BE7931F7F74BA644A9848F5892F",
+                To: 'onlinegrievanceredressal@gmail.com',
+                From: "contact.grievanceredress@gmail.com",
+                Subject: "Contact Enquiry from "+name+,
+                Body: ""
+            }).then(
+                message => alert(message) 
+            );
+        } */
+        function sendEmail() {
+        	alert("Calling");
+        	var name = '${sessionScope.validUser.getFirstname()}' + " " + '${sessionScope.validUser.getLastname()}' ;
+        	var email = '${sessionScope.validUser.getEmail()}';
+        	var phone = '${sessionScope.validUser.getPhno()}' ;
+            Email.send({
+                Host: "smtp.elasticemail.com",
+                Username: "contactUs.grievanceredress@gmail.com",
+                Password: "1E0584BD6DDF4B52931DAF3BA642075568C4",
+                To: 'onlinegrievanceredressal@gmail.com',
+                From: "contactUs.grievanceredress@gmail.com",
+                Subject: "New Message: From "+name,
+                Body: "Name: "+name
+                +"<br>Email: "+email
+                +"<br>Phone: "+phone
+                +"<br>Message: " + document.getElementById('message').value
+            }).then(
+                message => alert(message)
+            );
+        }
+    </script>
+    <script>
+    function test(){
+    var name = '${sessionScope.validUser.getPhno()}' ;
+    alert(name);}
+    </script>
 </body>
 <script src="assets/js/jquery-3.2.1.min.js"></script>
 <script src="assets/js/popper.min.js"></script>

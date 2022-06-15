@@ -121,7 +121,7 @@ if (request.getSession().getAttribute("validUser") == null) {
 							<div class="form-floating mb-3">
 								<select class="form-select" name="techid" required>
 								<s:if test="techname != null">								
-											<option value="<s:property value="techid"/>" disabled selected>
+											<option value="<s:property value="techid"/>" selected>
 											<s:property value="techname" />
 										</option>
 										</s:if>

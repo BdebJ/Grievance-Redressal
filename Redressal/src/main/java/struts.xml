@@ -24,11 +24,35 @@
 				<param name="root">action</param>
 			</result>
 		</action>
+		
+		<!--Check email available or not -->
+
+		<action name="checkEmail"
+			class="com.redress.actions.LoginAction" method="checkEmail">
+			<result type="json">
+				<param name="root">action</param>
+			</result>
+		</action>
+		
+			<!--Forgot Password -->
+
+		<action name="forgotPassword"
+			class="com.redress.actions.LoginAction" method="forgotPassword">
+			<result type="json">
+				<param name="root">action</param>
+			</result>
+		</action>
 	</package>
 
 	<!-- Configuration for the default package. -->
 
 	<package name="default" extends="struts-default">
+	<action name="changePassword"
+			class="com.redress.actions.AdminAction"
+			method="updatePassword">	
+			<result name="success">/login.jsp</result>
+		</action>
+		
 		<!--Login Actions -->
 		<action name="logon" class="com.redress.actions.LoginAction"
 			method="validateLoginCredentials">
@@ -329,7 +353,15 @@
 			<result name="EDITUSER">/profile.jsp</result>
 		</action>
 
+		<!-- Link Product to the Customer -->
+		
+		<action name="addproducttocustomer"
+			class="com.redress.actions.AdminAction" method="addProductToCustomer">
+			<result name="ADDPRODUCTTOCUSTOMER" type = "chain">productList</result>
+		</action>
+		
 		<!-- Add -->
+
 		<action name="addcustomers"
 			class="com.redress.actions.AdminAction" method="addCustomer">
 			<result name="ADDCUSTOMER">/addCustomers.jsp</result>
@@ -395,7 +427,11 @@
 			class="com.redress.actions.AdminAction" method="showAllDepartments">
 			<result name="ALLDEPARTEMNTLIST">/updateTechnician.jsp</result>
 		</action>
-
+		
+		<action name="productList"
+			class="com.redress.actions.AdminAction" method="showActiveProducts">
+			<result name="SHOWACTIVEPRODUCTS">/addProductToCustomer.jsp</result>
+		</action>
 
 	</package>
 </struts>
