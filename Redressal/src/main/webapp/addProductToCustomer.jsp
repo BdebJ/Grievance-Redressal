@@ -79,7 +79,7 @@
                     	    $('#add').attr("disabled",false);
                     	    
                     	     var d = document.getElementById('hidden');
-                    	    d.innerHTML += "<input type='text' id='pid' name = 'pid' hidden><br >";
+                    	    d.innerHTML += "<input type='text' id='pid' name = 'pid' hidden>";
                     	    document.getElementById('pid').value = data.pid;
                     	   }
                     	   else{   
